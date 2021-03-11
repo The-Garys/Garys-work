@@ -4,6 +4,8 @@ import { HomepageComponent } from './homepage/homepage.component'
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './homepage/footer/footer.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md'; 
+
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { FooterComponent } from './homepage/footer/footer.component';
     FooterComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MDBBootstrapModule.forRoot() 
+
   ],
   providers: [],
   bootstrap: [AppComponent]
