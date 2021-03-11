@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "go": "node ./server/index.js",
     "build": "ng build --watch",
     "test": "ng test",
     "lint": "ng lint",
@@ -24,7 +25,10 @@
     "@types/chart.js": "^2.9.31",
     "angular-bootstrap-md": "^11.0.0",
     "animate.css": "^4.1.1",
+    "body-parser": "^1.19.0",
     "chart.js": "^2.5.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "hammerjs": "^2.0.8",
     "mdbootstrap": "^4.19.2",
     "rxjs": "~6.6.0",

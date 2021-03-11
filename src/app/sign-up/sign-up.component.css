@@ -1,7 +1,45 @@
 .text-center {
-  width: 60%;
+  width: 45%;
   margin: auto;
 }
 .btn-info {
   width: 20%;
+}
+.cont-sign-up {
+  text-align: center;
+}
+.h4 {
+  color: rgb(87, 86, 86);
+  font-size: 3rem;
+  margin-top: 2rem;
+}
+.btn {
+  width: 150px;
+  height: 49px;
+  background-color: #5995fd;
+  border: none;
+  outline: none;
+  border-radius: 49px;
+  cursor: pointer;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 10px 0;
+  transition: 0.5s;
+}
+
+.btn:hover {
+  background-color: #3373e0;
+}
+#gender-list {
+  height: 38px;
+  width: 100%;
+  border-color: rgb(196, 196, 196);
+  border-radius: 3.5px;
+}
+#Profession-list {
+  height: 38px;
+  width: 100%;
+  border-color: rgb(196, 196, 196);
+  border-radius: 3.5px;
 }

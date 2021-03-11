@@ -1,12 +1,12 @@
 <!-- Default form register -->
 <div class="cont-sign-up">
-  <form class="text-center border border-light p-5">
-    <p class="h4 mb-4">Sign up</p>
-
+  <p class="h4 mb-4">Sign up</p>
+  <div class="text-center">
     <div class="form-row mb-4">
       <div class="col">
         <!-- First name -->
         <input
+          #firstName
           type="text"
           id="defaultRegisterFormFirstName"
           class="form-control"
@@ -16,6 +16,7 @@
       <div class="col">
         <!-- Last name -->
         <input
+          #lastName
           type="text"
           id="defaultRegisterFormLastName"
           class="form-control"
@@ -26,6 +27,7 @@
 
     <!-- E-mail -->
     <input
+      #email
       type="email"
       id="defaultRegisterFormEmail"
       class="form-control mb-4"
@@ -34,6 +36,7 @@
 
     <!-- Password -->
     <input
+      #password
       type="password"
       id="defaultRegisterFormPassword"
       class="form-control"
@@ -48,6 +51,7 @@
     </small>
     <!-- Retype Password -->
     <input
+      #rePassword
       type="password"
       id="defaultRegisterFormPassword"
       class="form-control"
@@ -62,6 +66,7 @@
     </small>
     <!-- Phone number -->
     <input
+      #phone
       type="text"
       id="defaultRegisterPhonePassword"
       class="form-control"
@@ -78,9 +83,9 @@
       <div class="col">
         <!-- Gender -->
         <div class="gender">
-          <select id="gender-list">
+          <select #gender id="gender-list">
             <input list="gender-list" type="text" />
-            <option value="Female">Gender</option>
+            <option value="Gender">Gender</option>
 
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -90,42 +95,56 @@
       </div>
       <div class="col">
         <!-- Profession -->
-        <input
-          type="text"
-          id="defaultRegisterFormLastName"
-          class="form-control"
-          placeholder="Last name"
-        />
+        <div class="Profession">
+          <select #profession id="Profession-list">
+            <input list="Profession-list" type="text" />
+            <option value="Profession">Profession</option>
+          </select>
+        </div>
       </div>
     </div>
-    <!-- Sign up button -->
-    <button mdbBtn color="info" block="true" class="my-4" type="submit">
-      Sign in
-    </button>
+  </div>
+  <!-- Sign up button -->
+  <button
+    class="btn"
+    (click)="
+      getData(
+        firstName.value,
+        lastName.value,
+        email.value,
+        password.value,
+        rePassword.value,
+        phone.value,
+        gender.value,
+        profession.value
+      )
+    "
+  >
+    Sign up
+  </button>
 
-    <!-- Social register -->
-    <p>or sign up with:</p>
+  <!-- Social register -->
+  <p>or sign up with:</p>
 
-    <a type="button" class="light-blue-text mx-2">
-      <mdb-icon fab icon="facebook"></mdb-icon>
-    </a>
-    <a type="button" class="light-blue-text mx-2">
-      <mdb-icon fab icon="twitter"></mdb-icon>
-    </a>
-    <a type="button" class="light-blue-text mx-2">
-      <mdb-icon fab icon="linkedin"></mdb-icon>
-    </a>
-    <a type="button" class="light-blue-text mx-2">
-      <mdb-icon fab icon="github"></mdb-icon>
-    </a>
+  <a type="button" class="light-blue-text mx-2">
+    <mdb-icon fab icon="facebook"></mdb-icon>
+  </a>
+  <a type="button" class="light-blue-text mx-2">
+    <mdb-icon fab icon="twitter"></mdb-icon>
+  </a>
+  <a type="button" class="light-blue-text mx-2">
+    <mdb-icon fab icon="linkedin"></mdb-icon>
+  </a>
+  <a type="button" class="light-blue-text mx-2">
+    <mdb-icon fab icon="github"></mdb-icon>
+  </a>
 
-    <hr />
+  <hr />
 
-    <!-- Terms of service -->
-    <p>
-      By clicking <em>Sign up</em> you agree to our
-      <a href="" target="_blank">terms of service</a>
-    </p>
-  </form>
+  <!-- Terms of service -->
+  <p>
+    By clicking <em>Sign up</em> you agree to our
+    <a href="" target="_blank">terms of service</a>
+  </p>
   <!-- Default form register -->
 </div>
