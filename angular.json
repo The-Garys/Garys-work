@@ -8,7 +8,9 @@
   "projects": {
     "ang-app": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {"@schematics/angular:component": { 
+        "style": "scss"
+      } },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -25,10 +27,11 @@
 
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets","src/assets/svg/*"
             ],
             "styles": [
-              "src/styles.css",
+
+  
               "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
               "node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
               "node_modules/@fortawesome/fontawesome-free/scss/regular.scss",
@@ -40,12 +43,14 @@
             ],
             "scripts": [
               "node_modules/chart.js/dist/Chart.js",
-              "node_modules/hammerjs/hammer.min.js"
+              "node_modules/hammerjs/hammer.min.js",
+              "node_modules/rellax/rellax.min.js"
             ]
 
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.css"],
             "scripts": []
+
 
           },
           "configurations": {

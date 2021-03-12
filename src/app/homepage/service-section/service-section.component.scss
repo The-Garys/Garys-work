@@ -1,0 +1,46 @@
+.container {
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  background-color: #cce3de !important;
+  border-bottom-left-radius: 100%;
+}
+
+.explore {
+  justify-content: center;
+  display: flex;
+  justify-items: center;
+}
+
+.explore h1 {
+  margin: 5%;
+}
+
+h1 span {
+  align-self: center;
+  text-align: center;
+  color: teal;
+}
+
+.servicesRO {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+.servicesRT {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.services {
+  width: 30%;
+  margin: 5%;
+  display: table;
+  text-align: center;
+}
+
+.services img {
+  width: 25%;
+}

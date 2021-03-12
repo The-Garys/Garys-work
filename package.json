@@ -24,17 +24,20 @@
     "@fortawesome/fontawesome-free": "^5.15.2",
     "@types/chart.js": "^2.9.31",
     "angular-bootstrap-md": "^11.0.0",
-    "animate.css": "^4.1.1",
 
+    "angular-rellax": "^0.1.3",
+    "animate.css": "^4.1.1",
+    "font-awesome": "^4.7.0",
     "chart.js": "^2.5.0",
     "hammerjs": "^2.0.8",
-
+    "i": "^0.3.6",
     "body-parser": "^1.19.0",
     "chart.js": "^2.5.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "hammerjs": "^2.0.8",
     "mdbootstrap": "^4.19.2",
+    "rellax": "^1.12.1",
 
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
