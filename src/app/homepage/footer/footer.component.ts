@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-footer',
@@ -6,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-
-  constructor() { }
+form: FormGroup;
+  constructor(public fb: FormBuilder,
+    private http: HttpClient) { }
 
   ngOnInit(): void {
   }
