@@ -10,6 +10,9 @@ import { AboutComponent } from './homepage/about/about.component';
 import { TestimonialsComponent } from './homepage/testimonials/testimonials.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignupComponent } from './signup/signup.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ServicesListComponent } from './services-list/services-list.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +24,10 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     TestimonialsComponent,
     SignInComponent,
     SignUpComponent,
+    SignupComponent,
+    ServicesListComponent,
   ],
-  imports: [BrowserModule, MDBBootstrapModule.forRoot()],
+  imports: [BrowserModule, MDBBootstrapModule.forRoot(), HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
