@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import bcrypt from 'bcryptjs';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -9,19 +10,8 @@ export class SignUpComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {}
-  userData: {
-    firstName: any;
-    lastName: any;
-    email: any;
-    password: any;
-    rePassword: any;
-    phone: any;
-    gender: any;
-    profession: any;
-  };
-  getVal(val) {
-    console.log(val);
-  }
+  userData: object = {};
+
   getData(
     firstName,
     lastName,
@@ -30,23 +20,25 @@ export class SignUpComponent implements OnInit {
     rePassword,
     phone,
     gender,
-    profession
+    profession,
+    location
   ) {
+    this.userData = {
+      fullName: firstName + ' ' + lastName,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      rePassword: rePassword,
+      phone: phone,
+      gender: gender,
+      profession: profession,
+      location: location,
+    };
     this.http
-      .post(
-        'http://localhost:3000/halim',
-        {
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          password: password,
-          rePassword: rePassword,
-          phone: phone,
-          gender: gender,
-          profession: profession,
-        },
-        { responseType: 'json' }
-      )
+      .post('http://localhost:3000/halim', this.userData, {
+        responseType: 'json',
+      })
       .subscribe((data) => {
         console.log(data);
       });

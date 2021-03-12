@@ -1,150 +1,161 @@
 <!-- Default form register -->
 <div class="cont-sign-up">
-  <p class="h4 mb-4">Sign up</p>
-  <div class="text-center">
-    <div class="form-row mb-4">
-      <div class="col">
-        <!-- First name -->
-        <input
-          #firstName
-          type="text"
-          id="defaultRegisterFormFirstName"
-          class="form-control"
-          placeholder="First name"
-        />
-      </div>
-      <div class="col">
-        <!-- Last name -->
-        <input
-          #lastName
-          type="text"
-          id="defaultRegisterFormLastName"
-          class="form-control"
-          placeholder="Last name"
-        />
-      </div>
-    </div>
-
-    <!-- E-mail -->
-    <input
-      #email
-      type="email"
-      id="defaultRegisterFormEmail"
-      class="form-control mb-4"
-      placeholder="E-mail"
-    />
-
-    <!-- Password -->
-    <input
-      #password
-      type="password"
-      id="defaultRegisterFormPassword"
-      class="form-control"
-      placeholder="Password"
-      aria-describedby="defaultRegisterFormPasswordHelpBlock"
-    />
-    <small
-      id="defaultRegisterFormPasswordHelpBlock"
-      class="form-text text-muted mb-4"
-    >
-      At least 8 characters and 1 digit
-    </small>
-    <!-- Retype Password -->
-    <input
-      #rePassword
-      type="password"
-      id="defaultRegisterFormPassword"
-      class="form-control"
-      placeholder="Password"
-      aria-describedby="defaultRegisterFormPasswordHelpBlock"
-    />
-    <small
-      id="defaultRegisterFormPasswordHelpBlock"
-      class="form-text text-muted mb-4"
-    >
-      Retype your password
-    </small>
-    <!-- Phone number -->
-    <input
-      #phone
-      type="text"
-      id="defaultRegisterPhonePassword"
-      class="form-control"
-      placeholder="Phone number"
-      aria-describedby="defaultRegisterFormPhoneHelpBlock"
-    />
-    <small
-      id="defaultRegisterFormPhoneHelpBlock"
-      class="form-text text-muted mb-4"
-    >
-      Optional - for two-step authentication
-    </small>
-    <div class="form-row mb-4">
-      <div class="col">
-        <!-- Gender -->
-        <div class="gender">
-          <select #gender id="gender-list">
-            <input list="gender-list" type="text" />
-            <option value="Gender">Gender</option>
-
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Others">Others</option>
-          </select>
+  <div class="box-sh">
+    <p class="h4 mb-4">Sign up</p>
+    <div class="text-center">
+      <div class="form-row mb-4">
+        <div class="col">
+          <!-- First name -->
+          <input
+            #firstName
+            type="text"
+            id="defaultRegisterFormFirstName"
+            class="form-control"
+            placeholder="First name"
+          />
+        </div>
+        <div class="col">
+          <!-- Last name -->
+          <input
+            #lastName
+            type="text"
+            id="defaultRegisterFormLastName"
+            class="form-control"
+            placeholder="Last name"
+          />
         </div>
       </div>
-      <div class="col">
-        <!-- Profession -->
-        <div class="Profession">
-          <select #profession id="Profession-list">
-            <input list="Profession-list" type="text" />
-            <option value="Profession">Profession</option>
-          </select>
+
+      <!-- E-mail -->
+      <input
+        #email
+        type="email"
+        id="defaultRegisterFormEmail"
+        class="form-control mb-4"
+        placeholder="E-mail"
+      />
+
+      <!-- Password -->
+      <input
+        #password
+        type="password"
+        id="defaultRegisterFormPassword"
+        class="form-control"
+        placeholder="Password"
+        aria-describedby="defaultRegisterFormPasswordHelpBlock"
+      />
+      <small
+        id="defaultRegisterFormPasswordHelpBlock"
+        class="form-text text-muted mb-4"
+      >
+        At least 8 characters and 1 digit
+      </small>
+      <!-- Retype Password -->
+      <input
+        #rePassword
+        type="password"
+        id="defaultRegisterFormPassword"
+        class="form-control"
+        placeholder="Password"
+        aria-describedby="defaultRegisterFormPasswordHelpBlock"
+      />
+      <small
+        id="defaultRegisterFormPasswordHelpBlock"
+        class="form-text text-muted mb-4"
+      >
+        Retype your password
+      </small>
+      <!-- Phone number -->
+      <input
+        #phone
+        type="text"
+        class="form-control"
+        placeholder="Phone number"
+        aria-describedby="defaultRegisterFormPhoneHelpBlock"
+      />
+      <small
+        id="defaultRegisterFormPhoneHelpBlock"
+        class="form-text text-muted mb-4"
+      >
+        Optional - for two-step authentication
+      </small>
+      <div class="form-row mb-4">
+        <div class="col">
+          <!-- Gender -->
+          <div class="gender">
+            <select #gender id="gender-list">
+              <input list="gender-list" type="text" />
+              <option value="Gender">Gender</option>
+
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <!-- Profession -->
+          <div class="Profession">
+            <select #profession id="Profession-list">
+              <input list="Profession-list" type="text" />
+              <option value="Profession">Profession</option>
+            </select>
+          </div>
         </div>
       </div>
+      <div class="location">
+        <select #location id="location-list">
+          <input list="location-list" type="text" />
+          <option value="location">Location</option>
+
+          <option value="Ariana">Ariana</option>
+          <option value="Nabeul">Nabeul</option>
+          <option value="Bizert">Bizert</option>
+        </select>
+      </div>
     </div>
+    <!-- Sign up button -->
+    <button
+      class="btn"
+      (click)="
+        getData(
+          firstName.value,
+          lastName.value,
+          email.value,
+          password.value,
+          rePassword.value,
+          phone.value,
+          gender.value,
+          profession.value,
+          location.value
+        )
+      "
+    >
+      Sign up
+    </button>
+
+    <!-- Social register -->
+    <p>or sign up with:</p>
+
+    <a type="button" class="light-blue-text mx-2">
+      <mdb-icon fab icon="facebook"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+      <mdb-icon fab icon="twitter"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+      <mdb-icon fab icon="linkedin"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+      <mdb-icon fab icon="github"></mdb-icon>
+    </a>
+
+    <hr />
+
+    <!-- Terms of service -->
+    <p>
+      By clicking <em>Sign up</em> you agree to our
+      <a href="" target="_blank">terms of service</a>
+    </p>
   </div>
-  <!-- Sign up button -->
-  <button
-    class="btn"
-    (click)="
-      getData(
-        firstName.value,
-        lastName.value,
-        email.value,
-        password.value,
-        rePassword.value,
-        phone.value,
-        gender.value,
-        profession.value
-      )
-    "
-  >
-    Sign up
-  </button>
-
-  <!-- Social register -->
-  <p>or sign up with:</p>
-
-  <a type="button" class="light-blue-text mx-2">
-    <mdb-icon fab icon="facebook"></mdb-icon>
-  </a>
-  <a type="button" class="light-blue-text mx-2">
-    <mdb-icon fab icon="twitter"></mdb-icon>
-  </a>
-  <a type="button" class="light-blue-text mx-2">
-    <mdb-icon fab icon="linkedin"></mdb-icon>
-  </a>
-  <a type="button" class="light-blue-text mx-2">
-    <mdb-icon fab icon="github"></mdb-icon>
-  </a>
-
-  <hr />
-
-  <!-- Terms of service -->
-  <p>
-    By clicking <em>Sign up</em> you agree to our
-    <a href="" target="_blank">terms of service</a>
-  </p>
-  <!-- Default form register -->
 </div>

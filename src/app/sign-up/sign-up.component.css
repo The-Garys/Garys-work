@@ -43,3 +43,18 @@
   border-color: rgb(196, 196, 196);
   border-radius: 3.5px;
 }
+#location-list {
+  height: 38px;
+  width: 100%;
+  border-color: rgb(196, 196, 196);
+  border-radius: 3.5px;
+}
+.box-sh {
+  margin: auto;
+  width: 50%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.cont-sign-up {
+  align-items: center;
+  display: flex;
+}
