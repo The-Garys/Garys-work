@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
 var cors = require("cors");
+require("dotenv").config({ path: ".env" });
 require("dotenv").config();
 var bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const userRouter = require("./routes/UserRoute");
 const serviceProviderRouter = require("./routes/ServiceProviderRouter");
-const ServicesProviderListRouter = require("./routes/ServicesProviderListRoute")
+const ServicesProviderListRouter = require("./routes/ServicesProviderListRoute");
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,7 +26,7 @@ db.once("open", function () {
 app.use("/api/user", userRouter);
 
 app.use("/api/serviceProvider", serviceProviderRouter);
-app.use("/api/serviceProviderList", ServicesProviderListRouter)
+app.use("/api/serviceProviderList", ServicesProviderListRouter);
 
 const port = 3000;
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

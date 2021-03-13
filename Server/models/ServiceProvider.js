@@ -15,9 +15,9 @@ const serviceProviderSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-const ServiceProviders = mongoose.model(
+const ServiceProvider = mongoose.model(
   "ServiceProviders",
   serviceProviderSchema
 );
 
-module.exports = ServiceProviders;
+module.exports = ServiceProvider;
