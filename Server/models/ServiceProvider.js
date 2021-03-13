@@ -10,14 +10,14 @@ const serviceProviderSchema = new mongoose.Schema(
     profession: { type: String, required: true },
     location: { type: String, required: true },
     gender: { type: String, required: true },
-    imageUrl: { type: String, required: true },
+    imageUrl: { type: String },
     isServiceProvider: { type: Boolean, default: true },
   },
   { timestamps: true }
 );
-const serviceProviders = mongoose.model(
-  "serviceProviders",
+const ServiceProviders = mongoose.model(
+  "ServiceProviders",
   serviceProviderSchema
 );
 
-module.exports = serviceProviders;
+module.exports = ServiceProviders;

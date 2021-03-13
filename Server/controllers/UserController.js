@@ -12,7 +12,6 @@ const userCtrl = {
         userName,
         email,
         password,
-        repeatedPassword,
         phoneNumber,
       } = req.body;
 
