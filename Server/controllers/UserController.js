@@ -50,44 +50,44 @@ const userCtrl = {
     }
   },
   login: async (req, res) => {
-    console.log("req.boy=====>", req.body)
+    console.log("req.boy=====>", req.body);
     try {
-      const {email, password} =req.body
-      let user = await Users.findOne({email})
-      console.log('user login====>', user)
-      if(!user){
-        return res.send("User Not exist")
+      const { email, password } = req.body;
+      let user = await Users.findOne({ email });
+      console.log("user login====>", user);
+      if (!user) {
+        return res.send("User Not exist");
       }
       const isMatch = await bcrypt.compare(password.toString(), user.password);
-      console.log("compare====>", isMatch)
-      if(!isMatch){
-        return res.send("Incorrect password")
+      console.log("compare====>", isMatch);
+      if (!isMatch) {
+        return res.send("Incorrect password");
       }
-      
+
       const payload = {
         user: {
-          id: user._id
-        }
+          id: user._id,
+        },
       };
 
       jwt.sign(
         payload,
         "randomString",
         {
-          expiresIn: 3600
+          expiresIn: 3600,
         },
         (err, token) => {
           if (err) throw err;
           res.status(200).json({
-            token
+            token,
           });
         }
       );
       // res.send("your logged in!")
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  },
 };
 
 module.exports = userCtrl;
