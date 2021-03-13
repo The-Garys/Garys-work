@@ -13,6 +13,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ServicesListComponent } from './services-list/services-list.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +27,9 @@ import { ServicesListComponent } from './services-list/services-list.component';
     SignUpComponent,
     SignupComponent,
     ServicesListComponent,
+    NavbarComponent
   ],
-  imports: [BrowserModule, MDBBootstrapModule.forRoot(), HttpClientModule],
+  imports: [BrowserModule, MDBBootstrapModule.forRoot(), HttpClientModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })

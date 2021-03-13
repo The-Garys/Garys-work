@@ -12,5 +12,10 @@ export class HomepageComponent implements OnInit {
   ngOnInit()  {
     var rellax = new Rellax('.rellax');
   }
-
+  scrollA() {
+    console.log('clicked');
+    
+    document.querySelector('#about').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  
+  }
 }
