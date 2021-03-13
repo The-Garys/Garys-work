@@ -3,5 +3,43 @@
   margin: auto;
 }
 .btn-info {
-  width: 20%;
+  width: 40%;
+}
+#Profession-list {
+  width: 100%;
+  height: 37px;
+  border-color: rgb(204, 204, 204);
+  color: rgb(104, 104, 104);
+}
+#gender-list {
+  width: 100%;
+  height: 37px;
+  border-color: rgb(204, 204, 204);
+  color: rgb(104, 104, 104);
+}
+/* .gender-list-inp {
+  border-color: rgb(245, 245, 245);
+}
+.profession-list-inp {
+  border-color: rgb(255, 254, 254);
+} */
+#Location-list {
+  width: 100%;
+  height: 37px;
+  border-color: rgb(204, 204, 204);
+  color: rgb(104, 104, 104);
+}
+.container {
+  align-items: center;
+  text-align: center;
+}
+.cont-sign-up {
+  margin: auto;
+  width: 50%;
+  margin-top: 3rem;
+}
+.sign-tt {
+  font-weight: bold;
+  color: rgb(110, 110, 110);
+  font-size: 3.2rem;
 }

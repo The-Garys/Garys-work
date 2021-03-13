@@ -1,12 +1,13 @@
 <!-- Default form register -->
-<div class="cont-sign-up">
-  <form class="text-center border border-light p-5">
-    <p class="h4 mb-4">Sign up</p>
+<div class="container">
+  <div class="cont-sign-up">
+    <p class="h4 mb-4 sign-tt">Sign up</p>
 
     <div class="form-row mb-4">
       <div class="col">
         <!-- First name -->
         <input
+          #firstName
           type="text"
           id="defaultRegisterFormFirstName"
           class="form-control"
@@ -16,6 +17,7 @@
       <div class="col">
         <!-- Last name -->
         <input
+          #lastName
           type="text"
           id="defaultRegisterFormLastName"
           class="form-control"
@@ -26,6 +28,7 @@
 
     <!-- E-mail -->
     <input
+      #email
       type="email"
       id="defaultRegisterFormEmail"
       class="form-control mb-4"
@@ -34,6 +37,7 @@
 
     <!-- Password -->
     <input
+      #password
       type="password"
       id="defaultRegisterFormPassword"
       class="form-control"
@@ -48,6 +52,7 @@
     </small>
     <!-- Retype Password -->
     <input
+      #retypePassword
       type="password"
       id="defaultRegisterFormPassword"
       class="form-control"
@@ -62,6 +67,7 @@
     </small>
     <!-- Phone number -->
     <input
+      #phoneNumber
       type="text"
       id="defaultRegisterPhonePassword"
       class="form-control"
@@ -78,8 +84,8 @@
       <div class="col">
         <!-- Gender -->
         <div class="gender">
-          <select id="gender-list">
-            <input list="gender-list" type="text" />
+          <select #gender id="gender-list">
+            <input class="gender-list-inp" list="gender-list" type="text" />
             <option value="Female">Gender</option>
 
             <option value="Male">Male</option>
@@ -90,16 +96,53 @@
       </div>
       <div class="col">
         <!-- Profession -->
-        <input
-          type="text"
-          id="defaultRegisterFormLastName"
-          class="form-control"
-          placeholder="Last name"
-        />
+        <div class="Profession">
+          <select #profession id="Profession-list">
+            <input
+              class="profession-list-inp"
+              list="Profession-list"
+              type="text"
+            />
+            <option value="Profession">Profession</option>
+
+            <option value="Gardening">Gardening</option>
+            <option value="Painting">Painting</option>
+            <option value="Plumbing">Plumbing</option>
+          </select>
+        </div>
       </div>
     </div>
+    <!-- location -->
+    <div class="Location">
+      <select #location id="Location-list">
+        <input class="Location-list-inp" list="Location-list" type="text" />
+        <option value="Location">Location</option>
+
+        <option value="Tunis">Tunis</option>
+        <option value="Bizert">Bizert</option>
+        <option value="Kef">Kef</option>
+      </select>
+    </div>
     <!-- Sign up button -->
-    <button mdbBtn color="info" block="true" class="my-4" type="submit">
+    <button
+      mdbBtn
+      color="info"
+      block="true"
+      class="my-4"
+      (click)="
+        getData(
+          firstName.value,
+          lastName.value,
+          email.value,
+          password.value,
+          retypePassword.value,
+          phoneNumber.value,
+          gender.value,
+          profession.value,
+          location.value
+        )
+      "
+    >
       Sign in
     </button>
 
@@ -126,6 +169,7 @@
       By clicking <em>Sign up</em> you agree to our
       <a href="" target="_blank">terms of service</a>
     </p>
-  </form>
-  <!-- Default form register -->
+
+    <!-- Default form register -->
+  </div>
 </div>
