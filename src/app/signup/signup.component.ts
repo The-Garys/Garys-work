@@ -41,7 +41,7 @@ export class SignupComponent implements OnInit {
     else if (password !== repeatedPassword) {
       alert('make sure to confirm your password correctly')
     } else {
-      this.http.post("http://localhost:3000/api/register" ,    { firstName: firstName,
+      this.http.post("http://localhost:3000/api/user/register" ,    { firstName: firstName,
       lastName: lastName,
       userName: userName,
       email: email,
