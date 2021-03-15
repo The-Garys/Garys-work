@@ -12,12 +12,13 @@ const serviceProviderSchema = new mongoose.Schema(
     gender: { type: String, required: true },
     imageUrl: { type: String },
     isServiceProvider: { type: Boolean, default: true },
+    rates: [Number],
   },
   { timestamps: true }
 );
-const ServiceProviders = mongoose.model(
+const ServiceProvider = mongoose.model(
   "ServiceProviders",
   serviceProviderSchema
 );
 
-module.exports = ServiceProviders;
+module.exports = ServiceProvider;
