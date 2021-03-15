@@ -56,7 +56,7 @@ const userCtrl = {
   },
   // login with an existing account 
   login: async (req, res) => {
-    console.log("req.boy=====>", req.body)
+    console.log("req.boy=====>", req.body);
     try {
       const { email, password } = req.body
       // check if the user already exist or not 
@@ -81,7 +81,7 @@ const userCtrl = {
 
 
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   },
   // verify the user with user's token
