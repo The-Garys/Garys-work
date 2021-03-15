@@ -12,6 +12,7 @@ const serviceProviderSchema = new mongoose.Schema(
     gender: { type: String, required: true },
     imageUrl: { type: String },
     isServiceProvider: { type: Boolean, default: true },
+    rates: [Number],
   },
   { timestamps: true }
 );
