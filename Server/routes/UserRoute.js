@@ -7,7 +7,7 @@ router.get('/users', userCtrl.getAll)
 router.post('/login', userCtrl.login);
 router.get("/verify", userCtrl.verify)
 router.get("/logout", userCtrl.logout)
-
+// added
 
 
 
