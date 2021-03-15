@@ -56,17 +56,20 @@ const userCtrl = {
   },
   // login with an existing account 
   login: async (req, res) => {
-    console.log("req.boy=====>", req.body)
+    console.log("req.boy=====>", req.body);
     try {
+
       const { email, password } = req.body
       // check if the user already exist or not 
       let user = await Users.findOne({ email })
       console.log('user login====>', user)
       if (!user) {
         return res.send({msg: "User Not exist"})
+
       }
       // compare the typed password with password saved for the user
       const isMatch = await bcrypt.compare(password.toString(), user.password);
+
       console.log("compare====>", isMatch)
       if (!isMatch) {
         return res.send({msg:"Incorrect password"})
@@ -80,10 +83,12 @@ const userCtrl = {
       res.status(200).send({ auth: true, token: token, msg: "you are logged in successfully" });
 
 
+
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   },
+
   // verify the user with user's token
   verify: async (req, res) => {
     const token = req.headers['x-access-token'];
@@ -111,6 +116,7 @@ const userCtrl = {
   logout: async (req, res) => {
     res.status(200).send({ auth: false, token: null, msg: "you are logged out" });
   }
+
 };
 
 module.exports = userCtrl;
