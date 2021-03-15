@@ -207,3 +207,13 @@ button.chatbtn i {
 .nav ul li:hover {
   box-shadow: 0px -3px 0px rgba(38, 155, 155, 0.438) inset;
 }
+.profile-body {
+  width: 100%;
+  z-index: -1;
+}
+.tab {
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+  display: block;
+}
