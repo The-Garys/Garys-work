@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sign-in',
@@ -7,9 +9,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+  }
+  data: {
+    
+    email: any,
+    password: any
+  }
+  login(email, password){
+    if(!email || !password){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'please fill all the fields'
+      })
+    }
+    else{
+      this.http.post("http://localhost:3000/api/user/login" ,    {
+      email: email,
+      password: password,
+    },{ responseType: 'json' }).subscribe((data) => {
+      // alert(data)
+    console.log("data====>", data)
+      Swal.fire(
+        'Good job!',
+        'You are logged in successfully',
+        'success'
+      )
+    })
+    }
   }
 
 }

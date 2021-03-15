@@ -1,5 +1,5 @@
 // const Services= require("../../src/app/services-list/mock-service")
-const ServiceProviderList= require("../models/ServiceProviderList")
+const ServiceProviderList= require("../models/ServiceProvider")
 
 module.exports={
  addServices: async (req, res) => {

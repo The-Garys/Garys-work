@@ -6,13 +6,13 @@
           <h2 class="title">Sign In</h2>
           <div class="input-field">
             <i class="fas fa-users"></i>
-            <input type="text" placeholder="Username" />
+            <input #email type="text" placeholder="Username" />
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="Password" placeholder="Password" />
+            <input #password type="Password" placeholder="Password" />
           </div>
-          <input type="submit" value="Login" class="btn solid" />
+          <input  value="Login" class="btn solid"  (click)="login(email.value, password.value)"/>
           <p class="social-text">Or sign in with social platform:</p>
           <div class="social-media">
             <a href="#" class="social-icon">
