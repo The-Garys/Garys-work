@@ -34,7 +34,6 @@ export class SignupComponent implements OnInit {
     phoneNumber
   ) {
     if (!firstName || !lastName || !userName || !email || !password || !repeatedPassword || !phoneNumber) {
-      // alert("please fill all the fields")
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -42,7 +41,6 @@ export class SignupComponent implements OnInit {
       })
     }
     else if (password.length < 8) {
-      // alert('your password must be at least 8 characters')
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -50,7 +48,6 @@ export class SignupComponent implements OnInit {
       })
     }
     else if (password !== repeatedPassword) {
-      // alert('make sure to confirm your password correctly')
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -63,14 +60,22 @@ export class SignupComponent implements OnInit {
       email: email,
       password: password,
       phoneNumber: phoneNumber,
-    },{ responseType: 'text' }).subscribe((data) => {
-      alert(data)
-    console.log("data====>",data)
-      // Swal.fire(
-      //   'Good job!',
-      //   'You are registred successfully',
-      //   'success'
-      // )
+    },{ responseType: 'json' }).subscribe((data) => {
+      console.log(data)
+      if(data["err"]){
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: data["err"]
+        })  
+      }else {
+       localStorage.setItem("token" , data["token"])
+        Swal.fire(
+          'Good job!',
+          data["success"],
+          'success'
+        )
+      }
     })
     }
 

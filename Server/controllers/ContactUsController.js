@@ -17,6 +17,15 @@ const ContactMessage = {
       console.log(err);
     }
   },
+
+  GetMessages: async (req, res) => {
+    try {
+      let messages = await AdminMessages.find({});
+      res.send(messages);
+    } catch (err) {
+      res.send(err);
+    }
+  },
 };
 
 module.exports = ContactMessage;

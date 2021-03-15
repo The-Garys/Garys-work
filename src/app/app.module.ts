@@ -20,6 +20,8 @@ import {FormsModule} from '@angular/forms'
 
 import { SpProfileComponent } from './sp-profile/sp-profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminNavComponent } from './admin/admin-nav/admin-nav.component';
+import { MessagesComponent } from './admin/messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ServicesListComponent,
     NavbarComponent,
     SpProfileComponent,
+    AdminNavComponent,
+    MessagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +50,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
 
 
+  
 
   providers: [],
   bootstrap: [AppComponent],
