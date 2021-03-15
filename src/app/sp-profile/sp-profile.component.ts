@@ -10,7 +10,23 @@ export class SpProfileComponent implements OnInit {
 
   ngOnInit(): void {}
   check: boolean = false;
-  addClass() {
-    this.check = true;
+  posts: boolean = true;
+  reviews: boolean = false;
+  settings: boolean = false;
+
+  post() {
+    this.posts = true;
+    this.reviews = false;
+    this.settings = false;
+  }
+  review() {
+    this.posts = false;
+    this.reviews = true;
+    this.settings = false;
+  }
+  setting() {
+    this.posts = false;
+    this.reviews = false;
+    this.settings = true;
   }
 }
