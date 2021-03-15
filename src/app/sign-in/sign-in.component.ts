@@ -31,13 +31,22 @@ export class SignInComponent implements OnInit {
       email: email,
       password: password,
     },{ responseType: 'json' }).subscribe((data) => {
-      // alert(data)
-    console.log("data====>", data)
+    console.log(data)
+    if(data["err"]){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: data["err"]
+      })  
+    }else {
+     localStorage.setItem("token" , data["token"])
       Swal.fire(
         'Good job!',
-        'You are logged in successfully',
+        data["success"],
         'success'
       )
+    }
+
     })
     }
   }
