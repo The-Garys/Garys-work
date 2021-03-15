@@ -14,6 +14,7 @@ import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ServicesListComponent } from './services-list/services-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import {FormsModule} from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     ServicesListComponent,
     NavbarComponent
   ],
-  imports: [BrowserModule, MDBBootstrapModule.forRoot(), HttpClientModule, AppRoutingModule],
+  imports: [BrowserModule, MDBBootstrapModule.forRoot(), HttpClientModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
