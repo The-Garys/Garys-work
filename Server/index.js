@@ -1,13 +1,13 @@
 const express = require("express");
 const app = express();
 var cors = require("cors");
-require("dotenv").config({ path: ".env" });
 require("dotenv").config();
 var bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const userRouter = require("./routes/UserRoute");
 const serviceProviderRouter = require("./routes/ServiceProviderRouter");
 const ServicesProviderListRouter = require("./routes/ServicesProviderListRoute");
+const ContactUsRouter = require("./routes/ContactUsRoute");
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,10 +20,10 @@ db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function () {
   console.log("successfully connected to database");
 });
-// app.get("/", (req, res) => res.send("Hello World!"));
-// app.use(express.json());
 
 app.use("/api/user", userRouter);
+
+app.use("/api/contactus", ContactUsRouter);
 
 app.use("/api/serviceProvider", serviceProviderRouter);
 app.use("/api/serviceProviderList", ServicesProviderListRouter);
