@@ -8,6 +8,7 @@ const userRouter = require("./routes/UserRoute");
 const serviceProviderRouter = require("./routes/ServiceProviderRouter");
 const ServicesProviderListRouter = require("./routes/ServicesProviderListRoute");
 const ContactUsRouter = require("./routes/ContactUsRoute");
+const reviewRouter= require("./routes/ReviewRoute");
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,6 +28,7 @@ app.use("/api/contactus", ContactUsRouter);
 
 app.use("/api/serviceProvider", serviceProviderRouter);
 app.use("/api/serviceProviderList", ServicesProviderListRouter);
+app.use("/api/review", reviewRouter)
 
 const port = 3000;
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
