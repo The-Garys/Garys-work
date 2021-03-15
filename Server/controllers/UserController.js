@@ -19,7 +19,7 @@ const userCtrl = {
       // check if the email is exist or not 
       const user = await Users.findOne({ email });
       if (user) {
-        return res.send("sorry this email already exists");
+        return res.send({err:"sorry this email already exists"});
       }
       // hash the password and save the account information
       const hashPassword = await bcrypt.hash(password.toString(), 10);
@@ -35,10 +35,10 @@ const userCtrl = {
       console.log("make sure", newUser);
       // generate a token for the user
       const token = jwt.sign({ id: newUser._id }, config.toString(), {
-        expiresIn: 86400
+        expiresIn: 86400 // expires in 24 hours
       })
       console.log('user test====>', newUser._id)
-      res.send({ auth: true, token: token, msg: "successfully registred" });
+      res.send({ auth: true, token: token, success: "successfully registred" });
     } catch (err) {
       console.log(err);
       res.status(500).json({ msg: err.msg });
@@ -63,13 +63,13 @@ const userCtrl = {
       let user = await Users.findOne({ email })
       console.log('user login====>', user)
       if (!user) {
-        return res.send({msg: "User Not exist"})
+        return res.send({err:"User Not exist" } )
       }
       // compare the typed password with password saved for the user
       const isMatch = await bcrypt.compare(password.toString(), user.password);
       console.log("compare====>", isMatch)
       if (!isMatch) {
-        return res.send({msg:"Incorrect password"})
+        return res.send({err: "Incorrect password"})
       }
       // generate a token for the user
       const token = jwt.sign({ id: user._id }, config.secret.toString(), {
@@ -77,7 +77,7 @@ const userCtrl = {
       });
       console.log('user====>', user._id)
 
-      res.status(200).send({ auth: true, token: token, msg: "you are logged in successfully" });
+      res.status(200).send({ auth: true, token: token, success: "you are logged in successfully" });
 
 
     } catch (error) {
@@ -88,19 +88,19 @@ const userCtrl = {
   verify: async (req, res) => {
     const token = req.headers['x-access-token'];
     if (!token) {
-      return res.send({ auth: false, message: 'No token provided' });
+      return res.send({ auth: false, err: 'No token provided' });
     }
-    jwt.verify(token, config.secret.toString(), function (err, decoded) {
-      if (err) return res.send({ auth: false, message: 'Failed to authenticate token.' });
+    jwt.verify(token, config.secret.toString(), function (error, decoded) {
+      if (error) return res.send({ auth: false, err: 'Failed to authenticate token.' });
       console.log("decoded====>", decoded)
       Users.findById(decoded.id,
         { password: 0 }, // projection to not get back the password
-        function (err, user) {
-          if (err) {
-            return res.send("There was a problem finding the user.");
+        function (error, user) {
+          if (error) {
+            return res.send({err:"There was a problem finding the user."});
           }
           if (!user) {
-            return res.send({msg: "No user found."});
+            return res.send({err: "No user found."});
           }
 
           res.status(200).send(user);
@@ -109,7 +109,7 @@ const userCtrl = {
     });
   },
   logout: async (req, res) => {
-    res.status(200).send({ auth: false, token: null, msg: "you are logged out" });
+    res.status(200).send({ auth: false, token: null, success: "you are logged out" });
   }
 };
 
