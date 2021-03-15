@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminMessagesService } from '../admin-messages.service'
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-messages',
@@ -12,6 +13,8 @@ export class MessagesComponent implements OnInit {
 
   messages =[];
   
+  moment: any = moment;
+
   ngOnInit() {
     this.contactMessages.getMessages().subscribe((data: any[])=>{
       console.log(data);
@@ -19,6 +22,12 @@ export class MessagesComponent implements OnInit {
     })  
   }
 
+delete(id) {
+  this.contactMessages.deleteMessage(id).subscribe((data):any => {
+    this.messages = this.messages.filter(msg =>  msg._id !== id)
+    
+  })
+}
     
   }
 

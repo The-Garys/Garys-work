@@ -26,6 +26,15 @@ const ContactMessage = {
       res.send(err);
     }
   },
+
+  DeleteMessage: async (req, res) => {
+    try {
+      let deleted = await AdminMessages.deleteOne({ _id: req.params.id });
+      res.send(deleted);
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
 
 module.exports = ContactMessage;

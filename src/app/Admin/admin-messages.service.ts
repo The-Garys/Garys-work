@@ -15,4 +15,7 @@ export class AdminMessagesService {
     return this.httpClient.get(this.apiURL);
   }
   
+  public deleteMessage(id) {
+    return this.httpClient.delete(this.apiURL+'/'+id)
+  }
 }

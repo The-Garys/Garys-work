@@ -1,7 +1,9 @@
 <div *ngFor="let message of messages" class="jumbotron m-5 ">
-    <button > delete</button>
+    <button (click)='delete(message._id)' mdbBtn type="button" color="info" outline="true" mdbWavesEffect>Delete</button>
     <h1 class="display-2">{{message.name}}</h1>
-    <h2>{{message.createdAt}}</h2>
+    <h2>{{moment(message.createdAt).format('ll')}}</h2>
     <hr class="my-4">
     <p>{{message.message}}</p>
+    <span>{{message.phone}}</span>
+    <span>{{message.email}}</span>
   </div>
