@@ -18,4 +18,8 @@ export class AdminMessagesService {
   public deleteMessage(id) {
     return this.httpClient.delete(this.apiURL+'/'+id)
   }
+
+  public deleteAll() {
+    return this.httpClient.delete(this.apiURL)
+  }
 }

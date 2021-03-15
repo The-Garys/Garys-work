@@ -35,6 +35,15 @@ const ContactMessage = {
       console.log(err);
     }
   },
+
+  DeleteAll: async (req, res) => {
+    try {
+      await AdminMessages.deleteMany({});
+      res.json("deleted");
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
 
 module.exports = ContactMessage;
