@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SERVICES,NAME} from '../services-list/mock-service'
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-services-list',
@@ -7,22 +8,31 @@ import {SERVICES,NAME} from '../services-list/mock-service'
   styleUrls: ['./services-list.component.css']
 })
 export class ServicesListComponent implements OnInit {
- services : any =SERVICES
+ services : any =[]
  username: string;
  list : any = NAME
-  constructor() { }
+ data :any 
+ backup : any = []
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.services=SERVICES 
+    this.services=[] ;
     this.list=NAME
+    this.http.get("http://localhost:3000/api/serviceProviderList/services").subscribe((data)=>{
+      console.log("idhazd" , data)
+      this.services=data
+      this.backup = data 
+    })
   }
+
+
   getVal(val){
     console.log(val)
-  this.ngOnInit()
+    this.services = this.backup
    var newArray = [] 
    this.services.map((e)=>{
     val = val.toUpperCase()
-    var name = e.firstName.toUpperCase()
+    var name = e.fullName.toUpperCase()
      if(name.includes(val)  ){
        newArray.push(e)
      }
@@ -31,22 +41,25 @@ export class ServicesListComponent implements OnInit {
   }
 
   dropVal(val){
-    console.log(val)
-    this.ngOnInit()
-    var newArr = [] 
-    this.services.map((e)=>{
-     val = val.toUpperCase()
-     var name = e.profession.toUpperCase()
-      if(name.includes(val)  ){
-        newArr.push(e)
-      }
-    })
-    this.services = newArr
-
+    // console.log(val)
+    this.services = this.backup
+    if(val !== "all"){
+      var newArr = [] 
+      this.services.map((e)=>{
+       val = val.toUpperCase()
+       var name = e.profession.toUpperCase()
+        if(name.includes(val)  ){
+          newArr.push(e)
+        }
+      })
+      this.services = newArr
+    }
   }
 
   dropLoc(val){
-    this.ngOnInit()
+    this.services = this.backup
+    if(val !== "all"){
+
     var newArr = [] 
     this.services.map((e)=>{
      val = val.toUpperCase()
@@ -60,4 +73,4 @@ export class ServicesListComponent implements OnInit {
   }
   
 
-
+}
