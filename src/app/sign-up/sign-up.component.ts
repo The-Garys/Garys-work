@@ -45,22 +45,22 @@ export class SignUpComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'please fill all the fields'
-      })
+        text: 'please fill all the fields',
+      });
     } else if (password !== retypePassword) {
       // alert('make sure to confirm your password correctly');
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'make sure to confirm your password correctly'
-      })
+        text: 'make sure to confirm your password correctly',
+      });
     } else if (password.length < 8) {
       // alert('your password must be at least 8 characters');
-  Swal.fire({
+      Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'your password must be at least 8 characters'
-      })
+        text: 'your password must be at least 8 characters',
+      });
     } else {
       this.http
         .post(
@@ -80,21 +80,17 @@ export class SignUpComponent implements OnInit {
         )
         .subscribe((data) => {
           // alert(data);
-          console.log(data)
-          if(data["err"]){
+          console.log('why not ?', data);
+          if (data['err']) {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
-              text: data["err"]
-            })  
-          }else {
-           localStorage.setItem("token" , data["token"])
-           this.router.navigateByUrl('/spProfile');
-            Swal.fire(
-              'Good job!',
-              data["success"],
-              'success'
-            )
+              text: data['err'],
+            });
+          } else {
+            localStorage.setItem('token', data['token']);
+            this.router.navigateByUrl('/spProfile');
+            Swal.fire('Good job!', data['success'], 'success');
           }
         });
     }
