@@ -24,6 +24,8 @@ import { ReviewsComponent } from './reviews/reviews.component';
 import { AdminNavComponent } from './admin/admin-nav/admin-nav.component';
 import { MessagesComponent } from './admin/messages/messages.component';
 import { AppointmentComponent } from './appointment/appointment.component';
+import { UserNavbarComponent } from './Admin/user-navbar/user-navbar.component';
+import { UserNavComponent } from './user-nav/user-nav.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { AppointmentComponent } from './appointment/appointment.component';
     AdminNavComponent,
     MessagesComponent,
     AppointmentComponent,
+    UserNavbarComponent,
+    UserNavComponent,
   ],
   imports: [
     BrowserModule,

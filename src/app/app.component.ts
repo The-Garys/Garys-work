@@ -7,8 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'gary-work';
-role:string;
+  type : string 
+
+
+  role:string;
   ngOnInit(){
-  
+
+    this.type = localStorage.getItem("type")
+       console.log("this is type" , this.type)
   }
 }

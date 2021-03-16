@@ -55,6 +55,8 @@ export class SignInComponent implements OnInit {
       })  
     }else {
      localStorage.setItem("token" , data["token"])
+     localStorage.setItem("type" , "user" )
+     
      this.router.navigateByUrl('/homePage');
       Swal.fire(
         'Good job!',

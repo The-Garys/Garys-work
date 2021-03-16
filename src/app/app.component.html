@@ -1,5 +1,8 @@
 <!-- <app-navbar></app-navbar> -->
-<app-admin-nav *ngIf=""></app-admin-nav>
+<!-- <app-admin-nav></app-admin-nav> -->
+<app-navbar *ngIf="type === ''"></app-navbar>
+<app-user-nav  *ngIf="type === 'user'"></app-user-nav>
+
 <router-outlet></router-outlet>
 
 
