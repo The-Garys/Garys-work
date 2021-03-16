@@ -1,7 +1,7 @@
 <div class="cont">
   <div class="div-container">
     <div class="forms-container">
-      <div class="signin-signup">
+      <div  class="signin-signup">
         <form action="" class="sign-in-form">
           <h2 class="title">Sign In</h2>
           <div class="input-field">
@@ -12,7 +12,32 @@
             <i class="fas fa-lock"></i>
             <input #password type="Password" placeholder="Password" />
           </div>
-          <input  value="Login" class="btn solid"  (click)="login(email.value, password.value)"/>
+          <!-- check -->
+          <div cllass="check-form">
+          <div class="form-check form-check-inline">
+            <input (click)="checkProvider(false)"
+              class="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              id="inlineRadio1"
+              value="option1"
+            />
+            <label class="form-check-label" for="inlineRadio1">User</label>
+          </div>
+          
+          <div class="form-check form-check-inline">
+            <input (click)= "checkProvider(true)"
+              class="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              id="inlineRadio2"
+              value="option2"
+            />
+            <label class="form-check-label" for="inlineRadio2">Service Provider</label>
+          </div>
+        </div>
+          <!-- check -->
+          <input value="Login" class="btn solid"  (click)="login(email.value, password.value)"/>
           <p class="social-text">Or sign in with social platform:</p>
           <div class="social-media">
             <a href="#" class="social-icon">
