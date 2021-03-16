@@ -51,6 +51,8 @@ const serviceProviderCtrl = {
         auth: true,
         token: token,
         success: "successfully registred",
+        name: newServiceProvider.firstName,
+        greet: "Welcome"
       });
     } catch (err) {
       console.log(err);
@@ -92,6 +94,7 @@ const serviceProviderCtrl = {
         token: token,
         success: "you are logged in successfully",
         id: userProvider._id,
+        name: userProvider.firstName, greet: "Welcome"
       });
     } catch (error) {
       console.log(error);

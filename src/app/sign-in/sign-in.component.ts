@@ -61,7 +61,7 @@ export class SignInComponent implements OnInit {
           } else {
             localStorage.setItem('token', data['token']);
             this.router.navigateByUrl('/homePage');
-            Swal.fire(data["name"], data['success'], 'success');
+            Swal.fire( data["greet"] +" "+ data["name"], data['success'], 'success');
           }
         });
     } else if (this.serviceProviderIsChecked) {
@@ -85,7 +85,7 @@ export class SignInComponent implements OnInit {
           } else {
             localStorage.setItem('token', data['token']);
             this.router.navigateByUrl('/spProfile');
-            Swal.fire('Good job!', data['success'], 'success');
+            Swal.fire(data["greet"] +" "+ data["name"], data['success'], 'success');
           }
         });
     }
