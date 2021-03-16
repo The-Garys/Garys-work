@@ -158,18 +158,17 @@ form {
 .sp-sign-up h3 {
   font-size: 1.1rem;
 }
+
 .sp-sign-up-container:hover {
-  border: 1px solid rgb(218, 30, 255);
-  color: rgb(218, 30, 255);
+  border: 1px solid #22817e;
+  color: #22817e;
   cursor: pointer;
 }
 .user-sign-up-container:hover {
-  border: 1px solid rgb(0, 255, 21);
-  color: rgb(0, 255, 21);
+  border: 1px solid #22817e;
+  color: #22817e;
   cursor: pointer;
 }
-.check-form{
+.check-form {
   display: inline-block;
- 
 }
-
