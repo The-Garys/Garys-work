@@ -34,6 +34,7 @@ const serviceProviderCtrl = {
         password: hashPassword,
       });
       console.log("make sure", newServiceProvider);
+
       const token = jwt.sign(
         { id: newServiceProvider._id },
         config.toString(),
@@ -76,6 +77,7 @@ const serviceProviderCtrl = {
         return res.send({ err: "Incorrect password" });
       }
       // generate a token for the user
+
       const token = jwt.sign(
         { id: userProvider._id },
         config.secret.toString(),
