@@ -15,8 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServicesListComponent } from './services-list/services-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
-import {FormsModule} from '@angular/forms'
-
+import { FormsModule } from '@angular/forms';
 
 import { SpProfileComponent } from './sp-profile/sp-profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -46,11 +45,8 @@ import { MessagesComponent } from './admin/messages/messages.component';
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
   ],
-
-
-  
 
   providers: [],
   bootstrap: [AppComponent],
