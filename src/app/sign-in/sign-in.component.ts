@@ -13,21 +13,26 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {}
   data: {
-    email: any;
-    password: any;
-  };
-  userIsChecked: any = false;
-  serviceProviderIsChecked: any = false;
-
-  checkProvider(a) {
-    if (a) {
-      this.userIsChecked = false;
-      this.serviceProviderIsChecked = true;
-    } else {
-      this.userIsChecked = true;
-      this.serviceProviderIsChecked = false;
-    }
+    email: any,
+    password: any
   }
+ userIsChecked: any= false
+ serviceProviderIsChecked: any=false
+
+ checkProvider(a){
+   if(a){
+    this.userIsChecked = false
+    this.serviceProviderIsChecked= true
+   } else {
+    this.userIsChecked = true
+    this.serviceProviderIsChecked= false
+   }
+
+
+ }
+  
+
+
   login(email, password) {
     if (!email || !password) {
       Swal.fire({
@@ -56,7 +61,7 @@ export class SignInComponent implements OnInit {
           } else {
             localStorage.setItem('token', data['token']);
             this.router.navigateByUrl('/homePage');
-            Swal.fire('Good job!', data['success'], 'success');
+            Swal.fire( data["greet"] +" "+ data["name"], data['success'], 'success');
           }
         });
     } else if (this.serviceProviderIsChecked) {
@@ -80,7 +85,7 @@ export class SignInComponent implements OnInit {
           } else {
             localStorage.setItem('token', data['token']);
             this.router.navigateByUrl('/spProfile');
-            Swal.fire('Good job!', data['success'], 'success');
+            Swal.fire(data["greet"] +" "+ data["name"], data['success'], 'success');
           }
         });
     }

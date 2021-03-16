@@ -38,7 +38,7 @@ const userCtrl = {
         expiresIn: 86400 // expires in 24 hours
       })
       console.log('user test====>', newUser._id)
-      res.send({ auth: true, token: token, success: "successfully registred" });
+      res.send({ auth: true, token: token, success: "successfully registred", id: newUser._id, name: newUser.userName ,greet: "Welcome"});
     } catch (err) {
       console.log(err);
       res.status(500).json({ msg: err.msg });
@@ -77,7 +77,7 @@ const userCtrl = {
       });
       console.log('user====>', user._id)
 
-      res.status(200).send({ auth: true, token: token, success: "you are logged in successfully" });
+      res.status(200).send({ auth: true, token: token, success: "you are logged in successfully" , id: user._id, name: user.userName, greet: "Welcome"});
 
 
     } catch (error) {

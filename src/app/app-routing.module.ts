@@ -1,4 +1,4 @@
-import {  NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SignInComponent } from './sign-in/sign-in.component';
@@ -6,6 +6,8 @@ import { ServicesListComponent } from './services-list/services-list.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignupComponent } from './signup/signup.component';
 import { SpProfileComponent } from './sp-profile/sp-profile.component';
+import { AdminNavComponent } from './admin/admin-nav/admin-nav.component';
+
 
 const routes: Routes = [
   { path: '', component: HomepageComponent, pathMatch: 'full' },
@@ -14,7 +16,8 @@ const routes: Routes = [
   { path: 'providerSignup', component: SignUpComponent },
   { path: 'userSignup', component: SignupComponent },
   { path: 'spProfile', component: SpProfileComponent },
-  {path: 'homePage', component: HomepageComponent}
+  {path: 'homePage', component: HomepageComponent} , 
+  {path: 'admin', component: AdminNavComponent}
 ];
 
 @NgModule({

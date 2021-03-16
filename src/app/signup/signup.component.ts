@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+// import {UserServiceProviderService} from '../user-service-provider.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
@@ -73,7 +74,7 @@ export class SignupComponent implements OnInit {
        localStorage.setItem("token" , data["token"])
        this.router.navigateByUrl('/homePage');
         Swal.fire(
-          'Good job!',
+          data["greet"] +" "+data["name"],
           data["success"],
           'success'
         )

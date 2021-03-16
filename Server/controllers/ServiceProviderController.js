@@ -34,6 +34,7 @@ const serviceProviderCtrl = {
         password: hashPassword,
       });
       console.log("make sure", newServiceProvider);
+
       const token = jwt.sign(
         { id: newServiceProvider._id },
         config.toString(),
@@ -50,6 +51,8 @@ const serviceProviderCtrl = {
         auth: true,
         token: token,
         success: "successfully registred",
+        name: newServiceProvider.firstName,
+        greet: "Welcome"
       });
     } catch (err) {
       console.log(err);
@@ -76,6 +79,7 @@ const serviceProviderCtrl = {
         return res.send({ err: "Incorrect password" });
       }
       // generate a token for the user
+
       const token = jwt.sign(
         { id: userProvider._id },
         config.secret.toString(),
@@ -90,6 +94,7 @@ const serviceProviderCtrl = {
         token: token,
         success: "you are logged in successfully",
         id: userProvider._id,
+        name: userProvider.firstName, greet: "Welcome"
       });
     } catch (error) {
       console.log(error);
