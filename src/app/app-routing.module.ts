@@ -5,6 +5,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { ServicesListComponent } from './services-list/services-list.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignupComponent } from './signup/signup.component';
+import { SpProfileComponent } from './sp-profile/sp-profile.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent, pathMatch: 'full' },
@@ -12,6 +13,8 @@ const routes: Routes = [
   { path: 'services', component: ServicesListComponent },
   { path: 'providerSignup', component: SignUpComponent },
   { path: 'userSignup', component: SignupComponent },
+  { path: 'spProfile', component: SpProfileComponent },
+  {path: 'homePage', component: HomepageComponent}
 ];
 
 @NgModule({

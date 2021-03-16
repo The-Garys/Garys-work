@@ -1,0 +1,25 @@
+<div class="review-container">
+    <!-- Service Provider Name input -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form4Example1">Service Provider Name</label>
+      <input #serviceProviderName type="text" id="form4Example1" class="form-control" />
+   
+    </div>
+  
+    <!-- User Name input -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form4Example2">User Name</label>
+      <input #userName type="text" id="form4Example2" class="form-control" />
+     
+    </div>
+  
+    <!-- Review input -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form4Example3">Review</label>
+      <textarea #review class="form-control" id="form4Example3" rows="4"></textarea>
+      
+    </div>
+  
+    <!-- Submit button -->
+    <button  class="btn btn-primary btn-block mb-4" (click)="addReview(serviceProviderName.value, userName.value, review.value)">Send</button>
+  </div>

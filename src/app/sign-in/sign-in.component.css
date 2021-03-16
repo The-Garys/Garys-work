@@ -168,3 +168,8 @@ form {
   color: rgb(0, 255, 21);
   cursor: pointer;
 }
+.check-form{
+  display: inline-block;
+ 
+}
+

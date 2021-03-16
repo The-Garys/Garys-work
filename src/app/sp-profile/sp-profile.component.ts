@@ -7,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpProfileComponent implements OnInit {
   constructor() {}
-
-  ngOnInit(): void {}
+token : string =   localStorage.getItem("token")
+  ngOnInit(): void {
+    console.log(this.token)
+  }
   check: boolean = false;
   addClass() {
     this.check = true;
