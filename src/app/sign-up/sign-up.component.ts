@@ -44,20 +44,20 @@ export class SignUpComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'please fill all the fields'
-      })
+        text: 'please fill all the fields',
+      });
     } else if (password !== retypePassword) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'make sure to confirm your password correctly'
-      })
+        text: 'make sure to confirm your password correctly',
+      });
     } else if (password.length < 8) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'your password must be at least 8 characters'
-      })
+        text: 'your password must be at least 8 characters',
+      });
     } else {
       this.http
         .post(

@@ -4,6 +4,7 @@ const serviceProviderCtrl = require("../controllers/ServiceProviderController");
 router.post("/signup", serviceProviderCtrl.signUp);
 router.post("/login", serviceProviderCtrl.login);
 router.get("/verify", serviceProviderCtrl.verify);
-router.get("/logout", serviceProviderCtrl.logout)
+router.get("/logout", serviceProviderCtrl.logout);
+router.post("/profileData", serviceProviderCtrl.getSPdata);
 
 module.exports = router;
