@@ -30,45 +30,9 @@ export class SignInComponent implements OnInit {
 
 
  }
-  login(email, password){
-    if(!email || !password){
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'please fill all the fields'
-      })
-    }
-    else if(this.userIsChecked){
-      this.http.post("http://localhost:3000/api/user/login" ,    {
-      email: email,
-      password: password,
-    },{ responseType: 'json' }).subscribe((data) => {
-    console.log(data)
-    if(data["err"]){
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: data["err"]
-      })  
-    }else {
-     localStorage.setItem("token" , data["token"])
-     this.router.navigateByUrl('/homePage');
-      Swal.fire(
-        data["name"],
-        data["success"],
-        'success'
-      )
-    }
+  
 
-  checkProvider(a) {
-    if (a) {
-      this.userIsChecked = false;
-      this.serviceProviderIsChecked = true;
-    } else {
-      this.userIsChecked = true;
-      this.serviceProviderIsChecked = false;
-    }
-  }
+
   login(email, password) {
     if (!email || !password) {
       Swal.fire({
@@ -97,7 +61,7 @@ export class SignInComponent implements OnInit {
           } else {
             localStorage.setItem('token', data['token']);
             this.router.navigateByUrl('/homePage');
-            Swal.fire('Good job!', data['success'], 'success');
+            Swal.fire(data["name"], data['success'], 'success');
           }
         });
     } else if (this.serviceProviderIsChecked) {
