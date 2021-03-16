@@ -31,6 +31,7 @@
       {{ location.location }}
     </option>
   </select>
+
 </div>
 
 <div class="cont-cards">
@@ -45,10 +46,10 @@
         </a>
 
         <div class="img-cont">
-          <img src="{{ e.image }}" class="rounded-circle" />
+          <img src="{{e.imageUrl}}" class="rounded-circle" />
           <div class="field-cont">
             <mdb-card-body class="Crd">
-              <h1>{{ e.firstName }}</h1>
+              <h1>{{ e.fullName }}</h1>
               <div class="h2">
                 <h2>{{ e.profession }}</h2>
                 <h2>{{ e.location }}</h2>
@@ -60,3 +61,8 @@
     </div>
   </div>
 </div>
+
+
+
+
+

@@ -68,29 +68,33 @@
             <ul>
               <li
                 class="user-post active"
-                [class.active]="check"
-                (click)="addClass()"
+                [class.active]="posts"
+                (click)="post()"
               >
                 Posts
               </li>
               <li
                 class="user-review"
-                [class.active]="check"
-                (click)="addClass()"
+                [class.active]="reviews"
+                (click)="review()"
               >
                 Reviews
               </li>
               <li
                 class="user-setting"
-                [class.active]="check"
-                (click)="addClass()"
+                [class.active]="settings"
+                (click)="setting()"
               >
                 Settings
               </li>
             </ul>
           </div>
           <div class="profile-body">
-            <div class="profile-posts tab active">
+            <div
+              class="profile-posts tab active"
+              id="profile-posts"
+              *ngIf="posts"
+            >
               <h1>Your posts</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea
@@ -104,7 +108,11 @@
                 hic.
               </p>
             </div>
-            <div class="profile-reviews tab">
+            <div
+              class="profile-reviews tab"
+              id="profile-reviews"
+              *ngIf="reviews"
+            >
               <h1>User reviews</h1>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -118,7 +126,11 @@
                 praesentium maiores sed perferendis in!
               </p>
             </div>
-            <div class="profile-settings tab">
+            <div
+              class="profile-settings tab"
+              id="profile-settings"
+              *ngIf="settings"
+            >
               <h1>Account setting</h1>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
