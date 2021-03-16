@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-
+import { GaryService } from '../gary.service';
 @Component({
   selector: 'app-sp-profile',
   templateUrl: './sp-profile.component.html',
   styleUrls: ['./sp-profile.component.scss'],
 })
 export class SpProfileComponent implements OnInit {
-  constructor() {}
+  constructor(private serviceProviderData: GaryService) {}
+  token: string = localStorage.getItem('token');
+  ngOnInit(): void {
+    console.log('helelews man', this.token);
+  }
 
-  ngOnInit(): void {}
   check: boolean = false;
   posts: boolean = true;
   reviews: boolean = false;

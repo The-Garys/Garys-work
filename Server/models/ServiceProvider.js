@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+//
 const serviceProviderSchema = new mongoose.Schema(
   {
     firstName: { type: String, required: true },
@@ -13,6 +14,7 @@ const serviceProviderSchema = new mongoose.Schema(
     imageUrl: { type: String },
     isServiceProvider: { type: Boolean, default: true },
     rates: [Number],
+    token: { type: String, required: true },
   },
   { timestamps: true }
 );

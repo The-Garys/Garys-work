@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
 export class SignupComponent implements OnInit {
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -70,6 +71,7 @@ export class SignupComponent implements OnInit {
         })  
       }else {
        localStorage.setItem("token" , data["token"])
+       this.router.navigateByUrl('/homePage');
         Swal.fire(
           'Good job!',
           data["success"],

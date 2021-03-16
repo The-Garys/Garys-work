@@ -19,8 +19,11 @@ import { FormsModule } from '@angular/forms';
 
 import { SpProfileComponent } from './sp-profile/sp-profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ReviewsComponent } from './reviews/reviews.component';
 import { AdminNavComponent } from './admin/admin-nav/admin-nav.component';
 import { MessagesComponent } from './admin/messages/messages.component';
+import { AppointmentComponent } from './appointment/appointment.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +39,10 @@ import { MessagesComponent } from './admin/messages/messages.component';
     ServicesListComponent,
     NavbarComponent,
     SpProfileComponent,
+    ReviewsComponent,
     AdminNavComponent,
     MessagesComponent,
+    AppointmentComponent,
   ],
   imports: [
     BrowserModule,
