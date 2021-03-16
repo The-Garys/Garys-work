@@ -38,7 +38,7 @@ const userCtrl = {
         expiresIn: 86400 // expires in 24 hours
       })
       console.log('user test====>', newUser._id)
-      res.send({ auth: true, token: token, success: "successfully registred" });
+      res.send({ auth: true, token: token, success: "successfully registred", id: newUser._id, name: newUser.userName });
     } catch (err) {
       console.log(err);
       res.status(500).json({ msg: err.msg });
@@ -61,7 +61,7 @@ const userCtrl = {
       const { email, password } = req.body
       // check if the user already exist or not 
       let user = await Users.findOne({ email })
-      console.log('user login====>', user)
+      console.log('user login====>', user.userName)
       if (!user) {
         return res.send({err:"User Not exist" } )
       }
@@ -77,7 +77,7 @@ const userCtrl = {
       });
       console.log('user====>', user._id)
 
-      res.status(200).send({ auth: true, token: token, success: "you are logged in successfully" });
+      res.status(200).send({ auth: true, token: token, success: "you are logged in successfully" , id: user._id, name: user.userName});
 
 
     } catch (error) {

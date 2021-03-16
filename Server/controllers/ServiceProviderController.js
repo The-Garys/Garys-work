@@ -39,7 +39,7 @@ const serviceProviderCtrl = {
         expiresIn: 86400 // expires in 24 hours
       })
       console.log('service provider  test====>', newServiceProvider._id)
-      res.send({ auth: true, token: token, success: "successfully registred" });
+      res.send({ auth: true, token: token, success: "successfully registred" , id: newServiceProvider._id});
     } catch (err) {
       console.log(err);
       res.status(500).json({ msg: err.msg });
@@ -67,7 +67,7 @@ const serviceProviderCtrl = {
       });
       console.log('user====>', userProvider._id)
 
-      res.status(200).send({ auth: true, token: token, success: "you are logged in successfully" });
+      res.status(200).send({ auth: true, token: token, success: "you are logged in successfully", id: userProvider._id });
 
 
     } catch (error) {

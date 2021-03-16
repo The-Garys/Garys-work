@@ -8,9 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   myData: {
     firstName: any;
     lastName: any;
@@ -41,22 +41,19 @@ export class SignUpComponent implements OnInit {
       retypePassword === '' ||
       phoneNumber === ''
     ) {
-      // alert('please fill all the fields');
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'please fill all the fields'
       })
     } else if (password !== retypePassword) {
-      // alert('make sure to confirm your password correctly');
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'make sure to confirm your password correctly'
       })
     } else if (password.length < 8) {
-      // alert('your password must be at least 8 characters');
-  Swal.fire({
+      Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'your password must be at least 8 characters'
@@ -79,17 +76,16 @@ export class SignUpComponent implements OnInit {
           { responseType: 'json' }
         )
         .subscribe((data) => {
-          // alert(data);
           console.log(data)
-          if(data["err"]){
+          if (data["err"]) {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
               text: data["err"]
-            })  
-          }else {
-           localStorage.setItem("token" , data["token"])
-           this.router.navigateByUrl('/spProfile');
+            })
+          } else {
+            localStorage.setItem("token", data["token"])
+            this.router.navigateByUrl('/spProfile');
             Swal.fire(
               'Good job!',
               data["success"],

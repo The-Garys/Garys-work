@@ -57,7 +57,7 @@ export class SignInComponent implements OnInit {
      localStorage.setItem("token" , data["token"])
      this.router.navigateByUrl('/homePage');
       Swal.fire(
-        'Good job!',
+        data["name"],
         data["success"],
         'success'
       )
