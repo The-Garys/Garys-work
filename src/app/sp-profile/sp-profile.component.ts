@@ -22,7 +22,7 @@ import { GaryService } from '../gary.service';
   styleUrls: ['./sp-profile.component.scss'],
 })
 export class SpProfileComponent implements OnInit {
-  constructor(private serviceProviderData: GaryService) {}
+  constructor(private GaryService: GaryService) {}
   token: string = localStorage.getItem('token');
   ngOnInit(): void {
     console.log('helelews man', this.token);
