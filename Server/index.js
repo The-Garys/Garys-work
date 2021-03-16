@@ -9,6 +9,7 @@ const serviceProviderRouter = require("./routes/ServiceProviderRouter");
 const ServicesProviderListRouter = require("./routes/ServicesProviderListRoute")
 const ContactUsRouter = require("./routes/ContactUsRoute");
 const reviewRouter= require("./routes/ReviewRoute");
+const appointmentRouter= require("./routes/AppointmentRoute")
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -30,6 +31,7 @@ app.use("/api/serviceProvider", serviceProviderRouter);
 
 app.use("/api/serviceProviderList", ServicesProviderListRouter);
 app.use("/api/review", reviewRouter)
+app.use("/api/appointment", appointmentRouter)
 
 
 const port = 3000;

@@ -22,6 +22,7 @@ import { SpProfileComponent } from './sp-profile/sp-profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminNavComponent } from './admin/admin-nav/admin-nav.component';
 import { MessagesComponent } from './admin/messages/messages.component';
+import { AppointmentComponent } from './appointment/appointment.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MessagesComponent } from './admin/messages/messages.component';
     SpProfileComponent,
     AdminNavComponent,
     MessagesComponent,
+    AppointmentComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,18 @@
+
+ <div class="appointment">
+  <input type="date" #date>
+  <div class="md-form">
+  <input mdbInput type="text" #name id="form1" class="form-control">
+  <label for="form1" class="">userName</label>
+</div>
+<div class="md-form">
+  <input mdbInput type="text" #mail id="form1" class="form-control">
+  <label for="form1" class="">e-mail</label>
+</div>
+<div class="md-form">
+  <input mdbInput type="text" #svname id="form1" class="form-control">
+  <label for="form1" class="">ServiceProviderName</label>
+</div>
+<button (click)="submit(name.value , mail.value , date.value ,svname.value)">Make Appointment</button>
+ </div>
+ 
