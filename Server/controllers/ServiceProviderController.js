@@ -3,6 +3,12 @@ const Users = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
+
+
+
+
+
+
 const serviceProviderCtrl = {
   signUp: async (req, res) => {
     console.log(req.body);
@@ -17,6 +23,7 @@ const serviceProviderCtrl = {
         profession,
         location,
         gender,
+        imageUrl
       } = req.body;
       const serviceProvider = await ServiceProvider.findOne({ email });
       if (serviceProvider) {
@@ -37,6 +44,7 @@ const serviceProviderCtrl = {
         gender,
         email,
         password: hashPassword,
+        imageUrl
       });
       console.log("make sure", newServiceProvider);
 
