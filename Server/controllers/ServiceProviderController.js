@@ -1,4 +1,5 @@
 const ServiceProvider = require("../models/ServiceProvider.js");
+const Users = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
@@ -20,6 +21,10 @@ const serviceProviderCtrl = {
       const serviceProvider = await ServiceProvider.findOne({ email });
       if (serviceProvider) {
         return res.send({ err: "sorry this email already exists" });
+      }
+      const user = await Users.findOne({ email });
+      if (user) {
+        return res.send({err:"sorry this email already exists"});
       }
       const hashPassword = await bcrypt.hash(password.toString(), 10);
       const newServiceProvider = new ServiceProvider({

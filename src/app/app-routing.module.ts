@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'providerSignup', component: SignUpComponent },
   { path: 'userSignup', component: SignupComponent },
   { path: 'spProfile', component: SpProfileComponent },
-  {path: 'homePage', component: HomepageComponent} , 
+  {path: 'homeServices', component: ServicesListComponent} , 
   {path: 'admin', component: AdminNavComponent}
 ];
 

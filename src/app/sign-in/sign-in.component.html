@@ -1,7 +1,7 @@
 <div class="cont">
   <div class="div-container">
     <div class="forms-container">
-      <div  class="signin-signup">
+      <div class="signin-signup">
         <form action="" class="sign-in-form">
           <h2 class="title">Sign In</h2>
           <div class="input-field">
@@ -13,38 +13,18 @@
             <input #password type="Password" placeholder="Password" />
           </div>
           <!-- check -->
-          <div cllass="check-form">
-          <div class="form-check form-check-inline">
-            <input (click)="checkProvider(false)"
-              class="form-check-input"
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio1"
-              value="option1"
-            />
-            <label class="form-check-label" for="inlineRadio1">User</label>
+          <div class="checkBox">
+            <label for="serviceProvider"> Are you a service provider</label>
+            <input type="checkbox" id="serviceProvider" name="serviceProvider" value="serviceProvider" (click)="checkProvider()" />
+
           </div>
-          
-          <div class="form-check form-check-inline">
-            <input (click)= "checkProvider(true)"
-              class="form-check-input"
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio2"
-              value="option2"
-            />
-            <label class="form-check-label" for="inlineRadio2">Service Provider</label>
-          </div>
-        </div>
           <!-- check -->
-          <input value="Login" class="btn solid"  (click)="login(email.value, password.value)"/>
+          <input value="Login" class="btn solid" (click)="login(email.value, password.value)" />
           <p class="social-text">Or sign in with social platform:</p>
           <div class="social-media">
             <a href="#" class="social-icon">
-              <i class="fab fa-facebook-f"></i> </a
-            ><a href="#" class="social-icon"> <i class="fab fa-twitter"></i> </a
-            ><a href="#" class="social-icon"> <i class="fab fa-google"></i> </a
-            ><a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i> </a><a href="#" class="social-icon"> <i class="fab fa-twitter"></i>
+            </a><a href="#" class="social-icon"> <i class="fab fa-google"></i> </a><a href="#" class="social-icon">
               <i class="fab fa-linkedin"></i>
             </a>
           </div>
