@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {AdminMessagesService } from '../admin-messages.service'
 import * as moment from 'moment';
 import Swal from 'sweetalert2';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-messages',
@@ -18,7 +17,6 @@ export class MessagesComponent implements OnInit {
   moment: any = moment;
 
   ngOnInit() {
-    console.log("dadzadzad")
     this.contactMessages.getMessages().subscribe((data: any[])=>{
       console.log(data);
       this.messages = data;
