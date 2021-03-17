@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 
 @Injectable({
@@ -7,12 +7,11 @@ import { Injectable, EventEmitter } from '@angular/core';
 export class LocalService {
 
   constructor() { }
-  updateRole = new EventEmitter();
 
   role : string = "guest"
 
   changeRole (newRole) {
     this.role = newRole;
-    this.updateRole.emit(this.role)
+    
   }
 }
