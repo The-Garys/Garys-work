@@ -31,6 +31,7 @@ db.once("open", function () {
   console.log("successfully connected to database");
 });
 
+
 app.use("/api/user", userRouter);
 
 app.use("/api/contactus", ContactUsRouter);
