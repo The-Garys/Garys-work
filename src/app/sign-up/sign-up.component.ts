@@ -13,7 +13,7 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void { }
   imageUrl : string
   imgUpload(img) {
-    console.log('IMG FROM VER==> ', img.target.files[0]);
+    console.log('file image==> ', img.target.files[0]);
     var formData = new FormData();
     formData.append('img', img.target.files[0]);
     this.http.post("http://localhost:3000/upload" , formData).subscribe((resp) => {
