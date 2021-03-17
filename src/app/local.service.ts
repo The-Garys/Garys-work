@@ -9,7 +9,7 @@ export class LocalService {
   constructor() { }
 
   role : string = "guest"
-
+  email : string 
   changeRole (newRole) {
     this.role = newRole;
     

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { LocalService } from "../local.service"
 
 @Component({
   selector: 'app-appointment',
@@ -9,15 +10,14 @@ import Swal from 'sweetalert2';
 })
 export class AppointmentComponent implements OnInit {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient ,private local : LocalService) { }
 data : any 
   ngOnInit(): void {
-    this.http.get("http://localhost:3000/api/appointment/malek").subscribe((data)=>{
-      console.log(data)
+    console.log("boss" ,this.local.email)
+    this.http.get(`http://localhost:3000/api/appointment/${this.local.email}`).subscribe((data)=>{
+      console.log("dzazdazadzda",data)
       this.data = data
       })
-
-      
   }
   submit(name , email , date , svname , time ){ 
     if(!name || !email || !date || !svname ||!time) {

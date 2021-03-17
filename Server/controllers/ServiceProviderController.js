@@ -4,11 +4,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
 
-
-
-
-
-
 const serviceProviderCtrl = {
   signUp: async (req, res) => {
     console.log(req.body);
@@ -23,7 +18,7 @@ const serviceProviderCtrl = {
         profession,
         location,
         gender,
-        imageUrl
+        imageUrl,
       } = req.body;
       const serviceProvider = await ServiceProvider.findOne({ email });
       if (serviceProvider) {
@@ -31,7 +26,7 @@ const serviceProviderCtrl = {
       }
       const user = await Users.findOne({ email });
       if (user) {
-        return res.send({err:"sorry this email already exists"});
+        return res.send({ err: "sorry this email already exists" });
       }
       const hashPassword = await bcrypt.hash(password.toString(), 10);
       const newServiceProvider = new ServiceProvider({
@@ -44,7 +39,7 @@ const serviceProviderCtrl = {
         gender,
         email,
         password: hashPassword,
-        imageUrl
+        imageUrl,
       });
       console.log("make sure", newServiceProvider);
 
@@ -65,7 +60,7 @@ const serviceProviderCtrl = {
         token: token,
         success: "successfully registred",
         name: newServiceProvider.firstName,
-        greet: "Welcome"
+        greet: "Welcome",
       });
     } catch (err) {
       console.log(err);
@@ -93,21 +88,22 @@ const serviceProviderCtrl = {
       }
       // generate a token for the user
 
-      const token = jwt.sign(
-        { id: userProvider._id },
-        config.secret.toString(),
-        {
-          expiresIn: 86400, // expires in 24 hours
-        }
-      );
-      console.log("user====>", userProvider._id);
-
+      // const token = jwt.sign(
+      //   { id: userProvider._id },
+      //   config.secret.toString(),
+      //   {
+      //     expiresIn: 86400, // expires in 24 hours
+      //   }
+      // );
+      // console.log("user====>", userProvider._id);
+       
       res.status(200).send({
         auth: true,
-        token: token,
+        token: userProvider.token,
         success: "you are logged in successfully",
         id: userProvider._id,
-        name: userProvider.firstName, greet: "Welcome"
+        name: userProvider.firstName,
+        greet: "Welcome",
       });
     } catch (error) {
       console.log(error);
