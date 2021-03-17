@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-nav.component.scss']
 })
 export class UserNavComponent implements OnInit {
-constructor() {
+constructor(private router : Router) {
 
 }
   
@@ -16,6 +17,12 @@ constructor() {
 
   ngOnInit(): void {
     
+  }
+  tohome(){
+    this.router.navigateByUrl("/userHome")
+  }
+  toservices(){
+    this.router.navigateByUrl("/userServices")
   }
 //  logout(){
 //   localStorage.setItem("type" , "guest")

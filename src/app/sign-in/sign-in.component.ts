@@ -86,7 +86,7 @@ console.log(this.serviceProviderIsChecked)
           } else {
             this.local.changeRole('user');
             localStorage.setItem('token', data['token']);
-            this.router.navigateByUrl('/homeServices');
+            this.router.navigateByUrl('/userServices');
             Swal.fire( data["greet"] +" "+ data["name"], data['success'], 'success');
           }
         });

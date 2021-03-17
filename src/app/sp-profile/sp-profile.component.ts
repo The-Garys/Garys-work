@@ -13,7 +13,8 @@
 //   }
 
 // }
-  
+import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
 import { GaryService } from '../gary.service';
 @Component({
@@ -22,10 +23,15 @@ import { GaryService } from '../gary.service';
   styleUrls: ['./sp-profile.component.scss'],
 })
 export class SpProfileComponent implements OnInit {
-  constructor(private GaryService: GaryService) {}
+  constructor(private GaryService: GaryService , private http : HttpClient) {}
+  userdata : any
   token: string = localStorage.getItem('token');
   ngOnInit(): void {
     console.log('helelews man', this.token);
+    this.http.post("http://localhost:3000/api/serviceProvider/profileData" , {token : this.token}).subscribe((data)=>{
+      console.log("zdazdzazd", data)
+      this.userdata = data
+    })
   }
 
   check: boolean = false;
