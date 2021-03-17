@@ -2,16 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-
+import { LocalService } from "../local.service"
+import { from } from 'rxjs';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css'],
 })
 export class SignInComponent implements OnInit {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router , private local : LocalService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.local.role);
+    
+   
+  }
   data: {
     email: any,
     password: any
@@ -79,6 +84,7 @@ console.log(this.serviceProviderIsChecked)
               text: data['err'],
             });
           } else {
+            this.local.changeRole('user');
             localStorage.setItem('token', data['token']);
             this.router.navigateByUrl('/homeServices');
             Swal.fire( data["greet"] +" "+ data["name"], data['success'], 'success');

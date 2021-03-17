@@ -1,4 +1,5 @@
-<app-navbar></app-navbar>
+<app-navbar *ngIf='role === "guest"'></app-navbar>
+<app-user-nav *ngIf='role === "user"'></app-user-nav>
 <!-- <app-admin-nav></app-admin-nav> -->
 <!-- <app-messages></app-messages> -->
 

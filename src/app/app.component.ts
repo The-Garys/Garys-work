@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LocalService } from "./local.service"
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'gary-work';
+  constructor(private local : LocalService) {
+  }
+     
+  role : string = this.local.role;
+  ngOnInit() {
+  console.log(this.role);
+  
+  }
+  title = 'gary-work'
+  
 }

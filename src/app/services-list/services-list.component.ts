@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SERVICES,NAME} from '../services-list/mock-service'
 import { HttpClient } from '@angular/common/http';
+import { LocalService } from "../local.service"
 
 @Component({
   selector: 'app-services-list',
@@ -12,10 +13,13 @@ export class ServicesListComponent implements OnInit {
  username: string;
  list : any = NAME
  data :any 
- backup : any = []
-  constructor(private http: HttpClient) { }
+ backup : any = [] 
 
+  constructor(private http: HttpClient , private local : LocalService) { }
+role : string = this.local.role
   ngOnInit(): void {
+    console.log("dddddzadad" ,this.local.role )
+
     this.services=[] ;
     this.list=NAME
     this.http.get("http://localhost:3000/api/serviceProviderList/services").subscribe((data)=>{
