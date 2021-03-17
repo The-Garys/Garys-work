@@ -15,9 +15,9 @@ const multer = require("multer");
 const upload = multer({ dest: "uploads" });
 const cloudinary = require("cloudinary").v2;
 cloudinary.config({ 
-  cloud_name: 'drtlodcal', 
-  api_key: '923215134686589', 
-  api_secret: 'U5zCH9A6UtR6gIksSTrNz3VWyP4' 
+  cloud_name: process.env.CLOUD_NAME, 
+  api_key: process.env.API_KEY, 
+  api_secret: process.env.API_SECRET 
 });
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
