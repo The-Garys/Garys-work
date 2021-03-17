@@ -80,6 +80,8 @@
     >
       Optional - for two-step authentication
     </small>
+    <input type="file"    (change)="imgUpload($event)"
+    #image  alt="Submit" width="48" height="48">
     <div class="form-row mb-4">
       <div class="col">
         <!-- Gender -->
@@ -139,7 +141,8 @@
           phoneNumber.value,
           gender.value,
           profession.value,
-          location.value
+          location.value,
+          this.imageUrl
         )
       "
     >

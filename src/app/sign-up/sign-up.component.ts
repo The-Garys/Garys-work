@@ -11,17 +11,15 @@ export class SignUpComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void { }
-  myData: {
-    firstName: any;
-    lastName: any;
-    fullName: any;
-    email: any;
-    password: any;
-    phoneNumber: any;
-    gender: any;
-    profession: any;
-    location: any;
-  };
+  imageUrl : string
+  imgUpload(img) {
+    console.log('IMG FROM VER==> ', img.target.files[0]);
+    var formData = new FormData();
+    formData.append('img', img.target.files[0]);
+    this.http.post("http://localhost:3000/upload" , formData).subscribe((resp) => {
+      this.imageUrl = resp['msg'].url;
+    });
+  }
   getData(
     firstName,
     lastName,
@@ -31,8 +29,17 @@ export class SignUpComponent implements OnInit {
     phoneNumber,
     gender,
     profession,
-    location
+    location,
+    imageUrl
   ) {
+    if(!imageUrl && gender === "Male" ){
+      imageUrl = "https://mpng.subpng.com/20180523/tha/kisspng-businessperson-computer-icons-avatar-clip-art-lattice-5b0508dc6a3a10.0013931115270566044351.jpg"
+    } 
+    if(!imageUrl && gender === "Female" ){
+      imageUrl = "https://mpng.subpng.com/20180326/wzw/kisspng-computer-icons-user-profile-avatar-female-profile-5ab915f791e2c1.8067312315220792235976.jpg"
+    }
+
+    
     if (
       firstName === '' ||
       lastName === '' ||
@@ -72,6 +79,7 @@ export class SignUpComponent implements OnInit {
             gender: gender,
             profession: profession,
             location: location,
+            imageUrl: imageUrl
           },
           { responseType: 'json' }
         )
