@@ -169,6 +169,8 @@ form {
   color: #22817e;
   cursor: pointer;
 }
-.check-form {
+
+.checkBox{
   display: inline-block;
+  
 }

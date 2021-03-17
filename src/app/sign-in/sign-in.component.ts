@@ -16,18 +16,12 @@ export class SignInComponent implements OnInit {
     email: any,
     password: any
   }
- userIsChecked: any= false
  serviceProviderIsChecked: any=false
 
- checkProvider(a){
-   if(a){
-    this.userIsChecked = false
-    this.serviceProviderIsChecked= true
-   } else {
-    this.userIsChecked = true
-    this.serviceProviderIsChecked= false
-   }
-
+ checkProvider(){
+ 
+this.serviceProviderIsChecked= ! this.serviceProviderIsChecked;
+console.log(this.serviceProviderIsChecked)
 
  }
   
@@ -40,31 +34,8 @@ export class SignInComponent implements OnInit {
         title: 'Oops...',
         text: 'please fill all the fields',
       });
-    } else if (this.userIsChecked) {
-      this.http
-        .post(
-          'http://localhost:3000/api/user/login',
-          {
-            email: email,
-            password: password,
-          },
-          { responseType: 'json' }
-        )
-        .subscribe((data) => {
-          console.log('why not ?', data);
-          if (data['err']) {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: data['err'],
-            });
-          } else {
-            localStorage.setItem('token', data['token']);
-            this.router.navigateByUrl('/homePage');
-            Swal.fire( data["greet"] +" "+ data["name"], data['success'], 'success');
-          }
-        });
-    } else if (this.serviceProviderIsChecked) {
+    }
+    else if (this.serviceProviderIsChecked) {
       this.http
         .post(
           'http://localhost:3000/api/serviceProvider/login',
@@ -89,5 +60,30 @@ export class SignInComponent implements OnInit {
           }
         });
     }
+    else{
+      this.http
+        .post(
+          'http://localhost:3000/api/user/login',
+          {
+            email: email,
+            password: password,
+          },
+          { responseType: 'json' }
+        )
+        .subscribe((data) => {
+          console.log('why not ?', data);
+          if (data['err']) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: data['err'],
+            });
+          } else {
+            localStorage.setItem('token', data['token']);
+            this.router.navigateByUrl('/homeServices');
+            Swal.fire( data["greet"] +" "+ data["name"], data['success'], 'success');
+          }
+        });
+    } 
   }
 }
