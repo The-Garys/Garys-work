@@ -7,6 +7,23 @@ export class AuthService {
 
     admin : boolean = false;
     UserIsAuthenticated() {
-      return !!localStorage.getItem('token');
+      var h = !!localStorage.getItem('userToken');
+      if(h){
+        return "user"
+      } else {
+        return "not"
+      }
+       
+    }
+
+    spIsAuthentictaed() {
+    
+      var h = !!localStorage.getItem('spToken');
+      if(h){
+        return "sp"
+      } else {
+        return "not"
+      }
+       
     }
 }

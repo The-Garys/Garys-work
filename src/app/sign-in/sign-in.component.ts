@@ -59,7 +59,7 @@ console.log(this.serviceProviderIsChecked)
             });
           } else {
             console.log(data["token"])
-            localStorage.setItem('token', data['token']);
+            localStorage.setItem('spToken', data['token']);
             this.router.navigateByUrl('/spProfile');
             Swal.fire(data["greet"] +" "+ data["name"], data['success'], 'success');
           }
@@ -84,8 +84,7 @@ console.log(this.serviceProviderIsChecked)
               text: data['err'],
             });
           } else {
-            this.local.changeRole('user');
-            localStorage.setItem('token', data['token']);
+            localStorage.setItem('userToken', data['token']);
             this.router.navigateByUrl('/userServices');
             Swal.fire( data["greet"] +" "+ data["name"], data['success'], 'success');
           }
