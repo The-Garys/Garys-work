@@ -115,7 +115,7 @@
             <div class="profile-reviews tab" id="profile-reviews" *ngIf="reviews">
               <h1>User reviews</h1>
               <p>
-                <app-reviews></app-reviews>
+                <!-- <app-reviews></app-reviews> -->
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Deleniti maxime illo est eius nulla voluptate omnis, nobis
                 quisquam amet ab. Quas dignissimos mollitia officiis, in
@@ -129,17 +129,14 @@
             </div>
             <div class="profile-settings tab" id="profile-settings" *ngIf="settings">
               <h1>Account setting</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Provident esse vel doloribus in natus numquam quis tempora
-                suscipit voluptas? Aperiam minus voluptatem, facere nostrum
-                molestias iure a optio libero expedita quod neque ipsam veniam
-                labore maxime exercitationem asperiores ipsum, iste tempora
-                officia. Deleniti reiciendis, cumque officiis unde ab ad ut
-                iure, ea consequatur sed explicabo vero esse repellat,
-                temporibus atque voluptatibus dicta at enim delectus molestiae!
-                Debitis laboriosam tempora adipisci.
-              </p>
+              
+                <div class=card *ngFor='let e of data'>
+                  <h1>{{e.userName}}</h1>
+                 <h1>{{e.email}}</h1>
+                 <p>you have an appointment on: {{e.date}}</p>
+                 <p>at {{e.time}}</p>
+                 </div>
+              
             </div>
           </div>
         </div>

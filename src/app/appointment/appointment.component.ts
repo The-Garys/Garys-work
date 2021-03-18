@@ -11,13 +11,10 @@ import { LocalService } from "../local.service"
 export class AppointmentComponent implements OnInit {
 
   constructor(private http:HttpClient ,private local : LocalService) { }
-data : any 
+// data : any 
   ngOnInit(): void {
     console.log("boss" ,this.local.email)
-    this.http.get(`http://localhost:3000/api/appointment/${this.local.email}`).subscribe((data)=>{
-      console.log("dzazdazadzda",data)
-      this.data = data
-      })
+   
   }
   submit(name , email , date , svname , time ){ 
     if(!name || !email || !date || !svname ||!time) {
@@ -39,6 +36,7 @@ data : any
             footer: '<a href>Why do I have this issue?</a>'
           })
         } else {
+          this.ngOnInit()
           Swal.fire({
             icon: 'success',
             title: 'Appointment added successfully',
