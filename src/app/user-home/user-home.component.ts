@@ -9,7 +9,8 @@ export class UserHomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit()  {
-  
+    let tok = localStorage.getItem('token');
+    console.log(tok);
     
     
   }

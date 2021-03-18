@@ -24,7 +24,7 @@ const routes: Routes = [
   {path: 'homeServices', component: ServicesListComponent} , 
   {path: 'admin', component: AdminComponent, canActivate:[AuthGuard]},
   {path: 'userServices', component: UserServicesComponent,canActivate:[AuthGuard]},
-  {path: 'userHome', component: UserHomeComponent,canActivate:[AuthGuard]},
+  {path: 'userHome', component: UserHomeComponent, canActivate:[AuthGuard]},
   {path:'admin/login',component:AdminLoginComponent}
 ];
 
