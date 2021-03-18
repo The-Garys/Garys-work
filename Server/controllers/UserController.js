@@ -36,12 +36,14 @@ const userCtrl = {
         email,
         password: hashPassword,
       });
+        // generate a token for the user
+        const token = jwt.sign({ id: newUser._id }, config.toString(), {
+          expiresIn: 86400 // expires in 24 hours
+        })
+        newUser.token = token
       await newUser.save();
       console.log("make sure", newUser);
-      // generate a token for the user
-      const token = jwt.sign({ id: newUser._id }, config.toString(), {
-        expiresIn: 86400 // expires in 24 hours
-      })
+    
       console.log('user test====>', newUser._id)
       res.send({ auth: true, token: token, success: "successfully registred", id: newUser._id, name: newUser.userName ,greet: "Welcome"});
     } catch (err) {
@@ -80,6 +82,8 @@ const userCtrl = {
       const token = jwt.sign({ id: user._id }, config.secret.toString(), {
         expiresIn: 86400 // expires in 24 hours
       });
+      user.token = token;
+      await user.save();
       console.log('user====>', user._id)
 
       res.status(200).send({ auth: true, token: token, success: "you are logged in successfully" , id: user._id, name: user.userName, greet: "Welcome"});
