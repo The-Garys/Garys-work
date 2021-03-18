@@ -27,6 +27,7 @@ import { AppointmentComponent } from './appointment/appointment.component';
 import { UserNavComponent } from './user-nav/user-nav.component';
 import { UserServicesComponent } from './user-services/user-services.component';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { UserHomeComponent } from './user-home/user-home.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    NgbModule,
   ],
 
   providers: [],
