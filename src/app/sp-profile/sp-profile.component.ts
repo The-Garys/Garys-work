@@ -26,9 +26,8 @@ import { LocalService } from "../local.service"
 export class SpProfileComponent implements OnInit {
   constructor(private GaryService: GaryService , private http : HttpClient , private local : LocalService) {}
   userdata : any
-  token: string = localStorage.getItem('token');
+  token: string = localStorage.getItem('spToken');
   ngOnInit(): void {
-    console.log('helelews man', this.token);
     this.http.post("http://localhost:3000/api/serviceProvider/profileData" , {token : this.token}).subscribe((data)=>{
       console.log("profile details", data)
       this.userdata = data
