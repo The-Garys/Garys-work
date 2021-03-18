@@ -30,10 +30,10 @@ export class SpProfileComponent implements OnInit {
   ngOnInit(): void {
     console.log('helelews man', this.token);
     this.http.post("http://localhost:3000/api/serviceProvider/profileData" , {token : this.token}).subscribe((data)=>{
-      console.log("profile details", data)
+      console.log("zdazdzazd", data)
       this.userdata = data
       this.local.email = data["firstName"]
-    })
+    }) 
   }
   check: boolean = false;
   posts: boolean = true;
