@@ -27,9 +27,9 @@ import { AppointmentComponent } from './appointment/appointment.component';
 import { UserNavComponent } from './user-nav/user-nav.component';
 import { UserServicesComponent } from './user-services/user-services.component';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
 import { AdminComponent } from './Admin/admin/admin.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +61,7 @@ import { AdminComponent } from './Admin/admin/admin.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    NgbModule,
   ],
 
   providers: [],
