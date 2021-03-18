@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-declare var Rellax: any;
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -10,7 +9,9 @@ export class HomepageComponent implements OnInit {
   constructor() { }
 
   ngOnInit()  {
-    var rellax = new Rellax('.rellax');
+    let tok = localStorage.getItem('token')
+    console.log(tok);
+    
   }
   scrollA() {
     console.log('clicked');

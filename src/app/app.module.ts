@@ -14,6 +14,7 @@ import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ServicesListComponent } from './services-list/services-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import {AuthGuard} from './auth/auth.guard'
 
 import { FormsModule } from '@angular/forms';
 
@@ -62,9 +63,10 @@ import { AdminComponent } from './Admin/admin/admin.component';
     BrowserAnimationsModule,
     FormsModule,
     NgbModule,
+
   ],
 
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

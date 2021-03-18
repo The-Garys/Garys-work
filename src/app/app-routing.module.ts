@@ -6,9 +6,11 @@ import { ServicesListComponent } from './services-list/services-list.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignupComponent } from './signup/signup.component';
 import { SpProfileComponent } from './sp-profile/sp-profile.component';
-import { AdminNavComponent } from './admin/admin-nav/admin-nav.component';
+import { AdminComponent } from './Admin/admin/admin.component';
 import { UserServicesComponent } from './user-services/user-services.component';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
+import { AuthGuard } from './auth/auth.guard';
 
 
 
@@ -20,10 +22,10 @@ const routes: Routes = [
   { path: 'userSignup', component: SignupComponent },
   { path: 'spProfile', component: SpProfileComponent },
   {path: 'homeServices', component: ServicesListComponent} , 
-  {path: 'admin', component: AdminNavComponent},
-  {path: 'userServices', component: UserServicesComponent},
-  {path: 'userHome', component: UserHomeComponent},
-
+  {path: 'admin', component: AdminComponent, canActivate:[AuthGuard]},
+  {path: 'userServices', component: UserServicesComponent,canActivate:[AuthGuard]},
+  {path: 'userHome', component: UserHomeComponent, canActivate:[AuthGuard]},
+  {path:'admin/login',component:AdminLoginComponent}
 ];
 
 @NgModule({
