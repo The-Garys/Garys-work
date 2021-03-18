@@ -10,13 +10,15 @@ module.exports={
            serviceProviderName: req.body.serviceProviderName
        });
           try{
-          const check= await Appointment.find({date:req.body.date, time: req.body.time})
-          console.log('date and time', check)
+          const check= await Appointment.find({date:req.body.date},{ time: req.body.time})
+          console.log('date and time', check.length)
           if(check.length){
             return res.send({data : "not avail"})
+          } else {
+            const saveAppointment = await appointment.save();
+            res.json(saveAppointment);
           }
-          const saveAppointment = await appointment.save();
-          res.json(saveAppointment);
+ 
          } catch(err) {
           res.json({message: err})
          }

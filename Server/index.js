@@ -45,8 +45,6 @@ app.use("/api/appointment", appointmentRouter);
 
 app.post("/upload", upload.any(0), (req, res) => {
   let image = req.files[0].path;
-  console.log("REQ========> ", req.files[0].path);
-
   try {
     cloudinary.uploader.upload(image, (error, result) => {
       error && res.send({ status: false, msg: error });

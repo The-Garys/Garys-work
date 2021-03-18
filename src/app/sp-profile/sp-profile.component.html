@@ -12,7 +12,7 @@
           <div class="profile-nav-info">
             <h3 class="user-name">{{userdata?.fullName}}</h3>
             <div class="adress">
-              <p class="state">Nabeul</p>
+              <p class="state">{{userdata?.location}}</p>
             </div>
           </div>
           <div class="profile-option">
@@ -27,15 +27,15 @@
             <div class="profile-side">
               <p class="phone-number">
                 <i class="fa fa-phone"></i>
-                +216 22700374
+                {{userdata?.fullName}}
               </p>
               <p class="email">
                 <i class="fa fa-envelope"></i>
-                ramzichammem69@gmail.com
+                {{userdata?.email}}
               </p>
               <p class="user-profession">
                 <i class="fas fa-tools"></i>
-                Painting
+                {{userdata?.profession}}
               </p>
               <div class="user-bio">
                 <h3>Bio:</h3>
@@ -47,6 +47,9 @@
               </div>
               <div class="profile-btn">
                 <button class="chatbtn"><i class="fa fa-comment"></i>Chat</button>
+              </div>
+              <div class="profile-btn">
+                <button class="chatbtn"><i ></i>Hire Me</button>
               </div>
               <div class="user-rating">
                 <h3 class="rating">4.5</h3>
@@ -151,3 +154,7 @@
       </div>
     </div>
   </div>
+
+
+
+  
