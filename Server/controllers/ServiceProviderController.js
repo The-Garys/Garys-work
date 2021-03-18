@@ -88,18 +88,20 @@ const serviceProviderCtrl = {
       }
       // generate a token for the user
 
-      // const token = jwt.sign(
-      //   { id: userProvider._id },
-      //   config.secret.toString(),
-      //   {
-      //     expiresIn: 86400, // expires in 24 hours
-      //   }
-      // );
-      // console.log("user====>", userProvider._id);
+      const token = jwt.sign(
+        { id: userProvider._id },
+        config.secret.toString(),
+        {
+          expiresIn: 86400, // expires in 24 hours
+        }
+      );
+      userProvider.token = token;
+      await userProvider.save()
+      console.log("user====>", userProvider._id);
        
       res.status(200).send({
         auth: true,
-        token: userProvider.token,
+        token:token,
         success: "you are logged in successfully",
         id: userProvider._id,
         name: userProvider.firstName,
