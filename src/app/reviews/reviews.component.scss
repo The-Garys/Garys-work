@@ -20,16 +20,14 @@
 .container {
   display: flex;
   flex-direction: column;
-
-  text-align: center;
   margin: auto;
-  background-color: red;
-  width: 50%;
+  width: 40%;
   margin-left: -0.05%;
 }
 .review-title {
   margin-left: 10%;
   display: block;
+  margin-bottom: -2rem;
 }
 .rate {
   margin-top: 20px;
@@ -47,6 +45,8 @@
 }
 .left p {
   font-weight: bold;
+  color: rgb(63, 63, 63);
+  margin-top: 1.5rem;
 }
 .raiting-range {
   width: 100%;
@@ -85,4 +85,48 @@
 }
 #bar5 {
   width: 30%;
+}
+
+.no-reviews {
+  font-weight: bold;
+  color: rgb(63, 63, 63);
+}
+.user-lab {
+  font-size: 13px;
+  float: right;
+  color: rgb(145, 145, 145);
+}
+.single-review-title {
+  font-weight: bold;
+  float: left;
+  margin: 0;
+  color: rgb(63, 63, 63);
+}
+.review-body {
+  margin-top: 2rem;
+  color: rgb(117, 117, 117);
+}
+.helpful {
+  color: rgb(77, 76, 76);
+  font-size: 13px;
+  margin-right: 1rem;
+}
+.each-review a {
+  text-decoration: underline;
+}
+.yes {
+  margin-right: 0.4rem;
+}
+
+.report {
+  margin-left: 0.4rem;
+}
+hr {
+  width: 80%;
+  color: rgb(0, 0, 0);
+}
+.rev-cont {
+  position: relative;
+  height: 400px;
+  overflow: auto;
 }
