@@ -6,8 +6,7 @@ export class AuthService {
     constructor() { }
 
     admin : boolean = false;
-
-    isAuthenticated() {
-      return this.admin;
+    UserIsAuthenticated() {
+      return !!localStorage.getItem('token');
     }
 }
