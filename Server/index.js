@@ -10,14 +10,15 @@ const ServicesProviderListRouter = require("./routes/ServicesProviderListRoute")
 const ContactUsRouter = require("./routes/ContactUsRoute");
 const reviewRouter = require("./routes/ReviewRoute");
 const appointmentRouter = require("./routes/AppointmentRoute");
+const adminRouter = require("./routes/AdminRoutes");
 const multer = require("multer");
 
 const upload = multer({ dest: "uploads" });
 const cloudinary = require("cloudinary").v2;
-cloudinary.config({ 
-  cloud_name: process.env.CLOUD_NAME, 
-  api_key: process.env.API_KEY, 
-  api_secret: process.env.API_SECRET 
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
 });
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -31,7 +32,6 @@ db.once("open", function () {
   console.log("successfully connected to database");
 });
 
-
 app.use("/api/user", userRouter);
 
 app.use("/api/contactus", ContactUsRouter);
@@ -42,6 +42,7 @@ app.use("/api/serviceProviderList", ServicesProviderListRouter);
 app.use("/api/review", reviewRouter);
 app.use("/api/appointment", appointmentRouter);
 
+app.use("/api/admin", adminRouter);
 
 app.post("/upload", upload.any(0), (req, res) => {
   let image = req.files[0].path;
@@ -54,5 +55,6 @@ app.post("/upload", upload.any(0), (req, res) => {
     res.send({ status: false, msg: err });
   }
 });
+
 const port = 3000;
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
