@@ -11,6 +11,7 @@ import { UserServicesComponent } from './user-services/user-services.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 
 
+
 const routes: Routes = [
   { path: '', component: HomepageComponent, pathMatch: 'full' },
   { path: 'signin', component: SignInComponent },
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'homeServices', component: ServicesListComponent} , 
   {path: 'admin', component: AdminNavComponent},
   {path: 'userServices', component: UserServicesComponent},
-  {path: 'userHome', component: UserHomeComponent}
+  {path: 'userHome', component: UserHomeComponent},
+
 ];
 
 @NgModule({

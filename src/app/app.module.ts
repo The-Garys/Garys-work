@@ -27,6 +27,8 @@ import { AppointmentComponent } from './appointment/appointment.component';
 import { UserNavComponent } from './user-nav/user-nav.component';
 import { UserServicesComponent } from './user-services/user-services.component';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
+import { AdminComponent } from './Admin/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { UserHomeComponent } from './user-home/user-home.component';
     UserNavComponent,
     UserServicesComponent,
     UserHomeComponent,
+    AdminLoginComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
