@@ -9,6 +9,7 @@ import { SpProfileComponent } from './sp-profile/sp-profile.component';
 import { AdminNavComponent } from './admin/admin-nav/admin-nav.component';
 import { UserServicesComponent } from './user-services/user-services.component';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
 
 
 
@@ -23,7 +24,7 @@ const routes: Routes = [
   {path: 'admin', component: AdminNavComponent},
   {path: 'userServices', component: UserServicesComponent},
   {path: 'userHome', component: UserHomeComponent},
-
+  {path:'admin/login',component:AdminLoginComponent}
 ];
 
 @NgModule({

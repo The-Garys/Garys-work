@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LocalService } from '../../local.service'
 
 
 
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class AdminLoginComponent implements OnInit {
 
-  constructor(private http : HttpClient, private router : Router) { }
+  constructor(private http : HttpClient, private router : Router, private local : LocalService) { }
   email: string;
   password:string;
 
@@ -22,8 +23,7 @@ export class AdminLoginComponent implements OnInit {
   login(email, password) {
     this.http.post("http://localhost:3000/api/admin/login", {email: email, password: password}).subscribe((d) => {
       console.log(d);
-      this.router.navigateByUrl('/admin')
-      
+      // this.router.navigateByUrl('/admin');
     })
   }
 
