@@ -8,22 +8,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
-  ngOnInit(): void { }
-  imageUrl : string
-  list : any
+  ngOnInit(): void {}
+  imageUrl: string;
+  list: any;
   imgUpload(img) {
     console.log('IMG FROM VER==> ', img.target.files[0]);
     var formData = new FormData();
     formData.append('img', img.target.files[0]);
-    this.http.post("http://localhost:3000/upload" , formData).subscribe((resp) => {
-      this.imageUrl = resp['msg'].url;
-    });
-    this.list= []
-    this.http.get("http://localhost:3000/api/professions/getProfessions").subscribe((data)=>{
-      this.list=data
-    })
+    this.http
+      .post('http://localhost:3000/upload', formData)
+      .subscribe((resp) => {
+        this.imageUrl = resp['msg'].url;
+      });
+    this.list = [];
+    this.http
+      .get('http://localhost:3000/api/professions/getProfessions')
+      .subscribe((data) => {
+        this.list = data;
+      });
   }
   getData(
     firstName,
@@ -37,14 +41,15 @@ export class SignUpComponent implements OnInit {
     location,
     imageUrl
   ) {
-    if(!imageUrl && gender === "Male" ){
-      imageUrl = "https://mpng.subpng.com/20180523/tha/kisspng-businessperson-computer-icons-avatar-clip-art-lattice-5b0508dc6a3a10.0013931115270566044351.jpg"
-    } 
-    if(!imageUrl && gender === "Female" ){
-      imageUrl = "https://mpng.subpng.com/20180326/wzw/kisspng-computer-icons-user-profile-avatar-female-profile-5ab915f791e2c1.8067312315220792235976.jpg"
+    if (!imageUrl && gender === 'Male') {
+      imageUrl =
+        'https://mpng.subpng.com/20180523/tha/kisspng-businessperson-computer-icons-avatar-clip-art-lattice-5b0508dc6a3a10.0013931115270566044351.jpg';
+    }
+    if (!imageUrl && gender === 'Female') {
+      imageUrl =
+        'https://mpng.subpng.com/20180326/wzw/kisspng-computer-icons-user-profile-avatar-female-profile-5ab915f791e2c1.8067312315220792235976.jpg';
     }
 
-    
     if (
       firstName === '' ||
       lastName === '' ||
@@ -84,26 +89,26 @@ export class SignUpComponent implements OnInit {
             gender: gender,
             profession: profession,
             location: location,
-            imageUrl: imageUrl
+            imageUrl: imageUrl,
           },
           { responseType: 'json' }
         )
         .subscribe((data) => {
-          console.log(data)
-          if (data["err"]) {
+          console.log(data);
+          if (data['err']) {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
-              text: data["err"]
-            })
+              text: data['err'],
+            });
           } else {
-            localStorage.setItem("token", data["token"])
+            localStorage.setItem('token', data['token']);
             this.router.navigateByUrl('/spProfile');
             Swal.fire(
-              data["greet"] +" "+data["name"],
-              data["success"],
+              data['greet'] + ' ' + data['name'],
+              data['success'],
               'success'
-            )
+            );
           }
         });
     }
