@@ -47,10 +47,10 @@ const serviceProviderCtrl = {
         { id: newServiceProvider._id },
         config.toString(),
         {
-          expiresIn: 86400, // expires in 24 hours
+          expiresIn: 10, // expires in 24 hours
         }
       );
-      newServiceProvider.token = token;
+      // newServiceProvider.token = token;
       await newServiceProvider.save();
 
       console.log("service provider  test====>", newServiceProvider._id);
@@ -92,16 +92,16 @@ const serviceProviderCtrl = {
         { id: userProvider._id },
         config.secret.toString(),
         {
-          expiresIn: 86400, // expires in 24 hours
+          expiresIn: 10, // expires in 24 hours
         }
       );
-      userProvider.token = token;
+      // userProvider.token = token;
       await userProvider.save()
       console.log("user====>", userProvider._id);
-       
+
       res.status(200).send({
         auth: true,
-        token:token,
+        token: token,
         success: "you are logged in successfully",
         id: userProvider._id,
         name: userProvider.firstName,
@@ -139,17 +139,15 @@ const serviceProviderCtrl = {
     });
   },
   logout: async (req, res) => {
-    res
-      .status(200)
-      .send({ auth: false, token: null, success: "you are logged out" });
+    res.status(200).send({ auth: false, token: null, success: "you are logged out" });
   },
   getSPdata: async (req, res) => {
     try {
-      console.log("azffaf", req.body.token);
+      console.log("getting token", req.body.token);
       var data = await ServiceProvider.findOne({ token: req.body.token });
       res.send(data);
     } catch (err) {
-      console.log("azffaf", err);
+      console.log("err", err);
     }
   },
 };
