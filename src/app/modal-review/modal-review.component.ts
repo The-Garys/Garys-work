@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modal-review',
@@ -6,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modal-review.component.scss'],
 })
 export class ModalReviewComponent implements OnInit {
-  constructor() {}
+  constructor(config: NgbRatingConfig) {
+    config.max = 5;
+    config.readonly = false;
+  }
 
   ngOnInit(): void {}
 }
