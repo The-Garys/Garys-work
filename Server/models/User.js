@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
     repeatedPassword: { type: String },
     phoneNumber: { type: Number },
     isServiceProvider: { type: Boolean, default: false },
-    token: { type: String, required: true }
+    // token: { type: String, required: true }
   },
   { timestamps: true }
 );
