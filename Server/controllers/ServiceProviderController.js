@@ -144,8 +144,8 @@ const serviceProviderCtrl = {
   },
   getSPdata: async (req, res) => {
     try {
-      console.log("azffaf", req.body.token);
-      var data = await ServiceProvider.findOne({ token: req.body.token });
+      console.log("getting token", req.params.id);
+      var data = await ServiceProvider.findOne({ _id: req.params.id });
       res.send(data);
     } catch (err) {
       console.log("azffaf", err);

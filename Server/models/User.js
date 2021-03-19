@@ -10,8 +10,7 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true },
     repeatedPassword: { type: String },
     phoneNumber: { type: Number },
-    isServiceProvider: { type: Boolean, default: false },
-    token: { type: String, required: true }
+    isServiceProvider: { type: Boolean, default: false }
   },
   { timestamps: true }
 );

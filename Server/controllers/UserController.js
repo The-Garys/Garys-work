@@ -40,7 +40,6 @@ const userCtrl = {
         const token = jwt.sign({ id: newUser._id }, config.toString(), {
           expiresIn: 86400 // expires in 24 hours
         })
-        newUser.token = token
       await newUser.save();
       console.log("make sure", newUser);
     
@@ -82,7 +81,6 @@ const userCtrl = {
       const token = jwt.sign({ id: user._id }, config.secret.toString(), {
         expiresIn: 86400 // expires in 24 hours
       });
-      user.token = token;
       await user.save();
       console.log('user====>', user._id)
 
