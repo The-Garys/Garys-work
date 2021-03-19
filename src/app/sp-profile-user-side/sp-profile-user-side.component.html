@@ -10,15 +10,9 @@
           />
         </div>
         <div class="profile-nav-info">
-          <h3 class="user-name">{{ spData?.fullName }}</h3>
+          <h3 class="user-name">full name</h3>
           <div class="adress">
-            <p class="state">{{ spData?.location }}</p>
-          </div>
-        </div>
-        <div class="profile-option">
-          <div class="notification">
-            <i class="fa fa-bell"></i>
-            <span class="alert-message">1</span>
+            <p class="state">location</p>
           </div>
         </div>
       </div>
@@ -27,15 +21,15 @@
           <div class="profile-side">
             <p class="phone-number">
               <i class="fa fa-phone"></i>
-              {{ spData?.phoneNumber }}
+              phone number
             </p>
             <p class="email">
               <i class="fa fa-envelope"></i>
-              {{ spData?.email }}
+              email
             </p>
             <p class="user-profession">
               <i class="fas fa-tools"></i>
-              {{ spData?.profession }}
+              profession
             </p>
             <div class="user-bio">
               <h3>Bio:</h3>
@@ -114,10 +108,11 @@
             <div class="user-rating">
               <h3 class="rating">4.5</h3>
               <div class="rate">
-                <div class="stars">
-                  <i class="fa fa-star"></i><i class="fa fa-star"></i
-                  ><i class="fa fa-star"></i><i class="fa fa-star"></i
-                  ><i class="fa fa-star"></i>
+                <div class="rate-and-username">
+                  <ngb-rating class="rating-readonly" [rate]="1.5"></ngb-rating>
+                  <label class="user-lab" for="user"
+                    >user1234, mars 1, 2019</label
+                  >
                 </div>
                 <span class="no-user"
                   ><span> 123</span>&nbsp;&nbsp; Reviews

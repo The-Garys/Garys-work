@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SpProfileComponent } from './sp-profile.component';
+import { SpProfileUserSideComponent } from './sp-profile-user-side.component';
 
-describe('SpProfileComponent', () => {
-  let component: SpProfileComponent;
-  let fixture: ComponentFixture<SpProfileComponent>;
+describe('SpProfileUserSideComponent', () => {
+  let component: SpProfileUserSideComponent;
+  let fixture: ComponentFixture<SpProfileUserSideComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SpProfileComponent],
+      declarations: [SpProfileUserSideComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SpProfileComponent);
+    fixture = TestBed.createComponent(SpProfileUserSideComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

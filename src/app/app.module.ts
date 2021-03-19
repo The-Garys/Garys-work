@@ -31,6 +31,8 @@ import { UserHomeComponent } from './user-home/user-home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
 import { AdminComponent } from './Admin/admin/admin.component';
+import { SpProfileUserSideComponent } from './sp-profile-user-side/sp-profile-user-side.component';
+import { ModalReviewComponent } from './modal-review/modal-review.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +56,8 @@ import { AdminComponent } from './Admin/admin/admin.component';
     UserHomeComponent,
     AdminLoginComponent,
     AdminComponent,
+    SpProfileUserSideComponent,
+    ModalReviewComponent,
   ],
   imports: [
     BrowserModule,
