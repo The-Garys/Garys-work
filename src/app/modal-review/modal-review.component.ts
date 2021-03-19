@@ -11,6 +11,7 @@ export class ModalReviewComponent implements OnInit {
     config.max = 5;
     config.readonly = false;
   }
+  currentRate: number = 0;
 
   ngOnInit(): void {}
 }
