@@ -59,7 +59,7 @@ console.log(this.serviceProviderIsChecked)
             });
           } else {
             console.log(data["token"])
-            localStorage.setItem('spToken', data['token']);
+            localStorage.setItem('token', data['token']);
             this.router.navigateByUrl('/spProfile');
             Swal.fire(data["greet"] +" "+ data["name"], data['success'], 'success');
           }

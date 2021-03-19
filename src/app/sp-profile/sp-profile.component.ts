@@ -26,13 +26,20 @@ import { LocalService } from "../local.service"
 export class SpProfileComponent implements OnInit {
   constructor(private GaryService: GaryService , private http : HttpClient , private local : LocalService) {}
   userdata : any
-  token: string = localStorage.getItem('spToken');
+  data:any;
+  token: string = localStorage.getItem('token');
   ngOnInit(): void {
     this.http.post("http://localhost:3000/api/serviceProvider/profileData" , {token : this.token}).subscribe((data)=>{
-      console.log("profile details", data)
+      console.log("zdazdzazd", data)
       this.userdata = data
-      this.local.email = data["firstName"]
-    })
+      console.log('name' , this.userdata)
+    
+      this.http.get(`http://localhost:3000/api/appointment/${data["firstName"]}`).subscribe((data)=>{
+        console.log("dzazdazadzda",data)
+        this.data = data
+        })
+    }) 
+    console.log("boss" ,this.local.email)
   }
   check: boolean = false;
   posts: boolean = true;

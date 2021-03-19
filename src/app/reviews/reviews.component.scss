@@ -1,33 +1,35 @@
 .bd-container {
   align-items: center;
-  margin-top: 10rem;
+  margin-top: 2rem;
   display: block;
 }
 .gen-container {
   width: 100%;
   align-items: center;
+  display: block;
 
   display: flex;
   flex-direction: row;
 }
 .left {
-  display: flex;
+  display: inline-block;
   flex-direction: column;
-
-  width: 25%;
-  margin-left: 10%;
+  margin-top: -13rem;
+  margin-right: 3rem;
+  width: 30%;
 }
 .container {
   display: flex;
   flex-direction: column;
   margin: auto;
-  width: 40%;
+  width: 50%;
   margin-left: -0.05%;
 }
 .review-title {
-  margin-left: 10%;
   display: block;
-  margin-bottom: -2rem;
+  margin-left: -25%;
+  color: rgb(97, 97, 97);
+  font-weight: bold;
 }
 .rate {
   margin-top: 20px;
@@ -35,7 +37,7 @@
   display: inline-block;
   height: 100%;
   width: 24%;
-  margin-right: 0.6rem;
+  margin-right: 3rem;
 }
 .stars-cont {
   display: inline-block;
@@ -59,7 +61,7 @@
   margin-left: 10%;
   width: 64%;
   height: 10px;
-  background-color: #deedf4;
+  background-color: #fff;
   border-radius: 10px;
   text-align: center;
   vertical-align: middle;
@@ -90,6 +92,7 @@
 .no-reviews {
   font-weight: bold;
   color: rgb(63, 63, 63);
+  margin-left: -86%;
 }
 .user-lab {
   font-size: 13px;
@@ -129,4 +132,32 @@ hr {
   position: relative;
   height: 400px;
   overflow: auto;
+  display: inline-block;
+}
+.rating-readonly {
+  float: left;
+}
+.add-review {
+  width: 30%;
+  height: 4rem;
+  font-size: 1rem;
+  background-color: #fff;
+  border: 1px solid rgb(139, 139, 139);
+  float: left;
+}
+.fa-plus {
+  margin-left: 10px;
+  font-size: 17px;
+}
+.more-reviews {
+  width: 30%;
+  height: 4rem;
+  font-size: 1rem;
+  background-color: #fff;
+  border: 1px solid rgb(139, 139, 139);
+  float: left;
+  margin-right: 2rem;
+}
+.buttons {
+  display: inline;
 }
