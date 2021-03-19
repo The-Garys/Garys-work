@@ -29,7 +29,6 @@ export class SpProfileComponent implements OnInit {
   data:any;
   token: string = localStorage.getItem('token');
   ngOnInit(): void {
-    console.log('helelews man', this.token);
     this.http.post("http://localhost:3000/api/serviceProvider/profileData" , {token : this.token}).subscribe((data)=>{
       console.log("zdazdzazd", data)
       this.userdata = data
