@@ -11,7 +11,6 @@ const ContactUsRouter = require("./routes/ContactUsRoute");
 const reviewRouter = require("./routes/ReviewRoute");
 const appointmentRouter = require("./routes/AppointmentRoute");
 const adminRouter = require("./routes/AdminRoutes");
-const professionsRouter =require("./routes/ProfessionsRoutes")
 const multer = require("multer");
 
 const upload = multer({ dest: "uploads" });
@@ -42,7 +41,6 @@ app.use("/api/serviceProvider", serviceProviderRouter);
 app.use("/api/serviceProviderList", ServicesProviderListRouter);
 app.use("/api/review", reviewRouter);
 app.use("/api/appointment", appointmentRouter);
-app.use("/api/professions",professionsRouter );
 
 app.use("/api/admin", adminRouter);
 

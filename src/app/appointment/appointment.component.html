@@ -1,11 +1,36 @@
 
 
 
+ <div class="appointment">
+  <input type="date" #date>
+  <input type="time" #time id="appt" name="appt" 
+       min="09:00" max="18:00" required>
+  <div class="md-form">
+  <input mdbInput type="text" #name id="form1" class="form-control">
+  <label for="form1" class="">userName</label>
+</div>
+<div class="md-form">
+  <input mdbInput type="text" #mail id="form1" class="form-control">
+  <label for="form1" class="">e-mail</label>
+</div>
+<div class="md-form">
+  <input mdbInput type="text" #svname id="form1" class="form-control">
+  <label for="form1" class="">ServiceProviderName</label>
+</div>
+<button (click)="submit(name.value , mail.value , date.value , svname.value , time.value)">Make Appointment</button>
+ </div>
 
 
 
-
-
+ <div class=card *ngFor='let e of data'>
+   
+   <h1>{{e.userName}}</h1>
+   <h1>{{e.email}}</h1>
+   <p>you have an appointment on: {{e.date}}</p>
+   <p>at {{e.time}}</p>
+   
+    
+  </div>
 
 
 
