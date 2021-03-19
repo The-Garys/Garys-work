@@ -50,7 +50,7 @@ console.log(this.serviceProviderIsChecked)
           { responseType: 'json' }
         )
         .subscribe((data) => {
-          console.log(data);
+          console.log("signin sP===>", data);
           if (data['err']) {
             Swal.fire({
               icon: 'error',
