@@ -29,18 +29,16 @@ export class SpProfileComponent implements OnInit {
   data:any;
   token: string = localStorage.getItem('token');
   ngOnInit(): void {
+    console.log('helelews man', this.token);
     this.http.post("http://localhost:3000/api/serviceProvider/profileData" , {token : this.token}).subscribe((data)=>{
       console.log("zdazdzazd", data)
       this.userdata = data
       console.log('name' , this.userdata)
-    
       this.http.get(`http://localhost:3000/api/appointment/${data["firstName"]}`).subscribe((data)=>{
         console.log("dzazdazadzda",data)
         this.data = data
         })
-
-        
-    }) 
+   }) 
     console.log("boss" ,this.local.email)
   }
 
@@ -77,7 +75,7 @@ export class SpProfileComponent implements OnInit {
       this.http.post("http://localhost:3000/api/appointment",
       {userName : name , email : email , date : date , serviceProviderName:svname , time:time }).subscribe((data)=>{
         console.log(data)
-        if(data["data"]) {
+        if(data["data"]){
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
