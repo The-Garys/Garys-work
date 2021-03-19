@@ -12,6 +12,7 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void { }
   imageUrl : string
+  list : any
   imgUpload(img) {
     console.log('IMG FROM VER==> ', img.target.files[0]);
     var formData = new FormData();
@@ -19,6 +20,10 @@ export class SignUpComponent implements OnInit {
     this.http.post("http://localhost:3000/upload" , formData).subscribe((resp) => {
       this.imageUrl = resp['msg'].url;
     });
+    this.list= []
+    this.http.get("http://localhost:3000/api/professions/getProfessions").subscribe((data)=>{
+      this.list=data
+    })
   }
   getData(
     firstName,

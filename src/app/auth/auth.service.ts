@@ -7,6 +7,9 @@ export class AuthService {
 
     admin : boolean = false;
     UserIsAuthenticated() {
-      return !!localStorage.getItem('token');
+      return !!localStorage.getItem('userToken');
     }
+
+
+    
 }
