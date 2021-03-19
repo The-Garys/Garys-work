@@ -21,7 +21,10 @@ role : string = this.local.role
     console.log("dddddzadad" ,this.local.role )
 
     this.services=[] ;
-    this.list=NAME
+    this.list= []
+    this.http.get("http://localhost:3000/api/professions/getProfessions").subscribe((data)=>{
+      this.list=data
+    })
     this.http.get("http://localhost:3000/api/serviceProviderList/services").subscribe((data)=>{
       console.log("idhazd" , data)
       this.services=data

@@ -8,82 +8,36 @@
     <div class="form-row mb-4">
       <div class="col">
         <!-- First name -->
-        <input
-          #firstName
-          type="text"
-          id="defaultRegisterFormFirstName"
-          class="form-control"
-          placeholder="First name"
-        />
+        <input #firstName type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name" />
       </div>
       <div class="col">
         <!-- Last name -->
-        <input
-          #lastName
-          type="text"
-          id="defaultRegisterFormLastName"
-          class="form-control"
-          placeholder="Last name"
-        />
+        <input #lastName type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name" />
       </div>
     </div>
 
     <!-- E-mail -->
-    <input
-      #email
-      type="email"
-      id="defaultRegisterFormEmail"
-      class="form-control mb-4"
-      placeholder="E-mail"
-    />
+    <input #email type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" />
 
     <!-- Password -->
-    <input
-      #password
-      type="password"
-      id="defaultRegisterFormPassword"
-      class="form-control"
-      placeholder="Password"
-      aria-describedby="defaultRegisterFormPasswordHelpBlock"
-    />
-    <small
-      id="defaultRegisterFormPasswordHelpBlock"
-      class="form-text text-muted mb-4"
-    >
+    <input #password type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
+      aria-describedby="defaultRegisterFormPasswordHelpBlock" />
+    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
       At least 8 characters and 1 digit
     </small>
     <!-- Retype Password -->
-    <input
-      #retypePassword
-      type="password"
-      id="defaultRegisterFormPassword"
-      class="form-control"
-      placeholder="Password"
-      aria-describedby="defaultRegisterFormPasswordHelpBlock"
-    />
-    <small
-      id="defaultRegisterFormPasswordHelpBlock"
-      class="form-text text-muted mb-4"
-    >
+    <input #retypePassword type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
+      aria-describedby="defaultRegisterFormPasswordHelpBlock" />
+    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
       Retype your password
     </small>
     <!-- Phone number -->
-    <input
-      #phoneNumber
-      type="text"
-      id="defaultRegisterPhonePassword"
-      class="form-control"
-      placeholder="Phone number"
-      aria-describedby="defaultRegisterFormPhoneHelpBlock"
-    />
-    <small
-      id="defaultRegisterFormPhoneHelpBlock"
-      class="form-text text-muted mb-4"
-    >
+    <input #phoneNumber type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number"
+      aria-describedby="defaultRegisterFormPhoneHelpBlock" />
+    <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
       Optional - for two-step authentication
     </small>
-    <input type="file"    (change)="imgUpload($event)"
-    #image  alt="Submit" width="48" height="48">
+    <input type="file" (change)="imgUpload($event)" #image alt="Submit" width="48" height="48">
     <div class="form-row mb-4">
       <div class="col">
         <!-- Gender -->
@@ -102,11 +56,7 @@
         <!-- Profession -->
         <div class="Profession">
           <select #profession id="Profession-list">
-            <input
-              class="profession-list-inp"
-              list="Profession-list"
-              type="text"
-            />
+            <input class="profession-list-inp" list="Profession-list" type="text" />
             <option value="Profession">Profession</option>
 
             <option value="Gardening">Gardening</option>
@@ -121,19 +71,18 @@
       <select #location id="Location-list">
         <input class="Location-list-inp" list="Location-list" type="text" />
         <option value="Location">Location</option>
-
-        <option value="Tunis">Tunis</option>
-        <option value="Bizert">Bizert</option>
-        <option value="Kef">Kef</option>
+        <option class="dropdown-content" value="location">Tunis</option>
+        <option class="dropdown-content" value="location">Gabes</option>
+        <option class="dropdown-content" value="location">Bizerte</option>
+        <option class="dropdown-content" value="location">Djerba</option>
+        <option class="dropdown-content" value="location">Sousse</option>
+        <option class="dropdown-content" value="location">Tozeur</option>
+        <option class="dropdown-content" value="location">Hammamet</option>
+        <option class="dropdown-content" value="location">Sousse</option>
       </select>
     </div>
     <!-- Sign up button -->
-    <button
-      mdbBtn
-      color="info"
-      block="true"
-      class="my-4"
-      (click)="
+    <button mdbBtn color="info" block="true" class="my-4" (click)="
         getData(
           firstName.value,
           lastName.value,
@@ -146,8 +95,7 @@
           location.value,
           this.imageUrl
         )
-      "
-    >
+      ">
       Sign Up
     </button>
 

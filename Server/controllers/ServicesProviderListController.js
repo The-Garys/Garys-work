@@ -3,6 +3,7 @@ const ServiceProviderList= require("../models/ServiceProvider.js")
 
 module.exports={
  addServices: async (req, res) => {
+   console.log(req.body)
     const service = new ServiceProviderList({
         firstName: "firstName",
         lastName: "lastName",
