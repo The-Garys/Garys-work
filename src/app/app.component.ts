@@ -13,7 +13,6 @@ export class AppComponent {
      
   role : string = this.local.role;
   ngOnInit() {
-  console.log(this.role);
   
   }
   title = 'gary-work'

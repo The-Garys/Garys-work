@@ -11,7 +11,6 @@ export class NavbarComponent implements OnInit {
   constructor(private local : LocalService) { }
 role : string = this.local.role;
   ngOnInit() {
-    console.log(this.role);
     
   }
 

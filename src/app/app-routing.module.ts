@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'services', component: ServicesListComponent },
   { path: 'providerSignup', component: SignUpComponent },
   { path: 'userSignup', component: SignupComponent },
-  { path: 'spProfile', component: SpProfileComponent },
+  { path: 'spProfile', component: SpProfileComponent, canActivate:[AuthGuard] },
   {path: 'homeServices', component: ServicesListComponent} , 
   {path: 'admin', component: AdminComponent, canActivate:[AuthGuard]},
   {path: 'userServices', component: UserServicesComponent,canActivate:[AuthGuard]},

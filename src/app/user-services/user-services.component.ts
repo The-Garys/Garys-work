@@ -18,12 +18,10 @@ export class UserServicesComponent implements OnInit {
    constructor(private http: HttpClient , private local : LocalService) { }
  role : string = this.local.role
    ngOnInit(): void {
-     console.log("dddddzadad" ,this.local.role )
  
      this.services=[] ;
      this.list=NAME
      this.http.get("http://localhost:3000/api/serviceProviderList/services").subscribe((data)=>{
-       console.log("idhazd" , data)
        this.services=data
        this.backup = data 
      })

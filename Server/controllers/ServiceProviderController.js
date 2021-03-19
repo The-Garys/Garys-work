@@ -148,7 +148,7 @@ const serviceProviderCtrl = {
       var data = await ServiceProvider.findOne({ token: req.body.token });
       res.send(data);
     } catch (err) {
-      console.log("azffaf", err);
+      console.error(err);
     }
   },
 };

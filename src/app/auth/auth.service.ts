@@ -3,13 +3,17 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class AuthService {
-    constructor() { }
+  constructor() { }
 
     admin : boolean = false;
     UserIsAuthenticated() {
       return !!localStorage.getItem('userToken');
     }
 
+    SpIsAuthentiated() {
+      return !!localStorage.getItem('sptoken');
+    }
 
+    
     
 }
