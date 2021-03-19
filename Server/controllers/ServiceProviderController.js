@@ -96,12 +96,12 @@ const serviceProviderCtrl = {
         }
       );
       userProvider.token = token;
-      await userProvider.save()
+      await userProvider.save();
       console.log("user====>", userProvider._id);
-       
+
       res.status(200).send({
         auth: true,
-        token:token,
+        token: token,
         success: "you are logged in successfully",
         id: userProvider._id,
         name: userProvider.firstName,
