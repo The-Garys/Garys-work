@@ -112,6 +112,7 @@ const serviceProviderCtrl = {
     }
   },
   verify: async (req, res) => {
+    console.log('tokeeeen===>', req.headers['x-access-token'])
     const token = req.headers["x-access-token"];
     if (!token) {
       return res.send({ auth: false, err: "No token provided" });
