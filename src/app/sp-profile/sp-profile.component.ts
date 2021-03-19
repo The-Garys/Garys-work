@@ -17,6 +17,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { GaryService } from '../gary.service';
 import { LocalService } from '../local.service';
+import {ActivatedRoute} from '@angular/router';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-sp-profile',
@@ -27,17 +28,23 @@ export class SpProfileComponent implements OnInit {
   constructor(
     private GaryService: GaryService,
     private http: HttpClient,
-    private local: LocalService
+    private local: LocalService, private activatedroute: ActivatedRoute
   ) {}
   spData: any;
   data: any;
   token: string = localStorage.getItem('token');
   ngOnInit(): void {
+      // this.activatedroute.data.subscribe(data => {
+      //     console.log('my data in the Profile',data);
+          
+      // })
+      console.log('my data in the Profile',history.state.data.id)
+
+
+
     console.log('helelews man', this.token);
     this.http
-      .post('http://localhost:3000/api/serviceProvider/profileData', {
-        token: this.token,
-      })
+      .get(`http://localhost:3000/api/serviceProvider/profileData/${history.state.data.id}`)
       .subscribe((data) => {
         console.log('zdazdzazd', data);
         this.spData = data;

@@ -47,7 +47,7 @@ const serviceProviderCtrl = {
         { id: newServiceProvider._id },
         config.toString(),
         {
-          expiresIn: 10, // expires in 24 hours
+          expiresIn: 86400, // expires in 24 hours
         }
       );
       // newServiceProvider.token = token;
@@ -92,7 +92,7 @@ const serviceProviderCtrl = {
         { id: userProvider._id },
         config.secret.toString(),
         {
-          expiresIn: 10, // expires in 24 hours
+          expiresIn: 86400, // expires in 24 hours
         }
       );
       // userProvider.token = token;
@@ -143,8 +143,8 @@ const serviceProviderCtrl = {
   },
   getSPdata: async (req, res) => {
     try {
-      console.log("getting token", req.body.token);
-      var data = await ServiceProvider.findOne({ token: req.body.token });
+      console.log("getting token", req.params.id);
+      var data = await ServiceProvider.findOne({ _id: req.params.id });
       res.send(data);
     } catch (err) {
       console.log("err", err);
