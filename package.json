@@ -42,7 +42,6 @@
     "i": "^0.3.6",
     "jsonwebtoken": "^8.5.1",
     "material-ui-rating": "^4.0.0-beta.2",
-    "mdb": "^0.1.0",
     "mdbootstrap": "^4.19.2",
     "moment": "^2.29.1",
     "mongoose": "^5.11.15",

@@ -19,25 +19,19 @@
       *ngFor="let sevice of list"
       value="{{ sevice.profession }}"
     >
-      {{ sevice?.profession }}
+      {{ sevice.profession }}
     </option>
   </select>
 
   <select class="dropbtn" (change)="dropLoc($event.target.value)">
-    <option class="dropdown-content" value="location">Location</option>
-    <option class="dropdown-content" value="Gardening">all</option>
-    <option class="dropdown-content" value="Painting">Tunis</option>
-    <option class="dropdown-content" value="Plumbing">Gabes</option>
-    <option class="dropdown-content"value="Plumbing">Bizerte</option>
-    <option class="dropdown-content"value="Plumbing">Djerba</option>
-    <option class="dropdown-content"value="Plumbing">Sousse</option>
-    <option class="dropdown-content"value="Plumbing">tuzeur</option>
-    <option class="dropdown-content"value="Plumbing">Hammamet</option>
-    <option class="dropdown-content"value="Plumbing">Sousse</option>
-
-  
-
-
+    <option class="dropdown-content" value="localisation">Location</option>
+    <option
+      class="dropdown-content"
+      *ngFor="let location of list"
+      value="{{ location.location }}"
+    >
+      {{ location.location }}
+    </option>
   </select>
 
 </div>

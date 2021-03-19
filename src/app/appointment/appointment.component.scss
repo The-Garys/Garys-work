@@ -2,10 +2,35 @@
 .appointment{
     width:30%;
     margin-left:10%;
-}
+    }
+    button {
+     background-color:rgb(44, 141, 44)
+    }
     
     
-
+    table {
+        font-family: arial, sans-serif;
+        border:solid;
+        width: 80%;
+      }
+      
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    
+    .card {
+      width:30%;
+      padding-left:1%;
+      margin-top:5%;
+      margin-left:5%;
+    }
+    
     
     
     

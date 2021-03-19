@@ -1,13 +1,10 @@
 const mongoose = require("mongoose");
-const reviewSchema = new mongoose.Schema(
-  {
-    serviceProviderId: { type: String, required: true },
-    userId: { type: String, required: true },
-    reviewTitle: { type: String, required: true },
-    body: { type: String, required: true },
-  },
-  { timestamps: true }
-);
+const reviewSchema = new mongoose.Schema({
+    serviceProviderName: { type: String, required: true },
+    userName: { type: String, required: true },
+    review: { type: String, required: true }
+}, { timestamps: true }
+)
 
 const Reviews = mongoose.model("Reviews", reviewSchema);
 

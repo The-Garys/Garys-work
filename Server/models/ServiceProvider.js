@@ -14,7 +14,6 @@ const serviceProviderSchema = new mongoose.Schema(
     imageUrl: { type: String },
     isServiceProvider: { type: Boolean, default: true },
     rates: [Number],
-
   },
   { timestamps: true }
 );
