@@ -14,4 +14,5 @@ export class LocalService {
     this.role = newRole;
     
   }
+  sv : boolean = false
 }
