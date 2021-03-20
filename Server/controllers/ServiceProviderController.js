@@ -106,6 +106,7 @@ const serviceProviderCtrl = {
         id: userProvider._id,
         name: userProvider.firstName,
         greet: "Welcome",
+        email: userProvider.email
       });
     } catch (error) {
       console.log(error);
@@ -145,6 +146,14 @@ const serviceProviderCtrl = {
     try {
       console.log("getting token", req.params.id);
       var data = await ServiceProvider.findOne({ _id: req.params.id });
+      res.send(data);
+    } catch (err) {
+      console.log("err", err);
+    }
+  },
+  getSPByEmail: async (req, res) => {
+    try {
+      var data = await ServiceProvider.findOne({ email: req.params.email });
       res.send(data);
     } catch (err) {
       console.log("err", err);
