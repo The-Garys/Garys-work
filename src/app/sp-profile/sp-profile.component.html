@@ -3,11 +3,7 @@
     <div class="container">
       <div class="profile-header">
         <div class="profile-image">
-          <img
-            src="{{ spData?.imageUrl }}"
-            alt=""
-            width="200"
-          />
+          <img src="{{ spData?.imageUrl }}" alt="" width="200" />
         </div>
         <div class="profile-nav-info">
           <h3 class="user-name">{{ spData?.fullName }}</h3>
@@ -131,15 +127,6 @@
                   <div class="modal-footer">
                     <button
                       type="button"
-                      (click)="
-                        submit(
-                          name.value,
-                          mail.value,
-                          date.value,
-                          svname.value,
-                          time.value
-                        )
-                      "
                       mdbBtn
                       color="primary"
                       class="relative waves-light"
