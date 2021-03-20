@@ -93,7 +93,7 @@ export class SignUpComponent implements OnInit {
             })
           } else {
             localStorage.setItem("token", data["token"])
-            this.router.navigateByUrl('/spProfile');
+            this.router.navigateByUrl('/signin');
             Swal.fire(
               data["greet"] +" "+data["name"],
               data["success"],
