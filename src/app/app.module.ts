@@ -14,7 +14,6 @@ import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ServicesListComponent } from './services-list/services-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import {AuthGuard} from './auth/auth.guard'
 
 import { FormsModule } from '@angular/forms';
 
@@ -31,8 +30,6 @@ import { UserHomeComponent } from './user-home/user-home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
 import { AdminComponent } from './Admin/admin/admin.component';
-import { SpProfileUserSideComponent } from './sp-profile-user-side/sp-profile-user-side.component';
-import { ModalReviewComponent } from './modal-review/modal-review.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,8 +53,6 @@ import { ModalReviewComponent } from './modal-review/modal-review.component';
     UserHomeComponent,
     AdminLoginComponent,
     AdminComponent,
-    SpProfileUserSideComponent,
-    ModalReviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,10 +62,9 @@ import { ModalReviewComponent } from './modal-review/modal-review.component';
     BrowserAnimationsModule,
     FormsModule,
     NgbModule,
-
   ],
 
-  providers: [AuthGuard],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

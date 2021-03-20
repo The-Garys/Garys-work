@@ -10,9 +10,9 @@
           />
         </div>
         <div class="profile-nav-info">
-          <h3 class="user-name">{{ spData?.fullName }}</h3>
+          <h3 class="user-name">{{ userdata?.fullName }}</h3>
           <div class="adress">
-            <p class="state">{{ spData?.location }}</p>
+            <p class="state">Nabeul</p>
           </div>
         </div>
         <div *ngIf="spData.isServiceProvider" class="profile-option">
@@ -27,15 +27,15 @@
           <div class="profile-side">
             <p class="phone-number">
               <i class="fa fa-phone"></i>
-              {{ spData?.phoneNumber }}
+              +216 22700374
             </p>
             <p class="email">
               <i class="fa fa-envelope"></i>
-              {{ spData?.email }}
+              ramzichammem69@gmail.com
             </p>
             <p class="user-profession">
               <i class="fas fa-tools"></i>
-              {{ spData?.profession }}
+              Painting
             </p>
             <div class="user-bio">
               <h3>Bio:</h3>
@@ -235,18 +235,18 @@
               *ngIf="settings"
             >
               <h1>Account setting</h1>
-              <div class="card" *ngFor="let e of data">
-                <h1>{{ e.userName }}</h1>
-                <h1>{{ e.email }}</h1>
-                <p>you have an appointment on: {{ e.date }}</p>
-                <p>at {{ e.time }}</p>
-                <div class="card" *ngFor="let e of data">
-                  <h1>{{ e.userName }}</h1>
-                  <h1>{{ e.email }}</h1>
-                  <p>you have an appointment on: {{ e.date }}</p>
-                  <p>at {{ e.time }}</p>
-                </div>
-              </div>
+              <p>
+                <app-appointment></app-appointment>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Provident esse vel doloribus in natus numquam quis tempora
+                suscipit voluptas? Aperiam minus voluptatem, facere nostrum
+                molestias iure a optio libero expedita quod neque ipsam veniam
+                labore maxime exercitationem asperiores ipsum, iste tempora
+                officia. Deleniti reiciendis, cumque officiis unde ab ad ut
+                iure, ea consequatur sed explicabo vero esse repellat,
+                temporibus atque voluptatibus dicta at enim delectus molestiae!
+                Debitis laboriosam tempora adipisci.
+              </p>
             </div>
           </div>
         </div>
