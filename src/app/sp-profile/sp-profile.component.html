@@ -10,12 +10,12 @@
           />
         </div>
         <div class="profile-nav-info">
-          <h3 class="user-name">{{ userdata?.fullName }}</h3>
+          <h3 class="user-name">{{ spData?.fullName }}</h3>
           <div class="adress">
-            <p class="state">Nabeul</p>
+            <p class="state">{{ spData?.location }}</p>
           </div>
         </div>
-        <div *ngIf="spData.isServiceProvider" class="profile-option">
+        <div *ngIf="spData?.isServiceProvider" class="profile-option">
           <div class="notification">
             <i class="fa fa-bell"></i>
             <span class="alert-message">1</span>
@@ -27,15 +27,15 @@
           <div class="profile-side">
             <p class="phone-number">
               <i class="fa fa-phone"></i>
-              +216 22700374
+              {{ spData?.phoneNumber }}
             </p>
             <p class="email">
               <i class="fa fa-envelope"></i>
-              ramzichammem69@gmail.com
+              {{ spData?.email }}
             </p>
             <p class="user-profession">
               <i class="fas fa-tools"></i>
-              Painting
+              {{ spData?.profession }}
             </p>
             <div class="user-bio">
               <h3>Bio:</h3>
@@ -48,7 +48,7 @@
             <div class="profile-btn">
               <button class="chatbtn"><i class="fa fa-comment"></i>Chat</button>
             </div>
-            <button *ngIf="!spData.isServiceProvider"
+            <button *ngIf="visitor"
               type="button"
               mdbBtn
               color="primary"
@@ -194,12 +194,12 @@
               >
                 Reviews
               </li>
-              <li
+              <li *ngIf="visitor1"
                 class="user-setting"
                 [class.active]="settings"
                 (click)="setting()"
               >
-                Settings
+                My appointments
               </li>
             </ul>
           </div>
@@ -234,10 +234,10 @@
               id="profile-settings"
               *ngIf="settings"
             >
-              <h1>Account setting</h1>
-              <p>
-                <app-appointment></app-appointment>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <!-- <h1>Account setting</h1> -->
+              <!-- <p> -->
+                <!-- <app-appointment></app-appointment> -->
+                <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Provident esse vel doloribus in natus numquam quis tempora
                 suscipit voluptas? Aperiam minus voluptatem, facere nostrum
                 molestias iure a optio libero expedita quod neque ipsam veniam
@@ -245,8 +245,20 @@
                 officia. Deleniti reiciendis, cumque officiis unde ab ad ut
                 iure, ea consequatur sed explicabo vero esse repellat,
                 temporibus atque voluptatibus dicta at enim delectus molestiae!
-                Debitis laboriosam tempora adipisci.
-              </p>
+                Debitis laboriosam tempora adipisci. -->
+              <!-- </p> -->
+           <div  *ngIf="visitor1">
+ <div class=card *ngFor='let e of data'>
+   
+  
+  
+  <p>you have an appointment on: {{e.date}}</p>
+  <p>at {{e.time}}</p>
+  <h1>By: {{e.userName}}</h1>
+  
+   
+ </div>
+</div>   
             </div>
           </div>
         </div>
@@ -254,3 +266,5 @@
     </div>
   </div>
 </div>
+
+

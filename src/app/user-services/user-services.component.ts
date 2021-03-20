@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SERVICES,NAME} from '../services-list/mock-service'
 import { HttpClient } from '@angular/common/http';
 import { LocalService } from "../local.service"
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-services',
@@ -15,7 +16,7 @@ export class UserServicesComponent implements OnInit {
   data :any 
   backup : any = [] 
  
-   constructor(private http: HttpClient , private local : LocalService) { }
+   constructor(private http: HttpClient , private local : LocalService , private router: Router) { }
  role : string = this.local.role
    ngOnInit(): void {
      console.log("dddddzadad" ,this.local.role )
@@ -29,7 +30,11 @@ export class UserServicesComponent implements OnInit {
      })
    }
  
- 
+   goSvProfile(svMail){
+     console.log("dazadzdza" , svMail)
+     localStorage.setItem("svMail" , svMail)
+     this.router.navigateByUrl('/spProfile')
+   }
    getVal(val){
      console.log(val)
      this.services = this.backup

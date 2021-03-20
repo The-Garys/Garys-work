@@ -63,6 +63,7 @@ console.log(this.serviceProviderIsChecked)
             localStorage.setItem('spEmail', data['email'])
             this.router.navigateByUrl('/spProfile', { state: {data} });
             Swal.fire(data["greet"] +" "+ data["name"], data['success'], 'success');
+            localStorage.setItem('visitor', "no");
           }
         });
     }
@@ -89,6 +90,7 @@ console.log(this.serviceProviderIsChecked)
             localStorage.setItem('token', data['token']);
             this.router.navigateByUrl('/userServices');
             Swal.fire( data["greet"] +" "+ data["name"], data['success'], 'success');
+            localStorage.setItem('visitor', "yes");
           }
         });
     } 
