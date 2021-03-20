@@ -1,12 +1,11 @@
 <button
   type="button"
   mdbBtn
-  color="primary"
-  class="relative waves-light"
+  class="relative waves-light add-review"
   (click)="basicModal.show()"
   mdbWavesEffect
 >
-  Launch demo modal
+  Add Review <i class="fas fa-plus"></i>
 </button>
 
 <div
@@ -35,11 +34,13 @@
         <ngb-rating class="rating-readonly" [(rate)]="currentRate"></ngb-rating>
         <p>Rate: {{ currentRate }}</p>
         <input
+          [(ngModel)]="myReview.title"
           class="modal-rev-title"
           type="text"
           placeholder="Review Title..."
         />
         <textarea
+          [(ngModel)]="myReview.body"
           class="modal-txt-area"
           name="rev"
           id=""
