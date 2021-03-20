@@ -142,15 +142,15 @@ const serviceProviderCtrl = {
   logout: async (req, res) => {
     res.status(200).send({ auth: false, token: null, success: "you are logged out" });
   },
-  getSPdata: async (req, res) => {
-    try {
-      console.log("getting token", req.params.id);
-      var data = await ServiceProvider.findOne({ _id: req.params.id });
-      res.send(data);
-    } catch (err) {
-      console.log("err", err);
-    }
-  },
+  // getSPdata: async (req, res) => {
+  //   try {
+  //     console.log("getting token", req.params.id);
+  //     var data = await ServiceProvider.findOne({ _id: req.params.id });
+  //     res.send(data);
+  //   } catch (err) {
+  //     console.log("err", err);
+  //   }
+  // },
   getSPByEmail: async (req, res) => {
     try {
       var data = await ServiceProvider.findOne({ email: req.params.email });
