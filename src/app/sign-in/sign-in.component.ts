@@ -50,7 +50,7 @@ console.log(this.serviceProviderIsChecked)
           { responseType: 'json' }
         )
         .subscribe((data) => {
-          console.log("signin sP===>", data);
+          console.log(data);
           if (data['err']) {
             Swal.fire({
               icon: 'error',
@@ -60,8 +60,10 @@ console.log(this.serviceProviderIsChecked)
           } else {
             console.log(data["token"])
             localStorage.setItem('token', data['token']);
+            localStorage.setItem('spEmail', data['email'])
             this.router.navigateByUrl('/spProfile', { state: {data} });
             Swal.fire(data["greet"] +" "+ data["name"], data['success'], 'success');
+            localStorage.setItem('visitor', "no");
           }
         });
     }
@@ -84,9 +86,11 @@ console.log(this.serviceProviderIsChecked)
               text: data['err'],
             });
           } else {
-            localStorage.setItem('userToken', data['token']);
+            this.local.changeRole('user');
+            localStorage.setItem('token', data['token']);
             this.router.navigateByUrl('/userServices');
             Swal.fire( data["greet"] +" "+ data["name"], data['success'], 'success');
+            localStorage.setItem('visitor', "yes");
           }
         });
     } 

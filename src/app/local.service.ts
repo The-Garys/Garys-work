@@ -9,12 +9,10 @@ export class LocalService {
   constructor() { }
 
   role : string = "guest"
-  email : string;
-
+  email : string 
   changeRole (newRole) {
     this.role = newRole;
     
   }
-   
-
+  sv : boolean = false
 }

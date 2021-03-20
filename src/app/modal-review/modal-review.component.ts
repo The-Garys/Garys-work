@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
-
 @Component({
   selector: 'app-modal-review',
   templateUrl: './modal-review.component.html',
@@ -11,6 +10,12 @@ export class ModalReviewComponent implements OnInit {
     config.max = 5;
     config.readonly = false;
   }
-
+  myReview = {
+    id: '',
+    title: '',
+    body: '',
+  };
+  currentRate: number = 0;
   ngOnInit(): void {}
+  sendReview() {}
 }

@@ -40,7 +40,7 @@
       <div class="cards">
         <mdb-card class="card" *ngFor="let e of services">
           <a class="orange-text mt-1 d-flex flex-row-reverse">
-            <h5 class="waves-effect p-2" mdbWavesEffect>
+            <h5 class="waves-effect p-2" mdbWavesEffect (click)="goSvProfile(e.email)">
               See more details
               <mdb-icon fas icon="chevron-right"></mdb-icon>
             </h5>
