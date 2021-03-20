@@ -3,14 +3,10 @@
     <div class="container">
       <div class="profile-header">
         <div class="profile-image">
-          <img
-            src="{{ spData?.imageUrl }}"
-            alt=""
-            width="200"
-          />
+          <img src="{{ spData?.imageUrl }}" alt="" width="200" />
         </div>
         <div class="profile-nav-info">
-          <h3 class="user-name">{{ userdata?.fullName }}</h3>
+          <h3 class="user-name">{{ spData?.fullName }}</h3>
           <div class="adress">
             <p class="state">Nabeul</p>
           </div>
@@ -48,7 +44,8 @@
             <div class="profile-btn">
               <button class="chatbtn"><i class="fa fa-comment"></i>Chat</button>
             </div>
-            <button *ngIf="!spData.isServiceProvider"
+            <button
+              *ngIf="!spData.isServiceProvider"
               type="button"
               mdbBtn
               color="primary"
@@ -131,15 +128,6 @@
                   <div class="modal-footer">
                     <button
                       type="button"
-                      (click)="
-                        submit(
-                          name.value,
-                          mail.value,
-                          date.value,
-                          svname.value,
-                          time.value
-                        )
-                      "
                       mdbBtn
                       color="primary"
                       class="relative waves-light"
