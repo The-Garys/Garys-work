@@ -1,26 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
-
 @Component({
-  selector: 'app-user-nav',
-  templateUrl: './user-nav.component.html',
-  styleUrls: ['./user-nav.component.scss']
+  selector: 'app-sv-nav',
+  templateUrl: './sv-nav.component.html',
+  styleUrls: ['./sv-nav.component.scss']
 })
-export class UserNavComponent implements OnInit {
-constructor(private router : Router,private http: HttpClient) {
+export class SvNavComponent implements OnInit {
 
-}
-  
-  
+  constructor(private router : Router,
+    private http: HttpClient) { }
 
   ngOnInit(): void {
-    
   }
   logout(){
-    this.http.get("http://localhost:3000/api/user/logout").subscribe((data) => {
+    this.http.get("http://localhost:3000/api/serviceProvider/logout").subscribe((data) => {
       console.log('logout', data);
       localStorage.removeItem('token')
       localStorage.removeItem('svMail')
@@ -38,7 +34,5 @@ constructor(private router : Router,private http: HttpClient) {
   toservices(){
     this.router.navigateByUrl("/userServices")
   }
-//  logout(){
-//   localStorage.setItem("type" , "guest")
-//  }
+
 }
