@@ -12,6 +12,7 @@ export class ProvidersComponent implements OnInit {
 
   sps=[];
   firstName: any;
+  p:Number = 1;
 
   ngOnInit(): void {
 this.spList.getSpList().subscribe((data:any) => {
