@@ -60,7 +60,7 @@ console.log(this.serviceProviderIsChecked)
           } else {
             console.log(data["token"])
             localStorage.setItem('token', data['token']);
-            localStorage.setItem('spEmail', data['email'])
+            localStorage.setItem('svMail', data['email'])
             this.router.navigateByUrl('/spProfile', { state: {data} });
             Swal.fire(data["greet"] +" "+ data["name"], data['success'], 'success');
             localStorage.setItem('visitor', "no");

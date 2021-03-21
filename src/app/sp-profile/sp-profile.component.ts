@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { GaryService } from '../gary.service';
 import { LocalService } from '../local.service';
+// import { Router } from '@angular/router';
 // import {ActivatedRoute} from '@angular/router';
 
 import Swal from 'sweetalert2';
@@ -15,7 +16,7 @@ export class SpProfileComponent implements OnInit {
   constructor(
     private GaryService: GaryService,
     private http: HttpClient,
-    private local: LocalService
+    private local: LocalService,
   ) {}
   spData: any;
   data: any;
@@ -34,12 +35,12 @@ export class SpProfileComponent implements OnInit {
         this.visitor1 = true;
       }
     console.log('visitor' , this.visitor)
-    this.spEmail = localStorage.getItem('spEmail');
+    // this.spEmail = localStorage.getItem('spEmail');
     this.svMail = localStorage.getItem('svMail');
     console.log("user services profiles", this.svMail)
-    console.log("service provider email", this.spEmail)
+    // console.log("service provider email", this.spEmail)
     this.http
-      .get(`http://localhost:3000/api/serviceProvider/${this.spEmail}`)
+      .get(`http://localhost:3000/api/serviceProvider/${this.svMail}`)
       .subscribe((data) => {
         console.log('profile data', data);
         this.spData = data;
@@ -108,4 +109,6 @@ export class SpProfileComponent implements OnInit {
     this.reviews = false;
     this.settings = true;
   }
+
 }
+

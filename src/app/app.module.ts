@@ -31,6 +31,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
 import { AdminComponent } from './Admin/admin/admin.component';
 import { ModalReviewComponent } from './modal-review/modal-review.component';
+import { SvNavComponent } from './sv-nav/sv-nav.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +56,7 @@ import { ModalReviewComponent } from './modal-review/modal-review.component';
     AdminLoginComponent,
     AdminComponent,
     ModalReviewComponent,
+    SvNavComponent,
   ],
   imports: [
     BrowserModule,
