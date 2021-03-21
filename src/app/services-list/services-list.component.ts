@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SERVICES,NAME} from '../services-list/mock-service'
+import {NAME} from '../services-list/mock-service'
 import { HttpClient } from '@angular/common/http';
 import { LocalService } from "../local.service"
 
