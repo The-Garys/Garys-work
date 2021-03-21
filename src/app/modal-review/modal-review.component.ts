@@ -16,6 +16,8 @@ export class ModalReviewComponent implements OnInit {
     body: '',
   };
   currentRate: number = 0;
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.myReview);
+  }
   sendReview() {}
 }
