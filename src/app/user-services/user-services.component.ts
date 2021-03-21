@@ -31,7 +31,7 @@ export class UserServicesComponent implements OnInit {
    }
  
    goSvProfile(svMail){
-     console.log("dazadzdza" , svMail)
+     console.log("profile email when click" , svMail)
      localStorage.setItem("svMail" , svMail)
      this.router.navigateByUrl('/spProfile')
    }

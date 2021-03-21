@@ -11,7 +11,7 @@
             <p class="state">{{ spData?.location }}</p>
           </div>
         </div>
-        <div *ngIf="spData?.isServiceProvider" class="profile-option">
+        <div *ngIf="!visitor" class="profile-option">
           <div class="notification">
             <i class="fa fa-bell"></i>
             <span class="alert-message">1</span>
