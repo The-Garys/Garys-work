@@ -23,6 +23,7 @@ export class SpProfileComponent implements OnInit {
   spEmail : string;
   visitor : boolean = false;
   visitor1 : boolean = false;
+  svMail: string;
   ngOnInit(): void {
       // console.log('my data in the Profile',history.state.data.id)
       if(localStorage.getItem('visitor')=== "yes"){
@@ -33,7 +34,9 @@ export class SpProfileComponent implements OnInit {
         this.visitor1 = true;
       }
     console.log('visitor' , this.visitor)
-    this.spEmail = localStorage.getItem('svMail');
+    this.spEmail = localStorage.getItem('spEmail');
+    this.svMail = localStorage.getItem('svMail');
+    console.log("user services profiles", this.svMail)
     console.log("service provider email", this.spEmail)
     this.http
       .get(`http://localhost:3000/api/serviceProvider/${this.spEmail}`)
