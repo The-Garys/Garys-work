@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class AdminMessagesService {
+export class AdminServices {
   apiURL: string = 'http://localhost:3000/api/contactus';
 
   constructor(private httpClient: HttpClient) {}
@@ -20,4 +20,10 @@ export class AdminMessagesService {
   public deleteAll() {
     return this.httpClient.delete(this.apiURL);
   }
+
+
+  public getSpList() {
+    return this.httpClient.get('http://localhost:3000/api/serviceProviderList/services');
+  }
+
 }
