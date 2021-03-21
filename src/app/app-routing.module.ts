@@ -9,11 +9,15 @@ import { SpProfileComponent } from './sp-profile/sp-profile.component';
 import { AdminNavComponent } from './admin/admin-nav/admin-nav.component';
 import { UserServicesComponent } from './user-services/user-services.component';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
+import { AdminComponent } from './Admin/admin/admin.component';
 
 
 
 const routes: Routes = [
   { path: '', component: HomepageComponent, pathMatch: 'full' },
+  {path:'admin', component:AdminComponent},
+  { path: 'alogin', component: AdminLoginComponent },
   { path: 'signin', component: SignInComponent },
   { path: 'services', component: ServicesListComponent },
   { path: 'providerSignup', component: SignUpComponent },

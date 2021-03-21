@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 
@@ -20,9 +21,23 @@ export class AdminLoginComponent implements OnInit {
   }
 
   login(email, password) {
-    this.http.post("http://localhost:3000/api/admin/login", {email: email, password: password}).subscribe((d) => {
+    this.http.post("http://localhost:3000/api/admin/login", {email: email, password: password}, {responseType: 'json'}).subscribe((d) => {
       console.log(d);
-      this.router.navigateByUrl('/admin')
+      if (d['err']) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: d['err'],
+        });
+      }
+      else{
+        Swal.fire(
+          '',
+          'Successfully Connected!',
+          'success'
+        )
+        this.router.navigateByUrl('/admin')
+      }
       
     })
   }

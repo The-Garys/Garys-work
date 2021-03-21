@@ -3,9 +3,17 @@
   width: 100%;
   max-width: 100%;
   padding: 0;
-  background-color: #78c0e0 !important;
-  border-bottom-left-radius: 100%;
-  height: 100%;
+  height: 90%;
+  margin-bottom: 35%;
+  border-bottom-right-radius: 100%;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 212, 255, 1) 0%,
+    rgba(9, 9, 121, 1) 100%
+  );
+  max-height: 100%;
 }
 
 .explore {
@@ -22,13 +30,14 @@
 h1 span {
   align-self: center;
   text-align: center;
-  color: #192bc2;
+  color: white;
 }
 
 .servicesRO {
   justify-content: center;
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 .servicesRT {
   justify-content: center;
@@ -37,12 +46,21 @@ h1 span {
 }
 
 .services {
-  width: 30%;
-  margin: 5%;
+  width: 100%;
+  margin: 1%;
   display: table;
   text-align: center;
+  border: 1px solid black;
+  height: 100%;
+  padding: 0;
+  object-fit: fill;
 }
 
 .services img {
-  width: 25%;
+  height: 50%;
+  width: 50%;
+}
+
+h4 {
+  margin-bottom: 0;
 }
