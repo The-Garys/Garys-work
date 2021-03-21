@@ -5,13 +5,13 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class GaryService {
-  apiURL: string = 'http://localhost:3000/api/serviceProvider/profile';
+  apiURL: string = 'http://localhost:3000/api/';
   constructor(private httpClient: HttpClient) {}
 
   public getData(token) {
-    return this.httpClient.get(this.apiURL + '/' + token);
+    return this.httpClient.get(this.apiURL + 'serviceProvider/profile' + token);
   }
   public addReview(body) {
-    return this.httpClient.post(this.apiURL + '/addReview', body);
+    return this.httpClient.post(this.apiURL + 'review/addReview', body);
   }
 }
