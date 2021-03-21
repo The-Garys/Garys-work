@@ -12,6 +12,7 @@ import { UserHomeComponent } from './user-home/user-home.component';
 import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
 import { AdminComponent } from './Admin/admin/admin.component';
 import {MessagesComponent} from './Admin/messages/messages.component';
+import {ProvidersComponent} from './Admin/providers/providers.component'
 
 
 
@@ -26,10 +27,11 @@ const routes: Routes = [
   { path: 'userSignup', component: SignupComponent },
   { path: 'spProfile', component: SpProfileComponent },
   {path: 'homeServices', component: ServicesListComponent} , 
-  {path: 'admin', component: AdminNavComponent},
-  {path:'admin/messages', component:MessagesComponent},
+  {path: 'admin', component: AdminComponent, children:[{path:'', component:AdminComponent},{path:'sps', component:ProvidersComponent},{path:'messages', component:MessagesComponent},]},
+  
   {path: 'userServices', component: UserServicesComponent},
   {path: 'userHome', component: UserHomeComponent},
+  
 
 ];
 

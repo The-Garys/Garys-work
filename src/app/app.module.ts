@@ -14,6 +14,9 @@ import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ServicesListComponent } from './services-list/services-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import {Ng2SearchPipeModule} from 'ng2-search-filter'
+import {Ng2OrderModule} from 'ng2-order-pipe'
+import {NgxPaginationModule} from 'ngx-pagination'
 
 import { FormsModule } from '@angular/forms';
 
@@ -32,6 +35,7 @@ import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
 import { AdminComponent } from './Admin/admin/admin.component';
 import { ModalReviewComponent } from './modal-review/modal-review.component';
 import { SvNavComponent } from './sv-nav/sv-nav.component';
+import { ProvidersComponent } from './Admin/providers/providers.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +61,7 @@ import { SvNavComponent } from './sv-nav/sv-nav.component';
     AdminComponent,
     ModalReviewComponent,
     SvNavComponent,
+    ProvidersComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +71,10 @@ import { SvNavComponent } from './sv-nav/sv-nav.component';
     BrowserAnimationsModule,
     FormsModule,
     NgbModule,
+    Ng2SearchPipeModule,
+    Ng2OrderModule,
+    NgxPaginationModule
+
   ],
 
   providers: [],
