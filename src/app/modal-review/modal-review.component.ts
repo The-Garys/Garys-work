@@ -20,18 +20,22 @@ export class ModalReviewComponent implements OnInit {
   }
   currentRate: number = 0;
   myReview = {
+    serviceProviderEmail: 'ramzi12@gmail.com',
+    userId: 'idSp',
     rate: this.currentRate,
-    userId: 'idUser',
-    spId: 'idSp',
-    title: '',
-    body: '',
+    reviewTitle: '',
+    reviewBody: '',
   };
   ngOnInit(): void {}
   changeRate() {
     this.myReview.rate = this.currentRate;
-    console.log(this.myReview);
   }
   addReview() {
     console.log('checking review', this.myReview);
+
+    this.GaryService.addReview(this.myReview).subscribe((data: any[]) => {
+      console.log(data);
+      Swal.fire('Sent!', 'Your review has been sent successfully!', 'success');
+    });
   }
 }
