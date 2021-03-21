@@ -31,7 +31,11 @@
         <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
-        <ngb-rating class="rating-readonly" [(rate)]="currentRate"></ngb-rating>
+        <ngb-rating
+          class="rating-readonly"
+          [(rate)]="currentRate"
+          (click)="changeRate()"
+        ></ngb-rating>
         <p>Rate: {{ currentRate }}</p>
         <input
           [(ngModel)]="myReview.title"
@@ -65,10 +69,11 @@
           type="button"
           mdbBtn
           color="primary"
+          (click)="addReview()"
           class="relative waves-light"
           mdbWavesEffect
         >
-          Save changes
+          Send review
         </button>
       </div>
     </div>
