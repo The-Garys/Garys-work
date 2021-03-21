@@ -106,7 +106,7 @@
                         <input
                           mdbInput
                           type="text"
-                          #mail
+                          #email
                           id="form1"
                           class="form-control"
                         />
@@ -128,12 +128,13 @@
                   </div>
                   <div class="modal-footer">
                     <button
+                     (click)="submit(name.value , email.value , date.value , svname.value , time.value)"
                       type="button"
                       mdbBtn
                       color="primary"
                       class="relative waves-light"
                       mdbWavesEffect
-                    >
+                    > 
                       Send
                     </button>
                     <button

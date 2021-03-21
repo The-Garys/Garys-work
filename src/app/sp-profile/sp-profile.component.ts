@@ -67,7 +67,7 @@ export class SpProfileComponent implements OnInit {
     } else {
       this.http.post("http://localhost:3000/api/appointment",
       {userName : name , email : email , date : date , serviceProviderName:svname , time:time }).subscribe((data)=>{
-        console.log(data)
+        console.log("appoitment added",data)
         if(data["data"]){
           Swal.fire({
             icon: 'error',

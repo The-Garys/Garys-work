@@ -10,7 +10,7 @@ module.exports={
            serviceProviderName: req.body.serviceProviderName
        });
           try{
-          const check= await Appointment.find({date:req.body.date, time: req.body.time})
+          const check= await Appointment.find({date:req.body.date}, {time: req.body.time})
           console.log('date and time', check)
           if(check.length){
             return res.send({data : "not avail"})
