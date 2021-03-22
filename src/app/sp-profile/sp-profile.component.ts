@@ -55,6 +55,7 @@ export class SpProfileComponent implements OnInit {
           });
       });
     // console.log('local email', this.local.email);
+    
   }
   submit(name , email , date , svname , time ){ 
     if(!name || !email || !date || !svname ||!time) {

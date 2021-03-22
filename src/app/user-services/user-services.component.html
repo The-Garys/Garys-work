@@ -18,7 +18,7 @@
         *ngFor="let sevice of list"
         value="{{ sevice.profession }}"
       >
-        {{ sevice.profession }}
+        {{ sevice?.profession }}
       </option>
     </select>
   
@@ -26,7 +26,7 @@
       <option class="dropdown-content" value="localisation">Location</option>
       <option
         class="dropdown-content"
-        *ngFor="let location of list"
+        *ngFor="let location of location"
         value="{{ location.location }}"
       >
         {{ location.location }}
