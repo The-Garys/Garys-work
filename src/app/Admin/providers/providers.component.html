@@ -24,7 +24,7 @@
 
                 
             </button>
-            <button *ngIf='sp.isBanned === true' title="Unban User" id="unlock" class="btn"><i id="icon" class="fas fa-unlock-alt"></i>
+            <button *ngIf='sp.isBanned === true' (click)='unBan(sp._id)' title="Unban User" id="unlock" class="btn"><i id="icon" class="fas fa-unlock-alt"></i>
 
 
 

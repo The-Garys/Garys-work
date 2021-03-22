@@ -6,6 +6,6 @@ router.post("/seed", adminControllers.post);
 router.post("/login", adminControllers.verifyLogin);
 router.put("/ban/:id", adminControllers.banUser);
 router.put("/ban/sp/:id", adminControllers.banSp);
-router.put("/")
+router.put("/sp/unban/:id", adminControllers.unbanSp);
 
 module.exports = router;

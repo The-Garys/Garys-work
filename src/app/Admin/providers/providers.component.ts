@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 
 export class ProvidersComponent implements OnInit {
   @ViewChild(DataTableDirective, {static: false})
+  
   dtElement: DataTableDirective;
   
   isDtInitialized:boolean = false;
@@ -36,20 +37,21 @@ export class ProvidersComponent implements OnInit {
       pageLength: 2
     };
 
-    if (this.isDtInitialized) {
-      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-          dtInstance.destroy();
-          this.dtTrigger.next();
-      });
-  } else {
-      this.isDtInitialized = true;
-      this.dtTrigger.next();
-  }
+
+   
    
 this.spList.getSpList().subscribe((data:any) => {
   
   this.sps = data;
-  this.dtTrigger.next();
+  if (this.isDtInitialized) {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.dtTrigger.next();
+    });
+} else {
+    this.isDtInitialized = true;
+    this.dtTrigger.next();
+}
 
   
 })
@@ -95,7 +97,7 @@ this.spList.getSpList().subscribe((data:any) => {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Confirm Ban!'
+      confirmButtonText: 'Confirm unban!'
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(
@@ -105,6 +107,7 @@ this.spList.getSpList().subscribe((data:any) => {
         )
         this.spList.unbanSp(id).subscribe((data) => {
           console.log(data, 'unbanned');
+          this.ngOnInit();
           })
       }
     })

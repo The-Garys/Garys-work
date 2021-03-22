@@ -41,6 +41,6 @@ export class AdminServices {
     return this.httpClient.put(`http://localhost:3000/api/admin/unban/${id}`, {})
   }
   public unbanSp(id) {
-    return this.httpClient.put(`http://localhost:3000/api/admin/unban/${id}`, {})
+    return this.httpClient.put(`http://localhost:3000/api/admin/sp/unban/${id}`, {})
   }
 }
