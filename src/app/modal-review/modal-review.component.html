@@ -34,9 +34,10 @@
         <ngb-rating
           class="rating-readonly"
           [(rate)]="currentRate"
-          (click)="changeRate()"
+          #r
+          (click)="changeRate(r.value)"
         ></ngb-rating>
-        <p>Rate: {{ currentRate }}</p>
+        <p id="rate">Rate: {{ halim }}</p>
         <input
           [(ngModel)]="myReview.reviewTitle"
           class="modal-rev-title"
