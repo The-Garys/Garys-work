@@ -154,6 +154,7 @@
                 My appointments
               </li>
               <li
+              *ngIf="!visitor"
                 class="user-review"
                 [class.active]="settings"
                 (click)="setting()"
