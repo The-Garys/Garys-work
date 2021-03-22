@@ -1,5 +1,4 @@
 const Appointment = require("../models/Appointment");
-
 module.exports={
     makeAppointment: async (req, res) => {
        const appointment = new Appointment({
