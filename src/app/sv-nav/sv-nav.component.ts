@@ -24,6 +24,18 @@ export class SvNavComponent implements OnInit {
         this.router.navigateByUrl('/signin');
       });
   }
+  logout(){
+    this.http.get("http://localhost:3000/api/serviceProvider/logout").subscribe((data) => {
+      console.log('logout', data);
+      localStorage.removeItem('token')
+      localStorage.removeItem('svMail')
+      Swal.fire(
+        '',
+        data["success"],
+        'success'
+      )
+      this.router.navigateByUrl('/signin');
+    })
   tohome() {
     this.router.navigateByUrl('/userHome');
   }
