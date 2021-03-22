@@ -17,23 +17,35 @@
           <!-- check -->
           <div class="checkBox">
             <label for="serviceProvider"> Are you a service provider</label>
-            <input type="checkbox" id="serviceProvider" name="serviceProvider" value="serviceProvider" (click)="checkProvider()" />
-
+            <input
+              type="checkbox"
+              id="serviceProvider"
+              name="serviceProvider"
+              value="serviceProvider"
+              (click)="checkProvider()"
+            />
           </div>
           <!-- check -->
-          <input value="Login" class="btn solid" (click)="login(email.value, password.value)" />
+          <button
+            class="btn solid"
+            (click)="login(email.value, password.value)"
+          >
+            Login
+          </button>
           <p class="social-text">Or sign in with social platform:</p>
           <div class="social-media">
             <a href="#" class="social-icon">
-              <i class="fab fa-facebook-f"></i> </a><a href="#" class="social-icon"> <i class="fab fa-twitter"></i>
-            </a><a href="#" class="social-icon"> <i class="fab fa-google"></i> </a><a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i> </a
+            ><a href="#" class="social-icon"> <i class="fab fa-twitter"></i> </a
+            ><a href="#" class="social-icon"> <i class="fab fa-google"></i> </a
+            ><a href="#" class="social-icon">
               <i class="fab fa-linkedin"></i>
             </a>
           </div>
           <h2 class="quest-title">new to GaryWork ?</h2>
           <br />
 
-          <div routerLink='/userSignup' class="user-sign-up-container">
+          <div routerLink="/userSignup" class="user-sign-up-container">
             <div class="user-icon-container">
               <i class="fas fa-users"></i>
             </div>
@@ -45,7 +57,7 @@
               </p>
             </div>
           </div>
-          <div routerLink='/providerSignup' class="sp-sign-up-container">
+          <div routerLink="/providerSignup" class="sp-sign-up-container">
             <div class="sp-icon-container">
               <i class="fas fa-tools"></i>
             </div>
