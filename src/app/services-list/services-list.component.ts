@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SERVICES,NAME} from '../services-list/mock-service'
+import {NAME} from '../services-list/mock-service'
 import { HttpClient } from '@angular/common/http';
 import { LocalService } from "../local.service"
 
@@ -14,12 +14,13 @@ export class ServicesListComponent implements OnInit {
  list : any = NAME
  data :any 
  backup : any = [] 
+ location:any=NAME
 
   constructor(private http: HttpClient , private local : LocalService) { }
 role : string = this.local.role
   ngOnInit(): void {
     console.log("dddddzadad" ,this.local.role )
-
+    this.location=NAME
     this.services=[] ;
     this.list= []
     this.http.get("http://localhost:3000/api/professions/getProfessions").subscribe((data)=>{
@@ -45,6 +46,7 @@ role : string = this.local.role
      }
    })
    this.services = newArray
+   console.log("services",this.services)
   }
 
   dropVal(val){
@@ -64,7 +66,8 @@ role : string = this.local.role
   }
 
   dropLoc(val){
-    this.services = this.backup
+    console.log(val)
+    // this.services = this.backup
     if(val !== "all"){
 
     var newArr = [] 
