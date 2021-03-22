@@ -8,6 +8,7 @@ module.exports={
         email:req.body.email,
         serviceProviderName: req.body.serviceProviderName
     })
+    
        const appointment = new Appointment({
            date:req.body.date,
            time:req.body.time,
