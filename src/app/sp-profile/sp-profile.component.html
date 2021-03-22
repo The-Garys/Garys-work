@@ -15,7 +15,7 @@
         </div>
         <div *ngIf="!visitor" class="profile-option">
           <div class="notification">
-            <i class="fa fa-bell" (click)="setting()"></i>
+            <i class="fa fa-bell" (click)="appointment()"></i>
             <span class="alert-message">1</span>
           </div>
         </div>
@@ -46,42 +46,76 @@
             <div class="profile-btn">
               <button class="chatbtn"><i class="fa fa-comment"></i>Chat</button>
             </div>
-            <button *ngIf="visitor" type="button" mdbBtn color="primary" class="relative waves-light"
-              (click)="basicModal.show()" mdbWavesEffect>
+            <button
+              *ngIf="visitor"
+              type="button"
+              mdbBtn
+              color="primary"
+              class="relative waves-light"
+              (click)="basicModal.show()"
+              mdbWavesEffect
+            >
               make appointment
             </button>
 
-            <div mdbModal #basicModal="mdbModal" id="modal" class="modal fade" tabindex="-1" role="dialog"
-              aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div
+              mdbModal
+              #basicModal="mdbModal"
+              id="modal"
+              class="modal fade"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="myBasicModalLabel"
+              aria-hidden="true"
+            >
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
-
-                    </button>
+                    <button
+                      type="button"
+                      class="close pull-right"
+                      aria-label="Close"
+                      (click)="basicModal.hide()"
+                    ></button>
                   </div>
                   <div class="modal-body">
                     <div class="appointment">
                       <input type="date" class="date" #date />
-                      <input type="time" class="time" #time  id="appt" name="appt" min="09:00" max="18:00" required />
-                      <div class="md-form">
-                       
-                      </div>
-                      <div class="md-form">
-                        
-                      </div>
-                      <div class="md-form">
-                        
-                      </div>
+                      <input
+                        type="time"
+                        class="time"
+                        #time
+                        id="appt"
+                        name="appt"
+                        min="09:00"
+                        max="18:00"
+                        required
+                      />
+                      <div class="md-form"></div>
+                      <div class="md-form"></div>
+                      <div class="md-form"></div>
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <button (click)="submit(date.value, time.value)"
-                      type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>
+                    <button
+                      (click)="submit(date.value, time.value)"
+                      type="button"
+                      mdbBtn
+                      color="primary"
+                      class="relative waves-light"
+                      mdbWavesEffect
+                    >
                       Send
                     </button>
-                    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
-                      (click)="basicModal.hide()" mdbWavesEffect>
+                    <button
+                      type="button"
+                      mdbBtn
+                      color="secondary"
+                      class="waves-light"
+                      aria-label="Close"
+                      (click)="basicModal.hide()"
+                      mdbWavesEffect
+                    >
                       Close
                     </button>
                   </div>
@@ -92,10 +126,12 @@
               <h3 class="rating">4.5</h3>
               <div class="rate">
                 <div class="stars">
-                  <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                    class="fa fa-star"></i><i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i><i class="fa fa-star"></i
+                  ><i class="fa fa-star"></i><i class="fa fa-star"></i
+                  ><i class="fa fa-star"></i>
                 </div>
-                <span class="no-user"><span> 123</span>&nbsp;&nbsp; Reviews
+                <span class="no-user"
+                  ><span> 123</span>&nbsp;&nbsp; Reviews
                 </span>
               </div>
             </div>
@@ -104,19 +140,43 @@
         <div class="right-side">
           <div class="nav">
             <ul>
-              <li class="user-post active" [class.active]="posts" (click)="post()">
+              <li
+                class="user-post active"
+                [class.active]="posts"
+                (click)="post()"
+              >
                 Posts
               </li>
-              <li class="user-review" [class.active]="reviews" (click)="review()">
+              <li
+                class="user-review"
+                [class.active]="reviews"
+                (click)="review()"
+              >
                 Reviews
               </li>
-              <li *ngIf="visitor1" class="user-setting" [class.active]="settings" (click)="setting()">
+              <li
+                *ngIf="visitor1"
+                class="user-setting"
+                [class.active]="appointments"
+                (click)="appointment()"
+              >
                 My appointments
+              </li>
+              <li
+                class="user-review"
+                [class.active]="settings"
+                (click)="setting()"
+              >
+                Settings
               </li>
             </ul>
           </div>
           <div class="profile-body">
-            <div class="profile-posts tab active" id="profile-posts" *ngIf="posts">
+            <div
+              class="profile-posts tab active"
+              id="profile-posts"
+              *ngIf="posts"
+            >
               <h1>Your posts</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea
@@ -130,21 +190,41 @@
                 hic.
               </p>
             </div>
-            <div class="profile-reviews tab" id="profile-reviews" *ngIf="reviews">
+            <div
+              class="profile-posts tab active"
+              id="profile-settings"
+              *ngIf="settings"
+            >
+              <h1>Your settings</h1>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea
+                nisi vitae harum corporis neque accusamus. Dicta a est sit
+                maiores provident porro alias odit corrupti doloribus voluptates
+                quae, quas totam impedit consequatur ipsum nobis mollitia
+                voluptas cumque recusandae laudantium asperiores vel odio?
+                Voluptatem dolorum perferendis, repudiandae harum quasi vel
+                animi quas quidem est inventore nobis, beatae nihil vero
+                distinctio commodi autem non et quia at neque? Nam aut optio
+                hic.
+              </p>
+            </div>
+            <div
+              class="profile-reviews tab"
+              id="profile-reviews"
+              *ngIf="reviews"
+            >
               <app-reviews></app-reviews>
             </div>
-            <div class="profile-settings tab" id="profile-settings" *ngIf="settings">
-
+            <div
+              class="profile-settings tab"
+              id="profile-settings"
+              *ngIf="appointments"
+            >
               <div *ngIf="visitor1">
-                <div class=card *ngFor='let e of data'>
-
-
-
-                  <p>you have an appointment on: {{e.date}}</p>
-                  <p>at {{e.time}}</p>
-                  <h1>By: {{e.userName}}</h1>
-
-
+                <div class="card" *ngFor="let e of data">
+                  <p>you have an appointment on: {{ e.date }}</p>
+                  <p>at {{ e.time }}</p>
+                  <h1>By: {{ e.userName }}</h1>
                 </div>
               </div>
             </div>
