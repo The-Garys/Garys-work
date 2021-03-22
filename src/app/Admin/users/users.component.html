@@ -1,0 +1,26 @@
+<div>
+    <h1>Users</h1>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+        <thead>
+            <tr>
+             <th>First Name</th>
+             <th>Last Name</th>
+             <th>Phone Number</th>
+             <th>Email</th>
+             <th>Reports</th>
+             <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let user of users'>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.phoneNumber}}</td>
+                <td>{{user.email}}</td>
+                <td>0</td>
+                <td><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>

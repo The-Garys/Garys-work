@@ -26,4 +26,7 @@ export class AdminServices {
     return this.httpClient.get('http://localhost:3000/api/serviceProviderList/services');
   }
 
+  public getUsersList() {
+    return this.httpClient.get('http://localhost:3000/api/user/users')
+  }
 }
