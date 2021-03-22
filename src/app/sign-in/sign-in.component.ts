@@ -86,6 +86,7 @@ console.log(this.serviceProviderIsChecked)
               text: data['err'],
             });
           } else {
+            localStorage.setItem("apUserName" , data["name"])
             this.local.changeRole('user');
             localStorage.setItem('token', data['token']);
             localStorage.setItem('id', data['id']);
