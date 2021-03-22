@@ -60,7 +60,7 @@ console.log(this.serviceProviderIsChecked)
           } else {
             console.log(data["token"])
             localStorage.setItem('token', data['token']);
-            localStorage.setItem('svMail', data['email'])
+            localStorage.setItem('svMail', data['email']);
             this.router.navigateByUrl('/spProfile', { state: {data} });
             Swal.fire(data["greet"] +" "+ data["name"], data['success'], 'success');
             localStorage.setItem('visitor', "no");
@@ -88,6 +88,7 @@ console.log(this.serviceProviderIsChecked)
           } else {
             this.local.changeRole('user');
             localStorage.setItem('token', data['token']);
+            localStorage.setItem('id', data['id']);
             this.router.navigateByUrl('/userServices');
             Swal.fire( data["greet"] +" "+ data["name"], data['success'], 'success');
             localStorage.setItem('visitor', "yes");

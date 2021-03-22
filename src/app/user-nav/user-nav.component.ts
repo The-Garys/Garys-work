@@ -24,8 +24,9 @@ constructor(private router : Router,private http: HttpClient) {
       console.log('logout', data);
       localStorage.removeItem('token')
       localStorage.removeItem('svMail')
+      localStorage.removeItem('id')
       Swal.fire(
-        'Congratulations',
+        '',
         data["success"],
         'success'
       )
