@@ -6,33 +6,28 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-sv-nav',
   templateUrl: './sv-nav.component.html',
-  styleUrls: ['./sv-nav.component.scss']
+  styleUrls: ['./sv-nav.component.scss'],
 })
 export class SvNavComponent implements OnInit {
+  constructor(private router: Router, private http: HttpClient) {}
 
-  constructor(private router : Router,
-    private http: HttpClient) { }
+  ngOnInit(): void {}
+  logout() {
+    this.http
+      .get('http://localhost:3000/api/serviceProvider/logout')
+      .subscribe((data) => {
+        console.log('logout', data);
+        localStorage.removeItem('token');
+        localStorage.removeItem('svMail');
 
-  ngOnInit(): void {
+        Swal.fire('Congratulations', data['success'], 'success');
+        this.router.navigateByUrl('/signin');
+      });
   }
-  logout(){
-    this.http.get("http://localhost:3000/api/serviceProvider/logout").subscribe((data) => {
-      console.log('logout', data);
-      localStorage.removeItem('token')
-      localStorage.removeItem('svMail')
-      Swal.fire(
-        'Congratulations',
-        data["success"],
-        'success'
-      )
-      this.router.navigateByUrl('/signin');
-    })
+  tohome() {
+    this.router.navigateByUrl('/userHome');
   }
-  tohome(){
-    this.router.navigateByUrl("/userHome")
+  toservices() {
+    this.router.navigateByUrl('/userServices');
   }
-  toservices(){
-    this.router.navigateByUrl("/userServices")
-  }
-
 }

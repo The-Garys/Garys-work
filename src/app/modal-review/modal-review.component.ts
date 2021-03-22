@@ -21,7 +21,7 @@ export class ModalReviewComponent implements OnInit {
   currentRate: number = 0;
   myReview = {
     serviceProviderEmail: 'ramzi12@gmail.com',
-    userId: 'idSp',
+    userId: '6057421ec762ca12d8855a6a',
     rate: this.currentRate,
     reviewTitle: '',
     reviewBody: '',
