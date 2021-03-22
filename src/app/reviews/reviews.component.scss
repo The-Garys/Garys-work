@@ -101,13 +101,15 @@
 }
 .single-review-title {
   font-weight: bold;
-  float: left;
-  margin: 0;
+  float: left !important;
+  margin-top: 17px;
   color: rgb(63, 63, 63);
+  margin-left: -55px;
 }
 .review-body {
   margin-top: 2rem;
   color: rgb(117, 117, 117);
+  float: left;
 }
 .helpful {
   color: rgb(77, 76, 76);
@@ -116,6 +118,9 @@
 }
 .each-review a {
   text-decoration: underline;
+}
+.each-review {
+  text-align: left;
 }
 .yes {
   margin-right: 0.4rem;

@@ -43,14 +43,14 @@ export class SpProfileComponent implements OnInit {
       .subscribe((data) => {
         this.spData = data;
         console.log("getting me ddddd", this.data['_id']);
-        this.http
-        .get(
-          `http://localhost:3000/api/appointment/${this.spData._id}`
-        )
-        .subscribe((data) => {
-          this.data = data;
-          this.notifications = this.data.length
-        });
+        // this.http
+        // .get(
+        //   `http://localhost:3000/api/appointment/${this.spData._id}`
+        // )
+        // .subscribe((data) => {
+        //   this.data = data;
+        //   this.notifications = this.data.length
+        // });
 
       });
     // console.log('local email', this.local.email);
@@ -102,6 +102,7 @@ export class SpProfileComponent implements OnInit {
   posts: boolean = true;
   reviews: boolean = false;
   settings: boolean = false;
+  appointments:boolean=false;
 
   post() {
     this.posts = true;
@@ -114,20 +115,28 @@ export class SpProfileComponent implements OnInit {
     this.settings = false;
   }
   setting() {
-    this.ngOnInit()
-    console.log(this.spData._id)
-    this.http
-    .get(
-      `http://localhost:3000/api/appointment/${this.spData._id}`
-    )
-    .subscribe((data) => {
-      console.log("dzdazdazda " , data)
-      this.data = data;
+   
+     
       this.posts = false;
       this.reviews = false;
       this.settings = true;
+      this.appointments=false
       
-    });
+  
 
+  }
+  appointment() {
+    console.log(this.spData._id);
+    this.http
+      .get(`http://localhost:3000/api/appointment/${this.spData._id}`)
+      .subscribe((data) => {
+        console.log('dzdazdazda ', data);
+        this.data = data;
+        this.notifications = this.data.length
+        this.posts = false;
+        this.reviews = false;
+        this.appointments = true;
+        this.settings = false;
+      });
   }
 }
