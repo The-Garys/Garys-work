@@ -37,5 +37,10 @@ this.spList.getSpList().subscribe((data:any) => {
     this.dtTrigger.unsubscribe();
   }
 
-
+  ban(id) {
+    this.spList.banSp(id).subscribe((data:any) => {
+      console.log('SP Banned');
+      
+    })
+  }
 }

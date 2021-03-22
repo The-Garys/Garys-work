@@ -14,6 +14,7 @@ const serviceProviderSchema = new mongoose.Schema(
     imageUrl: { type: String },
     isServiceProvider: { type: Boolean, default: true },
     rates: [Number],
+    isBanned: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

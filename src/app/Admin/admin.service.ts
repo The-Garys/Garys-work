@@ -32,4 +32,8 @@ export class AdminServices {
   public banUser(id) {
     return this.httpClient.put(`http://localhost:3000/api/admin/${id}`, {})
   }
+
+  public banSp(id) {
+    return this.httpClient.put(`http://localhost:3000/api/admin/sp/${id}`, {})
+  }
 }

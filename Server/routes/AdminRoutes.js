@@ -4,6 +4,7 @@ const adminControllers = require("../controllers/AdminControllers");
 
 router.post("/seed", adminControllers.post);
 router.post("/login", adminControllers.verifyLogin);
-router.put("/:id", adminControllers.ban);
+router.put("/:id", adminControllers.banUser);
+router.put("/sp/:id", adminControllers.banUser);
 
 module.exports = router;

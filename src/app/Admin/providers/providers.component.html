@@ -20,7 +20,7 @@
             <td>{{sp.email}}</td>
             <td>0</td>
             <td>{{sp.profession}}</td>
-            <td><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+            <td><button (click)='ban(sp._id)' type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
             </td>
         </tr>
     </tbody>
