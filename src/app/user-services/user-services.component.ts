@@ -15,14 +15,18 @@ export class UserServicesComponent implements OnInit {
   list : any = NAME
   data :any 
   backup : any = [] 
+  location:any=NAME
  
    constructor(private http: HttpClient , private local : LocalService , private router: Router) { }
  role : string = this.local.role
    ngOnInit(): void {
      console.log("dddddzadad" ,this.local.role )
- 
-     this.services=[] ;
      this.list=NAME
+     this.services=[] ;
+     this.list= []
+     this.http.get("http://localhost:3000/api/professions/getProfessions").subscribe((data)=>{
+       this.list=data
+     })
      this.http.get("http://localhost:3000/api/serviceProviderList/services").subscribe((data)=>{
        console.log("idhazd" , data)
        this.services=data
@@ -65,22 +69,22 @@ export class UserServicesComponent implements OnInit {
      }
    }
  
-   dropLoc(val){
-     this.services = this.backup
-     if(val !== "all"){
- 
-     var newArr = [] 
-     this.services.map((e)=>{
-      val = val.toUpperCase()
-      var name = e.location.toUpperCase()
-       if(name.includes(val)  ){
-         newArr.push(e)
-       }
-     })
-     this.services = newArr
-   }
-   }
    
+    dropLoc(val){
+      console.log(val)
+      // this.services = this.backup
+      if(val !== "all"){
+  
+      var newArr = [] 
+      this.services.map((e)=>{
+       val = val.toUpperCase()
+       var name = e.location.toUpperCase()
+        if(name.includes(val)  ){
+          newArr.push(e)
+        }
+      })
+      this.services = newArr
+    }
  
- }
+  }}
  
