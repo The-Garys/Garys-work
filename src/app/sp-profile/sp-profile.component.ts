@@ -57,8 +57,8 @@ export class SpProfileComponent implements OnInit {
     // console.log('local email', this.local.email);
     
   }
-  submit(name , email , date , svname , time ){ 
-    if(!name || !email || !date || !svname ||!time) {
+  submit( date , time ){ 
+    if(  !date  ||!time) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -67,7 +67,7 @@ export class SpProfileComponent implements OnInit {
       })
     } else {
       this.http.post("http://localhost:3000/api/appointment",
-      {userName : name , email : email , date : date , serviceProviderName:svname , time:time }).subscribe((data)=>{
+      { date : date , time:time }).subscribe((data)=>{
         console.log("appoitment added",data)
         if(data["data"]){
           Swal.fire({
