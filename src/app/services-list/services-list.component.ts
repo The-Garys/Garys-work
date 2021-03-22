@@ -28,6 +28,9 @@ role : string = this.local.role
     this.http.get("http://localhost:3000/api/serviceProviderList/services").subscribe((data)=>{
       console.log("idhazd" , data)
       this.services=data
+      this.services = this.services.filter(el => {
+        return el.isBanned === false;
+      })
       this.backup = data 
     })
     
