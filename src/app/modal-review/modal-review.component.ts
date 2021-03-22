@@ -20,8 +20,9 @@ export class ModalReviewComponent implements OnInit {
   }
   currentRate: number = 0;
   myReview = {
-    serviceProviderEmail: 'ramzi12@gmail.com',
-    userId: '6057421ec762ca12d8855a6a',
+    serviceProviderEmail: localStorage.getItem('svMail'),
+    userName: localStorage.getItem('userName'),
+    userId: localStorage.getItem('id'),
     rate: this.currentRate,
     reviewTitle: '',
     reviewBody: '',
@@ -34,8 +35,8 @@ export class ModalReviewComponent implements OnInit {
     console.log('checking review', this.myReview);
 
     this.GaryService.addReview(this.myReview).subscribe((data: any[]) => {
-      console.log(data);
-      Swal.fire('Sent!', 'Your review has been sent successfully!', 'success');
+      console.log('is it working my friendoooo ====>', data);
+      Swal.fire('Sent!', 'Your review has been sent seccessfully!', 'success');
     });
   }
 }

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { GaryService } from '../gary.service';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-reviews',
   templateUrl: './reviews.component.html',
@@ -21,10 +21,16 @@ export class ReviewsComponent implements OnInit {
   }
   spReviews: any;
   spEmail: string = localStorage.getItem('svMail');
+
   ngOnInit(): void {
     this.GaryService.getReviews(this.spEmail).subscribe((data) => {
       console.log('those are my reviews ==> ', data);
       this.spReviews = data;
+      for (var i = 0; i < this.spReviews.length; i++) {
+        this.spReviews[i].updatedAt = moment(
+          this.spReviews[i].updatedAt
+        ).format('LLL');
+      }
       console.log('3adeha lel varrrrrrrrrrr ==> ', this.spReviews);
     });
   }
