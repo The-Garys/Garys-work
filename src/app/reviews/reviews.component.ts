@@ -21,16 +21,26 @@ export class ReviewsComponent implements OnInit {
   }
   spReviews: any;
   spEmail: string = localStorage.getItem('svMail');
+  isUser: string = localStorage.getItem('visitor');
+  currentRate: number;
 
   ngOnInit(): void {
     this.GaryService.getReviews(this.spEmail).subscribe((data) => {
       console.log('those are my reviews ==> ', data);
       this.spReviews = data;
+      var totalReview = 0;
       for (var i = 0; i < this.spReviews.length; i++) {
         this.spReviews[i].updatedAt = moment(
           this.spReviews[i].updatedAt
         ).format('LLL');
+        totalReview += this.spReviews[i].rate;
       }
+      this.currentRate = totalReview / this.spReviews.length;
+      console.log(totalReview);
+      console.log(this.spReviews.length);
+
+      console.log(this.currentRate);
+
       console.log('3adeha lel varrrrrrrrrrr ==> ', this.spReviews);
     });
   }
