@@ -16,7 +16,8 @@ export class SpProfileComponent implements OnInit {
     private GaryService: GaryService,
     private http: HttpClient,
     private local: LocalService
-  ) {}
+  ) {} 
+  name : any = localStorage.getItem("apUserName")
   spData: any;
   data: any;
   token: string = localStorage.getItem('token');
@@ -25,7 +26,8 @@ export class SpProfileComponent implements OnInit {
   visitor1: boolean = false;
   svMail: string;
   ngOnInit(): void {
-    // console.log('my data in the Profile',history.state.data.id)
+
+  
     if (localStorage.getItem('visitor') === 'yes') {
       this.visitor = true;
       this.visitor1 = false;
@@ -33,33 +35,32 @@ export class SpProfileComponent implements OnInit {
       this.visitor = false;
       this.visitor1 = true;
     }
-    console.log('visitor', this.visitor);
     // this.spEmail = localStorage.getItem('spEmail');
     this.svMail = localStorage.getItem('svMail');
-    console.log('user services profiles', this.svMail);
-    // console.log("service provider email", this.spEmail)
     this.http
       .get(`http://localhost:3000/api/serviceProvider/${this.svMail}`)
       .subscribe((data) => {
-        console.log('profile data', data);
         this.spData = data;
-        console.log('profile data assigned', this.spData);
-        console.log('getting appointment', this.spData['firstName']);
-        // console.log("getting me ", this.data['firstName']);
-        this.http
-          .get(
-            `http://localhost:3000/api/appointment/${this.spData['firstName']}`
-          )
-          .subscribe((data) => {
-            console.log('appointment data yassmin', data);
-            this.data = data;
-          });
+       alert(this.data['_id'])
+        console.log("getting me ddddd", this.data['_id']);
+
+
       });
     // console.log('local email', this.local.email);
     
   }
-  submit(name, email, date, svname, time) {
-    if (!name || !email || !date || !svname || !time) {
+  submit( date, time) {
+    
+    var obj = {userName : this.name , email : this.spData.email , serviceProviderName : this.spData._id , date : date , time : time }
+    console.log(obj.serviceProviderName)
+    var c = {
+      date: date,
+      time:time,
+      userName: this.name,
+      email: this.spData.email,
+      serviceProviderName: this.spData._id
+    }
+    if (!date ||  !time) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -68,15 +69,8 @@ export class SpProfileComponent implements OnInit {
       });
     } else {
       this.http
-        .post('http://localhost:3000/api/appointment', {
-          userName: name,
-          email: email,
-          date: date,
-          serviceProviderName: svname,
-          time: time,
-        })
+        .post('http://localhost:3000/api/appointment', c)
         .subscribe((data) => {
-          console.log('appoitment added', data);
           if (data['data']) {
             Swal.fire({
               icon: 'error',
@@ -112,8 +106,19 @@ export class SpProfileComponent implements OnInit {
     this.settings = false;
   }
   setting() {
-    this.posts = false;
-    this.reviews = false;
-    this.settings = true;
+    console.log(this.spData._id)
+    this.http
+    .get(
+      `http://localhost:3000/api/appointment/${this.spData._id}`
+    )
+    .subscribe((data) => {
+      console.log("dzdazdazda " , data)
+      this.data = data;
+      this.posts = false;
+      this.reviews = false;
+      this.settings = true;
+      
+    });
+
   }
 }
