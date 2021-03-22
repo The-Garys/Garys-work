@@ -1,0 +1,25 @@
+<div>
+<input class="form-control" type="text" name="firstName" [(ngModel)] ="firstName" (ngModelChange)='Search()'>
+<h1>Service Providers</h1>
+<table>
+    <thead>
+        <tr>
+         <th>First Name</th>
+         <th>Last Name</th>
+         <th>Phone Number</th>
+         <th>Email</th>
+         <th>Reports</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let sp of sps | paginate:{itemsPerPage:5, currentPage:p};'>
+            <td>{{sp.firstName}}</td>
+            <td>{{sp.lastName}}</td>
+            <td>{{sp.phone}}</td>
+            <td>{{sp.email}}</td>
+            <td>0</td>
+        </tr>
+    </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AdminMessagesService } from '../admin-messages.service'
+import {AdminServices } from '../admin.service'
 import * as moment from 'moment';
 import Swal from 'sweetalert2';
 
@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class MessagesComponent implements OnInit {
 
-  constructor(private contactMessages : AdminMessagesService) { }
+  constructor(private contactMessages : AdminServices) { }
 
   messages =[];
   
