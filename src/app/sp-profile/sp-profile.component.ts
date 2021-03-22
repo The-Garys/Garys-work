@@ -16,8 +16,8 @@ export class SpProfileComponent implements OnInit {
     private GaryService: GaryService,
     private http: HttpClient,
     private local: LocalService
-  ) {}
-  name: any = localStorage.getItem('apUserName');
+  ) {} 
+  name : any = localStorage.getItem("apUserName")
   spData: any;
   data: any;
   token: string = localStorage.getItem('token');
@@ -25,7 +25,10 @@ export class SpProfileComponent implements OnInit {
   visitor: boolean = false;
   visitor1: boolean = false;
   svMail: string;
+  notifications : number = 0
   ngOnInit(): void {
+
+     
     if (localStorage.getItem('visitor') === 'yes') {
       this.visitor = true;
       this.visitor1 = false;
@@ -39,28 +42,33 @@ export class SpProfileComponent implements OnInit {
       .get(`http://localhost:3000/api/serviceProvider/${this.svMail}`)
       .subscribe((data) => {
         this.spData = data;
-        alert(this.data['_id']);
-        console.log('getting me ddddd', this.data['_id']);
+        console.log("getting me ddddd", this.data['_id']);
+        // this.http
+        // .get(
+        //   `http://localhost:3000/api/appointment/${this.spData._id}`
+        // )
+        // .subscribe((data) => {
+        //   this.data = data;
+        //   this.notifications = this.data.length
+        // });
+
       });
     // console.log('local email', this.local.email);
+    console.log(this.spData._id)
+  
   }
-  submit(date, time) {
-    var obj = {
-      userName: this.name,
-      email: this.spData.email,
-      serviceProviderName: this.spData._id,
-      date: date,
-      time: time,
-    };
-    console.log(obj.serviceProviderName);
+  submit( date, time) {
+    
+    var obj = {userName : this.name , email : this.spData.email , serviceProviderName : this.spData._id , date : date , time : time }
+    console.log(obj.serviceProviderName)
     var c = {
       date: date,
-      time: time,
+      time:time,
       userName: this.name,
       email: this.spData.email,
-      serviceProviderName: this.spData._id,
-    };
-    if (!date || !time) {
+      serviceProviderName: this.spData._id
+    }
+    if (!date ||  !time) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -79,6 +87,7 @@ export class SpProfileComponent implements OnInit {
               footer: '<a href>Why do I have this issue?</a>',
             });
           } else {
+            
             Swal.fire({
               icon: 'success',
               title: 'Appointment added successfully',
@@ -93,20 +102,29 @@ export class SpProfileComponent implements OnInit {
   check: boolean = false;
   posts: boolean = true;
   reviews: boolean = false;
-  appointments: boolean = false;
   settings: boolean = false;
+  appointments:boolean=false;
 
   post() {
     this.posts = true;
     this.reviews = false;
-    this.appointments = false;
     this.settings = false;
   }
   review() {
     this.posts = false;
     this.reviews = true;
-    this.appointments = false;
     this.settings = false;
+  }
+  setting() {
+   
+     
+      this.posts = false;
+      this.reviews = false;
+      this.settings = true;
+      this.appointments=false
+      
+  
+
   }
   appointment() {
     console.log(this.spData._id);
@@ -115,16 +133,11 @@ export class SpProfileComponent implements OnInit {
       .subscribe((data) => {
         console.log('dzdazdazda ', data);
         this.data = data;
+        this.notifications = this.data.length
         this.posts = false;
         this.reviews = false;
         this.appointments = true;
         this.settings = false;
       });
-  }
-  setting() {
-    this.settings = true;
-    this.posts = false;
-    this.reviews = false;
-    this.appointments = false;
   }
 }
