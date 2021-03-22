@@ -26,8 +26,11 @@ const review = {
   },
   allReviews: async (req, res) => {
     try {
-      const reviews = await Reviews.find();
-      console.log(reviews);
+      const reviews = await Reviews.find({
+        serviceProviderEmail: req.params.spMail,
+      });
+      console.log("ti ahawa l email", req.params.spMail);
+      console.log("brabiiii give me my reviews ==========>", reviews);
       res.send(reviews);
     } catch (error) {
       console.log(error);
