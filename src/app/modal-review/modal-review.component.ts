@@ -19,6 +19,7 @@ export class ModalReviewComponent implements OnInit {
     config.readonly = false;
   }
   currentRate: number = 0;
+  halim: any;
   myReview = {
     serviceProviderEmail: localStorage.getItem('svMail'),
     userName: localStorage.getItem('userName'),
@@ -28,8 +29,10 @@ export class ModalReviewComponent implements OnInit {
     reviewBody: '',
   };
   ngOnInit(): void {}
-  changeRate() {
+  changeRate(r) {
+    this.halim = this.currentRate;
     this.myReview.rate = this.currentRate;
+    console.log('call', this.halim);
   }
   addReview() {
     console.log('checking review', this.myReview);

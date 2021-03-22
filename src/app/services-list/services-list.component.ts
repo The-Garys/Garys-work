@@ -69,7 +69,6 @@ role : string = this.local.role
     console.log(val)
     // this.services = this.backup
     if(val !== "all"){
-
     var newArr = [] 
     this.services.map((e)=>{
      val = val.toUpperCase()
