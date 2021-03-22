@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { GaryService } from '../gary.service';
+
 @Component({
   selector: 'app-reviews',
   templateUrl: './reviews.component.html',
@@ -9,17 +11,24 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
   providers: [NgbRatingConfig],
 })
 export class ReviewsComponent implements OnInit {
-  constructor(private http: HttpClient, config: NgbRatingConfig) {
+  constructor(
+    private http: HttpClient,
+    config: NgbRatingConfig,
+    private GaryService: GaryService
+  ) {
     config.max = 5;
     config.readonly = true;
   }
+  spReviews: any;
+  spEmail: string = localStorage.getItem('svMail');
+  ngOnInit(): void {
+    this.GaryService.getReviews(this.spEmail).subscribe((data) => {
+      console.log('those are my reviews ==> ', data);
+      this.spReviews = data;
+      console.log('3adeha lel varrrrrrrrrrr ==> ', this.spReviews);
+    });
+  }
 
-  ngOnInit(): void {}
-  data: {
-    serviceProviderName: any;
-    userName: any;
-    review: any;
-  };
   addReview(serviceProviderName, userName, review) {
     if (!serviceProviderName || !userName || !review) {
       Swal.fire({

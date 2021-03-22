@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import {AdminServices} from '../admin.service'
 
 @Component({
@@ -7,31 +8,34 @@ import {AdminServices} from '../admin.service'
   styleUrls: ['./providers.component.scss']
 })
 export class ProvidersComponent implements OnInit {
+  dtOptions: DataTables.Settings = {};
+
+  sps: any = [];
+
+  dtTrigger: Subject<any> = new Subject<any>();
 
   constructor(private spList : AdminServices) { }
 
-  sps=[];
-  firstName: any;
-  p:Number = 1;
+  
+ 
 
   ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 2
+    };
 this.spList.getSpList().subscribe((data:any) => {
   
   this.sps = data;
+  this.dtTrigger.next();
 
   
 })
   }
-
-  Search() {
-    if(this.firstName == '') {
-      this.ngOnInit();
-    }
-    else {
-      this.sps = this.sps.filter(res => {
-        return res.firstName.toLocaleLowerCase().match(this.firstName.toLocaleLowerCase())
-      })
-    }
+   
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
   }
+
 
 }
