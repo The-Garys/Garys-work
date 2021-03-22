@@ -1,6 +1,6 @@
 <div>
 <h1>Service Providers</h1>
-<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" class="row-border hover">
     <thead>
         <tr>
          <th>First Name</th>
@@ -20,7 +20,15 @@
             <td>{{sp.email}}</td>
             <td>0</td>
             <td>{{sp.profession}}</td>
-            <td><button (click)='ban(sp._id)' type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+            <td><button *ngIf='sp.isBanned === false' title="Ban User" (click)='ban(sp._id)' type="button" class="btn btn-danger"><i class="fas fa-user-lock"></i>
+
+                
+            </button>
+            <button *ngIf='sp.isBanned === true' title="Unban User" id="unlock" class="btn"><i id="icon" class="fas fa-unlock-alt"></i>
+
+
+
+            </button>
             </td>
         </tr>
     </tbody>

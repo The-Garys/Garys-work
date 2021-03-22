@@ -19,10 +19,9 @@ export class ServicesListComponent implements OnInit {
   constructor(private http: HttpClient , private local : LocalService) { }
 role : string = this.local.role
   ngOnInit(): void {
-    console.log("dddddzadad" ,this.local.role )
     this.location=NAME
-    this.services=[] ;
-    this.list= []
+    this.services=[];
+    this.list = [];
     this.http.get("http://localhost:3000/api/professions/getProfessions").subscribe((data)=>{
       this.list=data
     })
@@ -31,6 +30,8 @@ role : string = this.local.role
       this.services=data
       this.backup = data 
     })
+    
+    
   }
 
 

@@ -54,7 +54,16 @@ export class SignInComponent implements OnInit {
               title: 'Oops...',
               text: data['err'],
             });
-          } else {
+          }
+          else if (data['isBanned']) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Account Is Banned',
+            });
+          }
+          
+          else {
             console.log(data['token']);
             localStorage.setItem('token', data['token']);
             localStorage.setItem('svMail', data['email']);
@@ -92,7 +101,7 @@ export class SignInComponent implements OnInit {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
-              text: 'Account',
+              text: 'Account Is Banned',
             });
           }
            else {

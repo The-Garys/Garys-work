@@ -1,14 +1,25 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
-import {AdminServices} from '../admin.service'
+import {AdminServices} from '../admin.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-providers',
   templateUrl: './providers.component.html',
   styleUrls: ['./providers.component.scss']
 })
+
+
 export class ProvidersComponent implements OnInit {
-  dtOptions: DataTables.Settings = {};
+  @ViewChild(DataTableDirective, {static: false})
+  dtElement: DataTableDirective;
+  
+  isDtInitialized:boolean = false;
+  
+  dtOptions: DataTables.Settings = {
+  };
 
   sps: any = [];
 
@@ -24,6 +35,17 @@ export class ProvidersComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 2
     };
+
+    if (this.isDtInitialized) {
+      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+          dtInstance.destroy();
+          this.dtTrigger.next();
+      });
+  } else {
+      this.isDtInitialized = true;
+      this.dtTrigger.next();
+  }
+   
 this.spList.getSpList().subscribe((data:any) => {
   
   this.sps = data;
@@ -38,9 +60,55 @@ this.spList.getSpList().subscribe((data:any) => {
   }
 
   ban(id) {
-    this.spList.banSp(id).subscribe((data:any) => {
-      console.log('SP Banned');
-      
+  
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirm Ban!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          '',
+          'User Is Banned!',
+          'success'
+        )
+        this.spList.banSp(id).subscribe((data:any) => {
+          console.log('SP Banned');
+          
+          this.ngOnInit();
+          
+          
+        })
+      }
     })
   }
+
+  unBan(id) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirm Ban!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          '',
+          'User Is Unbanned',
+          'success'
+        )
+        this.spList.unbanSp(id).subscribe((data) => {
+          console.log(data, 'unbanned');
+          })
+      }
+    })
+    
+  }
+
 }

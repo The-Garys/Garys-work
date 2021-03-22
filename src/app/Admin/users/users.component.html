@@ -8,7 +8,7 @@
              <th>Phone Number</th>
              <th>Email</th>
              <th>Reports</th>
-             <th>Actions</th>
+             <th id="actions">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -19,8 +19,15 @@
                 <td>{{user.email}}</td>
                 <td>0</td>
                 
-                <td><button type="button" (click)='ban(user._id)' class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                </td>
+                <td><button *ngIf='user.isBanned === false' title="Ban User" (click)='ban(user._id)' type="button" class="btn btn-danger"><i class="fas fa-user-lock"></i>
+
+                
+                </button>
+                <button *ngIf='user.isBanned === true' title="Unban User" (click)='unBan(user._id)' id="unlock" class="btn"><i id="icon" class="fas fa-unlock-alt"></i>
+    
+    
+    
+                </button>
             </tr>
         </tbody>
     </table>

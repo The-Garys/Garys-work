@@ -68,6 +68,20 @@ const admin = {
       console.log(err);
     }
   },
+
+  unbanUser: async (req, res) => {
+    try {
+      await ServiceProvider.findByIdAndUpdate(
+        {
+          _id: req.params.id,
+        },
+        { isBanned: false }
+      );
+      res.json({ ok: "Sp Banned!" });
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
 
 module.exports = admin;

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import {AdminServices} from '../admin.service'
+import {AdminServices} from '../admin.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-users',
@@ -33,12 +35,51 @@ export class UsersComponent implements OnInit {
   }
 
  ban(id) {
-  this.usersList.banUser(id).subscribe((data) => {
-    console.log(data, 'banned');
-   
-    
-    
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirm Ban!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        '',
+        'User Is Banned!',
+        'success'
+      )
+      this.usersList.banUser(id).subscribe((data) => {
+        console.log(data, 'banned');
+      })
+    }
   })
+ 
+ }
+   
+ unBan(id) {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirm Ban!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        '',
+        'User Is Unbanned',
+        'success'
+      )
+      this.usersList.unbanUser(id).subscribe((data) => {
+        console.log(data, 'unbanned');
+        })
+    }
+  })
+  
  }
 
 }
