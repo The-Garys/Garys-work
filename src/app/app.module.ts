@@ -14,9 +14,9 @@ import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ServicesListComponent } from './services-list/services-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import {Ng2SearchPipeModule} from 'ng2-search-filter'
-import {Ng2OrderModule} from 'ng2-order-pipe'
-import {NgxPaginationModule} from 'ngx-pagination'
+
+import { DataTablesModule } from 'angular-datatables';
+
 
 import { FormsModule } from '@angular/forms';
 
@@ -71,9 +71,7 @@ import { ProvidersComponent } from './Admin/providers/providers.component';
     BrowserAnimationsModule,
     FormsModule,
     NgbModule,
-    Ng2SearchPipeModule,
-    Ng2OrderModule,
-    NgxPaginationModule
+    DataTablesModule
 
   ],
 
