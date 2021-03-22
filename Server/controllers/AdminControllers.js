@@ -54,15 +54,18 @@ const admin = {
       res.send(err);
     }
   },
+
   banSp: async (req, res) => {
     try {
       await ServiceProvider.findByIdAndUpdate(
-        { _id: req.params.id },
+        {
+          _id: req.params.id,
+        },
         { isBanned: true }
       );
       res.json({ ok: "Sp Banned!" });
     } catch (err) {
-      res.send(err);
+      console.log(err);
     }
   },
 };
