@@ -9,11 +9,14 @@ export class GaryService {
   constructor(private httpClient: HttpClient) {}
 
   public getData(token) {
-    return this.httpClient.get(this.apiURL + 'serviceProvider/profile' + token);
+    return this.httpClient.get(
+      this.apiURL + 'serviceProvider/profile/' + token
+    );
   }
   public addReview(body) {
     return this.httpClient.post(this.apiURL + 'review/addReview', body);
   }
-
-  
+  public getReviews(email) {
+    return this.httpClient.get(this.apiURL + 'review/getReviews/' + email);
+  }
 }

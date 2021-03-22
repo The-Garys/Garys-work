@@ -51,69 +51,23 @@
         data-mdb-target="#scrollspy1"
         data-mdb-offset="0"
       >
-        <div class="each-review">
+        <div class="each-review" *ngFor="let review of spReviews">
           <div class="rate-and-username">
             <ngb-rating class="rating-readonly" [rate]="1.5"></ngb-rating>
-            <label class="user-lab" for="user">user1234, mars 1, 2019</label>
+            <label class="user-lab" for="user">{{ review.userName }}</label>
           </div>
           <h3 class="single-review-title">
-            Review title with some other special characters
+            {{ review.reviewTitle }}
           </h3>
           <br />
           <p class="review-body">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque
-            repellendus atque explicabo aspernatur illo vero molestiae, ducimus
-            sit a nisi?
+            {{ review.reviewBody }}
           </p>
           <br />
           <label class="helpful">Helpful?</label>
           <a class="yes" href="">Yes</a>
           |
           <a class="report" href="">Report</a>
-          <br />
-          <hr />
-        </div>
-        <div class="each-review">
-          <div class="rate-and-username">
-            <ngb-rating class="rating-readonly" [rate]="1.5"></ngb-rating>
-            <label class="user-lab" for="user">user1234, mars 1, 2019</label>
-          </div>
-          <h3 class="single-review-title">
-            Review title with some other special characters
-          </h3>
-          <br />
-          <p class="review-body">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque
-            repellendus atque explicabo aspernatur illo vero molestiae, ducimus
-            sit a nisi?
-          </p>
-          <br />
-          <label class="helpful">Helpful?</label>
-          <a class="yes" href="">Yes</a>
-          |
-          <a class="Report" href="">Report</a>
-          <br />
-          <hr />
-        </div>
-        <div class="each-review">
-          <div class="rate-and-username">
-            <ngb-rating class="rating-readonly" [rate]="1.5"></ngb-rating>
-            <label class="user-lab" for="user">user1234, mars 1, 2019</label>
-          </div>
-          <h3 class="single-review-title">
-            Review title with some other special characters
-          </h3>
-          <br />
-          <p class="review-body">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque
-            repellendus atque explicabo aspernatur illo vero molestiae, ducimus
-            sit a nisi?
-          </p>
-          <br />
-          <label class="helpful">Helpful?</label>
-          <a class="yes" href="">Yes</a>
-          |
-          <a class="Report" href="">Report</a>
           <br />
           <hr />
         </div>
