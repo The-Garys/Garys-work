@@ -29,4 +29,7 @@ export class AdminServices {
   public getUsersList() {
     return this.httpClient.get('http://localhost:3000/api/user/users')
   }
+  public banUser(id) {
+    return this.httpClient.put(`http://localhost:3000/api/admin/${id}`, {})
+  }
 }

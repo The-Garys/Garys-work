@@ -85,7 +85,17 @@ console.log(this.serviceProviderIsChecked)
               title: 'Oops...',
               text: data['err'],
             });
-          } else {
+            
+          } 
+          
+          else if (data['isBanned']) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Account',
+            });
+          }
+          else {
             this.local.changeRole('user');
             localStorage.setItem('token', data['token']);
             this.router.navigateByUrl('/userServices');

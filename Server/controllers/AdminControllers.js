@@ -1,5 +1,6 @@
 const Login = require("../models/AdminCred");
 const bcrypt = require("bcrypt");
+const Users = require("../models/User");
 
 const admin = {
   post: async (req, res) => {
@@ -44,7 +45,14 @@ const admin = {
     }
   },
 
-  
+  ban: async (req, res) => {
+    try {
+      await Users.findByIdAndUpdate({ _id: req.params.id }, { isBanned: true });
+      res.json({ok:"User Banned"});
+    } catch (err) {
+      res.send(err);
+    }
+  },
 };
 
 module.exports = admin;

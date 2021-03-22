@@ -18,7 +18,8 @@
                 <td>{{user.phoneNumber}}</td>
                 <td>{{user.email}}</td>
                 <td>0</td>
-                <td><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                
+                <td><button type="button" (click)='ban(user._id)' class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                 </td>
             </tr>
         </tbody>

@@ -91,16 +91,15 @@ const userCtrl = {
       await user.save();
       console.log("user====>", user._id);
 
-      res
-        .status(200)
-        .send({
-          auth: true,
-          token: token,
-          success: "you are logged in successfully",
-          id: user._id,
-          name: user.userName,
-          greet: "Welcome",
-        });
+      res.status(200).send({
+        auth: true,
+        token: token,
+        success: "you are logged in successfully",
+        id: user._id,
+        name: user.userName,
+        greet: "Welcome",
+        isBanned: user.isBanned,
+      });
     } catch (error) {
       console.log(error);
     }

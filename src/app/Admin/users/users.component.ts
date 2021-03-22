@@ -31,4 +31,14 @@ export class UsersComponent implements OnInit {
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
+
+ ban(id) {
+  this.usersList.banUser(id).subscribe((data) => {
+    console.log(data, 'banned');
+   
+    
+    
+  })
+ }
+
 }
