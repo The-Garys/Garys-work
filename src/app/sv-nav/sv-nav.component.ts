@@ -21,7 +21,7 @@ export class SvNavComponent implements OnInit {
       localStorage.removeItem('token')
       localStorage.removeItem('svMail')
       Swal.fire(
-        'Congratulations',
+        '',
         data["success"],
         'success'
       )
