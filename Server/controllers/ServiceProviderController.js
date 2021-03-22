@@ -160,5 +160,63 @@ const serviceProviderCtrl = {
       console.log("err", err);
     }
   },
+  update: async (req, res) => {
+   
+    console.log("id of the svProfile", req.params.id)
+
+    console.log("account details", req.body)
+    try {
+      const {firstName, lastName, fullName, email,phoneNumber, profession, location, imageUrl}= req.body;
+      let sv= await ServiceProvider.findByIdAndUpdate({_id: req.params.id},{
+        firstName,
+        lastName,
+        fullName,
+        email,
+        phoneNumber,
+        profession,
+        location,
+        imageUrl
+      })
+      res.send({success: "updated successfully"})
+    console.log("here i am", sv)
+    } catch (error) {
+      console.log(error)
+    }
+
+  },
+  updatePassword: async (req, res)=>{
+console.log("password id of the SV", req.params)
+console.log("the body", req.body)
+try {
+  
+  const{previousPassword, currentPassword, confirmPassword}= req.body
+  if(previousPassword ===currentPassword ){
+    res.send({err:"you changed your password to the same password! are you dumb?"})
+  }
+  const svPassword = await ServiceProvider.findOne({_id: req.params.id})
+  console.log("service password", svPassword.password)
+ 
+  const isMatch = await bcrypt.compare(previousPassword.toString(), svPassword.password)
+  console.log("isMatch", isMatch)
+  if(!isMatch){
+    res.send({err: "incorrect password"})
+  }
+  const hashCurrentPassword = await bcrypt.hash(currentPassword.toString(), 10);
+  console.log('hashed currentpassword', hashCurrentPassword)
+const hashConfirmPassword = await bcrypt.hash(confirmPassword.toString(),10);
+console.log('hashed confirmpassword', hashConfirmPassword)
+const isSame = await bcrypt.compare(currentPassword, hashConfirmPassword)
+console.log('isSame', isSame)
+if(!isSame){
+res.send({err: "make sure to enter your confirm password correctly"})
+}
+svPassword.password= hashCurrentPassword
+svPassword.save()
+res.send({success: "your password changed successfully"})
+
+} catch (error) {
+  console.log(error)
+}
+  }
 };
 module.exports = serviceProviderCtrl;
