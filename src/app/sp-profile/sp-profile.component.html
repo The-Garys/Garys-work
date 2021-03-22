@@ -16,7 +16,7 @@
         <div *ngIf="!visitor" class="profile-option">
           <div class="notification">
             <i class="fa fa-bell" (click)="setting()"></i>
-            <span class="alert-message">1</span>
+            <span class="alert-message">{{ notifications }}</span>
           </div>
         </div>
       </div>
@@ -63,21 +63,21 @@
                   <div class="modal-body">
                     <div class="appointment">
                       <input type="date" class="date" #date />
-                      <input type="time" class="time" #time  id="appt" name="appt" min="09:00" max="18:00" required />
+                      <input type="time" class="time" #time id="appt" name="appt" min="09:00" max="18:00" required />
                       <div class="md-form">
-                       
+
                       </div>
                       <div class="md-form">
-                        
+
                       </div>
                       <div class="md-form">
-                        
+
                       </div>
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <button (click)="submit(date.value, time.value)"
-                      type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>
+                    <button (click)="submit(date.value, time.value)" type="button" mdbBtn color="primary"
+                      class="relative waves-light" mdbWavesEffect>
                       Send
                     </button>
                     <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"

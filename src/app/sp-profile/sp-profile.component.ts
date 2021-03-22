@@ -25,9 +25,10 @@ export class SpProfileComponent implements OnInit {
   visitor: boolean = false;
   visitor1: boolean = false;
   svMail: string;
+  notifications : number = 0
   ngOnInit(): void {
 
-  
+     
     if (localStorage.getItem('visitor') === 'yes') {
       this.visitor = true;
       this.visitor1 = false;
@@ -41,13 +42,20 @@ export class SpProfileComponent implements OnInit {
       .get(`http://localhost:3000/api/serviceProvider/${this.svMail}`)
       .subscribe((data) => {
         this.spData = data;
-       alert(this.data['_id'])
         console.log("getting me ddddd", this.data['_id']);
-
+        this.http
+        .get(
+          `http://localhost:3000/api/appointment/${this.spData._id}`
+        )
+        .subscribe((data) => {
+          this.data = data;
+          this.notifications = this.data.length
+        });
 
       });
     // console.log('local email', this.local.email);
-    
+    console.log(this.spData._id)
+  
   }
   submit( date, time) {
     
@@ -106,6 +114,7 @@ export class SpProfileComponent implements OnInit {
     this.settings = false;
   }
   setting() {
+    this.ngOnInit()
     console.log(this.spData._id)
     this.http
     .get(
