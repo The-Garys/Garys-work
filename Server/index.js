@@ -46,7 +46,7 @@ app.use("/api/appointment", appointmentRouter);
 
 app.use("/api/admin", adminRouter);
 app.use("/api/professions",professionsRouter );
-app.use("/api/posts",postsRouter)
+app.use("/api/posts", postsRouter)
 
 
 app.post("/upload", upload.any(0), (req, res) => {

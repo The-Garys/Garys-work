@@ -129,6 +129,9 @@
 .profile-side p i {
   color: #4daaa7;
   margin-right: 10px;
+} 
+.profile-nav-info p {
+  color: rgb(90, 90, 90);
 }
 .phone-number i {
   transform: rotateY(180deg);
@@ -315,6 +318,9 @@ button.chatbtn i {
   height: 200px;
   border: 1px solid #f1f1f1;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  display:flex;
+  float: right;
+  margin-right: 1rem;
 }
 
 /* This container is needed to position the front and back side */
@@ -390,4 +396,32 @@ button.chatbtn i {
 }
 .labelss {
   
+.firstName-lbl {
+  display: inline-block;
+  float: left;
 }
+.fn-inp {
+  display: inline-block;
+  width: 30%;
+  height: 40px;
+}
+.fn-edit {
+  float: right;
+  display: inline-block;
+}
+.fn-save {
+  display: inline-block;
+  float: right;
+  height: 40px;
+  width: 8%
+}
+
+.inputs{
+  display: inline-block;
+  // width: 100%;
+  // height: 100p
+}
+.state {
+  display: flex;
+  flex-direction: row;
+} }

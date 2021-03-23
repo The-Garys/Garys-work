@@ -11,7 +11,10 @@
           <h3 class="user-name">{{ spData?.fullName }}</h3>
           <div class="adress">
             <p class="state">{{ spData?.location }}</p>
+            <br/>
+            
           </div>
+          <p class="state">{{spData?.adress}}</p>
         </div>
         <div *ngIf="!visitor" class="profile-option">
           <div class="notification">
@@ -120,6 +123,7 @@
           <div class="profile-body">
             <div class="profile-posts tab active" id="profile-posts" *ngIf="posts">
               <h1>Your posts</h1>
+              
               <button class="button button1" 
               type="submit" (click)="displayForm()" *ngIf="!editable">add</button>
               <br/>
@@ -148,6 +152,7 @@
               </div>
              
               <div *ngFor="let e of spPosts" class="flip-card">
+                <button (click)="deletePost(e._id)">Delete</button>
                 <div class="flip-card-inner">
                   <div class="flip-card-front">
                     <img
@@ -162,22 +167,74 @@
                 </div>
               </div>
             </div>
+          
 
             <div class="profile-posts tab active" id="profile-settings" *ngIf="settings">
               <h1>Your settings</h1>
+              <!-- settings for the profile -->
+              <div class="inputs">
+                <!-- first name -->
+                <div>
+                  <div class="firstName-lbl">
+                    <label >First name: </label><br/>
+                    <label >{{spData?.firstName}}</label>
+                  </div>
+                  
+            <input [(ngModel)]="firstName" class="fn-inp"  type="text" placeholder="firstname" *ngIf="changable" />
+            <button class="fn-save" type="button" (click)="updateFirstName(firstName)" *ngIf="changable" >Save</button>
 
+            <button class="fn-edit" type="button" (click)="displayInput()" *ngIf="!changable">Edit</button>
+          </div>
+          <!-- last name -->
+          <div>
+            <div class="firstName-lbl">
+              <label >Last name: </label><br/>
+              <label >{{spData?.lastName}}</label>
+            </div>
+            
+      <input [(ngModel)]="lastName" class="fn-inp"  type="text" placeholder="lastname" *ngIf="changable1" />
+      <button class="fn-save" type="button" (click)="updateLastName(lastName)" *ngIf="changable1" >Save</button>
 
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea
-                nisi vitae harum corporis neque accusamus. Dicta a est sit
-                maiores provident porro alias odit corrupti doloribus voluptates
-                quae, quas totam impedit consequatur ipsum nobis mollitia
-                voluptas cumque recusandae laudantium asperiores vel odio?
-                Voluptatem dolorum perferendis, repudiandae harum quasi vel
-                animi quas quidem est inventore nobis, beatae nihil vero
-                distinctio commodi autem non et quia at neque? Nam aut optio
-                hic.
-              </p>
+      <button class="fn-edit" type="button" (click)="displayInput1()" *ngIf="!changable1">Edit</button>
+    </div>
+    <!-- full name -->
+    <div>
+      <div class="firstName-lbl">
+        <label >FullName: </label><br/>
+        <label >{{spData?.fullName}}</label>
+      </div>
+      
+<input [(ngModel)]="fullName" class="fn-inp"  type="text" placeholder="fullname" *ngIf="changable2" />
+<button class="fn-save" type="button" (click)="updateFullName(fullName)" *ngIf="changable2" >Save</button>
+
+<button class="fn-edit" type="button" (click)="displayInput2()" *ngIf="!changable2">Edit</button>
+</div>
+<!-- email -->
+<div>
+  <div class="firstName-lbl">
+    <label >Email: </label><br/>
+    <label >{{spData?.email}}</label>
+  </div>
+  
+<input [(ngModel)]="email" class="fn-inp"  type="text" placeholder="email" *ngIf="changable3" />
+<button class="fn-save" type="button" (click)="updateEmail(email)" *ngIf="changable3" >Save</button>
+
+<button class="fn-edit" type="button" (click)="displayInput3()" *ngIf="!changable3">Edit</button>
+</div>
+<!-- adress -->
+<div>
+  <div class="firstName-lbl">
+    <label >Adress: </label><br/>
+    <label >{{spData?.adress}}</label>
+  </div>
+  
+<input [(ngModel)]="adress" class="fn-inp"  type="text" placeholder="email" *ngIf="changable4" />
+<button class="fn-save" type="button" (click)="updateAdress(adress)" *ngIf="changable4" >Save</button>
+
+<button class="fn-edit" type="button" (click)="displayInput4()" *ngIf="!changable3">Edit</button>
+</div>
+          </div>
+          <!-- settings for the profile -->
             </div>
             <div class="profile-reviews tab" id="profile-reviews" *ngIf="reviews">
               <app-reviews></app-reviews>

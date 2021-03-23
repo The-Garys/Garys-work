@@ -27,4 +27,13 @@ module.exports={
       console.log(error);
     }
   },
+  deletePost:async(req,res)=>{
+    try {
+      const deletePost=await Posts.findOneAndDelete({_id:req.params.id});
+      res.send(deletePost)
+    }
+    catch (error) {
+    console.log(error);
+  }
+  }
 }
