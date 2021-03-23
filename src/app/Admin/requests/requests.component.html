@@ -1,17 +1,24 @@
-<mdb-card id="req">
+<div>
+<mdb-card class="m-5" *ngFor='let request of requests' id="req">
     <mdb-card-body>
+      <div id="info">
+      </div>
       <mdb-card-title>
-          <img src="https://miro.medium.com/max/1838/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg" alt="">
-        <h5>service provider</h5>
-        <h6 class="text-muted mb-2">profession</h6>
+          <img src={{request.imageUrl}} alt="">
+        <h5>{{request.fullName}}</h5>
+        <h6 class="text-muted mb-2">{{request.profession}}</h6>
       </mdb-card-title>
       <mdb-card-text>
         <ul>
             <li>cin</li>
-            <li>bin</li>
+            <li>{{request.phoneNumber}}</li>
         </ul>
       </mdb-card-text>
-      <a href="#!" class="card-link">Accept</a>
-      <a href="#!" class="card-link">Decline</a>
+      <button mdbBtn type="button" color="success" mdbWavesEffect>Verify Account</button>
+      <button mdbBtn type="button" color="warning" mdbWavesEffect>Decline</button>
+      <div class="position-absolute top-0 start-100 translate-middle pff"></div>
+
+
     </mdb-card-body>
   </mdb-card>
+</div>
