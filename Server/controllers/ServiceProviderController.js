@@ -210,16 +210,16 @@ const serviceProviderCtrl = {
       }
       const hashCurrentPassword = await bcrypt.hash(currentPassword.toString(), 10);
       console.log('hashed currentpassword', hashCurrentPassword)
-      const hashConfirmPassword = await bcrypt.hash(confirmPassword.toString(), 10);
-      console.log('hashed confirmpassword', hashConfirmPassword)
-      const isSame = await bcrypt.compare(currentPassword, hashConfirmPassword)
+      // const hashConfirmPassword = await bcrypt.hash(confirmPassword.toString(), 10);
+      // console.log('hashed confirmpassword', hashConfirmPassword)
+      const isSame = await bcrypt.compare(confirmPassword.toString(),hashCurrentPassword )
       console.log('isSame', isSame)
       if (!isSame) {
         res.send({ err: "make sure to enter your confirm password correctly" })
       }
       svPassword.password = hashCurrentPassword
       svPassword.save()
-      res.send({ success: "your password changed successfully" })
+      res.send({ success: "your password changed successfully", data: svPassword.password })
 
     } catch (error) {
       console.log(error)

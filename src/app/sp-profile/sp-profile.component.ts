@@ -17,8 +17,10 @@ export class SpProfileComponent implements OnInit {
     private GaryService: GaryService,
     private http: HttpClient,
     private local: LocalService
-  ) {} 
-  name : any = localStorage.getItem("apUserName")
+  ) { }
+  // boli : boolean = false 
+  // obj : any = { name : "halim" , last : "boussada" , job : "hir"}
+  name: any = localStorage.getItem("apUserName")
   spData: any;
   data: any;
   token: string = localStorage.getItem('token');
@@ -26,15 +28,18 @@ export class SpProfileComponent implements OnInit {
   visitor: boolean = false;
   visitor1: boolean = false;
   svMail: string;
-  notifications : number = 0
+  notifications: number = 0
   firstName: string;
   lastName: string;
   fullName: string;
   email: string;
   adress: string;
+  previousPassword: string;
+  currentPassword: string;
+  confirmPassword: string;
   ngOnInit(): void {
 
-     
+
     if (localStorage.getItem('visitor') === 'yes') {
       this.visitor = true;
       this.visitor1 = false;
@@ -66,22 +71,28 @@ export class SpProfileComponent implements OnInit {
     //   console.log("data=====>", this.spData)
     // },5000)
     // console.log(this.spData._id)
-  
+
   }
 
+  // up(){
+  //   this.boli = !this.boli
+  // }
+  // save(n , l , j){
+  //   this.obj = { name : n , last : l , job : j }
+  //   this.up()
+  // }
+  submit(date, time) {
 
-  submit( date, time) {
-  
-    var obj = {userName : this.name , email : this.spData.email , serviceProviderName : this.spData._id , date : date , time : time }
+    var obj = { userName: this.name, email: this.spData.email, serviceProviderName: this.spData._id, date: date, time: time }
     console.log(obj.serviceProviderName)
     var c = {
       date: date,
-      time:time,
+      time: time,
       userName: this.name,
       email: this.spData.email,
       serviceProviderName: this.spData._id
     }
-    if (!date ||  !time) {
+    if (!date || !time) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -100,7 +111,7 @@ export class SpProfileComponent implements OnInit {
               footer: '<a href>Why do I have this issue?</a>',
             });
           } else {
-            
+
             Swal.fire({
               icon: 'success',
               title: 'Appointment added successfully',
@@ -116,12 +127,13 @@ export class SpProfileComponent implements OnInit {
   posts: boolean = true;
   reviews: boolean = false;
   settings: boolean = false;
-  appointments:boolean=false;
-  changable : boolean = false;
-  changable1 : boolean = false;
-  changable2 : boolean = false;
-  changable3 : boolean = false;
-  changable4 : boolean = false;
+  appointments: boolean = false;
+  changable: boolean = false;
+  changable1: boolean = false;
+  changable2: boolean = false;
+  changable3: boolean = false;
+  changable4: boolean = false;
+  changable5: boolean = false;
   post() {
     this.posts = true;
     this.reviews = false;
@@ -136,30 +148,33 @@ export class SpProfileComponent implements OnInit {
 
   }
   setting() {
-   
-     
-      this.posts = false;
-      this.reviews = false;
-      this.settings = true;
-      this.appointments=false
-      
-  
+
+
+    this.posts = false;
+    this.reviews = false;
+    this.settings = true;
+    this.appointments = false
+
+
 
   }
-  displayInput(){
-    this.changable= true;
+  displayInput() {
+    this.changable = true;
   }
-  displayInput1(){
-    this.changable1= true;
+  displayInput1() {
+    this.changable1 = true;
   }
-  displayInput2(){
-    this.changable2= true;
+  displayInput2() {
+    this.changable2 = true;
   }
-  displayInput3(){
-    this.changable3= true;
+  displayInput3() {
+    this.changable3 = true;
   }
-  displayInput4(){
-    this.changable4= true;
+  displayInput4() {
+    this.changable4 = true;
+  }
+  displayInput5() {
+    this.changable5 = true;
   }
   appointment() {
     console.log("spdat===>", this.spData._id);
@@ -175,23 +190,23 @@ export class SpProfileComponent implements OnInit {
         this.settings = false;
       });
   }
-  updateFirstName(firstName){
-    
-    console.log("sv details====>",this.spData)
+  updateFirstName(firstName) {
+
+    console.log("sv details====>", this.spData)
     console.log(firstName)
-    if(!firstName){
+    if (!firstName) {
       Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'please enter your new first name',
-            });
+        icon: 'error',
+        title: 'Oops...',
+        text: 'please enter your new first name',
+      });
     }
-    else{
-      this.http.put(`http://localhost:3000/api/serviceProvider/updateFirstName/${this.spData._id}`,{
-        firstName:firstName
-      }, { responseType: 'json' }).subscribe((data)=>{
+    else {
+      this.http.put(`http://localhost:3000/api/serviceProvider/updateFirstName/${this.spData._id}`, {
+        firstName: firstName
+      }, { responseType: 'json' }).subscribe((data) => {
         console.log("new data", data)
-        this.spData.firstName= data['data']
+        this.spData.firstName = data['data']
         Swal.fire(
           '',
           data['success'],
@@ -202,23 +217,23 @@ export class SpProfileComponent implements OnInit {
     }
     this.changable = false
   }
-  updateLastName(lastName){
-    
-    console.log("sv details====>",this.spData)
+  updateLastName(lastName) {
+
+    console.log("sv details====>", this.spData)
     console.log(lastName)
-    if(!lastName){
+    if (!lastName) {
       Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'please enter your new last name',
-            });
+        icon: 'error',
+        title: 'Oops...',
+        text: 'please enter your new last name',
+      });
     }
-    else{
-      this.http.put(`http://localhost:3000/api/serviceProvider/updateLastName/${this.spData._id}`,{
-        lastName:lastName
-      }, { responseType: 'json' }).subscribe((data)=>{
+    else {
+      this.http.put(`http://localhost:3000/api/serviceProvider/updateLastName/${this.spData._id}`, {
+        lastName: lastName
+      }, { responseType: 'json' }).subscribe((data) => {
         console.log("new data", data)
-        this.spData.lastName= data['data']
+        this.spData.lastName = data['data']
         Swal.fire(
           '',
           data['success'],
@@ -229,24 +244,24 @@ export class SpProfileComponent implements OnInit {
     }
     this.changable1 = false
   }
-  
-  updateFullName(fullName){
-    
-    console.log("sv details====>",this.spData)
+
+  updateFullName(fullName) {
+
+    console.log("sv details====>", this.spData)
     console.log(fullName)
-    if(!fullName){
+    if (!fullName) {
       Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'please enter your new last name',
-            });
+        icon: 'error',
+        title: 'Oops...',
+        text: 'please enter your new last name',
+      });
     }
-    else{
-      this.http.put(`http://localhost:3000/api/serviceProvider/updateFullName/${this.spData._id}`,{
-        fullName:fullName
-      }, { responseType: 'json' }).subscribe((data)=>{
+    else {
+      this.http.put(`http://localhost:3000/api/serviceProvider/updateFullName/${this.spData._id}`, {
+        fullName: fullName
+      }, { responseType: 'json' }).subscribe((data) => {
         console.log("new data", data)
-        this.spData.fullName= data['data']
+        this.spData.fullName = data['data']
         Swal.fire(
           '',
           data['success'],
@@ -258,37 +273,37 @@ export class SpProfileComponent implements OnInit {
     this.changable2 = false
   }
 
-  updateEmail(email){
-    
-    console.log("sv details====>",this.spData)
+  updateEmail(email) {
+
+    console.log("sv details====>", this.spData)
     console.log(email)
-    if(!email){
+    if (!email) {
       Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'please enter your new email',
-            });
+        icon: 'error',
+        title: 'Oops...',
+        text: 'please enter your new email',
+      });
     }
-    else{
-      this.http.put(`http://localhost:3000/api/serviceProvider/updateEmail/${this.spData._id}`,{
-        email:email
-      }, { responseType: 'json' }).subscribe((data)=>{
+    else {
+      this.http.put(`http://localhost:3000/api/serviceProvider/updateEmail/${this.spData._id}`, {
+        email: email
+      }, { responseType: 'json' }).subscribe((data) => {
         console.log("new data", data)
-        if(data["err"]){
+        if (data["err"]) {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: data['err'],
           });
         }
-        else{
-          localStorage.setItem("svMail" , data["data"])
+        else {
+          localStorage.setItem("svMail", data["data"])
           Swal.fire(
             '',
             data['success'],
             'success'
           );
-          this.spData.email= data['data']
+          this.spData.email = data['data']
         }
       })
       // this.ngOnInit()
@@ -296,23 +311,23 @@ export class SpProfileComponent implements OnInit {
     this.changable3 = false
   }
 
-  updateAdress(adress){
-    
-    console.log("sv details====>",this.spData)
+  updateAdress(adress) {
+
+    console.log("sv details====>", this.spData)
     console.log(adress)
-    if(!adress){
+    if (!adress) {
       Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'please enter your new adress',
-            });
+        icon: 'error',
+        title: 'Oops...',
+        text: 'please enter your new adress',
+      });
     }
-    else{
-      this.http.put(`http://localhost:3000/api/serviceProvider/updateAdress/${this.spData._id}`,{
-        adress:adress
-      }, { responseType: 'json' }).subscribe((data)=>{
+    else {
+      this.http.put(`http://localhost:3000/api/serviceProvider/updateAdress/${this.spData._id}`, {
+        adress: adress
+      }, { responseType: 'json' }).subscribe((data) => {
         console.log("new data", data)
-        this.spData.adress= data['data']
+        this.spData.adress = data['data']
         Swal.fire(
           '',
           data['success'],
@@ -322,7 +337,52 @@ export class SpProfileComponent implements OnInit {
       // this.ngOnInit()
     }
     this.changable4 = false
-    
+
+  }
+
+  updatePassword(previousPassword, currentPassword, confirmPassword) {
+    console.log("sv details====>", this.spData)
+    if (!previousPassword || !currentPassword || !confirmPassword) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'please enter your fields',
+      });
+    }
+    else if (currentPassword !== confirmPassword) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'make sure to confirm your password correctly',
+      });
+    }
+    else if (currentPassword.length < 8) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'your password must be at least 8 characters',
+      });
+    }
+    else {
+      this.http.patch(`http://localhost:3000/api/serviceProvider/updatePassword/${this.spData._id}`, { currentPassword: currentPassword, previousPassword: previousPassword, confirmPassword: confirmPassword }, { responseType: 'json' }).subscribe((data) => {
+        console.log("password data", data)
+        if (data['err']) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: data['err'],
+          });
+        }
+        else {
+          // this.spData.password = data['data']
+          Swal.fire(
+            '',
+            data['success'],
+            'success'
+          );
+        }
+      })
+    }
   }
 
 }
