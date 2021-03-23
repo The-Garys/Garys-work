@@ -6,32 +6,32 @@
 .testimonials {
   text-align: center;
   margin-top: 20rem;
-  align-items: center;
   margin-bottom: 4rem;
 }
 .exp-tt {
-  font-size: 80px;
-  color: rgb(221, 221, 221);
+  font-size: 100px;
+  color: #fff;
+  text-shadow: 4px 2px 4px rgb(65, 65, 65);
   margin-top: 4rem;
-}
-.exp-tt {
-  font-size: 80px;
-  color: rgb(221, 221, 221);
-  margin-top: 4rem;
-  font-family: "poppins", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 .inner {
-  margin: auto;
+  margin-left: 5rem;
   width: 95%;
   height: 22rem;
   justify-content: center;
-  background: url("https://images.unsplash.com/photo-1525340581945-d5e2b09641c4?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8aGR8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+  background: url("https://images.pexels.com/photos/1595387/pexels-photo-1595387.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
   background-size: cover;
   background-attachment: fixed;
   border-radius: 170px 0 0 170px;
   align-items: center;
   text-align: center;
   padding-top: 5rem;
+
+  /* Add the blur effect */
+  // filter: blur(1px);
+  // -webkit-filter: blur(1px);
 }
 .cont {
   display: flex;
@@ -123,4 +123,10 @@
   position: sticky;
   border: 1px solid #fff;
   background-color: #fff;
+}
+
+h1 {
+  backdrop-filter: blur(10px);
+
+  width: 100%;
 }

@@ -20,26 +20,23 @@
 }
 
 .explore {
-  margin: auto;
   justify-content: center;
   display: flex;
-  justify-items: center;
   opacity: 0.7;
-  height: 20rem;
+  height: 17rem;
   background-color: none;
   width: 95%;
   background: url("https://images.pexels.com/photos/5974365/pexels-photo-5974365.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
   background-size: cover;
   background-attachment: fixed;
   border-radius: 0 150px 150px 0;
+  margin-bottom: 5rem;
   opacity: 1;
-  margin-bottom: 2rem;
 }
 
 .explore h1 {
-  margin: 5%;
-  margin-top: 8rem;
   font-size: 80px;
+  margin-top: 8rem;
   font-family: "poppins", sans-serif;
 }
 
@@ -65,18 +62,17 @@ h1 span {
 
 .services {
   width: 20rem;
-  margin: 2.5%;
+  margin: 1%;
   display: table;
   text-align: center;
   border: 1px solid rgb(218, 218, 218);
   border-radius: 2%;
-  height: 100%;
-  background-color: rgb(0, 255, 191);
-  padding: 0;
+  height: 16em;
+  background-color: #fff;
+  padding: 2em;
   object-fit: fill;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  padding: 0;
 }
 
 .services:hover {
@@ -87,13 +83,26 @@ h1 span {
 }
 
 .services img {
-  height: 50%;
-  width: 50%;
+  height: auto;
+  width: 40%;
 }
 
 h4 {
-  margin-top: 8px;
+  margin-top: 20px;
   margin-bottom: 5px;
   font-size: 22px;
+  font-weight: 700;
   font-family: "poppins", sans-serif;
+}
+.explore h1 {
+  width: 100%;
+  margin-left: 10%;
+}
+.exp-tt {
+  font-size: 100px;
+  color: #fff;
+  text-shadow: 4px 2px 4px rgb(65, 65, 65);
+  margin-top: 4rem;
+  font-weight: bold;
+  text-transform: uppercase;
 }
