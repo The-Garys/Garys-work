@@ -6,6 +6,7 @@
   max-width: 100%;
   padding: 0;
   height: 90%;
+  align-items: center;
   margin-bottom: 13%;
   border-bottom-right-radius: 100%;
   background: rgb(2, 0, 36);
@@ -19,16 +20,27 @@
 }
 
 .explore {
+  margin: auto;
   justify-content: center;
   display: flex;
   justify-items: center;
   opacity: 0.7;
+  height: 20rem;
+  background-color: none;
+  width: 95%;
+  background: url("https://images.pexels.com/photos/5974365/pexels-photo-5974365.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-size: cover;
+  background-attachment: fixed;
+  border-radius: 0 150px 150px 0;
+  opacity: 1;
+  margin-bottom: 2rem;
 }
 
 .explore h1 {
   margin: 5%;
+  margin-top: 8rem;
   font-size: 80px;
-  font-family: poppins, sans-serif;
+  font-family: "poppins", sans-serif;
 }
 
 h1 span {
@@ -52,13 +64,14 @@ h1 span {
 }
 
 .services {
-  width: 100%;
-  margin: 1%;
+  width: 20rem;
+  margin: 2.5%;
   display: table;
   text-align: center;
-  border: 1px solid white;
+  border: 1px solid rgb(218, 218, 218);
   border-radius: 2%;
   height: 100%;
+  background-color: rgb(0, 255, 191);
   padding: 0;
   object-fit: fill;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -79,5 +92,8 @@ h1 span {
 }
 
 h4 {
-  margin-bottom: 0;
+  margin-top: 8px;
+  margin-bottom: 5px;
+  font-size: 22px;
+  font-family: "poppins", sans-serif;
 }
