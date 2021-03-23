@@ -127,6 +127,7 @@
               <button class="button button1" 
               type="submit" (click)="displayForm()" *ngIf="!editable">add</button>
               <br/>
+
               <div class="post-formm" *ngIf="editable">
                   <div class="form-title">
 
@@ -138,6 +139,7 @@
                 <div class="form-desc">
                   <label class="labelss"  for="fname">Description:</label>
                   <br/>
+
                   <!-- <input #decription type="text" id="fname" name="fname"> -->
                   <!-- <textarea #decription name="" id="" cols="30" rows="10"></textarea> -->
                   <div class="md-form">
@@ -237,19 +239,6 @@
 <button class="fn-save" type="button" (click)="updateAdress(adress)" *ngIf="changable4" >Save</button>
 
 <button class="fn-edit" type="button" (click)="displayInput4()" *ngIf="!changable3">Edit</button>
-</div>
-<!-- password -->
-<div>
-  <div class="firstName-lbl">
-    <label >Change Password </label><br/>
-  </div>
-  
-<input [(ngModel)]="previousPassword" class="fn-inp"  type="password" placeholder="enter your previous password" *ngIf="changable5" />
-<input [(ngModel)]="currentPassword" class="fn-inp"  type="password" placeholder="enter your new password" *ngIf="changable5" />
-<input [(ngModel)]="confirmPassword" class="fn-inp"  type="password" placeholder="confirm your password" *ngIf="changable5" />
-<button class="fn-save" type="button" (click)="updatePassword(previousPassword, currentPassword, confirmPassword)" *ngIf="changable5" >Save</button>
-
-<button class="fn-edit" type="button" (click)="displayInput5()" *ngIf="!changable5">Edit</button>
 </div>
           </div>
           <!-- settings for the profile -->
