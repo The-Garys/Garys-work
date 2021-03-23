@@ -16,6 +16,8 @@ import { ServicesListComponent } from './services-list/services-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import { DataTablesModule } from 'angular-datatables';
+import {PanelModule} from 'primeng/panel';
+
 
 
 import { FormsModule } from '@angular/forms';
@@ -37,6 +39,7 @@ import { ModalReviewComponent } from './modal-review/modal-review.component';
 import { SvNavComponent } from './sv-nav/sv-nav.component';
 import { ProvidersComponent } from './Admin/providers/providers.component';
 import { UsersComponent } from './Admin/users/users.component';
+import { RequestsComponent } from './Admin/requests/requests.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +67,7 @@ import { UsersComponent } from './Admin/users/users.component';
     SvNavComponent,
     ProvidersComponent,
     UsersComponent,
+    RequestsComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +77,8 @@ import { UsersComponent } from './Admin/users/users.component';
     BrowserAnimationsModule,
     FormsModule,
     NgbModule,
-    DataTablesModule
+    DataTablesModule,
+    PanelModule
 
   ],
 
