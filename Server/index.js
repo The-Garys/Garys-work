@@ -12,6 +12,7 @@ const reviewRouter = require("./routes/ReviewRoute");
 const appointmentRouter = require("./routes/AppointmentRoute");
 const adminRouter = require("./routes/AdminRoutes");
 const professionsRouter =require("./routes/ProfessionsRoutes")
+const postsRouter= require("./routes/PostsRoute")
 const multer = require("multer");
 
 const upload = multer({ dest: "uploads" });
@@ -45,6 +46,8 @@ app.use("/api/appointment", appointmentRouter);
 
 app.use("/api/admin", adminRouter);
 app.use("/api/professions",professionsRouter );
+app.use("/api/posts",postsRouter)
+
 
 app.post("/upload", upload.any(0), (req, res) => {
   let image = req.files[0].path;

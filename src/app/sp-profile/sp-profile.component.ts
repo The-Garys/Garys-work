@@ -6,6 +6,8 @@ import { LocalService } from '../local.service';
 // import {ActivatedRoute} from '@angular/router';
 
 import Swal from 'sweetalert2';
+
+
 @Component({
   selector: 'app-sp-profile',
   templateUrl: './sp-profile.component.html',
@@ -25,7 +27,9 @@ export class SpProfileComponent implements OnInit {
   visitor: boolean = false;
   visitor1: boolean = false;
   svMail: string;
+  spPosts:any;
   notifications : number = 0
+  editable:boolean = false
   ngOnInit(): void {
 
      
@@ -42,22 +46,12 @@ export class SpProfileComponent implements OnInit {
       .get(`http://localhost:3000/api/serviceProvider/${this.svMail}`)
       .subscribe((data) => {
         this.spData = data;
-        // console.log("getting me ddddd", this.data['_id']);
-        // this.http
-        // .get(
-        //   `http://localhost:3000/api/appointment/${this.spData._id}`
-        // )
-        // .subscribe((data) => {
-        //   this.data = data;
-        //   this.notifications = this.data.length
-        // });
-
-      });
-    // console.log('local email', this.local.email);
-    console.log(this.spData._id)
+    });
+      this.http.get("http://localhost:3000/api/posts").subscribe((data)=>{
+        console.log("daaaaaaaataaa==>",data)
+        this.spPosts=data
+      })
      
-    // console.log(this.spData._id)
-  
   }
   submit( date, time) {
     
@@ -70,6 +64,7 @@ export class SpProfileComponent implements OnInit {
       email: this.spData.email,
       serviceProviderName: this.spData._id
     }
+    
     if (!date ||  !time) {
       Swal.fire({
         icon: 'error',
@@ -142,4 +137,28 @@ export class SpProfileComponent implements OnInit {
         this.settings = false;
       });
   }
+  displayForm() {
+    this.editable = true
+  }
+Add(title , description ,date ){
+
+  var adding = {
+    title:title,
+    description:description,
+    date:date
+    
+  }
+  if(title===""&& description===""&&date===""){
+    alert("fill all inputs")
+  }
+  else{ this.http.post("http://localhost:3000/api/posts", adding ).subscribe((data)=>{
+    console.log("pooooooosts",data)
+    this.ngOnInit();
+  
+  })
+  
+}
+this.editable = false
+}
+ 
 }
