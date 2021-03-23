@@ -41,8 +41,9 @@ export class SpProfileComponent implements OnInit {
     this.http
       .get(`http://localhost:3000/api/serviceProvider/${this.svMail}`)
       .subscribe((data) => {
+        console.log('ali====>', data);
         this.spData = data;
-        console.log("getting me ddddd", this.data['_id']);
+        // console.log("getting me ddddd", this.data['_id']);
         // this.http
         // .get(
         //   `http://localhost:3000/api/appointment/${this.spData._id}`
@@ -54,11 +55,15 @@ export class SpProfileComponent implements OnInit {
 
       });
     // console.log('local email', this.local.email);
-    console.log(this.spData._id)
-  
+    // console.log("hiiiiii")
+    // setTimeout(() =>{
+    //   console.log("data=====>", this.spData)
+    // },5000)
   }
+
+
   submit( date, time) {
-    
+  
     var obj = {userName : this.name , email : this.spData.email , serviceProviderName : this.spData._id , date : date , time : time }
     console.log(obj.serviceProviderName)
     var c = {
@@ -127,7 +132,7 @@ export class SpProfileComponent implements OnInit {
 
   }
   appointment() {
-    console.log(this.spData._id);
+    console.log("spdat===>", this.spData._id);
     this.http
       .get(`http://localhost:3000/api/appointment/${this.spData._id}`)
       .subscribe((data) => {
@@ -139,5 +144,39 @@ export class SpProfileComponent implements OnInit {
         this.appointments = true;
         this.settings = false;
       });
+  }
+  update(firstName, lastName, fullName, email,phoneNumber, profession, location){
+   
+    console.log("sv details====>", this.spData)
+    if(!firstName || !lastName || !fullName || !email || !phoneNumber || !profession || !location){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'please fill all the fields',
+      });
+    }
+    else{
+      this.http.put(`http://localhost:3000/api/serviceProvider/update/${this.spData._id}`,{
+        firstName: firstName,
+        lastName: lastName,
+        fullName: fullName,
+        email: email,
+        phoneNumber: phoneNumber,
+        profession: profession,
+        location: location
+    },{ responseType: 'json' }).subscribe((data) => {
+        console.log(data)
+        this.spData= data['data']
+      })
+       this.ngOnInit()
+    firstName = "";
+    lastName = "";
+    fullName = "";
+    email = "";
+    phoneNumber = "";
+    profession = "";
+    location = "";
+    }
+   
   }
 }

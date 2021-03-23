@@ -188,17 +188,43 @@
               *ngIf="settings"
             >
               <h1>Your settings</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea
-                nisi vitae harum corporis neque accusamus. Dicta a est sit
-                maiores provident porro alias odit corrupti doloribus voluptates
-                quae, quas totam impedit consequatur ipsum nobis mollitia
-                voluptas cumque recusandae laudantium asperiores vel odio?
-                Voluptatem dolorum perferendis, repudiandae harum quasi vel
-                animi quas quidem est inventore nobis, beatae nihil vero
-                distinctio commodi autem non et quia at neque? Nam aut optio
-                hic.
-              </p>
+              <!-- settings for the profile -->
+              <div class="inputs">
+                <div>
+                  <label >First name:{{spData?.firstName}} </label><br>
+            <input #firstName type="text" placeholder="firstName"/>
+          </div>
+          <div>
+            <label >Last name: {{spData?.lastName}}</label><br>
+            <input #lastName type="text" placeholder="lastName"/>
+          </div>
+          <div>
+            <label >Full name: {{spData?.fullName}}</label><br>
+            <input #fullName type="text" placeholder="fullName"/>
+          </div>
+          <div>
+            <label >Email:{{spData?.email}}</label><br>
+            <input #email type="text" placeholder="email"/>
+          </div>
+          <div>
+            <label >Phone number:{{spData?.phoneNumber}}</label><br>
+            <input #phoneNumber type="text" placeholder="phoneNumber"/>
+          </div>
+          <div>
+            <label >Profession:{{spData?.profession}}</label><br>
+            <input #profession type="text" placeholder="profession"/>
+          </div>
+          <div>
+            <label >location:{{spData?.location}}</label><br>
+            <input #location type="text" placeholder="location"/>
+          </div>
+          <!-- <div>
+            <label >ImageUrl:{{spData?.imageUrl}}</label><br>
+            <input type="text" placeholder="imageUrl"/>
+          </div> -->
+          <button (click)="update(firstName.value, lastName.value,fullName.value,email.value,phoneNumber.value,profession.value,location.value)">Save changes</button>
+          </div>
+          <!-- settings for the profile -->
             </div>
             <div
               class="profile-reviews tab"

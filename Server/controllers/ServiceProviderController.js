@@ -166,7 +166,15 @@ const serviceProviderCtrl = {
 
     console.log("account details", req.body)
     try {
-      const {firstName, lastName, fullName, email,phoneNumber, profession, location, imageUrl}= req.body;
+      const {firstName, lastName, fullName, email,phoneNumber, profession, location}= req.body;
+      const serviceProvider = await ServiceProvider.findOne({ email });
+      if (serviceProvider) {
+        return res.send({ err: "sorry this email already exists" });
+      }
+      const user = await Users.findOne({ email });
+      if (user) {
+        return res.send({ err: "sorry this email already exists" });
+      }
       let sv= await ServiceProvider.findByIdAndUpdate({_id: req.params.id},{
         firstName,
         lastName,
@@ -174,10 +182,9 @@ const serviceProviderCtrl = {
         email,
         phoneNumber,
         profession,
-        location,
-        imageUrl
-      })
-      res.send({success: "updated successfully"})
+        location
+      },{new: true})
+      res.send({success: "updated successfully", data: sv});
     console.log("here i am", sv)
     } catch (error) {
       console.log(error)
