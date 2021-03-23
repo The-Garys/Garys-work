@@ -59,6 +59,8 @@ export class SpProfileComponent implements OnInit {
     // setTimeout(() =>{
     //   console.log("data=====>", this.spData)
     // },5000)
+    // console.log(this.spData._id)
+  
   }
 
 
@@ -114,11 +116,14 @@ export class SpProfileComponent implements OnInit {
     this.posts = true;
     this.reviews = false;
     this.settings = false;
+    this.appointments = false;
   }
   review() {
     this.posts = false;
     this.reviews = true;
     this.settings = false;
+    this.appointments = false;
+
   }
   setting() {
    

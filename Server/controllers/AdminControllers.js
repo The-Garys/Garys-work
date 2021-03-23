@@ -1,5 +1,7 @@
 const Login = require("../models/AdminCred");
 const bcrypt = require("bcrypt");
+const Users = require("../models/User");
+const ServiceProvider = require("../models/ServiceProvider.js");
 
 const admin = {
   post: async (req, res) => {
@@ -44,7 +46,55 @@ const admin = {
     }
   },
 
-  
+  banUser: async (req, res) => {
+    try {
+      await Users.findByIdAndUpdate({ _id: req.params.id }, { isBanned: true });
+      res.json({ ok: "User Banned" });
+    } catch (err) {
+      res.send(err);
+    }
+  },
+
+  banSp: async (req, res) => {
+    try {
+      let ali = await ServiceProvider.findByIdAndUpdate(
+        {
+          _id: req.params.id,
+        },
+        { isBanned: true }
+      );
+      res.json({ ok: "Sp Banned!", ali: ali });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  unbanUser: async (req, res) => {
+    try {
+      await Users.findByIdAndUpdate(
+        {
+          _id: req.params.id,
+        },
+        { isBanned: false }
+      );
+      res.json({ ok: "User Unbanned!" });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  unbanSp: async (req, res) => {
+    try {
+      let ali = await ServiceProvider.findByIdAndUpdate(
+        {
+          _id: req.params.id,
+        },
+        { isBanned: false }
+      );
+      res.json({ ok: "Sp Unbanned!", ali: ali });
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
 
 module.exports = admin;
