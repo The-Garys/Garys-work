@@ -217,9 +217,13 @@ const serviceProviderCtrl = {
       if (!isSame) {
         res.send({ err: "make sure to enter your confirm password correctly" })
       }
-      svPassword.password = hashCurrentPassword
-      svPassword.save()
-      res.send({ success: "your password changed successfully", data: svPassword.password })
+      if(isMatch && isSame){
+        svPassword.password = hashCurrentPassword
+
+        svPassword.save()
+        res.send({ success: "your password changed successfully", data: svPassword.password })
+      }
+
 
     } catch (error) {
       console.log(error)
