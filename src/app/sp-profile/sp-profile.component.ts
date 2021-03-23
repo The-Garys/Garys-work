@@ -6,6 +6,7 @@ import { LocalService } from '../local.service';
 // import {ActivatedRoute} from '@angular/router';
 
 import Swal from 'sweetalert2';
+// import { data } from 'jquery';
 @Component({
   selector: 'app-sp-profile',
   templateUrl: './sp-profile.component.html',
@@ -26,6 +27,11 @@ export class SpProfileComponent implements OnInit {
   visitor1: boolean = false;
   svMail: string;
   notifications : number = 0
+  firstName: string;
+  lastName: string;
+  fullName: string;
+  email: string;
+  adress: string;
   ngOnInit(): void {
 
      
@@ -111,7 +117,11 @@ export class SpProfileComponent implements OnInit {
   reviews: boolean = false;
   settings: boolean = false;
   appointments:boolean=false;
-
+  changable : boolean = false;
+  changable1 : boolean = false;
+  changable2 : boolean = false;
+  changable3 : boolean = false;
+  changable4 : boolean = false;
   post() {
     this.posts = true;
     this.reviews = false;
@@ -136,6 +146,21 @@ export class SpProfileComponent implements OnInit {
   
 
   }
+  displayInput(){
+    this.changable= true;
+  }
+  displayInput1(){
+    this.changable1= true;
+  }
+  displayInput2(){
+    this.changable2= true;
+  }
+  displayInput3(){
+    this.changable3= true;
+  }
+  displayInput4(){
+    this.changable4= true;
+  }
   appointment() {
     console.log("spdat===>", this.spData._id);
     this.http
@@ -150,38 +175,154 @@ export class SpProfileComponent implements OnInit {
         this.settings = false;
       });
   }
-  update(firstName, lastName, fullName, email,phoneNumber, profession, location){
-   
-    console.log("sv details====>", this.spData)
-    if(!firstName || !lastName || !fullName || !email || !phoneNumber || !profession || !location){
+  updateFirstName(firstName){
+    
+    console.log("sv details====>",this.spData)
+    console.log(firstName)
+    if(!firstName){
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'please fill all the fields',
-      });
+              icon: 'error',
+              title: 'Oops...',
+              text: 'please enter your new first name',
+            });
     }
     else{
-      this.http.put(`http://localhost:3000/api/serviceProvider/update/${this.spData._id}`,{
-        firstName: firstName,
-        lastName: lastName,
-        fullName: fullName,
-        email: email,
-        phoneNumber: phoneNumber,
-        profession: profession,
-        location: location
-    },{ responseType: 'json' }).subscribe((data) => {
-        console.log(data)
-        this.spData= data['data']
+      this.http.put(`http://localhost:3000/api/serviceProvider/updateFirstName/${this.spData._id}`,{
+        firstName:firstName
+      }, { responseType: 'json' }).subscribe((data)=>{
+        console.log("new data", data)
+        this.spData.firstName= data['data']
+        Swal.fire(
+          '',
+          data['success'],
+          'success'
+        );
       })
-       this.ngOnInit()
-    firstName = "";
-    lastName = "";
-    fullName = "";
-    email = "";
-    phoneNumber = "";
-    profession = "";
-    location = "";
+      // this.ngOnInit()
     }
-   
+    this.changable = false
   }
+  updateLastName(lastName){
+    
+    console.log("sv details====>",this.spData)
+    console.log(lastName)
+    if(!lastName){
+      Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'please enter your new last name',
+            });
+    }
+    else{
+      this.http.put(`http://localhost:3000/api/serviceProvider/updateLastName/${this.spData._id}`,{
+        lastName:lastName
+      }, { responseType: 'json' }).subscribe((data)=>{
+        console.log("new data", data)
+        this.spData.lastName= data['data']
+        Swal.fire(
+          '',
+          data['success'],
+          'success'
+        );
+      })
+      // this.ngOnInit()
+    }
+    this.changable1 = false
+  }
+  
+  updateFullName(fullName){
+    
+    console.log("sv details====>",this.spData)
+    console.log(fullName)
+    if(!fullName){
+      Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'please enter your new last name',
+            });
+    }
+    else{
+      this.http.put(`http://localhost:3000/api/serviceProvider/updateFullName/${this.spData._id}`,{
+        fullName:fullName
+      }, { responseType: 'json' }).subscribe((data)=>{
+        console.log("new data", data)
+        this.spData.fullName= data['data']
+        Swal.fire(
+          '',
+          data['success'],
+          'success'
+        );
+      })
+      // this.ngOnInit()
+    }
+    this.changable2 = false
+  }
+
+  updateEmail(email){
+    
+    console.log("sv details====>",this.spData)
+    console.log(email)
+    if(!email){
+      Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'please enter your new email',
+            });
+    }
+    else{
+      this.http.put(`http://localhost:3000/api/serviceProvider/updateEmail/${this.spData._id}`,{
+        email:email
+      }, { responseType: 'json' }).subscribe((data)=>{
+        console.log("new data", data)
+        if(data["err"]){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: data['err'],
+          });
+        }
+        else{
+          localStorage.setItem("svMail" , data["data"])
+          Swal.fire(
+            '',
+            data['success'],
+            'success'
+          );
+          this.spData.email= data['data']
+        }
+      })
+      // this.ngOnInit()
+    }
+    this.changable3 = false
+  }
+
+  updateAdress(adress){
+    
+    console.log("sv details====>",this.spData)
+    console.log(adress)
+    if(!adress){
+      Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'please enter your new adress',
+            });
+    }
+    else{
+      this.http.put(`http://localhost:3000/api/serviceProvider/updateAdress/${this.spData._id}`,{
+        adress:adress
+      }, { responseType: 'json' }).subscribe((data)=>{
+        console.log("new data", data)
+        this.spData.adress= data['data']
+        Swal.fire(
+          '',
+          data['success'],
+          'success'
+        );
+      })
+      // this.ngOnInit()
+    }
+    this.changable4 = false
+    
+  }
+
 }

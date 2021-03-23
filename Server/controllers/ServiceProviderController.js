@@ -98,10 +98,10 @@ const serviceProviderCtrl = {
       userProvider.token = token;
       await userProvider.save()
       console.log("user====>", userProvider._id);
-       
+
       res.status(200).send({
         auth: true,
-        token:token,
+        token: token,
         success: "you are logged in successfully",
         id: userProvider._id,
         name: userProvider.firstName,
@@ -160,13 +160,113 @@ const serviceProviderCtrl = {
       console.log("err", err);
     }
   },
-  update: async (req, res) => {
-   
-    console.log("id of the svProfile", req.params.id)
+  // update: async (req, res) => {
 
-    console.log("account details", req.body)
+  //   console.log("id of the svProfile", req.params.id)
+
+  //   console.log("account details", req.body)
+  //   try {
+  //     const {firstName, lastName, fullName, email,phoneNumber, profession, location}= req.body;
+  //     const serviceProvider = await ServiceProvider.findOne({ email });
+  //     if (serviceProvider) {
+  //       return res.send({ err: "sorry this email already exists" });
+  //     }
+  //     const user = await Users.findOne({ email });
+  //     if (user) {
+  //       return res.send({ err: "sorry this email already exists" });
+  //     }
+  //     let sv= await ServiceProvider.findByIdAndUpdate({_id: req.params.id},{
+  //       firstName,
+  //       lastName,
+  //       fullName,
+  //       email,
+  //       phoneNumber,
+  //       profession,
+  //       location
+  //     },{new: true})
+  //     res.send({success: "updated successfully", data: sv});
+  //   console.log("here i am", sv)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+
+  // },
+  updatePassword: async (req, res) => {
+    console.log("password id of the SV", req.params)
+    console.log("the body", req.body)
     try {
-      const {firstName, lastName, fullName, email,phoneNumber, profession, location}= req.body;
+
+      const { previousPassword, currentPassword, confirmPassword } = req.body
+      if (previousPassword === currentPassword) {
+        res.send({ err: "you changed your password to the same password! are you dumb?" })
+      }
+      const svPassword = await ServiceProvider.findOne({ _id: req.params.id })
+      console.log("service password", svPassword.password)
+
+      const isMatch = await bcrypt.compare(previousPassword.toString(), svPassword.password)
+      console.log("isMatch", isMatch)
+      if (!isMatch) {
+        res.send({ err: "incorrect password" })
+      }
+      const hashCurrentPassword = await bcrypt.hash(currentPassword.toString(), 10);
+      console.log('hashed currentpassword', hashCurrentPassword)
+      const hashConfirmPassword = await bcrypt.hash(confirmPassword.toString(), 10);
+      console.log('hashed confirmpassword', hashConfirmPassword)
+      const isSame = await bcrypt.compare(currentPassword, hashConfirmPassword)
+      console.log('isSame', isSame)
+      if (!isSame) {
+        res.send({ err: "make sure to enter your confirm password correctly" })
+      }
+      svPassword.password = hashCurrentPassword
+      svPassword.save()
+      res.send({ success: "your password changed successfully" })
+
+    } catch (error) {
+      console.log(error)
+    }
+  },
+  updateFirstName: async (req, res) => {
+    console.log(req.params)
+    try {
+      const { firstName } = req.body
+      let sv = await ServiceProvider.findByIdAndUpdate({ _id: req.params.id }, {
+        firstName
+      }, { new: true })
+      console.log("sv first name", sv.firstName)
+      res.send({ success: "updated first name successfully", data: sv.firstName })
+    } catch (error) {
+      console.log(error)
+    }
+  },
+  updateLastName: async (req, res) => {
+    console.log(req.params)
+    try {
+      const { lastName } = req.body
+      let sv = await ServiceProvider.findByIdAndUpdate({ _id: req.params.id }, {
+        lastName
+      }, { new: true })
+      console.log("sv last name", sv.lastName)
+      res.send({ success: "updated last name successfully", data: sv.lastName })
+    } catch (error) {
+      console.log(error)
+    }
+  },
+  updateFullName: async (req, res) => {
+    console.log(req.params)
+    try {
+      const { fullName } = req.body
+      let sv = await ServiceProvider.findByIdAndUpdate({ _id: req.params.id }, {
+        fullName
+      }, { new: true })
+      console.log("sv fullname", sv.fullName)
+      res.send({ success: "updated fullname successfully", data: sv.fullName })
+    } catch (error) {
+      console.log(error)
+    }
+  },
+  updateEmail: async (req, res) => {
+    try {
+      const { email } = req.body
       const serviceProvider = await ServiceProvider.findOne({ email });
       if (serviceProvider) {
         return res.send({ err: "sorry this email already exists" });
@@ -175,55 +275,26 @@ const serviceProviderCtrl = {
       if (user) {
         return res.send({ err: "sorry this email already exists" });
       }
-      let sv= await ServiceProvider.findByIdAndUpdate({_id: req.params.id},{
-        firstName,
-        lastName,
-        fullName,
-        email,
-        phoneNumber,
-        profession,
-        location
-      },{new: true})
-      res.send({success: "updated successfully", data: sv});
-    console.log("here i am", sv)
+      let sv = await ServiceProvider.findByIdAndUpdate({ _id: req.params.id }, {
+        email
+      }, { new: true })
+      console.log("sv email", sv.email)
+      res.send({ success: "updated email successfully", data: sv.email })
     } catch (error) {
       console.log(error)
     }
-
   },
-  updatePassword: async (req, res)=>{
-console.log("password id of the SV", req.params)
-console.log("the body", req.body)
-try {
-  
-  const{previousPassword, currentPassword, confirmPassword}= req.body
-  if(previousPassword ===currentPassword ){
-    res.send({err:"you changed your password to the same password! are you dumb?"})
-  }
-  const svPassword = await ServiceProvider.findOne({_id: req.params.id})
-  console.log("service password", svPassword.password)
- 
-  const isMatch = await bcrypt.compare(previousPassword.toString(), svPassword.password)
-  console.log("isMatch", isMatch)
-  if(!isMatch){
-    res.send({err: "incorrect password"})
-  }
-  const hashCurrentPassword = await bcrypt.hash(currentPassword.toString(), 10);
-  console.log('hashed currentpassword', hashCurrentPassword)
-const hashConfirmPassword = await bcrypt.hash(confirmPassword.toString(),10);
-console.log('hashed confirmpassword', hashConfirmPassword)
-const isSame = await bcrypt.compare(currentPassword, hashConfirmPassword)
-console.log('isSame', isSame)
-if(!isSame){
-res.send({err: "make sure to enter your confirm password correctly"})
-}
-svPassword.password= hashCurrentPassword
-svPassword.save()
-res.send({success: "your password changed successfully"})
-
-} catch (error) {
-  console.log(error)
-}
+  updateAdress: async (req, res) => {
+    try {
+      const { adress } = req.body
+      let sv = await ServiceProvider.findByIdAndUpdate({ _id: req.params.id }, {
+        adress
+      }, { new: true })
+      console.log("sv fullname", sv.adress)
+      res.send({ success: "updated adress successfully", data: sv.adress })
+    } catch (error) {
+      console.log(error)
+    }
   }
 };
 module.exports = serviceProviderCtrl;

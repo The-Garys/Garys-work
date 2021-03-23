@@ -129,6 +129,9 @@
 .profile-side p i {
   color: #4daaa7;
   margin-right: 10px;
+} 
+.profile-nav-info p {
+  color: rgb(90, 90, 90);
 }
 .phone-number i {
   transform: rotateY(180deg);
@@ -309,9 +312,31 @@ button.chatbtn i {
 }.label{  margin-left: 2rem;}.date{  margin-top:1rem;  margin-left: 1rem;  margin-right:0.5rem;}
 
 
-
-
-.inputs input {
-  width: 100%;
-  // height: 100%;
+.firstName-lbl {
+  display: inline-block;
+  float: left;
+}
+.fn-inp {
+  display: inline-block;
+  width: 30%;
+  height: 40px;
+}
+.fn-edit {
+  float: right;
+  display: inline-block;
+}
+.fn-save {
+  display: inline-block;
+  float: right;
+  height: 40px;
+  width: 8%
+}
+.inputs{
+  display: inline-block;
+  // width: 100%;
+  // height: 100p
+}
+.state {
+  display: flex;
+  flex-direction: row;
 }
