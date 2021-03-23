@@ -68,6 +68,7 @@ export class UsersComponent implements OnInit {
       )
       this.usersList.banUser(id).subscribe((data) => {
         console.log(data, 'banned');
+        this.ngOnInit();
       })
     }
   })

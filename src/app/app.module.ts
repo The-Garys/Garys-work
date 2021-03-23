@@ -37,6 +37,7 @@ import { ModalReviewComponent } from './modal-review/modal-review.component';
 import { SvNavComponent } from './sv-nav/sv-nav.component';
 import { ProvidersComponent } from './Admin/providers/providers.component';
 import { UsersComponent } from './Admin/users/users.component';
+import { RequestsComponent } from './Admin/requests/requests.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +65,7 @@ import { UsersComponent } from './Admin/users/users.component';
     SvNavComponent,
     ProvidersComponent,
     UsersComponent,
+    RequestsComponent,
   ],
   imports: [
     BrowserModule,
