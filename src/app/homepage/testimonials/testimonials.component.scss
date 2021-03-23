@@ -5,16 +5,39 @@
 }
 .testimonials {
   text-align: center;
+  margin-top: 20rem;
+  align-items: center;
+  margin-bottom: 4rem;
 }
-.inner h1 {
-  font-size: 33px;
-  color: #fff;
-  font-weight: bold;
+.exp-tt {
+  font-size: 80px;
+  color: rgb(221, 221, 221);
+  margin-top: 4rem;
+}
+.exp-tt {
+  font-size: 80px;
+  color: rgb(221, 221, 221);
+  margin-top: 4rem;
+  font-family: "poppins", sans-serif;
+}
+.inner {
+  margin: auto;
+  width: 95%;
+  height: 22rem;
+  justify-content: center;
+  background: url("https://images.unsplash.com/photo-1525340581945-d5e2b09641c4?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8aGR8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+  background-size: cover;
+  background-attachment: fixed;
+  border-radius: 170px 0 0 170px;
+  align-items: center;
+  text-align: center;
+  padding-top: 5rem;
 }
 .cont {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 3rem;
 }
 .container {
   position: relative;
@@ -28,23 +51,23 @@
   position: relative;
   max-width: 360px;
   height: 250px;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgb(0, 247, 255) 0%,
-    rgb(13, 82, 187) 35%,
-    rgb(1, 22, 212) 100%
-  );
+  background-color: rgb(248, 248, 248);
+  border: 2px solid rgb(0, 110, 255);
   margin: 30px 10px;
   padding: 20px 15px;
   display: flex;
+  border-radius: 10px;
   flex-direction: column;
-  box-shadow: 0 5px 202px rgba(0, 0, 0, 0.5);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   transition: 0.3s ease-in-out;
+  align-items: center;
 }
 .container .card:hover {
   height: 420px;
   cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 .container .card .imgBx {
   border-radius: 50%;
@@ -52,15 +75,16 @@
   width: 150px;
   height: 150px;
   top: -60px;
-  left: 75px;
+  left: -30px;
   z-index: 1;
   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
 }
 .container .card .imgBx img {
-  width: 120%;
-  height: 120%;
+  width: 140%;
+  height: 140%;
   border-radius: 50%;
   max-height: 160px;
+  border: 5px solid rgb(0, 110, 255);
 }
 .container .card .content {
   position: relative;
@@ -79,51 +103,24 @@
   transition-delay: 0.3s;
 }
 .content h2 {
-  color: #fff;
+  color: rgb(92, 92, 92);
 }
 .content p {
-  color: #fff;
+  color: rgb(92, 92, 92);
 }
-// .row {
-//   display: flex;
-//   flex-wrap: wrap;
-//   justify-content: center;
-// }
-// .col {
-//   flex: 33.33%;
-//   max-width: 33.33%;
-//   box-sizing: border-box;
-//   padding: 15px;
-// }
-// .testimonial {
-//   background: #fff;
-//   padding: 30px;
-// }
-// .testimonial img {
-//   width: 100px;
-//   height: 100px;
-//   border-radius: 50%;
-// }
-// .name {
-//   font-size: 20px;
-//   text-transform: uppercase;
-//   margin: 20px 0;
-// }
-// .stars {
-//   color: #6ab04c;
-//   margin-bottom: 20px;
-// }
-
-// @media screen and (max-width: 960px) {
-//   .col {
-//     flex: 100%;
-//     max-width: 80%;
-//   }
-// }
-
-// @media screen and (max-width: 600px) {
-//   .col {
-//     flex: 100%;
-//     max-width: 100%;
-//   }
-// }
+.fa-chevron-circle-down {
+  font-size: 25px;
+}
+.arr-down {
+  width: 4rem;
+  height: 4rem;
+  margin-top: -3.6rem;
+  transition: 0.3s ease-in-out;
+  border-radius: 50%;
+}
+.container .card:hover .arr-down {
+  margin-top: 0.8rem;
+  position: sticky;
+  border: 1px solid #fff;
+  background-color: #fff;
+}
