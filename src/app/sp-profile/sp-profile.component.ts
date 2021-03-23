@@ -55,7 +55,7 @@ export class SpProfileComponent implements OnInit {
       });
     // console.log('local email', this.local.email);
     console.log(this.spData._id)
-  
+     
   }
   submit( date, time) {
     
@@ -87,7 +87,7 @@ export class SpProfileComponent implements OnInit {
               footer: '<a href>Why do I have this issue?</a>',
             });
           } else {
-            
+
             Swal.fire({
               icon: 'success',
               title: 'Appointment added successfully',
