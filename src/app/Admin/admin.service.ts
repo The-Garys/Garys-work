@@ -26,4 +26,21 @@ export class AdminServices {
     return this.httpClient.get('http://localhost:3000/api/serviceProviderList/services');
   }
 
+  public getUsersList() {
+    return this.httpClient.get('http://localhost:3000/api/user/users')
+  }
+  public banUser(id) {
+    return this.httpClient.put(`http://localhost:3000/api/admin/ban/${id}`, {})
+  }
+
+  public banSp(id) {
+    return this.httpClient.put(`http://localhost:3000/api/admin/ban/sp/${id}`, {})
+  }
+
+  public unbanUser(id) {
+    return this.httpClient.put(`http://localhost:3000/api/admin/unban/${id}`, {})
+  }
+  public unbanSp(id) {
+    return this.httpClient.put(`http://localhost:3000/api/admin/sp/unban/${id}`, {})
+  }
 }
