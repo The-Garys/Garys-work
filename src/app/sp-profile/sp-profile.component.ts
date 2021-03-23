@@ -206,6 +206,7 @@ deletePost(id){
     cancelButtonColor: '#d33',
     confirmButtonText: 'Yes, delete it!'
   }).then((result) => {
+    if (result.isConfirmed) {
     this.http.delete(`http://localhost:3000/api/posts/${id}`).subscribe((data)=>{
           Swal.fire(
         'Deleted!',
@@ -213,7 +214,9 @@ deletePost(id){
         'success'
       )
       this.ngOnInit()
+      
     })
+  }
   })
 }
  
