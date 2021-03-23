@@ -42,7 +42,7 @@ export class SpProfileComponent implements OnInit {
       .get(`http://localhost:3000/api/serviceProvider/${this.svMail}`)
       .subscribe((data) => {
         this.spData = data;
-        console.log("getting me ddddd", this.data['_id']);
+        // console.log("getting me ddddd", this.data['_id']);
         // this.http
         // .get(
         //   `http://localhost:3000/api/appointment/${this.spData._id}`
@@ -56,6 +56,8 @@ export class SpProfileComponent implements OnInit {
     // console.log('local email', this.local.email);
     console.log(this.spData._id)
      
+    // console.log(this.spData._id)
+  
   }
   submit( date, time) {
     
