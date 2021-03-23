@@ -34,7 +34,7 @@ export class ProvidersComponent implements OnInit {
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 2
+      pageLength: 4
     };
 
 
