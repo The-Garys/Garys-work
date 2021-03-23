@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild,OnInit } from '@angular/core';
+import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import {AdminServices} from '../admin.service';
 import Swal from 'sweetalert2';
@@ -10,7 +11,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  dtOptions: DataTables.Settings = {};
+  @ViewChild(DataTableDirective, {static: false})
+  
+  dtElement: DataTableDirective;
+  
+  isDtInitialized:boolean = false;
+  
+  dtOptions: DataTables.Settings = {
+  };
 
   users: any = [];
 
@@ -25,7 +33,15 @@ export class UsersComponent implements OnInit {
     };
     this.usersList.getUsersList().subscribe((data) => {
       this.users = data;
-      this.dtTrigger.next();
+      if (this.isDtInitialized) {
+        this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+            dtInstance.destroy();
+            this.dtTrigger.next();
+        });
+    } else {
+        this.isDtInitialized = true;
+        this.dtTrigger.next();
+    }
 
     })
   }
@@ -66,7 +82,7 @@ export class UsersComponent implements OnInit {
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Confirm Ban!'
+    confirmButtonText: 'Confirm Unban!'
   }).then((result) => {
     if (result.isConfirmed) {
       Swal.fire(
@@ -76,6 +92,7 @@ export class UsersComponent implements OnInit {
       )
       this.usersList.unbanUser(id).subscribe((data) => {
         console.log(data, 'unbanned');
+        this.ngOnInit();
         })
     }
   })

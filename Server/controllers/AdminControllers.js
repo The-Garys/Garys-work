@@ -57,13 +57,13 @@ const admin = {
 
   banSp: async (req, res) => {
     try {
-      await ServiceProvider.findByIdAndUpdate(
+      let ali = await ServiceProvider.findByIdAndUpdate(
         {
           _id: req.params.id,
         },
         { isBanned: true }
       );
-      res.json({ ok: "Sp Banned!" });
+      res.json({ ok: "Sp Banned!", ali: ali });
     } catch (err) {
       console.log(err);
     }
@@ -71,26 +71,26 @@ const admin = {
 
   unbanUser: async (req, res) => {
     try {
-      await ServiceProvider.findByIdAndUpdate(
+      await Users.findByIdAndUpdate(
         {
           _id: req.params.id,
         },
         { isBanned: false }
       );
-      res.json({ ok: "Sp Banned!" });
+      res.json({ ok: "User Unbanned!" });
     } catch (err) {
       console.log(err);
     }
   },
   unbanSp: async (req, res) => {
     try {
-      await ServiceProvider.findByIdAndUpdate(
+      let ali = await ServiceProvider.findByIdAndUpdate(
         {
           _id: req.params.id,
         },
         { isBanned: false }
       );
-      res.json({ ok: "Sp Unbanned!" });
+      res.json({ ok: "Sp Unbanned!", ali: ali });
     } catch (err) {
       console.log(err);
     }
