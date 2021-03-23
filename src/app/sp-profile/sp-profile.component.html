@@ -49,37 +49,18 @@
             <div class="profile-btn">
               <button class="chatbtn"><i class="fa fa-comment"></i>Chat</button>
             </div>
-            <button
-              *ngIf="visitor"
-              type="button"
-              mdbBtn
-              color="primary"
-              class="relative waves-light"
-              (click)="basicModal.show()"
-              mdbWavesEffect
-            >
+            <button *ngIf="visitor" type="button" mdbBtn color="primary" class="relative waves-light"
+              (click)="basicModal.show()" mdbWavesEffect>
               make appointment
             </button>
 
-            <div
-              mdbModal
-              #basicModal="mdbModal"
-              id="modal"
-              class="modal fade"
-              tabindex="-1"
-              role="dialog"
-              aria-labelledby="myBasicModalLabel"
-              aria-hidden="true"
-            >
+            <div mdbModal #basicModal="mdbModal" id="modal" class="modal fade" tabindex="-1" role="dialog"
+              aria-labelledby="myBasicModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <button
-                      type="button"
-                      class="close pull-right"
-                      aria-label="Close"
-                      (click)="basicModal.hide()"
-                    ></button>
+                    <button type="button" class="close pull-right" aria-label="Close"
+                      (click)="basicModal.hide()"></button>
                   </div>
                   <div class="modal-body">
                     <div class="appointment">
@@ -101,15 +82,8 @@
                       class="relative waves-light" mdbWavesEffect>
                       Send
                     </button>
-                    <button
-                      type="button"
-                      mdbBtn
-                      color="secondary"
-                      class="waves-light"
-                      aria-label="Close"
-                      (click)="basicModal.hide()"
-                      mdbWavesEffect
-                    >
+                    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+                      (click)="basicModal.hide()" mdbWavesEffect>
                       Close
                     </button>
                   </div>
@@ -120,12 +94,10 @@
               <h3 class="rating">4.5</h3>
               <div class="rate">
                 <div class="stars">
-                  <i class="fa fa-star"></i><i class="fa fa-star"></i
-                  ><i class="fa fa-star"></i><i class="fa fa-star"></i
-                  ><i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                    class="fa fa-star"></i><i class="fa fa-star"></i>
                 </div>
-                <span class="no-user"
-                  ><span> 123</span>&nbsp;&nbsp; Reviews
+                <span class="no-user"><span> 123</span>&nbsp;&nbsp; Reviews
                 </span>
               </div>
             </div>
@@ -134,62 +106,77 @@
         <div class="right-side">
           <div class="nav">
             <ul>
-              <li
-                class="user-post active"
-                [class.active]="posts"
-                (click)="post()"
-              >
+              <li class="user-post active" [class.active]="posts" (click)="post()">
                 Posts
               </li>
-              <li
-                class="user-review"
-                [class.active]="reviews"
-                (click)="review()"
-              >
+              <li class="user-review" [class.active]="reviews" (click)="review()">
                 Reviews
               </li>
-              <li
-                *ngIf="visitor1"
-                class="user-setting"
-                [class.active]="appointments"
-                (click)="appointment()"
-              >
+              <li *ngIf="visitor1" class="user-setting" [class.active]="appointments" (click)="appointment()">
                 My appointments
               </li>
-              <li
-              *ngIf="!visitor"
-                class="user-review"
-                [class.active]="settings"
-                (click)="setting()"
-              >
+              <li *ngIf="!visitor" class="user-review" [class.active]="settings" (click)="setting()">
                 Settings
               </li>
             </ul>
           </div>
           <div class="profile-body">
-            <div
-              class="profile-posts tab active"
-              id="profile-posts"
-              *ngIf="posts"
-            >
+            <div class="profile-posts tab active" id="profile-posts" *ngIf="posts">
               <h1>Your posts</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea
-                nisi vitae harum corporis neque accusamus. Dicta a est sit
-                maiores provident porro alias odit corrupti doloribus voluptates
-                quae, quas totam impedit consequatur ipsum nobis mollitia
-                voluptas cumque recusandae laudantium asperiores vel odio?
-                Voluptatem dolorum perferendis, repudiandae harum quasi vel
-                animi quas quidem est inventore nobis, beatae nihil vero
-                distinctio commodi autem non et quia at neque? Nam aut optio
-                hic.
-              </p>
+              
+              <button class="button button1" 
+              type="submit" (click)="displayForm()" *ngIf="!editable">add</button>
+              <br/>
+
+              <div class="post-formm" *ngIf="editable">
+                  <div class="form-title">
+
+                    <label class="labelss" for="fname">Title:</label>
+                    <br/>
+                    <input #title type="text"  name="fname">
+                  </div>
+                <br/>
+                <div class="form-desc">
+                  <label class="labelss"  for="fname">Description:</label>
+                  <br/>
+
+                  <!-- <input #decription type="text" id="fname" name="fname"> -->
+                  <!-- <textarea #decription name="" id="" cols="30" rows="10"></textarea> -->
+                  <div class="md-form">
+                    <mdb-icon fas icon="pencil-alt" class="prefix"></mdb-icon>
+                    <textarea #decription type="text" id="form8" class="md-textarea form-control" mdbInput></textarea>
+                    <label for="form8">Icon Prefix</label>
+                  </div>
+                </div>
+                <br/>
+                <div class="form-date">
+
+                  <label class="labelss"  for="fname">Date:</label>
+                  <br>
+                  <input  #date type="text"  name="fname">
+                </div>
+                <button class="save-btn" (click)="Add(title.value,decription.value,date.value)">Save</button>
+              </div>
+             
+              <div *ngFor="let e of spPosts" class="flip-card">
+                <button (click)="deletePost(e._id)">Delete</button>
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+                    <img
+                      src="https://images.theconversation.com/files/138166/original/image-20160919-17029-2dn60d.jpg?ixlib=rb-1.1.0&rect=0%2C94%2C5760%2C2793&q=45&auto=format&w=1356&h=668&fit=crop"
+                      alt="Avatar" style="width:300px;height:300px;">
+                  </div>
+                  <div class="flip-card-back">
+                    <h1>{{e.title}}</h1>
+                    <p>{{e.description}}</p>
+                    <p>{{e.date}}</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div
-              class="profile-posts tab active"
-              id="profile-settings"
-              *ngIf="settings"
-            >
+          
+
+            <div class="profile-posts tab active" id="profile-settings" *ngIf="settings">
               <h1>Your settings</h1>
               <!-- settings for the profile -->
               <div class="inputs">
@@ -253,34 +240,13 @@
 
 <button class="fn-edit" type="button" (click)="displayInput4()" *ngIf="!changable3">Edit</button>
 </div>
-<!-- password -->
-<div>
-  <div class="firstName-lbl">
-    <label >Change Password </label><br/>
-  </div>
-  
-<input [(ngModel)]="previousPassword" class="fn-inp"  type="password" placeholder="enter your previous password" *ngIf="changable5" />
-<input [(ngModel)]="currentPassword" class="fn-inp"  type="password" placeholder="enter your new password" *ngIf="changable5" />
-<input [(ngModel)]="confirmPassword" class="fn-inp"  type="password" placeholder="confirm your password" *ngIf="changable5" />
-<button class="fn-save" type="button" (click)="updatePassword(previousPassword, currentPassword, confirmPassword)" *ngIf="changable5" >Save</button>
-
-<button class="fn-edit" type="button" (click)="displayInput5()" *ngIf="!changable5">Edit</button>
-</div>
           </div>
           <!-- settings for the profile -->
             </div>
-            <div
-              class="profile-reviews tab"
-              id="profile-reviews"
-              *ngIf="reviews"
-            >
+            <div class="profile-reviews tab" id="profile-reviews" *ngIf="reviews">
               <app-reviews></app-reviews>
             </div>
-            <div
-              class="profile-settings tab"
-              id="profile-settings"
-              *ngIf="appointments"
-            >
+            <div class="profile-settings tab" id="profile-settings" *ngIf="appointments">
               <div *ngIf="visitor1">
                 <div class="card" *ngFor="let e of data">
                   <p>you have an appointment on: {{ e.date }}</p>

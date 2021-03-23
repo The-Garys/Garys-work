@@ -6,7 +6,8 @@ import { LocalService } from '../local.service';
 // import {ActivatedRoute} from '@angular/router';
 
 import Swal from 'sweetalert2';
-// import { data } from 'jquery';
+
+
 @Component({
   selector: 'app-sp-profile',
   templateUrl: './sp-profile.component.html',
@@ -28,7 +29,9 @@ export class SpProfileComponent implements OnInit {
   visitor: boolean = false;
   visitor1: boolean = false;
   svMail: string;
-  notifications: number = 0
+  spPosts:any;
+  notifications : number = 0
+  editable:boolean = false
   firstName: string;
   lastName: string;
   fullName: string;
@@ -54,24 +57,12 @@ export class SpProfileComponent implements OnInit {
       .subscribe((data) => {
         console.log('ali====>', data);
         this.spData = data;
-        // console.log("getting me ddddd", this.data['_id']);
-        // this.http
-        // .get(
-        //   `http://localhost:3000/api/appointment/${this.spData._id}`
-        // )
-        // .subscribe((data) => {
-        //   this.data = data;
-        //   this.notifications = this.data.length
-        // });
-
-      });
-    // console.log('local email', this.local.email);
-    // console.log("hiiiiii")
-    // setTimeout(() =>{
-    //   console.log("data=====>", this.spData)
-    // },5000)
-    // console.log(this.spData._id)
-
+    });
+      this.http.get("http://localhost:3000/api/posts").subscribe((data)=>{
+        console.log("daaaaaaaataaa==>",data)
+        this.spPosts=data
+      })
+     
   }
 
   // up(){
@@ -92,7 +83,8 @@ export class SpProfileComponent implements OnInit {
       email: this.spData.email,
       serviceProviderName: this.spData._id
     }
-    if (!date || !time) {
+    
+    if (!date ||  !time) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -190,9 +182,63 @@ export class SpProfileComponent implements OnInit {
         this.settings = false;
       });
   }
-  updateFirstName(firstName) {
 
-    console.log("sv details====>", this.spData)
+  displayForm() {
+    this.editable = true
+  }
+Add(title , description ,date ){
+
+  var adding = {
+    title:title,
+    description:description,
+    date:date
+    
+  }
+  if(title===""&& description===""&&date===""){
+    alert("fill all inputs")
+  }
+  else{ this.http.post("http://localhost:3000/api/posts", adding ).subscribe((data)=>{
+    Swal.fire(
+      'added!',
+      'success'
+    )    
+    this.ngOnInit();
+  
+  })
+  
+}
+this.editable = false
+}
+
+deletePost(id){
+   console.log(id)
+   Swal.fire({
+    title: 'Are you sure?',
+    text: "You will permanently delete this post!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+    this.http.delete(`http://localhost:3000/api/posts/${id}`).subscribe((data)=>{
+          Swal.fire(
+        'Deleted!',
+        'Your post has been deleted.',
+        'success'
+      )
+      this.ngOnInit()
+      
+    })
+  }
+  })
+}
+ 
+
+  updateFirstName(firstName){
+    
+    console.log("sv details====>",this.spData)
     console.log(firstName)
     if (!firstName) {
       Swal.fire({
@@ -384,5 +430,6 @@ export class SpProfileComponent implements OnInit {
       })
     }
   }
+
 
 }
