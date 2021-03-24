@@ -30,36 +30,40 @@
       *ngFor="let service of location"
       value="{{ service.location }}"
     >
-      {{service.location}}
+      {{ service.location }}
     </option>
   </select>
-
 </div>
 
 <div class="cont-cards">
   <div class="container">
     <div class="cards">
-      <mdb-card class="card" *ngFor="let e of services">
-        <a class="orange-text mt-1 d-flex flex-row-reverse">
-          <h5 class="waves-effect p-2" mdbWavesEffect>
-            See more details
-            <mdb-icon fas icon="chevron-right"></mdb-icon>
-          </h5>
-        </a>
+      <div class="card-cont">
+        <div class="card mb-3" *ngFor="let e of services" id="whole-card">
+          <div class="img__cont">
+            <img src="{{ e.imageUrl }}" class="card-img-top" alt="..." />
+          </div>
+          <div class="card-body">
+            <div class="sp__name-rate">
+              <h3 class="sp__name">{{ e.fullName }}</h3>
+              <h3 class="sp__name" id="rate">
+                <ngb-rating
+                  class="rating-readonly"
+                  [rate]="e.rate"
+                ></ngb-rating>
+              </h3>
+            </div>
+            <h4 class="card-title">{{ e.profession }}</h4>
+            <h5 class="card-title">{{ e.location }}</h5>
 
-        <div class="img-cont">
-          <img src="{{e.imageUrl}}" class="rounded-circle" />
-          <div class="field-cont">
-            <mdb-card-body class="Crd">
-              <h1>{{ e.fullName }}</h1>
-              <div class="h2">
-                <h2>{{ e.profession }}</h2>
-                <h2>{{ e.location }}</h2>
-              </div>
-            </mdb-card-body>
+            <p class="card-text">
+              This is a wider card with supporting text below as a natural
+              lead-in to additional content. This content is a little bit
+              longer.
+            </p>
           </div>
         </div>
-      </mdb-card>
+      </div>
     </div>
   </div>
 </div>
