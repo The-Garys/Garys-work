@@ -58,21 +58,23 @@ export class SpProfileComponent implements OnInit {
       .subscribe((data) => {
         console.log('ali====>', data);
         this.spData = data;
+        this.http.get(`http://localhost:3000/api/posts/${this.spData._id}`).subscribe((data)=>{
+          console.log("daaaaaaaataaa==>",data)
+          this.spPosts=data
+          this.spPosts = this.spPosts.reverse()
+          for ( var i = 0; i < this.spPosts.length; i++ ) {
+            this.spPosts[i].updatedAt = moment(
+              this.spPosts[i].updatedAt
+            ).format('LLL'); 
+          }
+        })
     });
       
-      this.http.get("http://localhost:3000/api/posts/").subscribe((data)=>{
-        console.log("daaaaaaaataaa==>",data)
-        this.spPosts=data
-        this.spPosts = this.spPosts.reverse()
-        for ( var i = 0; i < this.spPosts.length; i++ ) {
-          this.spPosts[i].updatedAt = moment(
-            this.spPosts[i].updatedAt
-          ).format('LLL'); 
-        }
-      })
+     
       
      
   }
+     
     imgUpload(img) {
     console.log('IMG FROM VER==> ', img.target.files[0]);
     var formData = new FormData();
@@ -203,13 +205,14 @@ export class SpProfileComponent implements OnInit {
   displayForm() {
     this.editable = true
   }
-Add(title , description ,date  ){
+Add(title , description ,date ,id ){
 
   var adding = {
     title:title,
     description:description,
     date:date,
-    image : this.imageUrl
+    image : this.imageUrl ,
+    spId : id 
     
   }
   if(title===""&& description===""&&date===""){
