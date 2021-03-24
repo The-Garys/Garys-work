@@ -13,6 +13,7 @@ router.put("/updateFirstName/:id", serviceProviderCtrl.updateFirstName);
 router.put("/updateLastName/:id", serviceProviderCtrl.updateLastName);
 router.put("/updateFullName/:id", serviceProviderCtrl.updateFullName);
 router.put("/updateEmail/:id", serviceProviderCtrl.updateEmail);
-router.put("/updateAdress/:id", serviceProviderCtrl.updateAdress)
+router.put("/updateAdress/:id", serviceProviderCtrl.updateAdress);
+router.put("/updateImage/:id", serviceProviderCtrl.updateImage);
 
 module.exports = router;
