@@ -12,10 +12,20 @@ export class RequestsComponent implements OnInit {
 
   ngOnInit(): void {
     this.admin.getSpList().subscribe(data => {
-      this.requests = data
+      this.requests = data;
+      this.requests.filter(el => {
+        return !el.isVerified; 
+      })
       console.log(data);
-      
+            
     })
+
+
   }
 
+  verifyAcc(id) {
+    this.admin.verifyAccount(id).subscribe(data => {
+      
+    })
+  } 
 }

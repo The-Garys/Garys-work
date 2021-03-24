@@ -84,13 +84,26 @@ const admin = {
   },
   unbanSp: async (req, res) => {
     try {
-      let ali = await ServiceProvider.findByIdAndUpdate(
+      await ServiceProvider.findByIdAndUpdate(
         {
           _id: req.params.id,
         },
         { isBanned: false }
       );
-      res.json({ ok: "Sp Unbanned!", ali: ali });
+      res.json({ ok: "Sp Unbanned!" });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  verifyAccount: async (req, res) => {
+    try {
+      await ServiceProvider.findByIdAndUpdate(
+        {
+          _id: req.params.id,
+        },
+        { isVerified: true }
+      );
+      res.json({ ok: "Sp Unbanned!" });
     } catch (err) {
       console.log(err);
     }

@@ -45,7 +45,9 @@ export class AdminServices {
   }
   
 
-  
+public verifyAccount(id) {
+  return this.httpClient.put(`http://localhost:3000/api/admin/sp/unban/${id}`, {})
+}  
 
 
 }
