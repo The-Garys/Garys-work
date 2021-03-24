@@ -413,8 +413,8 @@ textarea {
   margin: auto;
 
 }
-.labelss {
-  
+// .labelss {
+// }
 .firstName-lbl {
   display: inline-block;
   float: left;
@@ -444,7 +444,7 @@ textarea {
 .state {
   display: flex;
   flex-direction: row;
-} }
+} 
 
 
 
@@ -539,3 +539,13 @@ input[type=submit]:hover {
     margin-top: 0;
   }
 }
+
+.fa-camera {
+  font-size: 30px;
+  cursor: pointer;
+}
+.cam-icon {
+  margin-top: 12%;
+  margin-left: 12%;
+}
+
