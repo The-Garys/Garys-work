@@ -65,6 +65,16 @@ export class SpProfileComponent implements OnInit {
      
   }
 
+  imageUrl : string
+  imgUpload(img) {
+    console.log('IMG FROM VER==> ', img.target.files[0]);
+    var formData = new FormData();
+    formData.append('img', img.target.files[0]);
+    this.http.post("http://localhost:3000/upload" , formData).subscribe((resp) => {
+      this.imageUrl = resp['msg'].url;
+    });
+  }
+
   // up(){
   //   this.boli = !this.boli
   // }
@@ -432,5 +442,24 @@ deletePost(id){
     this.changable5 = false
   }
 
+
+  updateImage(imageUrl) {
+
+    console.log("sv details====>", this.spData)
+    console.log(imageUrl)
+    
+      this.http.put(`http://localhost:3000/api/serviceProvider/updateImage/${this.spData._id}`, {
+        imageUrl: imageUrl
+      }, { responseType: 'json' }).subscribe((data) => {
+        console.log("new data", data)
+        this.spData.imageUrl = data['data']
+        Swal.fire(
+          '',
+          data['success'],
+          'success'
+        );
+      })
+      // this.ngOnInit()
+  }
 
 }
