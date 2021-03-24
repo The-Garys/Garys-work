@@ -21,8 +21,6 @@ export class SpProfileComponent implements OnInit {
     private http: HttpClient,
     private local: LocalService
   ) { }
-  // boli : boolean = false 
-  // obj : any = { name : "halim" , last : "boussada" , job : "hir"}
   name: any = localStorage.getItem("apUserName")
   spData: any;
   data: any;
@@ -54,14 +52,15 @@ export class SpProfileComponent implements OnInit {
       this.visitor1 = true;
     }
     // this.spEmail = localStorage.getItem('spEmail');
-    this.svMail = localStorage.getItem('svMail');
+   
     this.http
       .get(`http://localhost:3000/api/serviceProvider/${this.svMail}`)
       .subscribe((data) => {
         console.log('ali====>', data);
         this.spData = data;
     });
-      this.http.get("http://localhost:3000/api/posts").subscribe((data)=>{
+      this.svMail = localStorage.getItem('svMail');
+      this.http.get(`http://localhost:3000/api/posts/${this.svMail}`).subscribe((data)=>{
         console.log("daaaaaaaataaa==>",data)
         this.spPosts=data
         this.spPosts = this.spPosts.reverse()
