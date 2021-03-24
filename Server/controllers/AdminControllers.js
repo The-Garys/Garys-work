@@ -2,6 +2,12 @@ const Login = require("../models/AdminCred");
 const bcrypt = require("bcrypt");
 const Users = require("../models/User");
 const ServiceProvider = require("../models/ServiceProvider.js");
+const twilio = require("twilio");
+
+const client = new twilio(
+  "AC265a6bb67a6ac795d9909c2a7d415e90",
+  "512f56e02aa5bd087f8d2295ffe0b597"
+);
 
 const admin = {
   post: async (req, res) => {
@@ -97,13 +103,20 @@ const admin = {
   },
   verifyAccount: async (req, res) => {
     try {
-      await ServiceProvider.findByIdAndUpdate(
+      let sp = await ServiceProvider.findByIdAndUpdate(
         {
           _id: req.params.id,
         },
         { isVerified: true }
       );
-      res.json({ ok: "Sp Unbanned!" });
+
+      await client.messages.create({
+        to: `+216${sp.phoneNumber}`,
+        from: "+15178363113",
+        body: "Your Account Has Been Verified! Welcome To The Community",
+      });
+
+      res.json({ ok: "Sp Verified!" });
     } catch (err) {
       console.log(err);
     }
