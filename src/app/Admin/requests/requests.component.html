@@ -14,7 +14,7 @@
             <li>{{request.phoneNumber}}</li>
         </ul>
       </mdb-card-text>
-      <button mdbBtn type="button" color="success" mdbWavesEffect>Verify Account</button>
+      <button mdbBtn type="button" color="success" (click) ='verifyAcc(request._id)' mdbWavesEffect>Verify Account</button>
       <button mdbBtn type="button" color="warning" mdbWavesEffect>Decline</button>
       <div class="position-absolute top-0 start-100 translate-middle pff"></div>
 
