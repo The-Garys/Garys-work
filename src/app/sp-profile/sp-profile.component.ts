@@ -429,6 +429,7 @@ deletePost(id){
         }
       })
     }
+    this.changable5 = false
   }
 
 
