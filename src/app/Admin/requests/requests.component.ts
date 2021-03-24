@@ -14,13 +14,13 @@ export class RequestsComponent implements OnInit {
   ngOnInit(): void {
     this.admin.getSpList().subscribe(data => {
       this.requests = data;
-      this.requests.filter(el => {
-        return !el.isVerified; 
+     this.requests =  this.requests.filter(el => {
+        return el.isVerified === false; 
       })
-      console.log(data);
-            
+    
+      console.log(this.requests);
     })
-
+   
 
   }
 
@@ -44,6 +44,7 @@ export class RequestsComponent implements OnInit {
         this.admin.verifyAccount(id).subscribe(res => {
           console.log('Account Verified');
           
+          this.ngOnInit();
         })
       }
     })
