@@ -7,29 +7,72 @@
         <div class="profile-image">
           <div class="imgg-cont">
             <img src="{{ spData?.imageUrl }}" alt="" width="200" />
+<<<<<<< HEAD
             <div *ngIf="!visitor" class="cam-icon">
               <i  (click)= "basicModal.show()" class="fas fa-camera "></i>
               <!-- modal --> 
                <div class="modalImage"></div>
               <div  mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
                 aria-labelledby="myBasicModalLabel" aria-hidden="true">
+=======
+            <div class="cam-icon">
+              <i (click)="basicModal.show()" class="fas fa-camera"></i>
+              <!-- modal -->
+              <div class="modalImage"></div>
+              <div
+                mdbModal
+                #basicModal="mdbModal"
+                class="modal fade"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="myBasicModalLabel"
+                aria-hidden="true"
+              >
+>>>>>>> 2108fefdf67387314c9d32efbe5a1abac7eee110
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                      <button
+                        type="button"
+                        class="close pull-right"
+                        aria-label="Close"
+                        (click)="basicModal.hide()"
+                      >
                         <span aria-hidden="true">×</span>
                       </button>
                       <!-- <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4> -->
-                      <input type="file" (change)="imgUpload($event)" #image alt="Submit">
+                      <input
+                        type="file"
+                        (change)="imgUpload($event)"
+                        #image
+                        alt="Submit"
+                      />
                     </div>
                     <!-- <div class="modal-body">
                       ...
                     </div> -->
                     <div class="modal-footer">
-                      <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
-                        (click)="basicModal.hide()" mdbWavesEffect>Close</button>
-                      <button (click)="updateImage(this.imageUrl)" type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save
-                        changes</button>
+                      <button
+                        type="button"
+                        mdbBtn
+                        color="secondary"
+                        class="waves-light"
+                        aria-label="Close"
+                        (click)="basicModal.hide()"
+                        mdbWavesEffect
+                      >
+                        Close
+                      </button>
+                      <button
+                        (click)="updateImage(this.imageUrl)"
+                        type="button"
+                        mdbBtn
+                        color="primary"
+                        class="relative waves-light"
+                        mdbWavesEffect
+                      >
+                        Save changes
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -38,8 +81,6 @@
               <!-- modal -->
             </div>
           </div>
-
-
         </div>
 
         <div class="profile-nav-info">
@@ -47,9 +88,8 @@
           <div class="adress">
             <p class="state">{{ spData?.location }}</p>
             <br />
-
           </div>
-          <p class="state">{{spData?.adress}}</p>
+          <p class="state">{{ spData?.adress }}</p>
         </div>
         <div *ngIf="!visitor" class="profile-option">
           <div class="notification">
@@ -84,32 +124,80 @@
             <div class="profile-btn">
               <button class="chatbtn"><i class="fa fa-comment"></i>Chat</button>
             </div>
-            <button *ngIf="visitor" type="button" mdbBtn color="primary" class="relative waves-light"
-              (click)="basicModal.show()" mdbWavesEffect>
+            <button
+              *ngIf="visitor"
+              type="button"
+              mdbBtn
+              color="primary"
+              class="relative waves-light"
+              (click)="basicModal.show()"
+              mdbWavesEffect
+            >
               make appointment
             </button>
 
-            <div mdbModal #basicModal="mdbModal" id="modal" class="modal fade" tabindex="-1" role="dialog"
-              aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div
+              mdbModal
+              #basicModal="mdbModal"
+              id="modal"
+              class="modal fade"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="myBasicModalLabel"
+              aria-hidden="true"
+            >
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <button type="button" class="close pull-right" aria-label="Close"
-                      (click)="basicModal.hide()"></button>
+                    <button
+                      type="button"
+                      class="close pull-right"
+                      aria-label="Close"
+                      (click)="basicModal.hide()"
+                    ></button>
                   </div>
                   <div class="modal-body">
                     <div class="appointment">
                       <input type="date" class="date" #date />
+<<<<<<< HEAD
                       <input type="time" class="time" #time id="appt" name="appt" min="09:00" max="18:00" required />
+=======
+                      <input
+                        type="time"
+                        class="time"
+                        #time
+                        id="appt"
+                        name="appt"
+                        min="09:00"
+                        max="18:00"
+                        required
+                      />
+                      <div class="md-form"></div>
+                      <div class="md-form"></div>
+                      <div class="md-form"></div>
+>>>>>>> 2108fefdf67387314c9d32efbe5a1abac7eee110
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <button (click)="submit(date.value, time.value)" type="button" mdbBtn color="primary"
-                      class="relative waves-light" mdbWavesEffect>
+                    <button
+                      (click)="submit(date.value, time.value)"
+                      type="button"
+                      mdbBtn
+                      color="primary"
+                      class="relative waves-light"
+                      mdbWavesEffect
+                    >
                       Send
                     </button>
-                    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
-                      (click)="basicModal.hide()" mdbWavesEffect>
+                    <button
+                      type="button"
+                      mdbBtn
+                      color="secondary"
+                      class="waves-light"
+                      aria-label="Close"
+                      (click)="basicModal.hide()"
+                      mdbWavesEffect
+                    >
                       Close
                     </button>
                   </div>
@@ -120,10 +208,12 @@
               <h3 class="rating">4.5</h3>
               <div class="rate">
                 <div class="stars">
-                  <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                    class="fa fa-star"></i><i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i><i class="fa fa-star"></i
+                  ><i class="fa fa-star"></i><i class="fa fa-star"></i
+                  ><i class="fa fa-star"></i>
                 </div>
-                <span class="no-user"><span> 123</span>&nbsp;&nbsp; Reviews
+                <span class="no-user"
+                  ><span> 123</span>&nbsp;&nbsp; Reviews
                 </span>
               </div>
             </div>
@@ -132,56 +222,109 @@
         <div class="right-side">
           <div class="nav">
             <ul>
-              <li class="user-post active" [class.active]="posts" (click)="post()">
+              <li
+                class="user-post active"
+                [class.active]="posts"
+                (click)="post()"
+              >
                 Posts
               </li>
-              <li class="user-review" [class.active]="reviews" (click)="review()">
+              <li
+                class="user-review"
+                [class.active]="reviews"
+                (click)="review()"
+              >
                 Reviews
               </li>
-              <li *ngIf="visitor1" class="user-setting" [class.active]="appointments" (click)="appointment()">
+              <li
+                *ngIf="visitor1"
+                class="user-setting"
+                [class.active]="appointments"
+                (click)="appointment()"
+              >
                 My appointments
               </li>
-              <li *ngIf="!visitor" class="user-review" [class.active]="settings" (click)="setting()">
+              <li
+                *ngIf="!visitor"
+                class="user-review"
+                [class.active]="settings"
+                (click)="setting()"
+              >
                 Settings
               </li>
             </ul>
           </div>
           <div class="profile-body">
-            <div class="profile-posts tab active" id="profile-posts" *ngIf="posts">
-             
+            <div
+              class="profile-posts tab active"
+              id="profile-posts"
+              *ngIf="posts"
+            >
               <div *ngIf="!visitor">
                 <h1>Your posts</h1>
-                <button class="button button1" type="submit" (click)="displayForm()" *ngIf="!editable">add</button>
+                <button
+                  class="button button1"
+                  type="submit"
+                  (click)="displayForm()"
+                  *ngIf="!editable"
+                >
+                  add
+                </button>
                 <br />
-  
+
                 <div class="post-formm" *ngIf="editable" class="container">
                   <form action="/action_page.php">
-  
-                    <input type="file"    (change)="imgUpload($event)"
-                    #image  alt="Submit" width="48" height="48">
+                    <input
+                      type="file"
+                      (change)="imgUpload($event)"
+                      #image
+                      alt="Submit"
+                      width="48"
+                      height="48"
+                    />
                     <div class="row">
                       <div class="col-25">
                         <label for="fname">Title:</label>
                       </div>
                       <div class="col-75">
-                        <input #title type="text" id="fname" name="firstname" placeholder="title..">
+                        <input
+                          #title
+                          type="text"
+                          id="fname"
+                          name="firstname"
+                          placeholder="title.."
+                        />
                       </div>
                     </div>
-                    
+
                     <div class="row">
                       <div class="col-25">
                         <label for="subject">Description:</label>
                       </div>
                       <div class="col-75">
-                        <textarea #decription id="subject" name="subject" placeholder="Write something.."
-                          style="height:200px"></textarea>
+                        <textarea
+                          #decription
+                          id="subject"
+                          name="subject"
+                          placeholder="Write something.."
+                          style="height: 200px"
+                        ></textarea>
                       </div>
                     </div>
+<<<<<<< HEAD
                     <button class="save-btn" (click)="Add(title.value,decription.value,date.value,spData?._id)">Save</button>
+=======
+                    <button
+                      class="save-btn"
+                      (click)="Add(title.value, decription.value, date.value)"
+                    >
+                      Save
+                    </button>
+>>>>>>> 2108fefdf67387314c9d32efbe5a1abac7eee110
                   </form>
-  
                 </div>
               </div>
+<<<<<<< HEAD
              <div class="card-container">
               <mdb-card class="card" *ngFor="let e of spPosts">
                 <div>
@@ -191,11 +334,27 @@
                     alt="Card image cap"></mdb-card-img>
                 </div>
                 <mdb-card-body>
+=======
+              <div class="card-container">
+                <mdb-card class="card" *ngFor="let e of spPosts">
+                  <div>
+                    <span
+                      (click)="deletePost(e._id)"
+                      class="far fa-times-circle circle"
+                    ></span>
+                    <mdb-card-img
+                      src="{{ e.image }}"
+                      alt="Card image cap"
+                    ></mdb-card-img>
+                  </div>
+                  <mdb-card-body>
+>>>>>>> 2108fefdf67387314c9d32efbe5a1abac7eee110
                     <!--Title-->
-                  <mdb-card-title>
-                    <h4>{{e.title}}</h4>
-                  </mdb-card-title>
+                    <mdb-card-title>
+                      <h4>{{ e.title }}</h4>
+                    </mdb-card-title>
 
+<<<<<<< HEAD
                   <!--Text-->
                   <mdb-card-text> {{e.description}}
                   </mdb-card-text>
@@ -208,105 +367,257 @@
               <!-- service provider posts -->
         
               
+=======
+                    <!--Text-->
+                    <mdb-card-text> {{ e.description }} </mdb-card-text>
+                    <h4>{{ e.updatedAt }}</h4>
+                  </mdb-card-body>
+                </mdb-card>
 
-
-            <div class="profile-posts tab active" id="profile-settings" *ngIf="settings">
-              <h1>Your settings</h1>
-              <!-- settings for the profile -->
-              <div class="inputs">
-                <!-- first name -->
-                <div>
-                  <div class="firstName-lbl">
-                    <label>First name: </label><br />
-                    <label>{{spData?.firstName}}</label>
-                  </div>
-
-                  <input [(ngModel)]="firstName" class="fn-inp" type="text" placeholder="firstname" *ngIf="changable" />
-                  <button class="fn-save" type="button" (click)="updateFirstName(firstName)"
-                    *ngIf="changable">Save</button>
-
-                  <button class="fn-edit" type="button" (click)="displayInput()" *ngIf="!changable">Edit</button>
-                </div>
-                <!-- last name -->
-                <div>
-                  <div class="firstName-lbl">
-                    <label>Last name: </label><br />
-                    <label>{{spData?.lastName}}</label>
-                  </div>
-
-                  <input [(ngModel)]="lastName" class="fn-inp" type="text" placeholder="lastname" *ngIf="changable1" />
-                  <button class="fn-save" type="button" (click)="updateLastName(lastName)"
-                    *ngIf="changable1">Save</button>
-
-                  <button class="fn-edit" type="button" (click)="displayInput1()" *ngIf="!changable1">Edit</button>
-                </div>
-                <!-- full name -->
-                <div>
-                  <div class="firstName-lbl">
-                    <label>FullName: </label><br />
-                    <label>{{spData?.fullName}}</label>
-                  </div>
-
-                  <input [(ngModel)]="fullName" class="fn-inp" type="text" placeholder="fullname" *ngIf="changable2" />
-                  <button class="fn-save" type="button" (click)="updateFullName(fullName)"
-                    *ngIf="changable2">Save</button>
-
-                  <button class="fn-edit" type="button" (click)="displayInput2()" *ngIf="!changable2">Edit</button>
-                </div>
-                <!-- email -->
-                <div>
-                  <div class="firstName-lbl">
-                    <label>Email: </label><br />
-                    <label>{{spData?.email}}</label>
-                  </div>
-
-                  <input [(ngModel)]="email" class="fn-inp" type="text" placeholder="email" *ngIf="changable3" />
-                  <button class="fn-save" type="button" (click)="updateEmail(email)" *ngIf="changable3">Save</button>
-
-                  <button class="fn-edit" type="button" (click)="displayInput3()" *ngIf="!changable3">Edit</button>
-                </div>
-                <!-- adress -->
-                <div>
-                  <div class="firstName-lbl">
-                    <label>Adress: </label><br />
-                    <label>{{spData?.adress}}</label>
-                  </div>
-
-                  <input [(ngModel)]="adress" class="fn-inp" type="text" placeholder="email" *ngIf="changable4" />
-                  <button class="fn-save" type="button" (click)="updateAdress(adress)" *ngIf="changable4">Save</button>
-
-                  <button class="fn-edit" type="button" (click)="displayInput4()" *ngIf="!changable3">Edit</button>
-                </div>
-                <!-- password -->
-                <div>
-                  <div class="firstName-lbl">
-                    <label>Change Password </label><br />
-                  </div>
-
-                  <input [(ngModel)]="previousPassword" class="fn-inp" type="password"
-                    placeholder="enter your previous password" *ngIf="changable5" />
-                  <input [(ngModel)]="currentPassword" class="fn-inp" type="password"
-                    placeholder="enter your new password" *ngIf="changable5" />
-                  <input [(ngModel)]="confirmPassword" class="fn-inp" type="password"
-                    placeholder="confirm your password" *ngIf="changable5" />
-                  <button class="fn-save" type="button"
-                    (click)="updatePassword(previousPassword, currentPassword, confirmPassword)"
-                    *ngIf="changable5">Save</button>
-
-                  <button class="fn-edit" type="button" (click)="displayInput5()" *ngIf="!changable5">Edit</button>
-                </div>
+                <!-- card posts -->
+                <!-- service provider posts -->
               </div>
-              <!-- settings for the profile -->
-            </div>
-            <div class="profile-reviews tab" id="profile-reviews" *ngIf="reviews">
-              <app-reviews></app-reviews>
-            </div>
-            <div class="profile-settings tab" id="profile-settings" *ngIf="appointments">
-              <div *ngIf="visitor1">
-                <div class="card" *ngFor="let e of data">
-                  <p>you have an appointment on: {{ e.date }}</p>
-                  <p>at {{ e.time }}</p>
-                  <h1>By: {{ e.userName }}</h1>
+              <div
+                class="profile-posts tab active"
+                id="profile-settings"
+                *ngIf="settings"
+              >
+                <h1>Your settings</h1>
+                <!-- settings for the profile -->
+                <div class="inputs">
+                  <!-- first name -->
+                  <div>
+                    <div class="firstName-lbl">
+                      <label>First name: </label><br />
+                      <label>{{ spData?.firstName }}</label>
+                    </div>
+>>>>>>> 2108fefdf67387314c9d32efbe5a1abac7eee110
+
+                    <input
+                      [(ngModel)]="firstName"
+                      class="fn-inp"
+                      type="text"
+                      placeholder="firstname"
+                      *ngIf="changable"
+                    />
+                    <button
+                      class="fn-save"
+                      type="button"
+                      (click)="updateFirstName(firstName)"
+                      *ngIf="changable"
+                    >
+                      Save
+                    </button>
+
+                    <button
+                      class="fn-edit"
+                      type="button"
+                      (click)="displayInput()"
+                      *ngIf="!changable"
+                    >
+                      Edit
+                    </button>
+                  </div>
+                  <!-- last name -->
+                  <div>
+                    <div class="firstName-lbl">
+                      <label>Last name: </label><br />
+                      <label>{{ spData?.lastName }}</label>
+                    </div>
+
+                    <input
+                      [(ngModel)]="lastName"
+                      class="fn-inp"
+                      type="text"
+                      placeholder="lastname"
+                      *ngIf="changable1"
+                    />
+                    <button
+                      class="fn-save"
+                      type="button"
+                      (click)="updateLastName(lastName)"
+                      *ngIf="changable1"
+                    >
+                      Save
+                    </button>
+
+                    <button
+                      class="fn-edit"
+                      type="button"
+                      (click)="displayInput1()"
+                      *ngIf="!changable1"
+                    >
+                      Edit
+                    </button>
+                  </div>
+                  <!-- full name -->
+                  <div>
+                    <div class="firstName-lbl">
+                      <label>FullName: </label><br />
+                      <label>{{ spData?.fullName }}</label>
+                    </div>
+
+                    <input
+                      [(ngModel)]="fullName"
+                      class="fn-inp"
+                      type="text"
+                      placeholder="fullname"
+                      *ngIf="changable2"
+                    />
+                    <button
+                      class="fn-save"
+                      type="button"
+                      (click)="updateFullName(fullName)"
+                      *ngIf="changable2"
+                    >
+                      Save
+                    </button>
+
+                    <button
+                      class="fn-edit"
+                      type="button"
+                      (click)="displayInput2()"
+                      *ngIf="!changable2"
+                    >
+                      Edit
+                    </button>
+                  </div>
+                  <!-- email -->
+                  <div>
+                    <div class="firstName-lbl">
+                      <label>Email: </label><br />
+                      <label>{{ spData?.email }}</label>
+                    </div>
+
+                    <input
+                      [(ngModel)]="email"
+                      class="fn-inp"
+                      type="text"
+                      placeholder="email"
+                      *ngIf="changable3"
+                    />
+                    <button
+                      class="fn-save"
+                      type="button"
+                      (click)="updateEmail(email)"
+                      *ngIf="changable3"
+                    >
+                      Save
+                    </button>
+
+                    <button
+                      class="fn-edit"
+                      type="button"
+                      (click)="displayInput3()"
+                      *ngIf="!changable3"
+                    >
+                      Edit
+                    </button>
+                  </div>
+                  <!-- adress -->
+                  <div>
+                    <div class="firstName-lbl">
+                      <label>Adress: </label><br />
+                      <label>{{ spData?.adress }}</label>
+                    </div>
+
+                    <input
+                      [(ngModel)]="adress"
+                      class="fn-inp"
+                      type="text"
+                      placeholder="email"
+                      *ngIf="changable4"
+                    />
+                    <button
+                      class="fn-save"
+                      type="button"
+                      (click)="updateAdress(adress)"
+                      *ngIf="changable4"
+                    >
+                      Save
+                    </button>
+
+                    <button
+                      class="fn-edit"
+                      type="button"
+                      (click)="displayInput4()"
+                      *ngIf="!changable3"
+                    >
+                      Edit
+                    </button>
+                  </div>
+                  <!-- password -->
+                  <div>
+                    <div class="firstName-lbl">
+                      <label>Change Password </label><br />
+                    </div>
+
+                    <input
+                      [(ngModel)]="previousPassword"
+                      class="fn-inp"
+                      type="password"
+                      placeholder="enter your previous password"
+                      *ngIf="changable5"
+                    />
+                    <input
+                      [(ngModel)]="currentPassword"
+                      class="fn-inp"
+                      type="password"
+                      placeholder="enter your new password"
+                      *ngIf="changable5"
+                    />
+                    <input
+                      [(ngModel)]="confirmPassword"
+                      class="fn-inp"
+                      type="password"
+                      placeholder="confirm your password"
+                      *ngIf="changable5"
+                    />
+                    <button
+                      class="fn-save"
+                      type="button"
+                      (click)="
+                        updatePassword(
+                          previousPassword,
+                          currentPassword,
+                          confirmPassword
+                        )
+                      "
+                      *ngIf="changable5"
+                    >
+                      Save
+                    </button>
+
+                    <button
+                      class="fn-edit"
+                      type="button"
+                      (click)="displayInput5()"
+                      *ngIf="!changable5"
+                    >
+                      Edit
+                    </button>
+                  </div>
+                </div>
+                <!-- settings for the profile -->
+              </div>
+              <div
+                class="profile-reviews tab"
+                id="profile-reviews"
+                *ngIf="reviews"
+              >
+                <app-reviews></app-reviews>
+              </div>
+              <div
+                class="profile-settings tab"
+                id="profile-settings"
+                *ngIf="appointments"
+              >
+                <div *ngIf="visitor1">
+                  <div class="card" *ngFor="let e of data">
+                    <p>you have an appointment on: {{ e.date }}</p>
+                    <p>at {{ e.time }}</p>
+                    <h1>By: {{ e.userName }}</h1>
+                  </div>
                 </div>
               </div>
             </div>
