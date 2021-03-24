@@ -299,6 +299,21 @@ const serviceProviderCtrl = {
     } catch (error) {
       console.log(error)
     }
+  },
+  updateImage: async (req, res) => {
+    console.log(req.params)
+    console.log(req.body)
+    try {
+      const {imageUrl}= req.body
+      let sv = await ServiceProvider.findByIdAndUpdate({ _id: req.params.id }, {
+        imageUrl
+      }, { new: true })
+      console.log("sv imageUrl", sv.imageUrl)
+      res.send({ success: "updated image successfully", data: sv.imageUrl })
+      
+    } catch (error) {
+      console.log(error)
+    }
   }
 };
 module.exports = serviceProviderCtrl;

@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { GaryService } from '../gary.service';
 import { LocalService } from '../local.service';
+import * as moment from 'moment';
+
 // import { Router } from '@angular/router';
 // import {ActivatedRoute} from '@angular/router';
 
@@ -19,8 +21,6 @@ export class SpProfileComponent implements OnInit {
     private http: HttpClient,
     private local: LocalService
   ) { }
-  // boli : boolean = false 
-  // obj : any = { name : "halim" , last : "boussada" , job : "hir"}
   name: any = localStorage.getItem("apUserName")
   spData: any;
   data: any;
@@ -40,6 +40,7 @@ export class SpProfileComponent implements OnInit {
   previousPassword: string;
   currentPassword: string;
   confirmPassword: string;
+  imageUrl : string
   ngOnInit(): void {
 
 
@@ -51,18 +52,40 @@ export class SpProfileComponent implements OnInit {
       this.visitor1 = true;
     }
     // this.spEmail = localStorage.getItem('spEmail');
-    this.svMail = localStorage.getItem('svMail');
+   
     this.http
       .get(`http://localhost:3000/api/serviceProvider/${this.svMail}`)
       .subscribe((data) => {
         console.log('ali====>', data);
         this.spData = data;
     });
-      this.http.get("http://localhost:3000/api/posts").subscribe((data)=>{
+      this.svMail = localStorage.getItem('svMail');
+      this.http.get(`http://localhost:3000/api/posts/${this.svMail}`).subscribe((data)=>{
         console.log("daaaaaaaataaa==>",data)
         this.spPosts=data
+        this.spPosts = this.spPosts.reverse()
+        for ( var i = 0; i < this.spPosts.length; i++ ) {
+          this.spPosts[i].updatedAt = moment(
+            this.spPosts[i].updatedAt
+          ).format('LLL'); 
+        }
       })
+      
      
+  }
+ 
+
+ 
+ 
+
+ 
+  imgUpload(img) {
+    console.log('IMG FROM VER==> ', img.target.files[0]);
+    var formData = new FormData();
+    formData.append('img', img.target.files[0]);
+    this.http.post("http://localhost:3000/upload" , formData).subscribe((resp) => {
+      this.imageUrl = resp['msg'].url;
+    });
   }
 
   // up(){
@@ -186,12 +209,13 @@ export class SpProfileComponent implements OnInit {
   displayForm() {
     this.editable = true
   }
-Add(title , description ,date ){
+Add(title , description ,date  ){
 
   var adding = {
     title:title,
     description:description,
-    date:date
+    date:date,
+    image : this.imageUrl
     
   }
   if(title===""&& description===""&&date===""){
@@ -432,5 +456,24 @@ deletePost(id){
     this.changable5 = false
   }
 
+
+  updateImage(imageUrl) {
+
+    console.log("sv details====>", this.spData)
+    console.log(imageUrl)
+    
+      this.http.put(`http://localhost:3000/api/serviceProvider/updateImage/${this.spData._id}`, {
+        imageUrl: imageUrl
+      }, { responseType: 'json' }).subscribe((data) => {
+        console.log("new data", data)
+        this.spData.imageUrl = data['data']
+        Swal.fire(
+          '',
+          data['success'],
+          'success'
+        );
+      })
+      // this.ngOnInit()
+  }
 
 }

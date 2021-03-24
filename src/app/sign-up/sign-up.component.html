@@ -107,11 +107,14 @@
               list="Profession-list"
               type="text"
             />
-            <option value="Profession">Profession</option>
-
-            <option value="Gardening">Gardening</option>
-            <option value="Painting">Painting</option>
-            <option value="Plumbing">Plumbing</option>
+            <option>Profession</option>
+            <option
+            class="dropdown-content"
+            *ngFor="let service of services"
+            value="{{ service.profession }}"
+          >
+            {{ service?.profession }}
+          </option>
           </select>
         </div>
       </div>
