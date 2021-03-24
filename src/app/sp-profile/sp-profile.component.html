@@ -7,11 +7,11 @@
         <div class="profile-image">
           <div class="imgg-cont">
             <img src="{{ spData?.imageUrl }}" alt="" width="200" />
-            <div class="cam-icon">
-              <i (click)="basicModal.show()" class="fas fa-camera "></i>
-              <!-- modal -->
+            <div *ngIf="!visitor" class="cam-icon">
+              <i  (click)= "basicModal.show()" class="fas fa-camera "></i>
+              <!-- modal --> 
                <div class="modalImage"></div>
-              <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+              <div  mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
                 aria-labelledby="myBasicModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -101,15 +101,6 @@
                     <div class="appointment">
                       <input type="date" class="date" #date />
                       <input type="time" class="time" #time id="appt" name="appt" min="09:00" max="18:00" required />
-                      <div class="md-form">
-
-                      </div>
-                      <div class="md-form">
-
-                      </div>
-                      <div class="md-form">
-
-                      </div>
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -186,7 +177,7 @@
                           style="height:200px"></textarea>
                       </div>
                     </div>
-                    <button class="save-btn" (click)="Add(title.value,decription.value,date.value)">Save</button>
+                    <button class="save-btn" (click)="Add(title.value,decription.value,date.value,spData?._id)">Save</button>
                   </form>
   
                 </div>
@@ -194,7 +185,7 @@
              <div class="card-container">
               <mdb-card class="card" *ngFor="let e of spPosts">
                 <div>
-                  <span (click)="deletePost(e._id)" class="far fa-times-circle circle"></span>
+                  <span *ngIf="!visitor" (click)="deletePost(e._id)" class="far fa-times-circle circle"></span>
                   <mdb-card-img
                     src="{{e.image}}"
                     alt="Card image cap"></mdb-card-img>
@@ -211,11 +202,11 @@
                   <h4>{{e.updatedAt}}</h4>
                 </mdb-card-body>
               </mdb-card>
-
+            </div>
+          </div>
               <!-- card posts -->
               <!-- service provider posts -->
         
-             </div>
               
 
 

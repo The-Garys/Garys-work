@@ -8,7 +8,8 @@ const postsSchema = new mongoose.Schema(
    description: { type: String},
    image: { type: String},
    date:{type:String},
-   email:{type:String}
+   email:{type:String},
+   spId:{type:String},
 },
   { timestamps: true }
 );
