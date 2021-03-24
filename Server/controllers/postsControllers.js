@@ -6,7 +6,7 @@ module.exports={
         title:req.body.title,
         description:req.body.description,
         date:req.body.date,
-
+        image : req.body.image
        
     });
        try{
