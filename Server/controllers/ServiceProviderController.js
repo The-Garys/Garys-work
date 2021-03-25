@@ -96,7 +96,7 @@ const serviceProviderCtrl = {
         }
       );
       userProvider.token = token;
-      await userProvider.save()
+      await userProvider.save();
       console.log("user====>", userProvider._id);
 
       res.status(200).send({
@@ -106,7 +106,9 @@ const serviceProviderCtrl = {
         id: userProvider._id,
         name: userProvider.firstName,
         greet: "Welcome",
-        email: userProvider.email
+        email: userProvider.email,
+        isBanned: userProvider.isBanned,
+        isVerified: userProvider.isVerified,
       });
     } catch (error) {
       console.log(error);
@@ -192,85 +194,114 @@ const serviceProviderCtrl = {
 
   // },
   updatePassword: async (req, res) => {
-    console.log("password id of the SV", req.params)
-    console.log("the body", req.body)
+    console.log("password id of the SV", req.params);
+    console.log("the body", req.body);
     try {
-
-      const { previousPassword, currentPassword, confirmPassword } = req.body
+      const { previousPassword, currentPassword, confirmPassword } = req.body;
       if (previousPassword === currentPassword) {
-        res.send({ err: "you changed your password to the same password! are you dumb?" })
+        res.send({
+          err: "you changed your password to the same password! are you dumb?",
+        });
       }
-      const svPassword = await ServiceProvider.findOne({ _id: req.params.id })
-      console.log("service password", svPassword.password)
+      const svPassword = await ServiceProvider.findOne({ _id: req.params.id });
+      console.log("service password", svPassword.password);
 
-      const isMatch = await bcrypt.compare(previousPassword.toString(), svPassword.password)
-      console.log("isMatch", isMatch)
+      const isMatch = await bcrypt.compare(
+        previousPassword.toString(),
+        svPassword.password
+      );
+      console.log("isMatch", isMatch);
       if (!isMatch) {
-        res.send({ err: "incorrect password" })
+        res.send({ err: "incorrect password" });
       }
-      const hashCurrentPassword = await bcrypt.hash(currentPassword.toString(), 10);
-      console.log('hashed currentpassword', hashCurrentPassword)
+      const hashCurrentPassword = await bcrypt.hash(
+        currentPassword.toString(),
+        10
+      );
+      console.log("hashed currentpassword", hashCurrentPassword);
       // const hashConfirmPassword = await bcrypt.hash(confirmPassword.toString(), 10);
       // console.log('hashed confirmpassword', hashConfirmPassword)
-      const isSame = await bcrypt.compare(confirmPassword.toString(),hashCurrentPassword )
-      console.log('isSame', isSame)
+      const isSame = await bcrypt.compare(
+        confirmPassword.toString(),
+        hashCurrentPassword
+      );
+      console.log("isSame", isSame);
       if (!isSame) {
-        res.send({ err: "make sure to enter your confirm password correctly" })
+        res.send({ err: "make sure to enter your confirm password correctly" });
       }
-      if(isMatch && isSame){
-        svPassword.password = hashCurrentPassword
+      if (isMatch && isSame) {
+        svPassword.password = hashCurrentPassword;
 
-        svPassword.save()
-        res.send({ success: "your password changed successfully", data: svPassword.password })
+        svPassword.save();
+        res.send({
+          success: "your password changed successfully",
+          data: svPassword.password,
+        });
       }
-
-
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   },
   updateFirstName: async (req, res) => {
-    console.log(req.params)
+    console.log(req.params);
     try {
-      const { firstName } = req.body
-      let sv = await ServiceProvider.findByIdAndUpdate({ _id: req.params.id }, {
-        firstName
-      }, { new: true })
-      console.log("sv first name", sv.firstName)
-      res.send({ success: "updated first name successfully", data: sv.firstName })
+      const { firstName } = req.body;
+      let sv = await ServiceProvider.findByIdAndUpdate(
+        { _id: req.params.id },
+        {
+          firstName,
+        },
+        { new: true }
+      );
+      console.log("sv first name", sv.firstName);
+      res.send({
+        success: "updated first name successfully",
+        data: sv.firstName,
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   },
   updateLastName: async (req, res) => {
-    console.log(req.params)
+    console.log(req.params);
     try {
-      const { lastName } = req.body
-      let sv = await ServiceProvider.findByIdAndUpdate({ _id: req.params.id }, {
-        lastName
-      }, { new: true })
-      console.log("sv last name", sv.lastName)
-      res.send({ success: "updated last name successfully", data: sv.lastName })
+      const { lastName } = req.body;
+      let sv = await ServiceProvider.findByIdAndUpdate(
+        { _id: req.params.id },
+        {
+          lastName,
+        },
+        { new: true }
+      );
+      console.log("sv last name", sv.lastName);
+      res.send({
+        success: "updated last name successfully",
+        data: sv.lastName,
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   },
   updateFullName: async (req, res) => {
-    console.log(req.params)
+    console.log(req.params);
     try {
-      const { fullName } = req.body
-      let sv = await ServiceProvider.findByIdAndUpdate({ _id: req.params.id }, {
-        fullName
-      }, { new: true })
-      console.log("sv fullname", sv.fullName)
-      res.send({ success: "updated fullname successfully", data: sv.fullName })
+      const { fullName } = req.body;
+      let sv = await ServiceProvider.findByIdAndUpdate(
+        { _id: req.params.id },
+        {
+          fullName,
+        },
+        { new: true }
+      );
+      console.log("sv fullname", sv.fullName);
+      res.send({ success: "updated fullname successfully", data: sv.fullName });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   },
   updateEmail: async (req, res) => {
     try {
-      const { email } = req.body
+      const { email } = req.body;
       const serviceProvider = await ServiceProvider.findOne({ email });
       if (serviceProvider) {
         return res.send({ err: "sorry this email already exists" });
@@ -279,41 +310,52 @@ const serviceProviderCtrl = {
       if (user) {
         return res.send({ err: "sorry this email already exists" });
       }
-      let sv = await ServiceProvider.findByIdAndUpdate({ _id: req.params.id }, {
-        email
-      }, { new: true })
-      console.log("sv email", sv.email)
-      res.send({ success: "updated email successfully", data: sv.email })
+      let sv = await ServiceProvider.findByIdAndUpdate(
+        { _id: req.params.id },
+        {
+          email,
+        },
+        { new: true }
+      );
+      console.log("sv email", sv.email);
+      res.send({ success: "updated email successfully", data: sv.email });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   },
   updateAdress: async (req, res) => {
     try {
-      const { adress } = req.body
-      let sv = await ServiceProvider.findByIdAndUpdate({ _id: req.params.id }, {
-        adress
-      }, { new: true })
-      console.log("sv fullname", sv.adress)
-      res.send({ success: "updated adress successfully", data: sv.adress })
+      const { adress } = req.body;
+      let sv = await ServiceProvider.findByIdAndUpdate(
+        { _id: req.params.id },
+        {
+          adress,
+        },
+        { new: true }
+      );
+      console.log("sv fullname", sv.adress);
+      res.send({ success: "updated adress successfully", data: sv.adress });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   },
   updateImage: async (req, res) => {
-    console.log(req.params)
-    console.log(req.body)
+    console.log(req.params);
+    console.log(req.body);
     try {
-      const {imageUrl}= req.body
-      let sv = await ServiceProvider.findByIdAndUpdate({ _id: req.params.id }, {
-        imageUrl
-      }, { new: true })
-      console.log("sv imageUrl", sv.imageUrl)
-      res.send({ success: "updated image successfully", data: sv.imageUrl })
-      
+      const { imageUrl } = req.body;
+      let sv = await ServiceProvider.findByIdAndUpdate(
+        { _id: req.params.id },
+        {
+          imageUrl,
+        },
+        { new: true }
+      );
+      console.log("sv imageUrl", sv.imageUrl);
+      res.send({ success: "updated image successfully", data: sv.imageUrl });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  },
 };
 module.exports = serviceProviderCtrl;

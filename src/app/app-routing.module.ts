@@ -14,6 +14,7 @@ import { AdminComponent } from './Admin/admin/admin.component';
 import {MessagesComponent} from './Admin/messages/messages.component';
 import {ProvidersComponent} from './Admin/providers/providers.component'
 import {UsersComponent} from './Admin/users/users.component'
+import {RequestsComponent} from './Admin/requests/requests.component';
 
 
 
@@ -28,7 +29,7 @@ const routes: Routes = [
   { path: 'userSignup', component: SignupComponent },
   { path: 'spProfile', component: SpProfileComponent },
   {path: 'homeServices', component: ServicesListComponent} , 
-  {path: 'admin', component: AdminComponent, children:[{path:'', component:AdminComponent},{path:'sps', component:ProvidersComponent},{path:'messages', component:MessagesComponent},{path:'users', component:UsersComponent}]},
+  {path: 'admin', component: AdminComponent, children:[{path:'', component:AdminComponent},{path:'sps', component:ProvidersComponent},{path:'messages', component:MessagesComponent},{path:'users', component:UsersComponent}, {path:'requests', component:RequestsComponent}]},
   
   {path: 'userServices', component: UserServicesComponent},
   {path: 'userHome', component: UserHomeComponent},
