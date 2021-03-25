@@ -40,6 +40,7 @@ import { SvNavComponent } from './sv-nav/sv-nav.component';
 import { ProvidersComponent } from './Admin/providers/providers.component';
 import { UsersComponent } from './Admin/users/users.component';
 import { RequestsComponent } from './Admin/requests/requests.component';
+import { ServiceProviderCardComponent } from './services-list/service-provider-card/service-provider-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +69,7 @@ import { RequestsComponent } from './Admin/requests/requests.component';
     ProvidersComponent,
     UsersComponent,
     RequestsComponent,
+    ServiceProviderCardComponent,
   ],
   imports: [
     BrowserModule,

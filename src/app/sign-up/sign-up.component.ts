@@ -8,9 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
+    services : any
   constructor(private http: HttpClient, private router: Router) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.services = [];
+    this.http.get("http://localhost:3000/api/professions/getProfessions").subscribe((data)=>{
+      console.log("profesiiooons", data)
+      this.services=data
+    })
+  }
   imageUrl : string
   imgUpload(img) {
     console.log('IMG FROM VER==> ', img.target.files[0]);
@@ -19,6 +26,8 @@ export class SignUpComponent implements OnInit {
     this.http.post("http://localhost:3000/upload" , formData).subscribe((resp) => {
       this.imageUrl = resp['msg'].url;
     });
+
+  
   }
   getData(
     firstName,
