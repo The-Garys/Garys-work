@@ -48,6 +48,9 @@ export class AdminServices {
 public verifyAccount(id) {
   return this.httpClient.put(`http://localhost:3000/api/admin/verify/${id}`, {})
 }  
+public declineAccount(id) {
+  return this.httpClient.put(`http://localhost:3000/api/admin/decline/${id}`, {})
+} 
 
 
 }
