@@ -8,7 +8,7 @@
           <div class="imgg-cont">
             <img src="{{ spData?.imageUrl }}" alt="" width="200" />
             <div class="cam-icon">
-              <i (click)="basicModal.show()" class="fas fa-camera "></i>
+              <i (click)="basicModal.show()" class="fas fa-camera "*ngIf="!visitor"></i>
               <!-- modal -->
                <div class="modalImage"></div>
               <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
