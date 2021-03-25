@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AdminServices} from '../admin.service'
+import {AdminServices} from '../admin.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-requests',
   templateUrl: './requests.component.html',
@@ -12,10 +13,43 @@ export class RequestsComponent implements OnInit {
 
   ngOnInit(): void {
     this.admin.getSpList().subscribe(data => {
-      this.requests = data
-      console.log(data);
-      
+      this.requests = data;
+     this.requests =  this.requests.filter(el => {
+        return el.isVerified === false; 
+      })
+    
+      console.log(this.requests);
     })
+   
+
   }
 
+  verifyAcc(id) {
+
+    Swal.fire({
+      title: 'Verify Account?',
+      text: "",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#4BB543',
+      cancelButtonColor: '#576490',
+      confirmButtonText: 'Verify'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          '',
+          'Account Verified!',
+          'success'
+        )
+        this.admin.verifyAccount(id).subscribe(res => {
+          console.log('Account Verified');
+          
+          this.ngOnInit();
+        })
+      }
+    })
+
+
+
+}
 }

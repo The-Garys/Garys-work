@@ -1,7 +1,8 @@
 <div>
-<mdb-card class="m-5" *ngFor='let request of requests' id="req">
+<mdb-card  class="m-5 card" *ngFor='let request of requests' id="req">
     <mdb-card-body>
       <div id="info">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque saepe maxime earum iusto repellat nesciunt dolore, magnam minima, dicta sint facilis molestiae. Dolores explicabo, ipsum accusantium totam error nemo suscipit.</p>
       </div>
       <mdb-card-title>
           <img src={{request.imageUrl}} alt="">
@@ -14,7 +15,7 @@
             <li>{{request.phoneNumber}}</li>
         </ul>
       </mdb-card-text>
-      <button mdbBtn type="button" color="success" mdbWavesEffect>Verify Account</button>
+      <button mdbBtn type="button" color="success" (click) ='verifyAcc(request._id)' mdbWavesEffect>Verify Account</button>
       <button mdbBtn type="button" color="warning" mdbWavesEffect>Decline</button>
       <div class="position-absolute top-0 start-100 translate-middle pff"></div>
 

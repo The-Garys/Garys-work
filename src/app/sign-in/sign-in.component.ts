@@ -62,8 +62,22 @@ export class SignInComponent implements OnInit {
               text: 'Account Is Banned',
             });
           }
+
+
+
+          else if(data['isVerified'] == false) {
+            
+            
+            Swal.fire({
+              icon:'info',
+              title: 'Account is still being verified',
+              text:'Your Account is still being validated, Please contact us for more information'
+            })
+          }
           
           else {
+          console.log('thiiiiiiiiiis=>',data);
+
             console.log(data['token']);
             localStorage.setItem('token', data['token']);
             localStorage.setItem('svMail', data['email']);
@@ -104,6 +118,7 @@ export class SignInComponent implements OnInit {
               text: 'Account Is Banned',
             });
           }
+         
            else {
             localStorage.setItem("apUserName" , data["name"])
             this.local.changeRole('user');

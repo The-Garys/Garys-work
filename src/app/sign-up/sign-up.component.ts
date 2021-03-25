@@ -75,6 +75,7 @@ export class SignUpComponent implements OnInit {
         text: 'your password must be at least 8 characters',
       });
     } else {
+
       this.http
         .post(
           'http://localhost:3000/api/serviceProvider/signup',
@@ -100,12 +101,15 @@ export class SignUpComponent implements OnInit {
               title: 'Oops...',
               text: data["err"]
             })
-          } else {
+            
+          } 
+          
+          else {
             localStorage.setItem("token", data["token"])
             this.router.navigateByUrl('/signin');
             Swal.fire(
-              data["greet"] +" "+data["name"],
-              data["success"],
+             'Singup Complete!',
+              'You will recieve a text message once your account has been verified, Welcome to the community!',
               'success'
             )
           }
