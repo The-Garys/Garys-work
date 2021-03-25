@@ -129,7 +129,7 @@
 .profile-side p i {
   color: #4daaa7;
   margin-right: 10px;
-} 
+}
 .profile-nav-info p {
   color: rgb(90, 90, 90);
 }
@@ -307,10 +307,24 @@ button.chatbtn i {
   width: 125%;
 }
 
-.form-control{  height: 2rem;  margin-top:2rem;  margin-left: 2rem;  width: 80%;}
-#modal{margin-left:40%;margin-top: 10%;
-}.label{  margin-left: 2rem;}.date{  margin-top:1rem;  margin-left: 1rem;  margin-right:0.5rem;}
-
+.form-control {
+  height: 2rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  width: 80%;
+}
+#modal {
+  margin-left: 40%;
+  margin-top: 10%;
+}
+.label {
+  margin-left: 2rem;
+}
+.date {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+}
 
 .flip-card {
   background-color: transparent;
@@ -318,7 +332,7 @@ button.chatbtn i {
   height: 200px;
   border: 1px solid #f1f1f1;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
-  display:flex;
+  display: flex;
   float: right;
   margin-right: 1rem;
 }
@@ -339,7 +353,8 @@ button.chatbtn i {
 }
 
 /* Position the front and back side */
-.flip-card-front, .flip-card-back {
+.flip-card-front,
+.flip-card-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -361,7 +376,7 @@ button.chatbtn i {
 }
 
 .button {
-  background-color: #4CAF50; /* Green */
+  background-color: #4caf50; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
@@ -374,8 +389,8 @@ button.chatbtn i {
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
 }
-.save-btn{
-  background-color: #4CAF50; /* Green */
+.save-btn {
+  background-color: #4caf50; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
@@ -387,85 +402,115 @@ button.chatbtn i {
   cursor: pointer;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
-
 }
 
 .button1 {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .button1:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 textarea {
   margin-right: 40px;
 }
 .post-formm {
-  align-items: center  !important;
+  align-items: center !important;
   text-align: start;
   // margin-left: 17rem;
-
-
 }
 .fname {
   display: block;
   margin-bottom: 2rem;
   margin: auto;
-
 }
 // .labelss {
 // }
 .firstName-lbl {
   display: inline-block;
+  width: 100%;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+  border: none;
+  border-bottom: 1px solid rgb(124, 124, 124);
+}
+.firstName-lbl .lll {
   float: left;
+  color: rgb(83, 82, 82);
+}
+.fn-chng {
+  width: 100%;
+}
+.chngbl-inp {
 }
 .fn-inp {
   display: inline-block;
-  width: 30%;
+  width: 50% !important;
   height: 40px;
+  float: left;
 }
 .fn-edit {
   float: right;
   display: inline-block;
 }
-
+#mail-lbl {
+  margin-left: -3rem;
+}
 .fn-save {
   display: inline-block;
   float: right;
   height: 40px;
-  width: 8%
+  width: 8%;
 }
 
-.inputs{
+.inputs {
   display: inline-block;
-  // width: 100%;
+  width: 100%;
   // height: 100p
+}
+.firstName-dt {
+  margin-left: -4.7rem;
+  float: left;
+  color: rgb(136, 136, 136);
 }
 .state {
   display: flex;
   flex-direction: row;
-} 
-
-
-
-.card{
-  width:100%;
-  margin-top:1%;
-  height:10%;
-}
-.card-container{
-  height:10%;
 }
 
-
-
-
-
+.card {
+  width: 100%;
+  margin-top: 1%;
+  height: 10%;
+}
+.card-container {
+  height: 10%;
+}
+.ed {
+  margin-top: 9px;
+}
+.fa-edit {
+  margin-left: 10px;
+  color: #fff;
+}
+.fn-edit {
+  margin-top: -15px;
+  border: 1px solid #ccc;
+  height: 40px;
+  width: 80px;
+  justify-content: center;
+  border-radius: 6px;
+  background-color: rgb(0, 136, 255);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 * {
   box-sizing: border-box;
 }
 
-input[type=text], select, textarea {
+input[type="text"],
+select,
+textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -478,8 +523,8 @@ label {
   display: inline-block;
 }
 
-input[type=submit] {
-  background-color: #4CAF50;
+input[type="submit"] {
+  background-color: #4caf50;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -488,7 +533,7 @@ input[type=submit] {
   float: right;
 }
 
-input[type=submit]:hover {
+input[type="submit"]:hover {
   background-color: #45a049;
 }
 
@@ -519,22 +564,22 @@ input[type=submit]:hover {
 .date {
   margin-left: 5.5rem;
 }
-#date{
-  margin-left:2rem;
+#date {
+  margin-left: 2rem;
 }
 
-.circle{
-  position:absolute;
+.circle {
+  position: absolute;
   margin-left: 2%;
   color: red;
-  margin-top:2%;
-
+  margin-top: 2%;
 }
-
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
-  .col-25, .col-75, input[type=submit] {
+  .col-25,
+  .col-75,
+  input[type="submit"] {
     width: 100%;
     margin-top: 0;
   }
@@ -548,4 +593,6 @@ input[type=submit]:hover {
   margin-top: 12%;
   margin-left: 12%;
 }
-
+.edit-span {
+  color: #fff;
+}
