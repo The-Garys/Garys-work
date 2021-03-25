@@ -261,7 +261,7 @@
                     <label>Adress: </label><br />
                     <label>{{spData?.adress}}</label>
                   </div>
-                  <input [(ngModel)]="adress" class="fn-inp" type="text" placeholder="email" *ngIf="changable4" />
+                  <input [(ngModel)]="adress" class="fn-inp" type="text" placeholder="adress" *ngIf="changable4" />
                   <button class="fn-save" type="button" (click)="updateAdress(adress)" *ngIf="changable4">Save</button>
 
                   <button class="fn-edit" type="button" (click)="displayInput4()" *ngIf="!changable3">Edit</button>
