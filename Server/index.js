@@ -14,6 +14,8 @@ const adminRouter = require("./routes/AdminRoutes");
 const professionsRouter = require("./routes/ProfessionsRoutes");
 const postsRouter = require("./routes/PostsRoute");
 const multer = require("multer");
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
 
 const upload = multer({ dest: "uploads" });
 const cloudinary = require("cloudinary").v2;
@@ -22,7 +24,13 @@ cloudinary.config({
   api_key: process.env.API_KEY,
   api_secret: process.env.API_SECRET,
 });
-app.use(cors());
+
+var corsOptions = {
+  origin: "http://localhost:4200",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
@@ -81,6 +89,16 @@ app.post("/upload", upload.any(0), (req, res) => {
 //     console.log(err);
 //   }
 // });
+io.on("connection", (socket) => {
+  socket.on("message", (msg) => {
+    console.log(msg);
+    socket.broadcast.emit("message-broadcast", msg);
+  });
+  console.log("a user connected");
+});
 
 const port = 3000;
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+http.listen(port, () => {
+  console.log(`listening on port ${port}`);
+});
+// app.listen(port, () => console.log(`Example app listening on port ${port}!`));
