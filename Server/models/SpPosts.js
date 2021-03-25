@@ -6,7 +6,10 @@ const postsSchema = new mongoose.Schema(
    
    title:{ type: String},
    description: { type: String},
+   image: { type: String},
    date:{type:String},
+   email:{type:String},
+   spId:{type:String},
 },
   { timestamps: true }
 );

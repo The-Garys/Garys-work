@@ -6,7 +6,8 @@ module.exports={
         title:req.body.title,
         description:req.body.description,
         date:req.body.date,
-
+        image : req.body.image,
+        spId:req.body.spId
        
     });
        try{
@@ -20,7 +21,7 @@ module.exports={
 
  getPosts: async (req, res) => {
     try {
-      const posts = await Posts.find();
+      const posts = await Posts.find({ spId : req.params.id });
     //   console.log(posts );
       res.send(posts) ;
     } catch (error) {

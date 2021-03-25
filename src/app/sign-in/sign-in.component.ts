@@ -66,7 +66,7 @@ export class SignInComponent implements OnInit {
 
 
           else if(data['isVerified'] == false) {
-            console.log('wut ?');
+            
             
             Swal.fire({
               icon:'info',

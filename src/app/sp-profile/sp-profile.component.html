@@ -1,5 +1,4 @@
 <app-sv-nav></app-sv-nav>
-
 <div class="body">
   <div class="cont">
     <div class="container">
@@ -7,7 +6,7 @@
         <div class="profile-image">
           <div class="imgg-cont">
             <img src="{{ spData?.imageUrl }}" alt="" width="200" />
-            <div class="cam-icon">
+            <div *ngIf="!visitor" class="cam-icon">
               <i (click)="basicModal.show()" class="fas fa-camera "></i>
               <!-- modal -->
                <div class="modalImage"></div>
@@ -38,16 +37,13 @@
               <!-- modal -->
             </div>
           </div>
-
-
         </div>
-
         <div class="profile-nav-info">
           <h3 class="user-name">{{ spData?.fullName }}</h3>
           <div class="adress">
             <p class="state">{{ spData?.location }}</p>
-            <br />
-
+            <br/>
+            
           </div>
           <p class="state">{{spData?.adress}}</p>
         </div>
@@ -88,7 +84,6 @@
               (click)="basicModal.show()" mdbWavesEffect>
               make appointment
             </button>
-
             <div mdbModal #basicModal="mdbModal" id="modal" class="modal fade" tabindex="-1" role="dialog"
               aria-labelledby="myBasicModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -102,13 +97,10 @@
                       <input type="date" class="date" #date />
                       <input type="time" class="time" #time id="appt" name="appt" min="09:00" max="18:00" required />
                       <div class="md-form">
-
                       </div>
                       <div class="md-form">
-
                       </div>
                       <div class="md-form">
-
                       </div>
                     </div>
                   </div>
@@ -157,60 +149,66 @@
           </div>
           <div class="profile-body">
             <div class="profile-posts tab active" id="profile-posts" *ngIf="posts">
-              <h1>Your posts</h1>
-
-              <button class="button button1" type="submit" (click)="displayForm()" *ngIf="!editable">add</button>
-              <br />
-
-              <div class="post-formm" *ngIf="editable">
-                <div class="form-title">
-
-                  <label class="labelss" for="fname">Title:</label>
-                  <br />
-                  <input #title type="text" name="fname">
-                </div>
+              <div *ngIf="!visitor">
+                <h1>Your posts</h1>
+                <button class="button button1" type="submit" (click)="displayForm()" *ngIf="!editable">add</button>
                 <br />
-                <div class="form-desc">
-                  <label class="labelss" for="fname">Description:</label>
-                  <br />
-
-                  <!-- <input #decription type="text" id="fname" name="fname"> -->
-                  <!-- <textarea #decription name="" id="" cols="30" rows="10"></textarea> -->
-                  <div class="md-form">
-                    <mdb-icon fas icon="pencil-alt" class="prefix"></mdb-icon>
-                    <textarea #decription type="text" id="form8" class="md-textarea form-control" mdbInput></textarea>
-                    <label for="form8">Icon Prefix</label>
-                  </div>
-                </div>
-                <br />
-                <div class="form-date">
-
-                  <label class="labelss" for="fname">Date:</label>
-                  <br>
-                  <input #date type="text" name="fname">
-                </div>
-                <button class="save-btn" (click)="Add(title.value,decription.value,date.value)">Save</button>
-              </div>
-
-              <div *ngFor="let e of spPosts" class="flip-card">
-                <button (click)="deletePost(e._id)">Delete</button>
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
-                    <img
-                      src="https://images.theconversation.com/files/138166/original/image-20160919-17029-2dn60d.jpg?ixlib=rb-1.1.0&rect=0%2C94%2C5760%2C2793&q=45&auto=format&w=1356&h=668&fit=crop"
-                      alt="Avatar" style="width:300px;height:300px;">
-                  </div>
-                  <div class="flip-card-back">
-                    <h1>{{e.title}}</h1>
-                    <p>{{e.description}}</p>
-                    <p>{{e.date}}</p>
-                  </div>
+  
+                <div class="post-formm" *ngIf="editable" class="container">
+                  <form action="/action_page.php">
+  
+                    <input type="file"    (change)="imgUpload($event)"
+                    #image  alt="Submit" width="48" height="48">
+                    <div class="row">
+                      <div class="col-25">
+                        <label for="fname">Title:</label>
+                      </div>
+                      <div class="col-75">
+                        <input #title type="text" id="fname" name="firstname" placeholder="title..">
+                      </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="col-25">
+                        <label for="subject">Description:</label>
+                      </div>
+                      <div class="col-75">
+                        <textarea #decription id="subject" name="subject" placeholder="Write something.."
+                          style="height:200px"></textarea>
+                      </div>
+                    </div>
+                    <button class="save-btn" (click)="Add(title.value,decription.value,date.value,spData?._id)">Save</button>
+                  </form>
+  
                 </div>
               </div>
+             <div class="card-container">
+              <mdb-card class="card" *ngFor="let e of spPosts">
+                <div>
+                  <span *ngIf="!visitor" (click)="deletePost(e._id)" class="far fa-times-circle circle"></span>
+                  <mdb-card-img
+                    src="{{e.image}}"
+                    alt="Card image cap"></mdb-card-img>
+                </div>
+                <mdb-card-body>
+                    <!--Title-->
+                  <mdb-card-title>
+                    <h4>{{e.title}}</h4>
+                  </mdb-card-title>
+                  <!--Text-->
+                  <mdb-card-text> {{e.description}}
+                  </mdb-card-text>
+                  <h4>{{e.updatedAt}}</h4>
+                </mdb-card-body>
+              </mdb-card>
+
+              <!-- card posts -->
+              <!-- service provider posts -->
             </div>
 
-
-            <div class="profile-posts tab active" id="profile-settings" *ngIf="settings">
+             </div>
+          
+             <div class="profile-posts tab active" id="profile-settings" *ngIf="settings">
               <h1>Your settings</h1>
               <!-- settings for the profile -->
               <div class="inputs">
@@ -220,11 +218,9 @@
                     <label>First name: </label><br />
                     <label>{{spData?.firstName}}</label>
                   </div>
-
                   <input [(ngModel)]="firstName" class="fn-inp" type="text" placeholder="firstname" *ngIf="changable" />
                   <button class="fn-save" type="button" (click)="updateFirstName(firstName)"
                     *ngIf="changable">Save</button>
-
                   <button class="fn-edit" type="button" (click)="displayInput()" *ngIf="!changable">Edit</button>
                 </div>
                 <!-- last name -->
@@ -233,11 +229,9 @@
                     <label>Last name: </label><br />
                     <label>{{spData?.lastName}}</label>
                   </div>
-
                   <input [(ngModel)]="lastName" class="fn-inp" type="text" placeholder="lastname" *ngIf="changable1" />
                   <button class="fn-save" type="button" (click)="updateLastName(lastName)"
                     *ngIf="changable1">Save</button>
-
                   <button class="fn-edit" type="button" (click)="displayInput1()" *ngIf="!changable1">Edit</button>
                 </div>
                 <!-- full name -->
@@ -246,11 +240,9 @@
                     <label>FullName: </label><br />
                     <label>{{spData?.fullName}}</label>
                   </div>
-
                   <input [(ngModel)]="fullName" class="fn-inp" type="text" placeholder="fullname" *ngIf="changable2" />
                   <button class="fn-save" type="button" (click)="updateFullName(fullName)"
                     *ngIf="changable2">Save</button>
-
                   <button class="fn-edit" type="button" (click)="displayInput2()" *ngIf="!changable2">Edit</button>
                 </div>
                 <!-- email -->
@@ -259,10 +251,8 @@
                     <label>Email: </label><br />
                     <label>{{spData?.email}}</label>
                   </div>
-
                   <input [(ngModel)]="email" class="fn-inp" type="text" placeholder="email" *ngIf="changable3" />
                   <button class="fn-save" type="button" (click)="updateEmail(email)" *ngIf="changable3">Save</button>
-
                   <button class="fn-edit" type="button" (click)="displayInput3()" *ngIf="!changable3">Edit</button>
                 </div>
                 <!-- adress -->
@@ -271,7 +261,6 @@
                     <label>Adress: </label><br />
                     <label>{{spData?.adress}}</label>
                   </div>
-
                   <input [(ngModel)]="adress" class="fn-inp" type="text" placeholder="email" *ngIf="changable4" />
                   <button class="fn-save" type="button" (click)="updateAdress(adress)" *ngIf="changable4">Save</button>
 
