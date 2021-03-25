@@ -16,6 +16,7 @@ const serviceProviderSchema = new mongoose.Schema(
     rates: [Number],
     isBanned: { type: Boolean, default: false },
     isVerified: { type: Boolean, default: false },
+    adress: {type: String}
   },
   { timestamps: true }
 );
