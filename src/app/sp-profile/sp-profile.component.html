@@ -79,6 +79,7 @@
             <br />
           </div>
           <p class="state">{{ spData?.adress }}</p>
+        
         </div>
         <div *ngIf="!visitor" class="profile-option">
           <div class="notification">
@@ -102,6 +103,8 @@
               <i class="fas fa-tools"></i>
               {{ spData?.profession }}
             </p>
+            <p class="state">CIN:{{ spData?.CIN }}</p>
+            <p class="state" *ngIf="!visitor" >description:{{ spData?.description}}</p>
             <div class="user-bio">
               <h3>Bio:</h3>
               <p class="bio">

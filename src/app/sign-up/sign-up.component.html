@@ -82,6 +82,19 @@
     >
       Optional - for two-step authentication
     </small>
+    <input
+    #CIN
+    type="text"
+    id="defaultRegisterPhonePassword"
+    class="form-control"
+    placeholder="CIN"
+    aria-describedby="defaultRegisterFormPhoneHelpBlock"
+    />
+
+    <textarea #description id="story" name="story"
+          rows="5" cols="33">
+
+</textarea>
     <input type="file"    (change)="imgUpload($event)"
     #image  alt="Submit" width="48" height="48">
     <div class="form-row mb-4">
@@ -115,7 +128,7 @@
           >
             {{ service?.profession }}
           </option>
-          </select>
+          </select>  
         </div>
       </div>
     </div>
@@ -147,7 +160,9 @@
           gender.value,
           profession.value,
           location.value,
-          this.imageUrl
+          this.imageUrl,
+          CIN.value,
+          description.value
         )
       "
     >

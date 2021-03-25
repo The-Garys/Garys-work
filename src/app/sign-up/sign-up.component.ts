@@ -39,7 +39,9 @@ export class SignUpComponent implements OnInit {
     gender,
     profession,
     location,
-    imageUrl
+    imageUrl,
+    CIN,
+    description,
   ) {
     if(!imageUrl && gender === "Male" ){
       imageUrl = "https://mpng.subpng.com/20180523/tha/kisspng-businessperson-computer-icons-avatar-clip-art-lattice-5b0508dc6a3a10.0013931115270566044351.jpg"
@@ -55,7 +57,9 @@ export class SignUpComponent implements OnInit {
       email === '' ||
       password === '' ||
       retypePassword === '' ||
-      phoneNumber === ''
+      phoneNumber === ''||
+      CIN===''||
+      description===''
     ) {
       Swal.fire({
         icon: 'error',
@@ -89,7 +93,9 @@ export class SignUpComponent implements OnInit {
             gender: gender,
             profession: profession,
             location: location,
-            imageUrl: imageUrl
+            imageUrl: imageUrl,
+            CIN:CIN,
+            description:description,
           },
           { responseType: 'json' }
         )

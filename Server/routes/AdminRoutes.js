@@ -9,5 +9,6 @@ router.put("/ban/sp/:id", adminControllers.banSp);
 router.put("/sp/unban/:id", adminControllers.unbanSp);
 router.put("/unban/:id", adminControllers.unbanUser);
 router.put("/verify/:id", adminControllers.verifyAccount);
+router.put("/decline/:id", adminControllers.declineAccount)
 
 module.exports = router;

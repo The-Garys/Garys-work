@@ -66,12 +66,17 @@ export class SignInComponent implements OnInit {
 
 
           else if(data['isVerified'] == false) {
-            
-            
             Swal.fire({
               icon:'info',
               title: 'Account is still being verified',
               text:'Your Account is still being validated, Please contact us for more information'
+            })
+          }
+          else if(data['isVerified']==='rejected') {
+            Swal.fire({
+              icon:'error',
+              title: 'Your Account has been rejected',
+              text:'Contact us for further information'
             })
           }
           
