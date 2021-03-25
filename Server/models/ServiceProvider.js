@@ -17,7 +17,8 @@ const serviceProviderSchema = new mongoose.Schema(
     isBanned: { type: Boolean, default: false },
     isVerified: {default: false },
     CIN:{type:Number},
-    description:{type:String}
+    description:{type:String},
+    adress: {type: String}
   },
   { timestamps: true }
 );
