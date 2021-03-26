@@ -42,6 +42,7 @@ import { RequestsComponent } from './Admin/requests/requests.component';
 import { ServiceProviderCardComponent } from './services-list/service-provider-card/service-provider-card.component';
 import { LocationComponent } from './location/location.component';
 import { LiveChatComponent } from './live-chat/live-chat.component';
+import { VesitorProfileComponent } from './vesitor-profile/vesitor-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +71,7 @@ import { LiveChatComponent } from './live-chat/live-chat.component';
     ServiceProviderCardComponent,
     LocationComponent,
     LiveChatComponent,
+    VesitorProfileComponent,
   ],
   imports: [
     BrowserModule,

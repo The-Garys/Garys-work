@@ -42,12 +42,18 @@ export class NavbarComponent implements OnInit {
     
     if (this.userId) {
       this.localStorageService.removeItem("id")
+      this.localStorageService.removeItem("userName")
+      this.localStorageService.removeItem("apUserName")
+      this.localStorageService.removeItem("token")
+      this.localStorageService.removeItem("spEmail")
       this.userId = "";
     }
 
     // Logging out from Service Provider
     if (this.serviceProviderEmail) {
       this.localStorageService.removeItem("svMail")
+      this.localStorageService.removeItem("spEmail")
+      this.localStorageService.removeItem("token")
       this.serviceProviderEmail = "";
     }
     Swal.fire(
