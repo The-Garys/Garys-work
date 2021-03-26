@@ -8,7 +8,6 @@ import { SignupComponent } from './signup/signup.component';
 import { SpProfileComponent } from './sp-profile/sp-profile.component';
 import { AdminNavComponent } from './admin/admin-nav/admin-nav.component';
 import { UserServicesComponent } from './user-services/user-services.component';
-import { UserHomeComponent } from './user-home/user-home.component';
 import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
 import { AdminComponent } from './Admin/admin/admin.component';
 import {MessagesComponent} from './Admin/messages/messages.component';
@@ -32,7 +31,6 @@ const routes: Routes = [
   {path: 'admin', component: AdminComponent, children:[{path:'', component:AdminComponent},{path:'sps', component:ProvidersComponent},{path:'messages', component:MessagesComponent},{path:'users', component:UsersComponent}, {path:'requests', component:RequestsComponent}]},
   
   {path: 'userServices', component: UserServicesComponent},
-  {path: 'userHome', component: UserHomeComponent},
   
 
 ];

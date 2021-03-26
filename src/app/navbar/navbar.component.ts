@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';import { LocalService } from "../local.service"
-
+import { Component, OnInit } from '@angular/core';
+import { LocalService } from "../local.service";
+import { LocalStorageService } from "../services/local-storage.service";
+import { Router } from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-navbar',
@@ -8,11 +11,55 @@ import { Component, OnInit } from '@angular/core';import { LocalService } from "
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private local : LocalService) { }
-role : string = this.local.role;
-  ngOnInit() {
-    console.log(this.role);
+  constructor(
+    private local : LocalService,
+    private localStorageService: LocalStorageService,
+    private router: Router
+    ) {
+      router.events.subscribe(() => {
+        this.refreshState()
+      })
+    }
+
+  userId: String = "";
+  serviceProviderEmail: String = "";
+
+  refreshState() {
+    this.serviceProviderEmail = this.getServiceProviderEmail();
+    this.userId = this.getUserId();
+  }
+
+  getUserId() :String {
+    return this.localStorageService.getItem("id")
+  }
+
+  getServiceProviderEmail() :String {
+    return this.localStorageService.getItem("svMail")
+  }
+
+  logout() :void {
+    // Logging out from user
     
+    if (this.userId) {
+      this.localStorageService.removeItem("id")
+      this.userId = "";
+    }
+
+    // Logging out from Service Provider
+    if (this.serviceProviderEmail) {
+      this.localStorageService.removeItem("svMail")
+      this.serviceProviderEmail = "";
+    }
+    Swal.fire(
+      "",
+      "You Are Logged Out!",
+      'success'
+    );
+    this.router.navigate(['/'])
+  }
+
+  ngOnInit(): void {
+    this.refreshState()
   }
 
 }

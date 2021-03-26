@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { GaryService } from '../gary.service';
 import { LocalService } from '../local.service';
 import * as moment from 'moment';
+import { ProfileService } from '../services/profile.service'
 
 // import { Router } from '@angular/router';
 // import {ActivatedRoute} from '@angular/router';
@@ -19,7 +20,8 @@ export class SpProfileComponent implements OnInit {
   constructor(
     private GaryService: GaryService,
     private http: HttpClient,
-    private local: LocalService
+    private local: LocalService,
+    private profileServices : ProfileService
   ) { }
   name: any = localStorage.getItem("apUserName")
   spData: any;
@@ -53,13 +55,13 @@ export class SpProfileComponent implements OnInit {
     }
     // this.spEmail = localStorage.getItem('spEmail');
     this.svMail = localStorage.getItem('svMail');
-    this.http
-      .get(`http://localhost:3000/api/serviceProvider/${this.svMail}`)
+
+    this.profileServices.getServiceProviderData(this.svMail)
       .subscribe((data) => {
         console.log('ali====>', data);
         this.spData = data;
         this.getAppointments();
-        this.http.get(`http://localhost:3000/api/posts/${this.spData._id}`).subscribe((data)=>{
+        this.profileServices.getServiceProviderPosts(this.spData._id).subscribe((data)=>{
           console.log("daaaaaaaataaa==>",data)
           this.spPosts=data
           this.spPosts = this.spPosts.reverse()
@@ -70,32 +72,18 @@ export class SpProfileComponent implements OnInit {
           }
         })
     });
-      
-     
-      
-     
   }
      
     imgUpload(img) {
     console.log('IMG FROM VER==> ', img.target.files[0]);
     var formData = new FormData();
     formData.append('img', img.target.files[0]);
-    this.http.post("http://localhost:3000/upload" , formData).subscribe((resp) => {
+    this.profileServices.ImageUpload(formData).subscribe((resp) => {
       this.imageUrl = resp['msg'].url;
     });
   }
 
-  // up(){
-  //   this.boli = !this.boli
-  // }
-  // save(n , l , j){
-  //   this.obj = { name : n , last : l , job : j }
-  //   this.up()
-  // }
   submit(date, time) {
-
-    var obj = { userName: this.name, email: this.spData.email, serviceProviderName: this.spData._id, date: date, time: time }
-    console.log(obj.serviceProviderName)
     var c = {
       date: date,
       time: time,
@@ -112,9 +100,7 @@ export class SpProfileComponent implements OnInit {
         footer: '<a href>Why do I have this issue?</a>',
       });
     } else {
-      this.http
-        .post('http://localhost:3000/api/appointment', c)
-        .subscribe((data) => {
+        this.profileServices.submitAppointment(c).subscribe((data) => {
           if (data['data']) {
             Swal.fire({
               icon: 'error',
@@ -160,15 +146,10 @@ export class SpProfileComponent implements OnInit {
 
   }
   setting() {
-
-
     this.posts = false;
     this.reviews = false;
     this.settings = true;
     this.appointments = false
-
-
-
   }
   displayInput() {
     this.changable = true;
@@ -190,9 +171,8 @@ export class SpProfileComponent implements OnInit {
   }
   getAppointments() {
     console.log("spdat===>", this.spData._id);
-    this.http
-      .get(`http://localhost:3000/api/appointment/${this.spData._id}`)
-      .subscribe((data) => {
+    this.profileServices.getSericeProviderAppointments(this.spData._id).
+      subscribe((data) => {
         console.log('dzdazdazda', data);
         this.appointmentsList = data;
         this.notifications = this.appointmentsList.length;
@@ -222,15 +202,13 @@ Add(title , description ,date ,id ){
   if(title===""&& description===""&&date===""){
     alert("fill all inputs")
   }
-  else{ this.http.post("http://localhost:3000/api/posts", adding ).subscribe((data)=>{
+  else{ this.profileServices.addPost(adding).subscribe((data)=>{
     Swal.fire(
       'added!',
       'success'
     )    
     this.ngOnInit();
-  
-  })
-  
+  }) 
 }
 this.editable = false
 }
@@ -247,22 +225,19 @@ deletePost(id){
     confirmButtonText: 'Yes, delete it!'
   }).then((result) => {
     if (result.isConfirmed) {
-    this.http.delete(`http://localhost:3000/api/posts/${id}`).subscribe((data)=>{
+    this.profileServices.deletePost(id).subscribe((data)=>{
           Swal.fire(
         'Deleted!',
         'Your post has been deleted.',
         'success'
       )
       this.ngOnInit()
-      
     })
   }
   })
 }
- 
 
   updateFirstName(firstName){
-    
     console.log("sv details====>",this.spData)
     console.log(firstName)
     if (!firstName) {
@@ -273,9 +248,7 @@ deletePost(id){
       });
     }
     else {
-      this.http.put(`http://localhost:3000/api/serviceProvider/updateFirstName/${this.spData._id}`, {
-        firstName: firstName
-      }, { responseType: 'json' }).subscribe((data) => {
+      this.profileServices.updateFirstName(firstName, this.spData._id).subscribe((data) => {
         console.log("new data", data)
         this.spData.firstName = data['data']
         Swal.fire(
@@ -284,12 +257,10 @@ deletePost(id){
           'success'
         );
       })
-      // this.ngOnInit()
     }
     this.changable = false
   }
   updateLastName(lastName) {
-
     console.log("sv details====>", this.spData)
     console.log(lastName)
     if (!lastName) {
@@ -300,9 +271,7 @@ deletePost(id){
       });
     }
     else {
-      this.http.put(`http://localhost:3000/api/serviceProvider/updateLastName/${this.spData._id}`, {
-        lastName: lastName
-      }, { responseType: 'json' }).subscribe((data) => {
+      this.profileServices.updateLastName(lastName, this.spData._id).subscribe((data) => {
         console.log("new data", data)
         this.spData.lastName = data['data']
         Swal.fire(
@@ -311,13 +280,11 @@ deletePost(id){
           'success'
         );
       })
-      // this.ngOnInit()
     }
     this.changable1 = false
   }
 
   updateFullName(fullName) {
-
     console.log("sv details====>", this.spData)
     console.log(fullName)
     if (!fullName) {
@@ -328,9 +295,7 @@ deletePost(id){
       });
     }
     else {
-      this.http.put(`http://localhost:3000/api/serviceProvider/updateFullName/${this.spData._id}`, {
-        fullName: fullName
-      }, { responseType: 'json' }).subscribe((data) => {
+      this.profileServices.updateFullName(fullName, this.spData._id).subscribe((data) => {
         console.log("new data", data)
         this.spData.fullName = data['data']
         Swal.fire(
@@ -356,9 +321,7 @@ deletePost(id){
       });
     }
     else {
-      this.http.put(`http://localhost:3000/api/serviceProvider/updateEmail/${this.spData._id}`, {
-        email: email
-      }, { responseType: 'json' }).subscribe((data) => {
+      this.profileServices.updateEmail(email, this.spData._id).subscribe((data) => {
         console.log("new data", data)
         if (data["err"]) {
           Swal.fire({
@@ -394,9 +357,7 @@ deletePost(id){
       });
     }
     else {
-      this.http.put(`http://localhost:3000/api/serviceProvider/updateAdress/${this.spData._id}`, {
-        adress: adress
-      }, { responseType: 'json' }).subscribe((data) => {
+      this.profileServices.updateAdress(adress, this.spData._id).subscribe((data) => {
         console.log("new data", data)
         this.spData.adress = data['data']
         Swal.fire(
@@ -435,7 +396,7 @@ deletePost(id){
       });
     }
     else {
-      this.http.patch(`http://localhost:3000/api/serviceProvider/updatePassword/${this.spData._id}`, { currentPassword: currentPassword, previousPassword: previousPassword, confirmPassword: confirmPassword }, { responseType: 'json' }).subscribe((data) => {
+      this.profileServices.updatePassword(previousPassword, currentPassword, confirmPassword, this.spData._id).subscribe((data) => {
         console.log("password data", data)
         if (data['err']) {
           Swal.fire({
@@ -445,7 +406,6 @@ deletePost(id){
           });
         }
         else {
-          // this.spData.password = data['data']
           Swal.fire(
             '',
             data['success'],
@@ -463,9 +423,7 @@ deletePost(id){
     console.log("sv details====>", this.spData)
     console.log(imageUrl)
     
-      this.http.put(`http://localhost:3000/api/serviceProvider/updateImage/${this.spData._id}`, {
-        imageUrl: imageUrl
-      }, { responseType: 'json' }).subscribe((data) => {
+      this.profileServices.updateImage(imageUrl, this.spData._id).subscribe((data) => {
         console.log("new data", data)
         this.spData.imageUrl = data['data']
         Swal.fire(
@@ -474,7 +432,5 @@ deletePost(id){
           'success'
         );
       })
-      // this.ngOnInit()
   }
-
 }
