@@ -28,20 +28,18 @@ import { ReviewsComponent } from './reviews/reviews.component';
 import { AdminNavComponent } from './admin/admin-nav/admin-nav.component';
 import { MessagesComponent } from './admin/messages/messages.component';
 import { AppointmentComponent } from './appointment/appointment.component';
-import { UserNavComponent } from './user-nav/user-nav.component';
 import { UserServicesComponent } from './user-services/user-services.component';
-import { UserHomeComponent } from './user-home/user-home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
 import { AdminComponent } from './Admin/admin/admin.component';
 import { ModalReviewComponent } from './modal-review/modal-review.component';
-import { SvNavComponent } from './sv-nav/sv-nav.component';
 import { ProvidersComponent } from './Admin/providers/providers.component';
 import { UsersComponent } from './Admin/users/users.component';
 import { RequestsComponent } from './Admin/requests/requests.component';
 import { ServiceProviderCardComponent } from './services-list/service-provider-card/service-provider-card.component';
 import { LocationComponent } from './location/location.component';
 import { LiveChatComponent } from './live-chat/live-chat.component';
+import { VesitorProfileComponent } from './vesitor-profile/vesitor-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,19 +58,17 @@ import { LiveChatComponent } from './live-chat/live-chat.component';
     AdminNavComponent,
     MessagesComponent,
     AppointmentComponent,
-    UserNavComponent,
     UserServicesComponent,
-    UserHomeComponent,
     AdminLoginComponent,
     AdminComponent,
     ModalReviewComponent,
-    SvNavComponent,
     ProvidersComponent,
     UsersComponent,
     RequestsComponent,
     ServiceProviderCardComponent,
     LocationComponent,
     LiveChatComponent,
+    VesitorProfileComponent,
   ],
   imports: [
     BrowserModule,

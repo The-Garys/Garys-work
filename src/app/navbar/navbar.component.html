@@ -6,8 +6,10 @@
     <nav>
       <a routerLink="">Home</a>
       <a href="">About Us</a>
-      <a [routerLink]="['/services']">Services</a>
-      <a id="connection" [routerLink]="['/signin']">Get Started</a>
+      <a [routerLink]="['/userServices']">Services</a>
+      <a *ngIf="!userId && !serviceProviderEmail" id="connection" [routerLink]="['/signin']">Get Started</a>
+      <img *ngIf="userId || serviceProviderEmail" class="user-avatar" src="https://i.stack.imgur.com/l60Hf.png" alt="">
+      <a *ngIf="userId || serviceProviderEmail" (click)="logout()"  id="connection">Logout</a>
     </nav>
   </div>
 </div>

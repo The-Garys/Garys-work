@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SvNavComponent } from './sv-nav.component';
+import { VesitorProfileComponent } from './vesitor-profile.component';
 
-describe('SvNavComponent', () => {
-  let component: SvNavComponent;
-  let fixture: ComponentFixture<SvNavComponent>;
+describe('VesitorProfileComponent', () => {
+  let component: VesitorProfileComponent;
+  let fixture: ComponentFixture<VesitorProfileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SvNavComponent ]
+      declarations: [ VesitorProfileComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SvNavComponent);
+    fixture = TestBed.createComponent(VesitorProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

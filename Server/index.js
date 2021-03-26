@@ -48,7 +48,7 @@ app.use("/api/contactus", ContactUsRouter);
 
 app.use("/api/serviceProvider", serviceProviderRouter);
 
-app.use("/api/serviceProviderList", ServicesProviderListRouter);
+app.use("/api/serviceProviderList", ServicesProviderListRouter); // change to /api/services
 app.use("/api/review", reviewRouter);
 app.use("/api/appointment", appointmentRouter);
 

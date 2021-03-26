@@ -4,19 +4,15 @@ import { GaryService } from '../gary.service';
 import { LocalService } from '../local.service';
 import * as moment from 'moment';
 import { ProfileService } from '../services/profile.service'
-
-// import { Router } from '@angular/router';
-// import {ActivatedRoute} from '@angular/router';
-
 import Swal from 'sweetalert2';
 
-
+// import { Router } from '@angular/router';
 @Component({
-  selector: 'app-sp-profile',
-  templateUrl: './sp-profile.component.html',
-  styleUrls: ['./sp-profile.component.scss'],
+  selector: 'app-vesitor-profile',
+  templateUrl: './vesitor-profile.component.html',
+  styleUrls: ['./vesitor-profile.component.scss']
 })
-export class SpProfileComponent implements OnInit {
+export class VesitorProfileComponent implements OnInit {
   constructor(
     private GaryService: GaryService,
     private http: HttpClient,
@@ -46,15 +42,11 @@ export class SpProfileComponent implements OnInit {
   ngOnInit(): void {
     
 
-    if (localStorage.getItem('visitor') === 'yes') {
       this.visitor = true;
       this.visitor1 = false;
-    } else {
-      this.visitor = false;
-      this.visitor1 = true;
-    }
+  
     // this.spEmail = localStorage.getItem('spEmail');
-    this.svMail = localStorage.getItem('svMail');
+    this.svMail = localStorage.getItem('halimMail');
 
     this.profileServices.getServiceProviderData(this.svMail)
       .subscribe((data) => {
