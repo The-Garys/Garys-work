@@ -17,6 +17,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 import { DataTablesModule } from 'angular-datatables';
 import {PanelModule} from 'primeng/panel';
+import { AgmCoreModule } from '@agm/core';
+
 
 
 
@@ -41,6 +43,7 @@ import { ProvidersComponent } from './Admin/providers/providers.component';
 import { UsersComponent } from './Admin/users/users.component';
 import { RequestsComponent } from './Admin/requests/requests.component';
 import { ServiceProviderCardComponent } from './services-list/service-provider-card/service-provider-card.component';
+import { LocationComponent } from './location/location.component';
 import { LiveChatComponent } from './live-chat/live-chat.component';
 @NgModule({
   declarations: [
@@ -71,6 +74,7 @@ import { LiveChatComponent } from './live-chat/live-chat.component';
     UsersComponent,
     RequestsComponent,
     ServiceProviderCardComponent,
+    LocationComponent,
     LiveChatComponent,
   ],
   imports: [
@@ -82,8 +86,11 @@ import { LiveChatComponent } from './live-chat/live-chat.component';
     FormsModule,
     NgbModule,
     DataTablesModule,
-    PanelModule
-
+    PanelModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDapTrWdHVdzoF7ttygRmfv0XqIDkonBqg',
+     libraries:['places']
+    })
   ],
 
   providers: [],
