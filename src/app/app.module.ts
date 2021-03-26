@@ -16,11 +16,8 @@ import { ServicesListComponent } from './services-list/services-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import { DataTablesModule } from 'angular-datatables';
-import {PanelModule} from 'primeng/panel';
+import { PanelModule } from 'primeng/panel';
 import { AgmCoreModule } from '@agm/core';
-
-
-
 
 import { FormsModule } from '@angular/forms';
 
@@ -89,8 +86,8 @@ import { LiveChatComponent } from './live-chat/live-chat.component';
     PanelModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDapTrWdHVdzoF7ttygRmfv0XqIDkonBqg',
-     libraries:['places']
-    })
+      libraries: ['places'],
+    }),
   ],
 
   providers: [],
