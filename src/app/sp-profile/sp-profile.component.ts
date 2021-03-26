@@ -23,14 +23,14 @@ export class SpProfileComponent implements OnInit {
   ) { }
   name: any = localStorage.getItem("apUserName")
   spData: any;
-  data: any;
+  appointmentsList: any;
   token: string = localStorage.getItem('token');
   spEmail: string;
   visitor: boolean = false;
   visitor1: boolean = false;
   svMail: string;
   spPosts:any;
-  notifications : number = 0
+  notifications : number =0
   editable:boolean = false
   firstName: string;
   lastName: string;
@@ -42,7 +42,7 @@ export class SpProfileComponent implements OnInit {
   confirmPassword: string;
   imageUrl : string
   ngOnInit(): void {
-
+    
 
     if (localStorage.getItem('visitor') === 'yes') {
       this.visitor = true;
@@ -58,6 +58,7 @@ export class SpProfileComponent implements OnInit {
       .subscribe((data) => {
         console.log('ali====>', data);
         this.spData = data;
+        this.getAppointments();
         this.http.get(`http://localhost:3000/api/posts/${this.spData._id}`).subscribe((data)=>{
           console.log("daaaaaaaataaa==>",data)
           this.spPosts=data
@@ -99,7 +100,7 @@ export class SpProfileComponent implements OnInit {
       date: date,
       time: time,
       userName: this.name,
-      email: this.spData.email,
+      email: this.spData.email, 
       serviceProviderName: this.spData._id
     }
     
@@ -187,19 +188,22 @@ export class SpProfileComponent implements OnInit {
   displayInput5() {
     this.changable5 = true;
   }
-  appointment() {
+  getAppointments() {
     console.log("spdat===>", this.spData._id);
     this.http
       .get(`http://localhost:3000/api/appointment/${this.spData._id}`)
       .subscribe((data) => {
-        console.log('dzdazdazda ', data);
-        this.data = data;
-        this.notifications = this.data.length
-        this.posts = false;
-        this.reviews = false;
-        this.appointments = true;
-        this.settings = false;
+        console.log('dzdazdazda', data);
+        this.appointmentsList = data;
+        this.notifications = this.appointmentsList.length;
       });
+  }
+
+  goToAppointments() {
+    this.posts = false;
+    this.reviews = false;
+    this.appointments = true;
+    this.settings = false;
   }
 
   displayForm() {

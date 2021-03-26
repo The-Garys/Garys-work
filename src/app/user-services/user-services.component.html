@@ -36,8 +36,8 @@
 
 <div class="cont-cards">
   <div class="container">
-    <div class="card-cont">
-      <div class="card mb-3" *ngFor="let e of services" id="whole-card">
+    <div class="card-cont"*ngFor="let e of services">
+      <div class="card mb-3"  (click)='goSvProfile(e.email)' id="whole-card">
         <div class="img__cont">
           <img src="{{ e.imageUrl }}" class="card-img-top" alt="..." />
         </div>
