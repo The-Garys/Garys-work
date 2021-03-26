@@ -17,6 +17,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 import { DataTablesModule } from 'angular-datatables';
 import {PanelModule} from 'primeng/panel';
+import { AgmCoreModule } from '@agm/core';
+
 
 
 
@@ -41,6 +43,7 @@ import { ProvidersComponent } from './Admin/providers/providers.component';
 import { UsersComponent } from './Admin/users/users.component';
 import { RequestsComponent } from './Admin/requests/requests.component';
 import { ServiceProviderCardComponent } from './services-list/service-provider-card/service-provider-card.component';
+import { LocationComponent } from './location/location.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +73,7 @@ import { ServiceProviderCardComponent } from './services-list/service-provider-c
     UsersComponent,
     RequestsComponent,
     ServiceProviderCardComponent,
+    LocationComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,8 +84,11 @@ import { ServiceProviderCardComponent } from './services-list/service-provider-c
     FormsModule,
     NgbModule,
     DataTablesModule,
-    PanelModule
-
+    PanelModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDapTrWdHVdzoF7ttygRmfv0XqIDkonBqg',
+     libraries:['places']
+    })
   ],
 
   providers: [],
