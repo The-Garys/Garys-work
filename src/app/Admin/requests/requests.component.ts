@@ -49,7 +49,14 @@ export class RequestsComponent implements OnInit {
       }
     })
 
+    
 
+}
 
+reject(id) {
+  this.admin.declineAccount(id).subscribe(data=> {
+    console.log('account rejected', data);
+    this.ngOnInit();
+  })
 }
 }

@@ -44,6 +44,7 @@ import { UsersComponent } from './Admin/users/users.component';
 import { RequestsComponent } from './Admin/requests/requests.component';
 import { ServiceProviderCardComponent } from './services-list/service-provider-card/service-provider-card.component';
 import { LocationComponent } from './location/location.component';
+import { LiveChatComponent } from './live-chat/live-chat.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +75,7 @@ import { LocationComponent } from './location/location.component';
     RequestsComponent,
     ServiceProviderCardComponent,
     LocationComponent,
+    LiveChatComponent,
   ],
   imports: [
     BrowserModule,

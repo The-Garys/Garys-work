@@ -121,6 +121,21 @@ const admin = {
       console.log(err);
     }
   },
+
+  declineAccount: async (req, res) => {
+    try {
+      await ServiceProvider.findByIdAndUpdate(
+        {
+          _id: req.params.id,
+        },
+        { isVerified:'rejected'}
+      );
+       res.json({ ok: "Sp Rejected!" });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
 };
 
 module.exports = admin;

@@ -19,6 +19,8 @@ const serviceProviderCtrl = {
         location,
         gender,
         imageUrl,
+        CIN,
+        description,
       } = req.body;
       const serviceProvider = await ServiceProvider.findOne({ email });
       if (serviceProvider) {
@@ -40,6 +42,8 @@ const serviceProviderCtrl = {
         email,
         password: hashPassword,
         imageUrl,
+        CIN,
+        description,
       });
       console.log("make sure", newServiceProvider);
 
@@ -52,7 +56,7 @@ const serviceProviderCtrl = {
       );
       newServiceProvider.token = token;
       await newServiceProvider.save();
-
+        console.log("test CIN",newServiceProvider )
       console.log("service provider  test====>", newServiceProvider._id);
       res.send({
         id: newServiceProvider._id,
