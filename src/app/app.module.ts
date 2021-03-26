@@ -42,6 +42,7 @@ import { UsersComponent } from './Admin/users/users.component';
 import { RequestsComponent } from './Admin/requests/requests.component';
 import { ServiceProviderCardComponent } from './services-list/service-provider-card/service-provider-card.component';
 import { LiveChatComponent } from './live-chat/live-chat.component';
+import { SvServicesComponent } from './sv-services/sv-services.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +73,7 @@ import { LiveChatComponent } from './live-chat/live-chat.component';
     RequestsComponent,
     ServiceProviderCardComponent,
     LiveChatComponent,
+    SvServicesComponent,
   ],
   imports: [
     BrowserModule,
