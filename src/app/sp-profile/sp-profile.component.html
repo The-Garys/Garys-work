@@ -1,7 +1,7 @@
 <app-sv-nav></app-sv-nav>
 <div class="body">
   <div class="cont">
-    <div class="container">
+    <div class="container" *ngIf="spData">
       <div class="profile-header">
         <div class="profile-image">
           <div class="imgg-cont">
@@ -83,8 +83,8 @@
         </div>
         <div *ngIf="!visitor" class="profile-option">
           <div class="notification">
-            <i class="fa fa-bell" (click)="appointment()"></i>
-            <span class="alert-message">{{ notifications }}</span>
+            <i class="fa fa-bell" ></i>
+            <span class="alert-message" (click)="goToAppointments()">{{ notifications }}</span>
           </div>
         </div>
       </div>
@@ -227,7 +227,7 @@
                 *ngIf="visitor1"
                 class="user-setting"
                 [class.active]="appointments"
-                (click)="appointment()"
+                (click)="goToAppointments()"
               >
                 My appointments
               </li>
@@ -569,10 +569,10 @@
               *ngIf="appointments"
             >
               <div *ngIf="visitor1">
-                <div class="card" *ngFor="let e of data">
-                  <p>you have an appointment on: {{ e.date }}</p>
-                  <p>at {{ e.time }}</p>
-                  <h1>By: {{ e.userName }}</h1>
+                <div class="card" *ngFor="let appointment of appointmentsList">
+                  <p>you have an appointment on: {{ appointment.date }}</p>
+                  <p>at {{ appointment.time }}</p>
+                  <h1>By: {{ appointment.userName }}</h1>
                 </div>
               </div>
             </div>
