@@ -25,6 +25,9 @@ constructor(private router : Router,private http: HttpClient) {
       localStorage.removeItem('token')
       localStorage.removeItem('svMail')
       localStorage.removeItem('id')
+      localStorage.removeItem('apUserName');
+      localStorage.removeItem('userName');
+
       Swal.fire(
         '',
         data["success"],

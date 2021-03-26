@@ -90,12 +90,14 @@
     placeholder="CIN"
     aria-describedby="defaultRegisterFormPhoneHelpBlock"
     />
-
-    <textarea #description id="story" name="story"
+     <!-- <label for="story">Tell Us About Your Self</label> -->
+    <!-- <textarea #description id="story" name="story"
           rows="5" cols="33">
 
-</textarea>
-    <input type="file"    (change)="imgUpload($event)"
+</textarea> -->
+<textarea type="text" #description id="form7 story" class="md-textarea md-textarea-auto form-control " mdbInput>Tell Us About Your Self</textarea>
+    <label for="image">Upload Your Profile Image</label>
+    <input type="file" name="image"   (change)="imgUpload($event)"
     #image  alt="Submit" width="48" height="48">
     <div class="form-row mb-4">
       <div class="col">

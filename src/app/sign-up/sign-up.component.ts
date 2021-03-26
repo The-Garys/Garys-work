@@ -78,7 +78,16 @@ export class SignUpComponent implements OnInit {
         title: 'Oops...',
         text: 'your password must be at least 8 characters',
       });
-    } else {
+    } 
+    
+    else if(typeof (phoneNumber) !== 'number') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You must retype your phone Number',
+      });
+    }
+    else {
 
       this.http
         .post(

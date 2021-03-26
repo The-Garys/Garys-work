@@ -56,7 +56,7 @@ const serviceProviderCtrl = {
       );
       newServiceProvider.token = token;
       await newServiceProvider.save();
-        console.log("test CIN",newServiceProvider )
+        // console.log("test CIN",newServiceProvider )
       console.log("service provider  test====>", newServiceProvider._id);
       res.send({
         id: newServiceProvider._id,
