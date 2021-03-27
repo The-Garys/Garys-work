@@ -39,21 +39,35 @@ export class VesitorProfileComponent implements OnInit {
   currentPassword: string;
   confirmPassword: string;
   imageUrl : string;
-  isLoggedIn : boolean = false;
-  
-  userLoggedIn: string;
+  userIsLoggedIn : boolean;
+  spIsLoggedIn : boolean;
   
 
-  if(isLoggedIn) {
-    this.userLoggedIn = localStorage.getItem('id');
+  checkLog() {
+    this.userIsLoggedIn =  !!localStorage.getItem('id');
+    this.spIsLoggedIn = !!localStorage.getItem('svMail')
   }
+
+  alertSignup() {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'please Login to make an Appointment!',
+    });
+  }
+
+
+  
+
+ 
+  
   
 
  
 
   
   ngOnInit(): void {
-    
+    this.checkLog();
     
     this.visitor = true;
     this.visitor1 = false;
@@ -443,4 +457,7 @@ deletePost(id){
         );
       })
   }
+ 
+  
+
 }

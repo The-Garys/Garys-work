@@ -69,4 +69,8 @@ export class NavbarComponent implements OnInit {
     this.refreshState()
   }
 
+  scroll(id) {
+    let el = document.getElementById(id);
+    el.scrollIntoView();
+  }
 }

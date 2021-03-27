@@ -259,6 +259,7 @@ deletePost(id){
       })
     }
     this.changable = false
+    this.firstName = ""
   }
   updateLastName(lastName) {
     console.log("sv details====>", this.spData)
@@ -282,6 +283,7 @@ deletePost(id){
       })
     }
     this.changable1 = false
+    this.lastName = ""
   }
 
   updateFullName(fullName) {
@@ -307,6 +309,7 @@ deletePost(id){
       // this.ngOnInit()
     }
     this.changable2 = false
+    this.fullName = ""
   }
 
   updateEmail(email) {
@@ -343,6 +346,7 @@ deletePost(id){
       // this.ngOnInit()
     }
     this.changable3 = false
+    this.email = ""
   }
 
   updateAdress(adress) {
@@ -369,7 +373,7 @@ deletePost(id){
       // this.ngOnInit()
     }
     this.changable4 = false
-
+    this.adress = ""
   }
 
   updatePassword(previousPassword, currentPassword, confirmPassword) {
@@ -415,6 +419,9 @@ deletePost(id){
       })
     }
     this.changable5 = false
+    this.previousPassword = ""
+    this.currentPassword = ""
+    this.confirmPassword = ""
   }
 
 
