@@ -38,36 +38,50 @@ export class VesitorProfileComponent implements OnInit {
   previousPassword: string;
   currentPassword: string;
   confirmPassword: string;
-  imageUrl : string
+  imageUrl : string;
+  isLoggedIn : boolean = false;
+  
+  userLoggedIn: string;
+  
+
+  if(isLoggedIn) {
+    this.userLoggedIn = localStorage.getItem('id');
+  }
+  
+
+ 
+
+  
   ngOnInit(): void {
     
-
-      this.visitor = true;
-      this.visitor1 = false;
-  
+    
+    this.visitor = true;
+    this.visitor1 = false;
+    
     // this.spEmail = localStorage.getItem('spEmail');
     this.svMail = localStorage.getItem('halimMail');
-
+    
     this.profileServices.getServiceProviderData(this.svMail)
-      .subscribe((data) => {
-        console.log('ali====>', data);
-        this.spData = data;
-        this.getAppointments();
-        this.profileServices.getServiceProviderPosts(this.spData._id).subscribe((data)=>{
-          console.log("daaaaaaaataaa==>",data)
-          this.spPosts=data
-          this.spPosts = this.spPosts.reverse()
-          for ( var i = 0; i < this.spPosts.length; i++ ) {
-            this.spPosts[i].updatedAt = moment(
-              this.spPosts[i].updatedAt
+    .subscribe((data) => {
+      console.log('ali====>', data);
+      this.spData = data;
+      this.getAppointments();
+      this.profileServices.getServiceProviderPosts(this.spData._id).subscribe((data)=>{
+        console.log("daaaaaaaataaa==>",data)
+        this.spPosts=data
+        this.spPosts = this.spPosts.reverse()
+        for ( var i = 0; i < this.spPosts.length; i++ ) {
+          this.spPosts[i].updatedAt = moment(
+            this.spPosts[i].updatedAt
             ).format('LLL'); 
           }
         })
-    });
-  }
-     
+      });
+    }
+       
+
     imgUpload(img) {
-    console.log('IMG FROM VER==> ', img.target.files[0]);
+      console.log('IMG FROM VER==> ', img.target.files[0]);
     var formData = new FormData();
     formData.append('img', img.target.files[0]);
     this.profileServices.ImageUpload(formData).subscribe((resp) => {
@@ -112,6 +126,10 @@ export class VesitorProfileComponent implements OnInit {
         });
     }
   }
+
+
+  
+
 
   check: boolean = false;
   posts: boolean = true;
