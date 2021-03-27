@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const liveMessages = new mongoose.Schema(
+const messageSchema = new mongoose.Schema(
   {
     messageBody: { type: String, required: true },
     userId: { type: String, required: true },
@@ -9,6 +9,6 @@ const liveMessages = new mongoose.Schema(
   { timestamps: true }
 );
 
-const messages = mongoose.model("messages", liveMessages);
+const liveMessages = mongoose.model("liveMessages", messageSchema);
 
-module.exports = messages;
+module.exports = liveMessages;

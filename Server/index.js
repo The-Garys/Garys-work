@@ -34,8 +34,8 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.use(bodyParser.json());
+
 const uri = process.env.URI;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;

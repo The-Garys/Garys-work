@@ -12,7 +12,15 @@ const liveMessages = {
     }
   },
   sendMessage: async (req, res) => {
-    console.log(req.body);
+    try {
+      console.log("req.body ==> ", req.body);
+      const newMessageSent = new messagesModel(req.body);
+      await newMessageSent.save();
+      res.send({ message: "Message sent!" });
+    } catch (err) {
+      console.log("error sent from sending private message ==>", err);
+      res.send(err);
+    }
   },
 };
 module.exports = liveMessages;

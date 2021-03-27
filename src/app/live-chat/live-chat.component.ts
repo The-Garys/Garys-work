@@ -9,7 +9,12 @@ import { LiveMessages } from './live-chat.service';
 })
 export class LiveChatComponent implements OnInit {
   socket;
-  message;
+  message = {
+    messageBody: '',
+    userId: '60535d734d756938fcb1d031',
+    spId: '605eff787f19a604f461d987',
+    isSp: !false,
+  };
   allMsg: any = [];
   constructor(private LiveMessages: LiveMessages) {}
 
@@ -24,19 +29,19 @@ export class LiveChatComponent implements OnInit {
       console.log('this is our data ==>', data);
     });
   }
-  sendMessage() {
-    this.LiveMessages.sendAMessage(this.message).subscribe((data: any[]) => {
-      console.log('is my message sent ? ===>', data);
-    });
-  }
+
   setupSocketConnection() {
     this.socket = io(SOCKET_ENDPOINT);
-    this.socket.on('message-broadcast', (data: string) => {
+    this.socket.on('message-broadcast', (data: string = this.allMsg) => {
       if (data) {
       }
     });
   }
   SendMessage() {
-    this.socket.emit('message', this.message);
+    this.socket.emit('message', this.message.messageBody);
+    this.LiveMessages.sendAMessage(this.message).subscribe((response) => {
+      console.log('is my message sent ? ===>', response);
+    });
+    this.message.messageBody = '';
   }
 }
