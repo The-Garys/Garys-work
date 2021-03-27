@@ -90,19 +90,27 @@
         <div class="main-bd">
           <div class="left-side">
             <div class="profile-side">
-              <p class="phone-number">
+              <p *ngIf="userIsLoggedIn || spIsLoggedIn" class="phone-number">
                 <i class="fa fa-phone"></i>
                 {{ spData?.phoneNumber }}
               </p>
-              <p class="email">
+              <p *ngIf=" userIsLoggedIn || spIsLoggedIn " class="email">
                 <i class="fa fa-envelope"></i>
                 {{ spData?.email }}
               </p>
+              <p *ngIf="!userIsLoggedIn && !spIsLoggedIn" class="phone-number">
+                <i class="fa fa-phone"></i>
+                <a [routerLink]="['/signin']">Login to view</a>
+              </p>
+              <p *ngIf="!userIsLoggedIn && !spIsLoggedIn" class="email">
+                <i class="fa fa-envelope"></i>
+                <a [routerLink]="['/signin']">Login to view</a>
+              </p>
+            
               <p class="user-profession">
                 <i class="fas fa-tools"></i>
                 {{ spData?.profession }}
               </p>
-              <p class="state">CIN:{{ spData?.CIN }}</p>
               <p class="state" *ngIf="!visitor">
                 description:{{ spData?.description }}
               </p>
@@ -118,12 +126,23 @@
                 <button class="chatbtn"><i class="fa fa-comment"></i>Chat</button>
               </div>
               <button
-                *ngIf="visitor"
+                *ngIf="visitor && userIsLoggedIn && !spIsLoggedIn"
                 type="button"
                 mdbBtn
                 color="primary"
                 class="relative waves-light"
                 (click)="basicModal.show()"
+                mdbWavesEffect
+              >
+                make appointment
+              </button>
+              <button
+                *ngIf="!userIsLoggedIn && !spIsLoggedIn"
+                type="button"
+                mdbBtn
+                color="primary"
+                class="relative waves-light"
+                (click)="alertSignup()"
                 mdbWavesEffect
               >
                 make appointment
