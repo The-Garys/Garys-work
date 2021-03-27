@@ -45,7 +45,7 @@ export class NavbarComponent implements OnInit {
       this.localStorageService.removeItem("userName")
       this.localStorageService.removeItem("apUserName")
       this.localStorageService.removeItem("token")
-      this.localStorageService.removeItem("spEmail")
+      this.localStorageService.removeItem("halimMail")
       this.userId = "";
     }
 
@@ -54,6 +54,7 @@ export class NavbarComponent implements OnInit {
       this.localStorageService.removeItem("svMail")
       this.localStorageService.removeItem("spEmail")
       this.localStorageService.removeItem("token")
+      this.localStorageService.removeItem("halimMail")
       this.serviceProviderEmail = "";
     }
     Swal.fire(
