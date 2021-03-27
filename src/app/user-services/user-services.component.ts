@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { LocalService } from '../local.service';
 import { Router } from '@angular/router';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import {ServicesService} from '../services/services.service';
 
 @Component({
   selector: 'app-user-services',
@@ -23,8 +24,9 @@ export class UserServicesComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private local: LocalService,
+    private serviceList : ServicesService,
     private router: Router,
-    config: NgbRatingConfig
+    config: NgbRatingConfig,
   ) {
     config.max = 5;
     config.readonly = true;
@@ -40,9 +42,8 @@ export class UserServicesComponent implements OnInit {
     this.getRating();
   }
   getServices() {
-    this.http
-      .get('http://localhost:3000/api/serviceProviderList/services')
-      .subscribe((data) => {
+   
+      this.serviceList.getServiceProviders().subscribe((data) => {
         console.log('are those sps ?? ===>', data);
         this.services = data;
         this.services = this.services.filter((el) => {
@@ -52,8 +53,7 @@ export class UserServicesComponent implements OnInit {
       });
   }
   getProfessions() {
-    this.http
-      .get('http://localhost:3000/api/professions/getProfessions')
+    this.serviceList.getProfessions()
       .subscribe((data) => {
         this.list = data;
       });
@@ -66,10 +66,7 @@ export class UserServicesComponent implements OnInit {
         'hedhy kol post wahadhaaaaa ===+====+==+===>',
         this.services[i]
       );
-      this.http
-        .get(
-          `http://localhost:3000/api/review/getReviews/${this.services[i].email}`
-        )
+      this.serviceList.getRating(this.services[i].email)
         .subscribe((data) => {
           this.reviews = data;
           var totalRate = 0;
@@ -81,9 +78,8 @@ export class UserServicesComponent implements OnInit {
     }
   }
   goSvProfile(svMail) {
-    console.log('profile email when click', svMail);
-    localStorage.setItem('svMail', svMail);
-    this.router.navigateByUrl('/spProfile');
+    localStorage.setItem('halimMail', svMail);
+    this.router.navigateByUrl('/fisitor');
   }
   getVal(val) {
     console.log(val);

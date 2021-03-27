@@ -13,6 +13,8 @@ const appointmentRouter = require("./routes/AppointmentRoute");
 const adminRouter = require("./routes/AdminRoutes");
 const professionsRouter = require("./routes/ProfessionsRoutes");
 const postsRouter = require("./routes/PostsRoute");
+const liveMessagesRouter = require("./routes/LiveMessages.Routes.js");
+
 const multer = require("multer");
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
@@ -55,7 +57,7 @@ app.use("/api/appointment", appointmentRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/professions", professionsRouter);
 app.use("/api/posts", postsRouter);
-
+app.use("/api/messages", liveMessagesRouter);
 app.post("/upload", upload.any(0), (req, res) => {
   let image = req.files[0].path;
   console.log("REQ========> ", req.files[0].path);

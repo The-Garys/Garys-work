@@ -86,7 +86,7 @@
           placeholder="Type a message"
           [(ngModel)]="message"
         />
-        <button class="msg_send_btn" type="button">
+        <button class="msg_send_btn" type="button" [(ngModel)]="message">
           <i class="fab fa-telegram-plane" (click)="SendMessage()"></i>
         </button>
       </div>

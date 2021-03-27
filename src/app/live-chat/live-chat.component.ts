@@ -15,12 +15,18 @@ export class LiveChatComponent implements OnInit {
 
   ngOnInit() {
     this.setupSocketConnection();
+    this.getAllMessages();
   }
   getAllMessages() {
     this.LiveMessages.getAllMessages().subscribe((data: any[]) => {
       this.allMsg = data;
       console.log(' did our data came ? ==>', this.allMsg);
       console.log('this is our data ==>', data);
+    });
+  }
+  sendMessage() {
+    this.LiveMessages.sendAMessage(this.message).subscribe((data: any[]) => {
+      console.log('is my message sent ? ===>', data);
     });
   }
   setupSocketConnection() {

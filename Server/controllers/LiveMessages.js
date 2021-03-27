@@ -11,5 +11,8 @@ const liveMessages = {
       res.send(err);
     }
   },
+  sendMessage: async (req, res) => {
+    console.log(req.body);
+  },
 };
 module.exports = liveMessages;
