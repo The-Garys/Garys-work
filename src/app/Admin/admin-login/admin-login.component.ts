@@ -16,7 +16,6 @@ export class AdminLoginComponent implements OnInit {
   email: string;
   password:string;
 
-
   ngOnInit(): void {
   }
 
