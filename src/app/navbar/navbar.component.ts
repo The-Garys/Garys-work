@@ -3,6 +3,7 @@ import { LocalService } from "../local.service";
 import { LocalStorageService } from "../services/local-storage.service";
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
+import {ProfileService} from '../services/profile.service'
 
 @Component({
   selector: 'app-navbar',
@@ -11,10 +12,11 @@ import Swal from "sweetalert2";
 })
 export class NavbarComponent implements OnInit {
 
+  profileImg :  any;
   constructor(
     private local : LocalService,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router, private service: ProfileService
     ) {
       router.events.subscribe(() => {
         this.refreshState()
@@ -27,6 +29,7 @@ export class NavbarComponent implements OnInit {
   refreshState() {
     this.serviceProviderEmail = this.getServiceProviderEmail();
     this.userId = this.getUserId();
+    
   }
 
   getUserId() :String {
@@ -66,11 +69,26 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.refreshState()
+    // console.log('slm', this.svEmail);
+    this.refreshState();
+    
+    this.service.getServiceProviderData(this.serviceProviderEmail).subscribe((res) => {
+      console.log('griiiiib' ,res);
+         this.profileImg = res['imageUrl']
+      console.log('bye',this.profileImg);
+    
+      
+    })
+
   }
 
   scroll(id) {
     let el = document.getElementById(id);
     el.scrollIntoView();
   }
+
+  redirectSp() {
+    this.router.navigateByUrl('spProfile');
+  }
+
 }
