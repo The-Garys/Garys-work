@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { io } from 'socket.io-client';
 const SOCKET_ENDPOINT = 'localhost:3000';
+import { LiveMessages } from './live-chat.service';
 @Component({
   selector: 'app-live-chat',
   templateUrl: './live-chat.component.html',
@@ -8,11 +9,19 @@ const SOCKET_ENDPOINT = 'localhost:3000';
 })
 export class LiveChatComponent implements OnInit {
   socket;
-  message: string;
-  constructor() {}
+  message;
+  allMsg: any = [];
+  constructor(private LiveMessages: LiveMessages) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.setupSocketConnection();
+  }
+  getAllMessages() {
+    this.LiveMessages.getAllMessages().subscribe((data: any[]) => {
+      this.allMsg = data;
+      console.log(' did our data came ? ==>', this.allMsg);
+      console.log('this is our data ==>', data);
+    });
   }
   setupSocketConnection() {
     this.socket = io(SOCKET_ENDPOINT);
