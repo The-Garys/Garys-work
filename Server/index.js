@@ -13,6 +13,8 @@ const appointmentRouter = require("./routes/AppointmentRoute");
 const adminRouter = require("./routes/AdminRoutes");
 const professionsRouter = require("./routes/ProfessionsRoutes");
 const postsRouter = require("./routes/PostsRoute");
+const liveMessagesRouter = require("./routes/LiveMessages.Routes.js");
+
 const multer = require("multer");
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
@@ -32,8 +34,8 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.use(bodyParser.json());
+
 const uri = process.env.URI;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
@@ -48,14 +50,14 @@ app.use("/api/contactus", ContactUsRouter);
 
 app.use("/api/serviceProvider", serviceProviderRouter);
 
-app.use("/api/serviceProviderList", ServicesProviderListRouter); // change to /api/services
+app.use("/api/serviceProviderList", ServicesProviderListRouter);
 app.use("/api/review", reviewRouter);
 app.use("/api/appointment", appointmentRouter);
 
 app.use("/api/admin", adminRouter);
 app.use("/api/professions", professionsRouter);
 app.use("/api/posts", postsRouter);
-
+app.use("/api/messages", liveMessagesRouter);
 app.post("/upload", upload.any(0), (req, res) => {
   let image = req.files[0].path;
   console.log("REQ========> ", req.files[0].path);

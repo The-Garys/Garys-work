@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
-const liveMessages = new mongoose.Schema(
+const messageSchema = new mongoose.Schema(
   {
     messageBody: { type: String, required: true },
     userId: { type: String, required: true },
     spId: { type: String, required: true },
-    isSp: { type: boolean, required: true },
+    isSp: { type: Boolean, required: true },
   },
   { timestamps: true }
 );
 
-const messages = mongoose.model("messages", liveMessages);
+const liveMessages = mongoose.model("liveMessages", messageSchema);
 
-module.exports = messages;
+module.exports = liveMessages;
