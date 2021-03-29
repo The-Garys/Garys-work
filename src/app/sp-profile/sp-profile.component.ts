@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { GaryService } from '../gary.service';
+
 import { LocalService } from '../local.service';
 import * as moment from 'moment';
 import { ProfileService } from '../services/profile.service';
@@ -22,8 +22,8 @@ export class SpProfileComponent implements OnInit {
   socket;
   message = {
     messageBody: '',
-    userId: '60535d734d756938fcb1d031',
-    spId: '605eff787f19a604f461d987',
+    userId: localStorage.getItem('id'),
+    spId: localStorage.getItem('halimMail'),
     isSp: !false,
   };
   isChatClicked: boolean = false;
@@ -32,7 +32,6 @@ export class SpProfileComponent implements OnInit {
   recievedMessages: any = [];
   constructor(
     private LiveMessages: LiveMessages,
-    private GaryService: GaryService,
     private http: HttpClient,
     private local: LocalService,
     private profileServices: ProfileService
@@ -57,7 +56,7 @@ export class SpProfileComponent implements OnInit {
   currentPassword: string;
   confirmPassword: string;
   imageUrl: string;
-
+  currentConversation: any = [];
   ngOnInit(): void {
     if (localStorage.getItem('visitor') === 'yes') {
       this.visitor = true;
@@ -90,6 +89,14 @@ export class SpProfileComponent implements OnInit {
       });
     this.setupSocketConnection();
     this.getAllMessages();
+  }
+  getConversation() {
+    this.LiveMessages.getConversation(
+      this.message.spId,
+      this.message.userId
+    ).subscribe((data: any[]) => {
+      this.currentConversation = data;
+    });
   }
   getAllMessages() {
     this.LiveMessages.getAllMessages().subscribe((data: any[]) => {

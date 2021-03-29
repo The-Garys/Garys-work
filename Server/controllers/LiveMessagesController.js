@@ -22,5 +22,17 @@ const liveMessages = {
       res.send(err);
     }
   },
+  getConversation: async (req, res) => {
+    try {
+      var data = await messagesModel.find({
+        userId: req.params.userId,
+        spId: req.params.spId,
+      });
+      console.log("those are our messages for this conversation", data);
+      res.send(data);
+    } catch (err) {
+      console.log("this error is because of live message", err);
+    }
+  },
 };
 module.exports = liveMessages;
