@@ -91,7 +91,8 @@ export class NavbarComponent implements OnInit {
         
       })
     }
-
+  
+    
   }
 
   scroll(id) {
