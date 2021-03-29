@@ -9,7 +9,7 @@
       <a [routerLink]="['/userServices']">Services</a>
       <a *ngIf="!userId && !serviceProviderEmail" id="connection" [routerLink]="['/signin']">Get Started</a>
       <img *ngIf="serviceProviderEmail"  (click)='redirectSp()' class="user-avatar" src={{profileImg}} alt="">
-      <img *ngIf="userId"  [routerLink]="['/user-profile']" src="https://lh3.googleusercontent.com/proxy/Eoai7ij-LaNbydy-uo1-Si54uLZpHs5QCeFIKHf98z5jJZdAzzsXiTLEqKUdVFO-xjoJyHJdwkevCRPJWd6hg4ahI8433cA92uxmMDPzuPnmxfCCDzPZ1ql8" alt="" class="user-avatar">  
+      <img *ngIf="userId"  [routerLink]="['/user-profile']" src="{{ profileImg }}" alt="" class="user-avatar">  
       <a *ngIf="userId || serviceProviderEmail" (click)="logout()"  id="connection">Logout</a>
     </nav>
   </div>

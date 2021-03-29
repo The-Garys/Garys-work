@@ -216,6 +216,24 @@ const userCtrl = {
         console.log(error);
       }
     },
+    updateUserImage: async (req, res) => {
+      console.log(req.params);
+      console.log(req.body);
+      try {
+        const { imageUrl } = req.body;
+        let user = await Users.findByIdAndUpdate(
+          { _id: req.params.id },
+          {
+            imageUrl,
+          },
+          { new: true }
+        );
+        console.log("user imageUrl", user.imageUrl);
+        res.send({ success: "updated image successfully", data: user.imageUrl });
+      } catch (error) {
+        console.log(error);
+      }
+    },
 };
 
 module.exports = userCtrl;

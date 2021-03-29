@@ -164,21 +164,21 @@ export class UserProfileComponent implements OnInit {
   }
 
 
-  // updateImage(imageUrl) {
+  updateImage(imageUrl) {
 
-  //   console.log("sv details====>", this.spData)
-  //   console.log(imageUrl)
+    console.log("sv details====>", this.spData)
+    console.log(imageUrl)
     
-  //     this.userServices.updateImage(imageUrl, this.spData._id).subscribe((data) => {
-  //       console.log("new data", data)
-  //       this.spData.imageUrl = data['data']
-  //       Swal.fire(
-  //         '',
-  //         data['success'],
-  //         'success'
-  //       );
-  //     })
-  // }
+      this.userServices.updateUserImage(imageUrl, this.spData._id).subscribe((data) => {
+        console.log("new data", data)
+        this.spData.imageUrl = data['data']
+        Swal.fire(
+          '',
+          data['success'],
+          'success'
+        );
+      })
+  }
 
 
 }

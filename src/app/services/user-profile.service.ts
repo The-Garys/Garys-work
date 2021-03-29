@@ -28,7 +28,7 @@ getUserAppointments(id) {
   return this.http.get(`http://localhost:3000/api/appointment/getAppts/${id}`)
 }
 
-// updateImage(imageUrl, id) {
-//   return this.http.put(`http://localhost:3000/api/serviceProvider/updateImage/${id}`, {imageUrl}, { responseType: 'json' })
-// }
+updateUserImage(imageUrl, id) {
+  return this.http.put(`http://localhost:3000/api/user/updateUserImage/${id}`, {imageUrl}, { responseType: 'json' })
+}
 }

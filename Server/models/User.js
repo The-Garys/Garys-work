@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema(
     phoneNumber: { type: Number },
     isServiceProvider: { type: Boolean, default: false },
     isBanned: { type: Boolean, default: false },
+    imageUrl: { type: String}
     
   },
   { timestamps: true }

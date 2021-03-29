@@ -6,7 +6,7 @@
         <div class="profile-header">
           <div class="profile-image">
             <div class="imgg-cont">
-              <img src="https://lh3.googleusercontent.com/proxy/Eoai7ij-LaNbydy-uo1-Si54uLZpHs5QCeFIKHf98z5jJZdAzzsXiTLEqKUdVFO-xjoJyHJdwkevCRPJWd6hg4ahI8433cA92uxmMDPzuPnmxfCCDzPZ1ql8" alt="" width="200" />
+              <img src="{{ spData?.imageUrl }}" alt="" width="200" />
               <div  class="cam-icon">
                 <i (click)="basicModal.show()" class="fas fa-camera"></i>
                 <!-- modal -->
@@ -45,6 +45,7 @@
                       <div class="modal-footer">
                         <button
                           type="button"
+                          
                           mdbBtn
                           color="secondary"
                           class="waves-light"
@@ -55,6 +56,7 @@
                           Close
                         </button>
                         <button
+                        (click)="updateImage(this.imageUrl)"
                           type="button"
                           mdbBtn
                           color="primary"
