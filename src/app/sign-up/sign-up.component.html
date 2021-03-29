@@ -134,16 +134,9 @@
       </div>
     </div>
     <!-- location -->
-    <div class="Location">
-      <select #location id="Location-list">
-        <input class="Location-list-inp" list="Location-list" type="text" />
-        <option value="Location">Location</option>
+    <app-location #loc></app-location>
+    
 
-        <option value="Tunis">Tunis</option>
-        <option value="Bizert">Bizert</option>
-        <option value="Kef">Kef</option>
-      </select>
-    </div>
     <!-- Sign up button -->
     <button
       mdbBtn
@@ -160,10 +153,10 @@
           phoneNumber.value,
           gender.value,
           profession.value,
-          location.value,
           this.imageUrl,
           CIN.value,
-          description.value
+          description.value,
+          loc.address
         )
       "
     >

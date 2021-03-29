@@ -21,17 +21,16 @@
       {{ sevice?.profession }}
     </option>
   </select>
-
-  <select class="dropbtn" (change)="dropLoc($event.target.value)">  ²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²
-    <option class="dropdown-content" value="localisation">Location</option>
-    <option
-      class="dropdown-content"
-      *ngFor="let location of location"
-      value="{{ location.location }}"
-    >
-      {{ location.location }}
-    </option>
-  </select>
+  <div class="md-form md-outline form-sm">
+    <input
+      id="form-sm"
+      (keyup)="dropLoc($event.target.value)"
+      class="form-control form-control-sm"
+      type="text"
+      mdbInput
+    />
+    <label for="form-sm">Location</label>
+  </div>
 </div>
 
 <div class="cont-cards">
