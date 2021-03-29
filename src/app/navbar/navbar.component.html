@@ -8,7 +8,7 @@
       <!-- <a href="" (click)='scroll()'>Contact Us</a> -->
       <a [routerLink]="['/userServices']">Services</a>
       <a *ngIf="!userId && !serviceProviderEmail" id="connection" [routerLink]="['/signin']">Get Started</a>
-      <img *ngIf=" serviceProviderEmail"  (click)='redirectSp()' class="user-avatar" src={{profileImg}} alt="">
+      <img *ngIf=" serviceProviderEmail"  (click)='redirectSp()' class="user-avatar" src={{profileImg?.imageUrl}} alt="">
       <a *ngIf="userId || serviceProviderEmail" (click)="logout()"  id="connection">Logout</a>
     </nav>
   </div>

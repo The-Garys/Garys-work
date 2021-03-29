@@ -74,7 +74,7 @@ export class NavbarComponent implements OnInit {
     
     this.service.getServiceProviderData(this.serviceProviderEmail).subscribe((res) => {
       console.log('griiiiib' ,res);
-         this.profileImg = res['imageUrl']
+         this.profileImg = res;
       console.log('bye',this.profileImg);
     
       

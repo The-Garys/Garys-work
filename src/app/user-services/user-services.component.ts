@@ -113,17 +113,15 @@ export class UserServicesComponent implements OnInit {
 
   dropLoc(val) {
     console.log(val);
-    // this.services = this.backup
-    if (val !== 'all') {
-      var newArr = [];
-      this.services.map((e) => {
-        val = val.toUpperCase();
-        var name = e.location.toUpperCase();
-        if (name.includes(val)) {
-          newArr.push(e);
-        }
-      });
-      this.services = newArr;
-    }
+    this.services = this.backup;
+    var newArray = [];
+    this.services.map((e) => {
+      val = val.toUpperCase();
+      var name = e.location.toUpperCase();
+      if (name.includes(val)) {
+        newArray.push(e);
+      }
+    });
+    this.services = newArray;
   }
 }

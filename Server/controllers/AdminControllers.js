@@ -128,14 +128,13 @@ const admin = {
         {
           _id: req.params.id,
         },
-        { isVerified:'rejected'}
+        { isDeclined: true }
       );
-       res.json({ ok: "Sp Rejected!" });
+      res.json({ ok: "Sp Rejected!" });
     } catch (err) {
       console.log(err);
     }
   },
-
 };
 
 module.exports = admin;
