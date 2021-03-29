@@ -123,6 +123,13 @@ export class SignInComponent implements OnInit {
               text: 'Account Is Banned',
             });
           }
+          else if (data['isDeclined']) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Your Account Validation Is Declined, Contact Us for more information',
+            });
+          }
          
            else {
             localStorage.setItem("apUserName" , data["name"])

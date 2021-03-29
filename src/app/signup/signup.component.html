@@ -65,14 +65,16 @@
         <label for="materialRegisterFormPhone">Phone number</label>
 
       </div>
+          
 
+      <app-location #loc></app-location>
 
 
 
       <!-- Sign up button -->
       <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0"
         mdbWavesEffect 
-        (click)="register(firstName.value,lastName.value,userName.value, email.value,password.value,repeatedPassword.value,phoneNumber.value)">Register</button>
+        (click)="register(firstName.value,lastName.value,userName.value, email.value,password.value,repeatedPassword.value,phoneNumber.value, loc.address)">Register</button>
 
       <!-- Social register -->
       <!-- <p>or sign up with:</p>

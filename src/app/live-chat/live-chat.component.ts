@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 import { io } from 'socket.io-client';
 const SOCKET_ENDPOINT = 'localhost:3000';
 import { LiveMessages } from './live-chat.service';
@@ -16,6 +17,8 @@ export class LiveChatComponent implements OnInit {
     isSp: !false,
   };
   allMsg: any = [];
+  sendedMessages: any = [];
+  recievedMessages: any = [];
   constructor(private LiveMessages: LiveMessages) {}
 
   ngOnInit() {
@@ -27,6 +30,11 @@ export class LiveChatComponent implements OnInit {
       this.allMsg = data;
       console.log(' did our data came ? ==>', this.allMsg);
       console.log('this is our data ==>', data);
+      for (var i = 0; i < this.allMsg.length; i++) {
+        this.allMsg[i].createdAt = moment()
+          .add(this.allMsg[i].createdAt)
+          .calendar();
+      }
     });
   }
 
@@ -34,14 +42,21 @@ export class LiveChatComponent implements OnInit {
     this.socket = io(SOCKET_ENDPOINT);
     this.socket.on('message-broadcast', (data: string = this.allMsg) => {
       if (data) {
+        this.getAllMessages();
+        console.log('is it working this way ?? ==>', data);
       }
     });
   }
   SendMessage() {
     this.socket.emit('message', this.message.messageBody);
+
     this.LiveMessages.sendAMessage(this.message).subscribe((response) => {
       console.log('is my message sent ? ===>', response);
+      this.getAllMessages();
     });
     this.message.messageBody = '';
+  }
+  hideMessages() {
+    document.getElementById('contt').style.display = 'none';
   }
 }
