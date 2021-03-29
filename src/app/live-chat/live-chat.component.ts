@@ -42,6 +42,7 @@ export class LiveChatComponent implements OnInit {
     this.socket = io(SOCKET_ENDPOINT);
     this.socket.on('message-broadcast', (data: string = this.allMsg) => {
       if (data) {
+        this.getAllMessages();
         console.log('is it working this way ?? ==>', data);
       }
     });
@@ -54,5 +55,8 @@ export class LiveChatComponent implements OnInit {
       this.getAllMessages();
     });
     this.message.messageBody = '';
+  }
+  hideMessages() {
+    document.getElementById('contt').style.display = 'none';
   }
 }

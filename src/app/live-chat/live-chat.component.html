@@ -14,16 +14,32 @@
   </div>
 </div> -->
 
-<div class="cont-ainer">
+<div id="contt" class="cont-ainer">
   <div class="mesgs">
+    <div class="msg__header">
+      <div class="msg-cont-img">
+        <img
+          class="img-usr-msg"
+          src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png"
+          alt=""
+        />
+      </div>
+      <div class="name__container">
+        <h1 class="name-of-receiver">Ramzi Chammem</h1>
+      </div>
+      <div class="close-icn">
+        <i class="far fa-times-circle" (click)="hideMessages()"></i>
+      </div>
+    </div>
     <div class="msg_history" id="msg-hstr">
       <div class="incoming_msg">
         <div class="msg-cnt" *ngFor="let msg of allMsg">
           <div class="incoming_msg" *ngIf="msg.isSp === false">
             <div class="incoming_msg_img">
               <img
-                src="https://ptetutorials.com/images/user-profile.png"
+                src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png"
                 alt="sunil"
+                class="rec-msgs"
               />
             </div>
             <div class="received_msg">
