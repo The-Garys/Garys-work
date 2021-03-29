@@ -18,7 +18,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist/gary-work",
             "index": "src/index.html",
@@ -51,7 +51,10 @@
               "node_modules/rellax/rellax.min.js",
               "node_modules/jquery/dist/jquery.js",
               "node_modules/datatables.net/js/jquery.dataTables.js"
-            ]
+            ],
+            "customWebpackConfig": {
+              "path": "webpack.config.js"
+            }
           },
           "configurations": {
             "production": {
@@ -84,7 +87,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "browserTarget": "gary-work:build"
           },
@@ -101,7 +104,7 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-builders/custom-webpack:karma",
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
@@ -115,7 +118,10 @@
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "webpack.config.js"
+            }
           }
         },
         "lint": {

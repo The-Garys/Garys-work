@@ -15,6 +15,8 @@ export class LocationComponent implements OnInit {
   address: string;
   private geoCoder;
 
+inp :String;
+
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
@@ -70,6 +72,12 @@ export class LocationComponent implements OnInit {
     this.longitude = $event.coords.lng;
     this.getAddress(this.latitude, this.longitude);
   }
+
+  onInputChange() {
+    console.log(this.inp);
+    
+  }
+
 
   onChooseloc(event) {
     this.latitude = event.coords.lat;
