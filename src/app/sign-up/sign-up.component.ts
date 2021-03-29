@@ -38,11 +38,12 @@ export class SignUpComponent implements OnInit {
     phoneNumber,
     gender,
     profession,
-    location,
     imageUrl,
     CIN,
     description,
+    loc
   ) {
+    console.log("hhhh",typeof(loc), description)
     if(!imageUrl && gender === "Male" ){
       imageUrl = "https://mpng.subpng.com/20180523/tha/kisspng-businessperson-computer-icons-avatar-clip-art-lattice-5b0508dc6a3a10.0013931115270566044351.jpg"
     } 
@@ -92,10 +93,10 @@ export class SignUpComponent implements OnInit {
             phoneNumber: phoneNumber,
             gender: gender,
             profession: profession,
-            location: location,
             imageUrl: imageUrl,
             CIN:CIN,
             description:description,
+            location: loc
           },
           { responseType: 'json' }
         )
@@ -118,6 +119,7 @@ export class SignUpComponent implements OnInit {
               'You will recieve a text message once your account has been verified, Welcome to the community!',
               'success'
             )
+            
           }
         });
     }

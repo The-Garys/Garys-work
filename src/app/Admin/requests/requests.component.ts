@@ -15,7 +15,7 @@ export class RequestsComponent implements OnInit {
     this.admin.getSpList().subscribe(data => {
       this.requests = data;
      this.requests =  this.requests.filter(el => {
-        return el.isVerified === false; 
+        return el.isVerified === false && el.isDeclined === false;
       })
     
       console.log(this.requests);
@@ -54,9 +54,31 @@ export class RequestsComponent implements OnInit {
 }
 
 reject(id) {
-  this.admin.declineAccount(id).subscribe(data=> {
-    console.log('account rejected', data);
-    this.ngOnInit();
+  Swal.fire({
+    title: 'Decline Account?',
+    text: "",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: 'red',
+    cancelButtonColor: '#576490',
+    confirmButtonText: 'Decline'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        '',
+        'Account Declined',
+        'success'
+      )
+      this.admin.declineAccount(id).subscribe(data=> {
+        console.log('account rejected', data);
+        this.ngOnInit();
+      })
+    }
   })
+
+  
+
 }
+  
+
 }
