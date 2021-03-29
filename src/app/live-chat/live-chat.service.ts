@@ -14,4 +14,7 @@ export class LiveMessages {
   public sendAMessage(body) {
     return this.httpClient.post(this.apiURL + 'messages/sendMessage', body);
   }
+  public getConversation(spId, userId) {
+    return this.httpClient.get(this.apiURL + 'messages/' + spId + '/' + userId);
+  }
 }
