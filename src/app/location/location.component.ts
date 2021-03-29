@@ -47,6 +47,7 @@ inp :String;
           //set latitude, longitude and zoom
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
+          this.getAddress(this.latitude, this.longitude);
           this.zoom = 12;
         });
       });
