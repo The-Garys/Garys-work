@@ -104,4 +104,12 @@ inp :String;
     });
   }
 
+
+   onLocChange(event) {
+     this.latitude = event.coords.lat;
+     this.longitude = event.coords.lng;
+     this.getAddress(this.latitude, this.longitude);
+   }
+
+
 }
