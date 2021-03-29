@@ -5,6 +5,7 @@ module.exports={
         console.log("professiin", req.body)
        const profession = new Services({
         profession:req.body.profession,
+        image:req.body.image,
           });
           try{
               const saved= await Services.findOne({profession: req.body.profession})
