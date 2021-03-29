@@ -93,6 +93,17 @@ export class NavbarComponent implements OnInit {
     }
   
     
+<<<<<<< HEAD
+=======
+    this.service.getServiceProviderData(this.serviceProviderEmail).subscribe((res) => {
+      console.log('griiiiib' ,res);
+         this.profileImg = res;
+      console.log('bye',this.profileImg);
+    
+      
+    })
+
+>>>>>>> ba7bd780dab22570260a5d332a380e802946e757
   }
 
   scroll(id) {

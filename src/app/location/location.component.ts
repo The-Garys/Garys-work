@@ -15,6 +15,8 @@ export class LocationComponent implements OnInit {
   address: string;
   private geoCoder;
 
+inp :String;
+
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
@@ -45,6 +47,7 @@ export class LocationComponent implements OnInit {
           //set latitude, longitude and zoom
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
+          this.getAddress(this.latitude, this.longitude);
           this.zoom = 12;
         });
       });
@@ -71,6 +74,12 @@ export class LocationComponent implements OnInit {
     this.getAddress(this.latitude, this.longitude);
   }
 
+  onInputChange() {
+    console.log(this.inp);
+    
+  }
+
+
   onChooseloc(event) {
     this.latitude = event.coords.lat;
     this.longitude = event.coords.lng;
@@ -94,5 +103,13 @@ export class LocationComponent implements OnInit {
 
     });
   }
+
+
+   onLocChange(event) {
+     this.latitude = event.coords.lat;
+     this.longitude = event.coords.lng;
+     this.getAddress(this.latitude, this.longitude);
+   }
+
 
 }
