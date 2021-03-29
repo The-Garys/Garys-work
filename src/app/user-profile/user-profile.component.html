@@ -1,0 +1,204 @@
+
+<!-- <app-sv-nav></app-sv-nav> -->
+<div class="body">
+    <div class="cont">
+      <div class="container" >
+        <div class="profile-header">
+          <div class="profile-image">
+            <div class="imgg-cont">
+              <img src="{{ spData?.imageUrl }}" alt="" width="200" />
+              <div  class="cam-icon">
+                <i (click)="basicModal.show()" class="fas fa-camera"></i>
+                <!-- modal -->
+                <div class="modalImage"></div>
+                <div
+                  mdbModal
+                  #basicModal="mdbModal"
+                  class="modal fade"
+                  tabindex="-1"
+                  role="dialog"
+                  aria-labelledby="myBasicModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button
+                          type="button"
+                          class="close pull-right"
+                          aria-label="Close"
+                          (click)="basicModal.hide()"
+                        >
+                          <span aria-hidden="true">×</span>
+                        </button>
+                        <!-- <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4> -->
+                        <input
+                          type="file"
+                          (change)="imgUpload($event)"
+                          #image
+                          alt="Submit"
+                        />
+                      </div>
+                      <!-- <div class="modal-body">
+                        ...
+                      </div> -->
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          
+                          mdbBtn
+                          color="secondary"
+                          class="waves-light"
+                          aria-label="Close"
+                          (click)="basicModal.hide()"
+                          mdbWavesEffect
+                        >
+                          Close
+                        </button>
+                        <button
+                        (click)="updateImage(this.imageUrl)"
+                          type="button"
+                          mdbBtn
+                          color="primary"
+                          class="relative waves-light"
+                          mdbWavesEffect
+                        >
+                          Save changes
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <!-- modal -->
+              </div>
+            </div>
+          </div>
+          <div class="profile-nav-info">
+            <h3 class="user-name">{{spData?.userName}}</h3>
+          </div>
+          <div class="profile-option">
+            <div class="notification">
+              <i class="fa fa-bell" ></i>
+              <span class="alert-message">notifications</span>
+            </div>
+          </div>
+        </div>
+        <div class="main-bd">
+          <div class="left-side">
+            <div class="profile-side">
+              <p class="phone-number">
+                <i class="fa fa-phone"></i>
+                {{spData?.phoneNumber}}
+              </p>
+              <p class="email">
+                <i class="fa fa-envelope"></i>
+                {{spData?.email}}
+              </p>
+              <div class="profile-btn">
+                <button class="chatbtn"><i class="fa fa-comment"></i>Chat</button>
+              </div>
+             
+            </div>
+          </div>
+          <div class="right-side">
+            <div class="nav">
+              <ul>
+                <li
+                  class="user-setting"
+                  [class.active]="appointments"
+                  (click)="appointment()"
+                >
+                  My appointments
+                </li>
+                <li
+                  class="user-review"
+                  [class.active]="settings"
+                  (click)="setting()"
+                >
+                  Settings
+                </li>
+                <li
+                class="user-setting"
+                [class.active]="Security"
+                (click)="security()"
+              >
+                Security
+              </li>
+              </ul>
+            </div>
+            <div class="profile-body">
+              <div
+                class="profile-posts tab active"
+                id="profile-settings"
+                *ngIf="settings"
+              >
+                <h1>Your settings</h1>
+                <!-- settings for the profile -->
+<form class="text-center border border-light p-5">
+  <div>
+  <label class="inline-label">First Name</label>
+  <input #firstName class="form-control mb-4 p-4" value="{{spData.firstName}}"/>
+</div>
+<div>
+  <label class="inline-label">Last Name</label>
+  <input #lastName class="form-control mb-4 p-4" value="{{spData.lastName}}"/>
+</div>
+<div>
+  <label class="inline-label">User Name</label>
+  <input #userName class="form-control mb-4 p-4" value="{{spData.userName}}"/>
+</div>
+<div>
+  <label class="inline-label">Phone Number</label>
+  <input #phoneNumber class="form-control mb-4 p-4" value="{{spData.phoneNumber}}"/>
+</div>
+  <button class="btn-update" (click)="updateUserDetails(firstName.value, lastName.value, userName.value, phoneNumber.value)">Save</button>
+</form>
+                <!-- settings for the profile -->
+              </div>
+              <!-- security -->
+              <div
+              class="profile-posts tab active"
+              id="profile-settings"
+              *ngIf="Security"
+            >
+              <h1>Your settings</h1>
+              <!-- settings for the profile -->
+<form class="text-center border border-light p-5">
+<div>
+<label class="inline-labell">Current password</label>
+<input #currentPassword type="password" class="form-control mb-4 p-4" placeholder="current password"/>
+</div>
+<div>
+<label class="inline-labell">New password</label>
+<input #newPassword type="password" class="form-control mb-4 p-4" placeholder="new password"/>
+</div>
+<div>
+<label class="inline-labell">Confirm Password</label>
+<input #confirmPassword type="password" class="form-control mb-4 p-4" placeholder="Confirm new Password"/>
+</div>
+<button class="btn-update" (click)="updatePassword(currentPassword.value, newPassword.value, confirmPassword.value)">Save</button>
+</form>
+              <!-- settings for the profile -->
+            </div>
+              <!-- security -->
+              <div
+                class="profile-settings tab"
+                id="profile-settings"
+                *ngIf="appointments"
+              >
+                <div>
+                  <div class="card" *ngFor="let appointment of appointmentsList">
+                    <p>you have an appointment on:  {{appointment.date}}</p>
+                    <p>at {{appointment.time}}</p>
+                    <h1>With: {{appointment.serviceProviderName}}</h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
