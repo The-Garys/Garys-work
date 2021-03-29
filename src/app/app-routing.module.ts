@@ -16,6 +16,7 @@ import {UsersComponent} from './Admin/users/users.component'
 import {RequestsComponent} from './Admin/requests/requests.component';
 import { VesitorProfileComponent } from './vesitor-profile/vesitor-profile.component';
 import { AuthGuard } from './auth/auth.guard';
+import {UserProfileComponent} from './user-profile/user-profile.component';
 
 
 
@@ -32,6 +33,8 @@ const routes: Routes = [
   {path: 'homeServices', component: ServicesListComponent} , 
   {path: 'admin', component: AdminComponent, children:[{path:'', component:AdminComponent},{path:'sps', component:ProvidersComponent},{path:'messages', component:MessagesComponent},{path:'users', component:UsersComponent}, {path:'requests', component:RequestsComponent}]},
   {path: 'fisitor', component: VesitorProfileComponent},
+  {path: 'user-profile', component: UserProfileComponent},
+  
 
   {path: 'userServices', component: UserServicesComponent},
   

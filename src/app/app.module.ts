@@ -40,6 +40,7 @@ import { ServiceProviderCardComponent } from './services-list/service-provider-c
 import { LocationComponent } from './location/location.component';
 import { LiveChatComponent } from './live-chat/live-chat.component';
 import { VesitorProfileComponent } from './vesitor-profile/vesitor-profile.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +70,7 @@ import { VesitorProfileComponent } from './vesitor-profile/vesitor-profile.compo
     LocationComponent,
     LiveChatComponent,
     VesitorProfileComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

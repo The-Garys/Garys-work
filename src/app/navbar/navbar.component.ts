@@ -67,19 +67,19 @@ export class NavbarComponent implements OnInit {
     );
     this.router.navigate(['/'])
   }
-
+  
   ngOnInit(): void {
-    // console.log('slm', this.svEmail);
     this.refreshState();
+    // console.log('slm', this.svEmail);
     
     this.service.getServiceProviderData(this.serviceProviderEmail).subscribe((res) => {
       console.log('griiiiib' ,res);
-         this.profileImg = res['imageUrl']
+      this.profileImg = res['imageUrl']
       console.log('bye',this.profileImg);
-    
+      
       
     })
-
+    
   }
 
   scroll(id) {
