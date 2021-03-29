@@ -33,7 +33,8 @@ export class SignupComponent implements OnInit {
     email,
     password,
     repeatedPassword,
-    phoneNumber
+    phoneNumber,
+    loc
   ) {
     if (!firstName || !lastName || !userName || !email || !password || !repeatedPassword || !phoneNumber) {
       Swal.fire({
@@ -62,6 +63,7 @@ export class SignupComponent implements OnInit {
       email: email,
       password: password,
       phoneNumber: phoneNumber,
+      location:loc
     },{ responseType: 'json' }).subscribe((data) => {
       console.log(data)
       if(data["err"]){
