@@ -1,0 +1,13 @@
+<!-- <p>professions works!</p> -->
+
+<input #profession type="text">
+<input
+type="file"
+(change)="imgUpload($event)"#image alt="Submit" width="48" height="48" />
+<!-- <input #image  > -->
+<button (click)="addServices(profession.value)">add</button>
+
+<div *ngFor="let service of list">
+    <p>{{service?.profession}}</p>
+    <img src="{{ service.image }}">
+</div>

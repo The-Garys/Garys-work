@@ -5,6 +5,7 @@ module.exports={
         console.log("professiin", req.body)
        const profession = new Services({
         profession:req.body.profession,
+        image:req.body.image,
           });
           try{
               const saved= await Services.findOne({profession: req.body.profession})
@@ -26,6 +27,44 @@ module.exports={
             } catch (error) {
               console.log(error);
             }
-          }
+          },
+      updateImg: async (req, res) => {
+        console.log(req.params);
+        console.log(req.body);
+        try {
+          const { image } = req.body;
+          let service = await Services.findByIdAndUpdate(
+            { _id: req.params.id },
+            {
+              image
+            },
+            { new: true }
+          );
+          console.log('aaaaa====>', service)
+        
+          res.send({ success: "successfully updated", data: service });
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      updateService: async (req, res) => {
+        console.log(req.params);
+        console.log(req.body);
+        try {
+          const { profession } = req.body;
+          let service = await Services.findByIdAndUpdate(
+            { _id: req.params.id },
+            {
+              profession
+            },
+            { new: true }
+          );
+          console.log('aaaaa====>', service)
+        
+          res.send({ success: "successfully updated", data: service });
+        } catch (error) {
+          console.log(error);
+        }
+      },
    
    }
