@@ -138,6 +138,104 @@ const userCtrl = {
       .status(200)
       .send({ auth: false, token: null, success: "you are logged out" });
   },
+  getUserDataById: async (req, res) => {
+    console.log("hhhh", req.params)
+    try {
+      var data = await Users.findOne({ _id: req.params.id });
+      res.send(data);
+    } catch (err) {
+      console.log("err", err);
+    }
+  },
+  update: async (req, res) => {
+
+       console.log("id of the userProfile", req.params.id)
+  
+       console.log("user account details", req.body)
+       try {
+         const {firstName, lastName, userName,phoneNumber}= req.body;
+         
+        
+         let sv= await Users.findByIdAndUpdate({_id: req.params.id},{
+           firstName,
+           lastName,
+           userName,
+           phoneNumber
+         },{new: true})
+         res.send({success: "updated successfully", data: sv});
+       console.log("here i am", sv)
+       } catch (error) {
+         console.log(error)
+       }
+  
+     },
+     updatePassword: async (req, res) => {
+      console.log("password id of the user", req.params);
+      console.log("the body", req.body);
+      try {
+        const { currentPassword, newPassword, confirmPassword } = req.body;
+        if (currentPassword === newPassword) {
+          res.send({
+            err: "you changed your password to the same password! are you dumb?",
+          });
+        }
+        const userPassword = await Users.findOne({ _id: req.params.id });
+        console.log("service password", userPassword.password);
+  
+        const isMatch = await bcrypt.compare(
+          currentPassword.toString(),
+          userPassword.password
+        );
+        console.log("isMatch", isMatch);
+        if (!isMatch) {
+          res.send({ err: "incorrect password" });
+        }
+        const hashNewPassword = await bcrypt.hash(
+          newPassword.toString(),
+          10
+        );
+        console.log("hashed currentpassword", hashNewPassword);
+        // const hashConfirmPassword = await bcrypt.hash(confirmPassword.toString(), 10);
+        // console.log('hashed confirmpassword', hashConfirmPassword)
+        const isSame = await bcrypt.compare(
+          confirmPassword.toString(),
+          hashNewPassword
+        );
+        console.log("isSame", isSame);
+        if (!isSame) {
+          res.send({ err: "make sure to enter your confirm password correctly" });
+        }
+        if (isMatch && isSame) {
+          userPassword.password = hashNewPassword;
+  
+          userPassword.save();
+          res.send({
+            success: "your password changed successfully",
+            data: userPassword.password,
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    updateUserImage: async (req, res) => {
+      console.log(req.params);
+      console.log(req.body);
+      try {
+        const { imageUrl } = req.body;
+        let user = await Users.findByIdAndUpdate(
+          { _id: req.params.id },
+          {
+            imageUrl,
+          },
+          { new: true }
+        );
+        console.log("user imageUrl", user.imageUrl);
+        res.send({ success: "updated image successfully", data: user.imageUrl });
+      } catch (error) {
+        console.log(error);
+      }
+    },
 };
 
 module.exports = userCtrl;
