@@ -14,6 +14,7 @@ import {MessagesComponent} from './Admin/messages/messages.component';
 import {ProvidersComponent} from './Admin/providers/providers.component'
 import {UsersComponent} from './Admin/users/users.component'
 import {RequestsComponent} from './Admin/requests/requests.component';
+import{ProfessionsComponent} from './Admin/professions/professions.component'
 import { VesitorProfileComponent } from './vesitor-profile/vesitor-profile.component';
 import { AuthGuard } from './auth/auth.guard';
 
@@ -30,7 +31,7 @@ const routes: Routes = [
   { path: 'userSignup', component: SignupComponent },
   { path: 'spProfile', component: SpProfileComponent, canActivate:[AuthGuard]},
   {path: 'homeServices', component: ServicesListComponent} , 
-  {path: 'admin', component: AdminComponent, children:[{path:'', component:AdminComponent},{path:'sps', component:ProvidersComponent},{path:'messages', component:MessagesComponent},{path:'users', component:UsersComponent}, {path:'requests', component:RequestsComponent}]},
+  {path: 'admin', component: AdminComponent, children:[{path:'', component:AdminComponent},{path:'sps', component:ProvidersComponent},{path:'messages', component:MessagesComponent},{path:'users', component:UsersComponent}, {path:'requests', component:RequestsComponent},{path:'services', component:ProfessionsComponent}]},
   {path: 'fisitor', component: VesitorProfileComponent},
 
   {path: 'userServices', component: UserServicesComponent},

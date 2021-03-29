@@ -1,4 +1,4 @@
-<p>professions works!</p>
+<!-- <p>professions works!</p> -->
 
 <input #profession type="text">
 <input
@@ -9,4 +9,5 @@ type="file"
 
 <div *ngFor="let service of list">
     <p>{{service?.profession}}</p>
+    <img src="{{ service.image }}">
 </div>

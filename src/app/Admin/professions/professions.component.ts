@@ -18,7 +18,7 @@ list:any;
     private serviceList : ServicesService) {}
 
   ngOnInit(): void {
-    
+   this.getProfessions() 
   }
 
   getProfessions() {
@@ -40,6 +40,7 @@ list:any;
         'success'
       )
     })
+    this.ngOnInit()
   }
   imgUpload(img) {
     console.log('IMG FROM VER==> ', img.target.files[0]);
@@ -48,6 +49,17 @@ list:any;
     this.profileServices.ImageUpload(formData).subscribe((resp) => {
       this.imageUrl = resp['msg'].url;
     });
+  }
+  updateImage(imageUrl) {
+    console.log('sv details====>', this.list);
+    console.log(imageUrl);
+
+    this.adminServices.updateImage(imageUrl, this.list._id)
+      .subscribe((data) => {
+        console.log('new data', data);
+        this.list.imageUrl = data['data'];
+        Swal.fire('', data['success'], 'success');
+      });
   }
 
 }

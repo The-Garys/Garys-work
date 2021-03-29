@@ -55,5 +55,9 @@ public declineAccount(id) {
 public addService(payload){
 return this.httpClient.post("http://localhost:3000/api/professions/addProfession",payload)}
 
-
+public updateImage(imageUrl,id){
+  return this.httpClient.put(`http://localhost:3000/api/professions/updateService${id}`,{imageUrl})
 }
+}
+
+
