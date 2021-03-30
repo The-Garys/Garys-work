@@ -29,8 +29,6 @@ module.exports={
             }
           },
       updateImgandService: async (req, res) => {
-        console.log(req.params);
-        console.log(req.body);
         try {
           const { image,profession } = req.body;
           let service = await Services.findByIdAndUpdate(

@@ -18,7 +18,7 @@
   >
     EDIT
   </button> -->
-    <button type="button" mdbBtn color="primary" (click)="openUpdateModal(service)" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>Edit</button>
+    <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="takeID(service._id)" (click)="basicModal.show()" mdbWavesEffect>Edit</button>
 
     <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -37,10 +37,10 @@
             alt="Submit"
           />
           </div>
-           <input type="text" placeholder="Service">
+           <input type="text" #srvice placeholder="Service">
           <div class="modal-footer">
             <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
-            <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save changes</button>
+            <button type="button" mdbBtn color="primary" class="relative waves-light"  (click)="openUpdateModal(srvice.value)"  mdbWavesEffect>Save changes</button>
           </div>
         </div>
       </div>

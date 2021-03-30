@@ -14,6 +14,7 @@ export class ProfessionsComponent implements OnInit {
 image:string;
 services:Array<Object> = [];
 profession:String;
+id : any 
   constructor(private adminServices : AdminServices,
     private profileServices : ProfileService,
     private servicesService : ServicesService) {}
@@ -29,6 +30,9 @@ profession:String;
         this.services = data;
       });
   }
+   takeID(id){
+     this.id = id 
+   }
   addServices(profession){
     var services={
       profession:profession,
@@ -53,15 +57,16 @@ profession:String;
       this.image = resp['msg'].url;
     });
   }
-  openUpdateModal(image,profession) {
-    console.log('liiist',this.services);
+  openUpdateModal(s) {
+    console.log('liiist',this.image , s , this.id);
   
    
-    this.adminServices.updateImageandService(image,profession, this.services)
+    this.adminServices.updateImageandService(this.id ,this.image,s )
       .subscribe((data) => {
         console.log('new datgftta', data);
-      //   this.services.image = data['data'];
-      //   Swal.fire('', data['success'], 'success');
+        this.services = data['data'];
+        Swal.fire('', data['success'], 'success');
+        this.ngOnInit()
       });
   }
 
