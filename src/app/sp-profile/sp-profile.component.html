@@ -144,9 +144,9 @@
           <p class="state">{{ spData?.adress }}</p>
         </div>
         <div *ngIf="!visitor" class="profile-option">
-          <div class="notification">
+          <div class="notification" (click)="goToAppointments()">
             <i class="fa fa-bell"></i>
-            <span class="alert-message" (click)="goToAppointments()">{{
+            <span class="alert-message" >{{
               notifications
             }}</span>
           </div>
@@ -295,7 +295,7 @@
                 *ngIf="visitor1"
                 class="user-setting"
                 [class.active]="appointments"
-                (click)="goToAppointments()"
+                (click)="appointment()"
               >
                 My appointments
               </li>
