@@ -1,20 +1,22 @@
 const Appointment = require("../models/Appointment");
 module.exports={
     makeAppointment: async (req, res) => {
-      console.log({
-        date:req.body.date,
-        time:req.body.time,
-        userName: req.body.userName,
-        email:req.body.email,
-        serviceProviderName: req.body.serviceProviderName
-    })
+    //   console.log({
+    //     date:req.body.date,
+    //     time:req.body.time,
+    //     userName: req.body.userName,
+    //     email:req.body.email,
+    //     serviceProviderName: req.body.serviceProviderName
+    // })
     
        const appointment = new Appointment({
            date:req.body.date,
            time:req.body.time,
            userName: req.body.userName,
            email:req.body.email,
-           serviceProviderName: req.body.serviceProviderName
+           serviceProviderName: req.body.serviceProviderName,
+           sPName: req.body.sPName,
+           userId: req.body.userId
        });
           try{
           const check= await Appointment.find({date:req.body.date}, {time: req.body.time})
@@ -40,6 +42,17 @@ module.exports={
           console.log(error);
         }
       },
+
+
+      getUserApts: async(req, res) => {
+        try {
+          const appointment = await Appointment.find({userId: req.params.id});
+          console.log(req.params);
+          res.send(appointment)
+        } catch (error) {
+          console.log(error);
+        }
+      }
 
 
     

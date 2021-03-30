@@ -8,7 +8,7 @@ router.post('/login', userCtrl.login);
 router.get("/verify", userCtrl.verify)
 router.get("/logout", userCtrl.logout)
 router.get("/:id", userCtrl.getUserDataById);
-router.put("/update/:id", userCtrl.update);
+router.put("/updateUserData/:id", userCtrl.update);
 router.patch("/updatePassword/:id", userCtrl.updatePassword);
 router.put("/updateUserImage/:id", userCtrl.updateUserImage);
 // added

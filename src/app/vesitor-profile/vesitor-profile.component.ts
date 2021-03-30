@@ -109,9 +109,14 @@ export class VesitorProfileComponent implements OnInit {
       time: time,
       userName: this.name,
       email: this.spData.email, 
-      serviceProviderName: this.spData._id
+      serviceProviderName: this.spData._id,
+      sPName:this.spData.fullName,
+      userId: localStorage.getItem('id')
     }
     
+    // console.log("ccc", c);
+    
+
     if (!date ||  !time) {
       Swal.fire({
         icon: 'error',
@@ -149,6 +154,7 @@ export class VesitorProfileComponent implements OnInit {
   posts: boolean = true;
   reviews: boolean = false;
   settings: boolean = false;
+  Security: boolean = false;
   appointments: boolean = false;
   changable: boolean = false;
   changable1: boolean = false;
@@ -175,6 +181,14 @@ export class VesitorProfileComponent implements OnInit {
     this.settings = true;
     this.appointments = false
   }
+  security() {
+    this.posts = false;
+    this.reviews = false;
+    this.settings = false;
+    this.appointments = false;
+    this.Security = true;
+  }
+
   displayInput() {
     this.changable = true;
   }
@@ -261,186 +275,63 @@ deletePost(id){
   })
 }
 
-  updateFirstName(firstName){
-    console.log("sv details====>",this.spData)
-    console.log(firstName)
-    if (!firstName) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'please enter your new first name',
-      });
-    }
-    else {
-      this.profileServices.updateFirstName(firstName, this.spData._id).subscribe((data) => {
-        console.log("new data", data)
-        this.spData.firstName = data['data']
-        Swal.fire(
-          '',
-          data['success'],
-          'success'
-        );
-      })
-    }
-    this.changable = false
-  }
-  updateLastName(lastName) {
-    console.log("sv details====>", this.spData)
-    console.log(lastName)
-    if (!lastName) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'please enter your new last name',
-      });
-    }
-    else {
-      this.profileServices.updateLastName(lastName, this.spData._id).subscribe((data) => {
-        console.log("new data", data)
-        this.spData.lastName = data['data']
-        Swal.fire(
-          '',
-          data['success'],
-          'success'
-        );
-      })
-    }
-    this.changable1 = false
-  }
 
-  updateFullName(fullName) {
-    console.log("sv details====>", this.spData)
-    console.log(fullName)
-    if (!fullName) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'please enter your new last name',
+updateServiceProviderDetails(firstName,lastName, fullName, phoneNumber) {
+  console.log('sv details====>', this.spData);
+  // console.log(firstName);
+    this.profileServices
+      .updateServiceProviderData(firstName,lastName, fullName,phoneNumber, this.spData._id)
+      .subscribe((data) => {
+        console.log('new data', data);
+        this.spData = data['data'];
+        Swal.fire('', data['success'], 'success');
       });
-    }
-    else {
-      this.profileServices.updateFullName(fullName, this.spData._id).subscribe((data) => {
-        console.log("new data", data)
-        this.spData.fullName = data['data']
-        Swal.fire(
-          '',
-          data['success'],
-          'success'
-        );
-      })
-      // this.ngOnInit()
-    }
-    this.changable2 = false
-  }
+}
 
-  updateEmail(email) {
+ 
 
-    console.log("sv details====>", this.spData)
-    console.log(email)
-    if (!email) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'please enter your new email',
-      });
-    }
-    else {
-      this.profileServices.updateEmail(email, this.spData._id).subscribe((data) => {
-        console.log("new data", data)
-        if (data["err"]) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: data['err'],
-          });
-        }
-        else {
-          localStorage.setItem("svMail", data["data"])
-          Swal.fire(
-            '',
-            data['success'],
-            'success'
-          );
-          this.spData.email = data['data']
-        }
-      })
-      // this.ngOnInit()
-    }
-    this.changable3 = false
-  }
-
-  updateAdress(adress) {
-
-    console.log("sv details====>", this.spData)
-    console.log(adress)
-    if (!adress) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'please enter your new adress',
-      });
-    }
-    else {
-      this.profileServices.updateAdress(adress, this.spData._id).subscribe((data) => {
-        console.log("new data", data)
-        this.spData.adress = data['data']
-        Swal.fire(
-          '',
-          data['success'],
-          'success'
-        );
-      })
-      // this.ngOnInit()
-    }
-    this.changable4 = false
-
-  }
-
-  updatePassword(previousPassword, currentPassword, confirmPassword) {
-    console.log("sv details====>", this.spData)
-    if (!previousPassword || !currentPassword || !confirmPassword) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'please enter your fields',
-      });
-    }
-    else if (currentPassword !== confirmPassword) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'make sure to confirm your password correctly',
-      });
-    }
-    else if (currentPassword.length < 8) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'your password must be at least 8 characters',
-      });
-    }
-    else {
-      this.profileServices.updatePassword(previousPassword, currentPassword, confirmPassword, this.spData._id).subscribe((data) => {
-        console.log("password data", data)
+updateServiceProviderPassword(currentPassword, newPassword, confirmPassword) {
+  console.log('sv details====>', this.spData);
+  if (!currentPassword || !newPassword || !confirmPassword) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'please enter your fields',
+    });
+  } else if (newPassword !== confirmPassword) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'make sure to confirm your password correctly',
+    });
+  } else if (newPassword.length < 8) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'your password must be at least 8 characters',
+    });
+  } else {
+    this.profileServices
+      .updatePassword(
+        currentPassword,
+        newPassword,
+        confirmPassword,
+        this.spData._id
+      )
+      .subscribe((data) => {
+        console.log('password data', data);
         if (data['err']) {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: data['err'],
           });
+        } else {
+          Swal.fire('', data['success'], 'success');
         }
-        else {
-          Swal.fire(
-            '',
-            data['success'],
-            'success'
-          );
-        }
-      })
-    }
-    this.changable5 = false
+      });
   }
-
+}
 
   updateImage(imageUrl) {
 

@@ -771,3 +771,35 @@ img {
   width: 30%;
   margin-left: 2rem;
 }
+
+
+.form-control{
+  margin-left: 10%;
+}
+.inline-label{
+  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float:left; 
+    margin-left: -1%; 
+}
+
+.btn-update{
+  background-color: blue; 
+  border: none;
+  color: white;
+padding: 1.5% 3%;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 3px;
+  margin-left: -2%;
+}
+
+.inline-labell{
+  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float:left; 
+    margin-left: -3%; 
+}
