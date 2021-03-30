@@ -36,23 +36,13 @@ export class ProfileService {
     return this.http.delete(`http://localhost:3000/api/posts/${id}`)
   }
  
-  updateFirstName(firstName, id) {
-    return this.http.put(`http://localhost:3000/api/serviceProvider/updateFirstName/${id}`, {firstName}, { responseType: 'json' })
+  updateServiceProviderData(firstName,lastName, fullName, phoneNumber, id) {
+    return this.http.put(`http://localhost:3000/api/serviceProvider/updateServiceProviderData/${id}`, {firstName, lastName, fullName, phoneNumber}, { responseType: 'json' })
   }
-updateLastName(lastName, id) {
-  return this.http.put(`http://localhost:3000/api/serviceProvider/updateLastName/${id}`, {lastName}, { responseType: 'json' })
-}
-updateFullName(fullName, id) {
-  return this.http.put(`http://localhost:3000/api/serviceProvider/updateFullName/${id}`, {fullName}, { responseType: 'json' })
-}
-updateEmail(email, id) {
-  return this.http.put(`http://localhost:3000/api/serviceProvider/updateEmail/${id}`, {email}, { responseType: 'json' })
-}
-updateAdress(adress, id) {
-  return this.http.put(`http://localhost:3000/api/serviceProvider/updateAdress/${id}`, {adress}, { responseType: 'json' })
-}
-updatePassword(previousPassword, currentPassword, confirmPassword, id) {
-  return this.http.patch(`http://localhost:3000/api/serviceProvider/updatePassword/${id}`, {previousPassword, currentPassword, confirmPassword}, { responseType: 'json' })
+
+
+updatePassword(currentPassword, newPassword, confirmPassword, id) {
+  return this.http.patch(`http://localhost:3000/api/serviceProvider/updateServiceProviderPassword/${id}`, {currentPassword, newPassword, confirmPassword}, { responseType: 'json' })
 }
 
 updateImage(imageUrl, id) {

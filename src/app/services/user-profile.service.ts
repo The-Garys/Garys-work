@@ -16,7 +16,7 @@ export class UserProfileService {
     return this.http.post('http://localhost:3000/upload', formData)
   }
   updateUserData(id, firstName, lastName,userName,phoneNumber){
-    return this.http.put(`http://localhost:3000/api/user/update/${id}`, {firstName, lastName, userName, phoneNumber}, { responseType: 'json' })
+    return this.http.put(`http://localhost:3000/api/user/updateUserData/${id}`, {firstName, lastName, userName, phoneNumber}, { responseType: 'json' })
   }
 
 
@@ -25,7 +25,7 @@ updatePassword( id, currentPassword, newPassword, confirmPassword) {
   return this.http.patch(`http://localhost:3000/api/user/updatePassword/${id}`, {currentPassword, newPassword, confirmPassword}, { responseType: 'json' })
 }
 getUserAppointments(id) {
-  return this.http.get(`http://localhost:3000/api/appointment/getAppts/${id}`)
+  return this.http.get(`http://localhost:3000/api/appointment/getUserApts/${id}`)
 }
 
 updateUserImage(imageUrl, id) {

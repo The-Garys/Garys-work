@@ -80,7 +80,7 @@
           <div class="profile-option">
             <div class="notification">
               <i class="fa fa-bell" ></i>
-              <span class="alert-message">notifications</span>
+              <span class="alert-message" (click)="goToAppointments()">{{notifications}}</span>
             </div>
           </div>
         </div>
@@ -191,7 +191,7 @@
                   <div class="card" *ngFor="let appointment of appointmentsList">
                     <p>you have an appointment on:  {{appointment.date}}</p>
                     <p>at {{appointment.time}}</p>
-                    <h1>With: {{appointment.serviceProviderName}}</h1>
+                    <h1>With: {{appointment.sPName}}</h1>
                   </div>
                 </div>
               </div>

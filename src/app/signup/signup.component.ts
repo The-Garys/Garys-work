@@ -16,6 +16,18 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  imageUrl : string
+  imgUpload(img) {
+    console.log('IMG FROM VER==> ', img.target.files[0]);
+    var formData = new FormData();
+    formData.append('img', img.target.files[0]);
+    this.http.post("http://localhost:3000/upload" , formData).subscribe((resp) => {
+      this.imageUrl = resp['msg'].url;
+    });
+
+  
+  }
+
   data: {
     firstName: any,
     lastName: any,
@@ -25,6 +37,7 @@ export class SignupComponent implements OnInit {
     repeatedPassword: any,
     phoneNumber: any
   }
+  
   // function register for sending a post request to the server
   register(
     firstName,
@@ -34,8 +47,13 @@ export class SignupComponent implements OnInit {
     password,
     repeatedPassword,
     phoneNumber,
+    imageUrl,
     loc
   ) {
+    if(!imageUrl){
+      imageUrl ="https://t3.ftcdn.net/jpg/01/18/01/98/360_F_118019822_6CKXP6rXmVhDOzbXZlLqEM2ya4HhYzSV.jpg"
+    }
+
     if (!firstName || !lastName || !userName || !email || !password || !repeatedPassword || !phoneNumber) {
       Swal.fire({
         icon: 'error',

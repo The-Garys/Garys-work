@@ -7,6 +7,8 @@ const appointmentSchema = new mongoose.Schema(
    date:{type:String},
    email: { type: String, required: true },
    serviceProviderName:{type: String, required: true },
+   sPName:{type: String },
+   userId:{type: String },
    time: { type: String, required: true }
 },
   { timestamps: true }
