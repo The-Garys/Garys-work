@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ServicesService {
     return this.http.get('http://localhost:3000/api/serviceProviderList/services');
   }
 
-  getProfessions() {
+  getProfessions(): Observable<Object> {
     return this.http.get('http://localhost:3000/api/professions/getProfessions')
   }
   getRating(i) {
