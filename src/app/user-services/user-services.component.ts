@@ -20,7 +20,9 @@ export class UserServicesComponent implements OnInit {
   backup: any = [];
   location: any = NAME;
   reviews: any = [];
-
+n : any = ""
+l : any =""
+p : any =""
   constructor(
     private http: HttpClient,
     private local: LocalService,
@@ -83,45 +85,73 @@ export class UserServicesComponent implements OnInit {
   }
   getVal(val) {
     console.log(val);
+    this.n = val.toUpperCase(); 
     this.services = this.backup;
     var newArray = [];
     this.services.map((e) => {
       val = val.toUpperCase();
       var name = e.fullName.toUpperCase();
-      if (name.includes(val)) {
+      var profession = e.profession.toUpperCase();
+      var location = e.location.toUpperCase();
+      if (name.includes(val) && profession.includes(this.p) &&  location.includes(this.l)) {
         newArray.push(e);
-      }
+      } 
     });
     this.services = newArray;
+    console.log("dazdzad" , val , this.services)
   }
 
   dropVal(val) {
+    console.log(val)
     // console.log(val)
-    this.services = this.backup;
-    if (val !== 'all') {
+    if(val === "all"){
+      this.services = this.backup;
       var newArr = [];
       this.services.map((e) => {
-        val = val.toUpperCase();
-        var name = e.profession.toUpperCase();
-        if (name.includes(val)) {
+        var name = e.fullName.toUpperCase();
+      var location = e.location.toUpperCase();
+        if (name.includes(this.n) &&  location.includes(this.l)) {
           newArr.push(e);
         }
       });
       this.services = newArr;
+    } else {
+      this.p = val.toUpperCase(); 
+      this.services = this.backup;
+    
+        var newArr = [];
+        this.services.map((e) => {
+          val = val.toUpperCase();
+          var name = e.fullName.toUpperCase();
+        var profession = e.profession.toUpperCase();
+        var location = e.location.toUpperCase();
+          if (name.includes(this.n) && profession.includes(val) &&  location.includes(this.l)) {
+            newArr.push(e);
+          }
+        });
+        this.services = newArr;
+      
+      console.log( val , this.services)
     }
+   
   }
 
   dropLoc(val) {
     console.log(val);
+    this.l = val.toUpperCase(); 
     this.services = this.backup;
     var newArray = [];
     this.services.map((e) => {
       val = val.toUpperCase();
-      var name = e.location.toUpperCase();
-      if (name.includes(val)) {
+      var name = e.fullName.toUpperCase();
+      var profession = e.profession.toUpperCase();
+      var location = e.location.toUpperCase();
+      if (name.includes(this.n) && profession.includes(this.p) &&  location.includes(val)) {
         newArray.push(e);
       }
     });
     this.services = newArray;
+    console.log( val , this.services)
   }
+ 
 }
