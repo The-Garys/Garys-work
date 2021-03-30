@@ -18,7 +18,7 @@
   >
     EDIT
   </button> -->
-    <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="takeID(service._id)" (click)="basicModal.show()" mdbWavesEffect>Edit</button>
+    <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="takeID(service._id , service.image , service.profession)" (click)="basicModal.show()" mdbWavesEffect>Edit</button>
 
     <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -30,6 +30,7 @@
             <!-- <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4> -->
           </div>
           <div class="modal-body">
+            <img src={{img}} style="width: 200px; height: 200px;"/>
             <input
             type="file"
             (change)="imgUpload($event)"
@@ -37,7 +38,7 @@
             alt="Submit"
           />
           </div>
-           <input type="text" #srvice placeholder="Service">
+           <input type="text" value={{pro}} #srvice placeholder="Service">
           <div class="modal-footer">
             <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
             <button type="button" mdbBtn color="primary" class="relative waves-light"  (click)="openUpdateModal(srvice.value)"  mdbWavesEffect>Save changes</button>

@@ -15,6 +15,8 @@ image:string;
 services:Array<Object> = [];
 profession:String;
 id : any 
+img : any 
+pro : any 
   constructor(private adminServices : AdminServices,
     private profileServices : ProfileService,
     private servicesService : ServicesService) {}
@@ -30,8 +32,10 @@ id : any
         this.services = data;
       });
   }
-   takeID(id){
+   takeID(id , img , pro){
      this.id = id 
+     this.img  = img 
+     this.pro = pro
    }
   addServices(profession){
     var services={
@@ -55,13 +59,16 @@ id : any
     formData.append('img', img.target.files[0]);
     this.profileServices.ImageUpload(formData).subscribe((resp) => {
       this.image = resp['msg'].url;
+      this.img = resp['msg'].url
     });
   }
   openUpdateModal(s) {
     console.log('liiist',this.image , s , this.id);
-  
+    if(s !== this.pro){
+      this.pro = s 
+    } 
    
-    this.adminServices.updateImageandService(this.id ,this.image,s )
+    this.adminServices.updateImageandService(this.id ,this.img,this.pro)
       .subscribe((data) => {
         console.log('new datgftta', data);
         this.services = data['data'];
