@@ -15,7 +15,16 @@ export class SignUpComponent implements OnInit {
     this.services = [];
     this.http.get("http://localhost:3000/api/professions/getProfessions").subscribe((data)=>{
       console.log("profesiiooons", data)
+
       this.services=data
+      var a = []
+      this.services.map((e)=>{
+         if(e.profession !== "all"){
+           a.push(e)
+         }
+
+      })
+      this.services=a 
     })
   }
   imageUrl : string
