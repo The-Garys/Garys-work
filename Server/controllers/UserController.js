@@ -16,6 +16,7 @@ const userCtrl = {
         email,
         password,
         phoneNumber,
+        imageUrl,
         location,
       } = req.body;
       // check if the email is exist or not
@@ -36,6 +37,7 @@ const userCtrl = {
         phoneNumber,
         email,
         password: hashPassword,
+        imageUrl,
         location,
       });
       // generate a token for the user

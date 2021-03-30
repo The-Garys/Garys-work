@@ -43,11 +43,12 @@ export class UserProfileComponent implements OnInit {
   imageUrl : string
   ngOnInit(): void {
     this.svMail = localStorage.getItem('id');
-
+    
     this.userServices.getUserData(this.svMail)
-      .subscribe((data) => {
-        console.log('user data====>', data);
-        this.spData = data;
+    .subscribe((data) => {
+      console.log('user data====>', data);
+      this.spData = data;
+      this.getAppointments();
     });
   }
      
@@ -88,7 +89,6 @@ export class UserProfileComponent implements OnInit {
     this.userServices.updateUserData(this.spData._id,firstName, lastName, userName, phoneNumber).subscribe((data)=>{
       console.log('newData', data)
       this.spData= data['data']
-      this.getAppointments();
       Swal.fire(
                  '',
                  data['success'],
@@ -106,12 +106,11 @@ export class UserProfileComponent implements OnInit {
       });
   }
 
-  // goToAppointments() {
-  //   this.posts = false;
-  //   this.reviews = false;
-  //   this.appointments = true;
-  //   this.settings = false;
-  // }
+  goToAppointments() {
+    this.appointments = true;
+    this.settings = false;
+    this.Security = false;
+  }
 
   // displayForm() {
   //   this.editable = true
