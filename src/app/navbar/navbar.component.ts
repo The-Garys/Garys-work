@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { LocalService } from "../local.service";
 import { LocalStorageService } from "../services/local-storage.service";
 import { Router } from "@angular/router";
@@ -14,13 +14,13 @@ import {UserProfileService} from '../services/user-profile.service';
 })
 export class NavbarComponent implements OnInit {
 
-
-
-  profileImg :  any;
+ data : any;
+  spProfileImg: any;
+  UserprofileImg :  any;
   constructor(
     public local : LocalService,
     private localStorageService: LocalStorageService,
-    private router: Router, private service: ProfileService, private services: UserProfileService
+    private router: Router, private service: ProfileService, private services: UserProfileService, private cdRef: ChangeDetectorRef
     ) {
       router.events.subscribe(() => {
         this.refreshState()
@@ -46,7 +46,7 @@ export class NavbarComponent implements OnInit {
 
   logout() :void {
     // Logging out from user
-    
+    this.cdRef.detectChanges();
     if (this.userId) {
       this.localStorageService.removeItem("id")
       this.localStorageService.removeItem("userName")
@@ -78,24 +78,35 @@ export class NavbarComponent implements OnInit {
     if(this.serviceProviderEmail){
       this.service.getServiceProviderData(this.serviceProviderEmail).subscribe((res) => {
         console.log('griiiiib' ,res);
-        this.profileImg = res['imageUrl']
-        console.log('bye',this.profileImg);
+        this.data = res;
+        this.spProfileImg = res['imageUrl'];
+        // this.cdRef.detectChanges();
         
         
       })
     }
-    else if(this.userId){
+
+  
+
+   if(this.userId){
       this.services.getUserData(this.userId).subscribe((res) => {
         console.log('ahaya user data' ,res);
-        this.profileImg = res['imageUrl']
-        console.log('bye',this.profileImg);
-        
+        this.UserprofileImg = res['imageUrl'];
+        // this.cdRef.detectChanges()
+           this.data = res;
         
       })
     }
-  
+    
+    
+    console.log(this.spProfileImg);
+    console.log(this.UserprofileImg);
+    
+    
     
   }
+
+
 
   scroll(id) {
     let el = document.getElementById(id);
