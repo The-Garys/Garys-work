@@ -20,7 +20,7 @@ export class ReviewsComponent implements OnInit {
     config.readonly = true;
   }
   spReviews: any;
-  spEmail: string = localStorage.getItem('svMail');
+  spEmail: string = localStorage.getItem('halimMail');
   isUser: string = localStorage.getItem('visitor');
   currentRate: number;
 
