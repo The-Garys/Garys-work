@@ -317,71 +317,7 @@
             >
               <div *ngIf="!visitor">
                 <h1>Your posts</h1>
-                <button
-                  class="button button1"
-                  type="submit"
-                  (click)="displayForm()"
-                  *ngIf="!editable"
-                >
-                  add
-                </button>
-                <br />
-
-                <div class="post-formm" *ngIf="editable" class="container">
-                  <form action="/action_page.php">
-                    <input
-                      type="file"
-                      (change)="imgUpload($event)"
-                      #image
-                      alt="Submit"
-                      width="48"
-                      height="48"
-                    />
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="fname">Title:</label>
-                      </div>
-                      <div class="col-75">
-                        <input
-                          #title
-                          type="text"
-                          id="fname"
-                          name="firstname"
-                          placeholder="title.."
-                        />
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="subject">Description:</label>
-                      </div>
-                      <div class="col-75">
-                        <textarea
-                          #decription
-                          id="subject"
-                          name="subject"
-                          placeholder="Write something.."
-                          style="height: 200px"
-                        ></textarea>
-                      </div>
-                    </div>
-                    <button
-                      class="save-btn"
-                      (click)="
-                        Add(
-                          title.value,
-                          decription.value,
-                          date.value,
-                          spData?._id
-                        )
-                      "
-                    >
-                      Save
-                    </button>
-                  </form>
-                </div>
-              </div>
+               
               <div class="card-container">
                 <mdb-card class="card" *ngFor="let e of spPosts">
                   <div>
@@ -410,6 +346,71 @@
                 <!-- service provider posts -->
               </div>
             </div>
+            <button
+            class="button button1"
+            type="submit"
+            (click)="displayForm()"
+            *ngIf="!editable"
+          >
+            add
+          </button>
+          <br />
+
+          <div class="post-formm" *ngIf="editable" class="container">
+            <form action="/action_page.php">
+              <input
+                type="file"
+                (change)="imgUpload($event)"
+                #image
+                alt="Submit"
+                width="48"
+                height="48"
+              />
+              <div class="row">
+                <div class="col-25">
+                  <label for="fname">Title:</label>
+                </div>
+                <div class="col-75">
+                  <input
+                    #title
+                    type="text"
+                    id="fname"
+                    name="firstname"
+                    placeholder="title.."
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-25">
+                  <label for="subject">Description:</label>
+                </div>
+                <div class="col-75">
+                  <textarea
+                    #decription
+                    id="subject"
+                    name="subject"
+                    placeholder="Write something.."
+                    style="height: 200px"
+                  ></textarea>
+                </div>
+              </div>
+              <button
+                class="save-btn"
+                (click)="
+                  Add(
+                    title.value,
+                    decription.value,
+                    date.value,
+                    spData?._id
+                  )
+                "
+              >
+                Save
+              </button>
+            </form>
+          </div>
+        </div>
 
             <div
               class="profile-posts tab active"
