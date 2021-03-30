@@ -15,8 +15,8 @@ export class UserProfileService {
   ImageUpload(formData : object) {
     return this.http.post('http://localhost:3000/upload', formData)
   }
-  updateUserData(id, firstName, lastName,userName,phoneNumber){
-    return this.http.put(`http://localhost:3000/api/user/updateUserData/${id}`, {firstName, lastName, userName, phoneNumber}, { responseType: 'json' })
+  updateUserData(id, firstName, lastName,userName,phoneNumber, location){
+    return this.http.put(`http://localhost:3000/api/user/updateUserData/${id}`, {firstName, lastName, userName, phoneNumber, location}, { responseType: 'json' })
   }
 
 

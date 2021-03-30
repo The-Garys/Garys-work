@@ -262,42 +262,42 @@ Add(title , description ,date ,id ){
 this.editable = false
 }
 
-deletePost(id){
-   console.log(id)
-   Swal.fire({
-    title: 'Are you sure?',
-    text: "You will permanently delete this post!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-    this.profileServices.deletePost(id).subscribe((data)=>{
-          Swal.fire(
-        'Deleted!',
-        'Your post has been deleted.',
-        'success'
-      )
-      this.ngOnInit()
-    })
-  }
-  })
-}
+// deletePost(id){
+//    console.log(id)
+//    Swal.fire({
+//     title: 'Are you sure?',
+//     text: "You will permanently delete this post!",
+//     icon: 'warning',
+//     showCancelButton: true,
+//     confirmButtonColor: '#3085d6',
+//     cancelButtonColor: '#d33',
+//     confirmButtonText: 'Yes, delete it!'
+//   }).then((result) => {
+//     if (result.isConfirmed) {
+//     this.profileServices.deletePost(id).subscribe((data)=>{
+//           Swal.fire(
+//         'Deleted!',
+//         'Your post has been deleted.',
+//         'success'
+//       )
+//       this.ngOnInit()
+//     })
+//   }
+//   })
+// }
 
 
-updateServiceProviderDetails(firstName,lastName, fullName, phoneNumber) {
-  console.log('sv details====>', this.spData);
-  // console.log(firstName);
-    this.profileServices
-      .updateServiceProviderData(firstName,lastName, fullName,phoneNumber, this.spData._id)
-      .subscribe((data) => {
-        console.log('new data', data);
-        this.spData = data['data'];
-        Swal.fire('', data['success'], 'success');
-      });
-}
+// updateServiceProviderDetails(firstName,lastName, fullName, phoneNumber) {
+//   console.log('sv details====>', this.spData);
+//   // console.log(firstName);
+//     this.profileServices
+//       .updateServiceProviderData(firstName,lastName, fullName,phoneNumber, this.spData._id , "fhj")
+//       .subscribe((data) => {
+//         console.log('new data', data);
+//         this.spData = data['data'];
+//         Swal.fire('', data['success'], 'success');
+//       });
+// }
 
  
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import {LocalService} from '../../local.service'
 
 
 
@@ -12,11 +13,12 @@ import Swal from 'sweetalert2';
 })
 export class AdminLoginComponent implements OnInit {
 
-  constructor(private http : HttpClient, private router : Router) { }
+  constructor(public local : LocalService,private http : HttpClient, private router : Router) { }
   email: string;
   password:string;
 
   ngOnInit(): void {
+    this.local.admin = true;
   }
 
   login(email, password) {

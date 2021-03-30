@@ -305,13 +305,15 @@ export class SpProfileComponent implements OnInit {
     });
   }
 
-  updateServiceProviderDetails(firstName,lastName, fullName, phoneNumber) {
+  updateServiceProviderDetails(firstName,lastName, fullName, phoneNumber, location) {
     console.log('sv details====>', this.spData);
     // console.log(firstName);
    
       this.profileServices
-        .updateServiceProviderData(firstName,lastName, fullName,phoneNumber, this.spData._id)
+        .updateServiceProviderData(firstName,lastName, fullName,phoneNumber, location, this.spData._id)
         .subscribe((data) => {
+          console.log(location);
+          
           console.log('new data', data);
           this.spData = data['data'];
           Swal.fire('', data['success'], 'success');

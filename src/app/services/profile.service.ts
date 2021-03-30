@@ -36,8 +36,8 @@ export class ProfileService {
     return this.http.delete(`http://localhost:3000/api/posts/${id}`)
   }
  
-  updateServiceProviderData(firstName,lastName, fullName, phoneNumber, id) {
-    return this.http.put(`http://localhost:3000/api/serviceProvider/updateServiceProviderData/${id}`, {firstName, lastName, fullName, phoneNumber}, { responseType: 'json' })
+  updateServiceProviderData(firstName,lastName, fullName, phoneNumber,location, id ) {
+    return this.http.put(`http://localhost:3000/api/serviceProvider/updateServiceProviderData/${id}`, { firstName, lastName, fullName, phoneNumber, location}, { responseType: 'json' })
   }
 
 
