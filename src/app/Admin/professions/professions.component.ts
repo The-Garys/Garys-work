@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-professions',
   templateUrl: './professions.component.html',
-  styleUrls: ['./professions.component.scss']
+  styleUrls: ['./professions.component.scss']        
 })
 export class ProfessionsComponent implements OnInit {
 image:string;
