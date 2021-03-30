@@ -36,6 +36,7 @@ export class UserProfileComponent implements OnInit {
   lastName: string;
   userName: string;
   email: string;
+  loc: string;
   phoneNumber: string;
   currentPassword: string;
   newPassword: string;
@@ -84,9 +85,9 @@ export class UserProfileComponent implements OnInit {
     this.Security = true;
   }
 
-  updateUserDetails(firstName, lastName, userName, phoneNumber){
+  updateUserDetails(firstName, lastName, userName, phoneNumber, loc){
     // console.log(firstName, lastName, userName, email, phoneNumber)
-    this.userServices.updateUserData(this.spData._id,firstName, lastName, userName, phoneNumber).subscribe((data)=>{
+    this.userServices.updateUserData(this.spData._id,firstName, lastName, userName, phoneNumber, loc).subscribe((data)=>{
       console.log('newData', data)
       this.spData= data['data']
       Swal.fire(
