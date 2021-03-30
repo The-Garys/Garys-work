@@ -71,8 +71,7 @@ export class VesitorProfileComponent implements OnInit {
     
     this.visitor = true;
     this.visitor1 = false;
-    
-    // this.spEmail = localStorage.getItem('spEmail');
+  
     this.svMail = localStorage.getItem('halimMail');
     
     this.profileServices.getServiceProviderData(this.svMail)
@@ -114,7 +113,6 @@ export class VesitorProfileComponent implements OnInit {
       userId: localStorage.getItem('id')
     }
     
-    // console.log("ccc", c);
     
 
     if (!date ||  !time) {
@@ -156,12 +154,7 @@ export class VesitorProfileComponent implements OnInit {
   settings: boolean = false;
   Security: boolean = false;
   appointments: boolean = false;
-  changable: boolean = false;
-  changable1: boolean = false;
-  changable2: boolean = false;
-  changable3: boolean = false;
-  changable4: boolean = false;
-  changable5: boolean = false;
+
   post() {
     this.posts = true;
     this.reviews = false;
@@ -200,24 +193,6 @@ export class VesitorProfileComponent implements OnInit {
     this.Security = true;
   }
 
-  displayInput() {
-    this.changable = true;
-  }
-  displayInput1() {
-    this.changable1 = true;
-  }
-  displayInput2() {
-    this.changable2 = true;
-  }
-  displayInput3() {
-    this.changable3 = true;
-  }
-  displayInput4() {
-    this.changable4 = true;
-  }
-  displayInput5() {
-    this.changable5 = true;
-  }
   getAppointments() {
     console.log("spdat===>", this.spData._id);
     this.profileServices.getSericeProviderAppointments(this.spData._id).
@@ -238,128 +213,7 @@ export class VesitorProfileComponent implements OnInit {
   displayForm() {
     this.editable = true
   }
-Add(title , description ,date ,id ){
 
-  var adding = {
-    title:title,
-    description:description,
-    date:date,
-    image : this.imageUrl ,
-    spId : id 
-    
-  }
-  if(title===""&& description===""&&date===""){
-    alert("fill all inputs")
-  }
-  else{ this.profileServices.addPost(adding).subscribe((data)=>{
-    Swal.fire(
-      'added!',
-      'success'
-    )    
-    this.ngOnInit();
-  }) 
-}
-this.editable = false
-}
-
-// deletePost(id){
-//    console.log(id)
-//    Swal.fire({
-//     title: 'Are you sure?',
-//     text: "You will permanently delete this post!",
-//     icon: 'warning',
-//     showCancelButton: true,
-//     confirmButtonColor: '#3085d6',
-//     cancelButtonColor: '#d33',
-//     confirmButtonText: 'Yes, delete it!'
-//   }).then((result) => {
-//     if (result.isConfirmed) {
-//     this.profileServices.deletePost(id).subscribe((data)=>{
-//           Swal.fire(
-//         'Deleted!',
-//         'Your post has been deleted.',
-//         'success'
-//       )
-//       this.ngOnInit()
-//     })
-//   }
-//   })
-// }
-
-
-// updateServiceProviderDetails(firstName,lastName, fullName, phoneNumber) {
-//   console.log('sv details====>', this.spData);
-//   // console.log(firstName);
-//     this.profileServices
-//       .updateServiceProviderData(firstName,lastName, fullName,phoneNumber, this.spData._id , "fhj")
-//       .subscribe((data) => {
-//         console.log('new data', data);
-//         this.spData = data['data'];
-//         Swal.fire('', data['success'], 'success');
-//       });
-// }
-
- 
-
-updateServiceProviderPassword(currentPassword, newPassword, confirmPassword) {
-  console.log('sv details====>', this.spData);
-  if (!currentPassword || !newPassword || !confirmPassword) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'please enter your fields',
-    });
-  } else if (newPassword !== confirmPassword) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'make sure to confirm your password correctly',
-    });
-  } else if (newPassword.length < 8) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'your password must be at least 8 characters',
-    });
-  } else {
-    this.profileServices
-      .updatePassword(
-        currentPassword,
-        newPassword,
-        confirmPassword,
-        this.spData._id
-      )
-      .subscribe((data) => {
-        console.log('password data', data);
-        if (data['err']) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: data['err'],
-          });
-        } else {
-          Swal.fire('', data['success'], 'success');
-        }
-      });
-  }
-}
-
-  updateImage(imageUrl) {
-
-    console.log("sv details====>", this.spData)
-    console.log(imageUrl)
-    
-      this.profileServices.updateImage(imageUrl, this.spData._id).subscribe((data) => {
-        console.log("new data", data)
-        this.spData.imageUrl = data['data']
-        Swal.fire(
-          '',
-          data['success'],
-          'success'
-        );
-      })
-  }
- 
   
 
 }
