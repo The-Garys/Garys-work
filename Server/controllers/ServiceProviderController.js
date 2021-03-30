@@ -56,7 +56,7 @@ const serviceProviderCtrl = {
       );
       newServiceProvider.token = token;
       await newServiceProvider.save();
-        console.log("test CIN",newServiceProvider )
+      console.log("test CIN", newServiceProvider);
       console.log("service provider  test====>", newServiceProvider._id);
       res.send({
         id: newServiceProvider._id,
@@ -167,24 +167,27 @@ const serviceProviderCtrl = {
     }
   },
   updateServiceProviderData: async (req, res) => {
+    console.log("id of the svProfile", req.params.id);
 
-    console.log("id of the svProfile", req.params.id)
-
-    console.log("account details", req.body)
+    console.log("account details", req.body);
     try {
-      const {firstName, lastName, fullName,phoneNumber}= req.body;
-      let sv= await ServiceProvider.findByIdAndUpdate({_id: req.params.id},{
-        firstName,
-        lastName,
-        fullName,
-        phoneNumber,
-      },{new: true})
-      res.send({success: "updated successfully", data: sv});
-    console.log("here i am", sv)
+      const { firstName, lastName, fullName, phoneNumber, location } = req.body;
+      let sv = await ServiceProvider.findByIdAndUpdate(
+        { _id: req.params.id },
+        {
+          firstName,
+          lastName,
+          fullName,
+          phoneNumber,
+          location,
+        },
+        { new: true }
+      );
+      res.send({ success: "updated successfully", data: sv });
+      console.log("here i am", sv);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-
   },
   updatePassword: async (req, res) => {
     console.log("password id of the SV", req.params);
@@ -207,10 +210,7 @@ const serviceProviderCtrl = {
       if (!isMatch) {
         res.send({ err: "incorrect password" });
       }
-      const hashNewPassword = await bcrypt.hash(
-        newPassword.toString(),
-        10
-      );
+      const hashNewPassword = await bcrypt.hash(newPassword.toString(), 10);
       console.log("hashed currentpassword", hashNewPassword);
       const isSame = await bcrypt.compare(
         confirmPassword.toString(),

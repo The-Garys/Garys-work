@@ -76,6 +76,7 @@
           </div>
           <div class="profile-nav-info">
             <h3 class="user-name">{{spData?.userName}}</h3>
+            <p class="state">{{spData?.location}}</p>
           </div>
           <div class="profile-option">
             <div class="notification">
@@ -152,7 +153,10 @@
   <label class="inline-label">Phone Number</label>
   <input #phoneNumber class="form-control mb-4 p-4" value="{{spData.phoneNumber}}"/>
 </div>
-  <button class="btn-update" (click)="updateUserDetails(firstName.value, lastName.value, userName.value, phoneNumber.value)">Save</button>
+<div id="map">
+  <app-location #location></app-location>
+</div>
+  <button class="btn-update" (click)="updateUserDetails(firstName.value, lastName.value, userName.value, phoneNumber.value, location.address)">Save</button>
 </form>
                 <!-- settings for the profile -->
               </div>
