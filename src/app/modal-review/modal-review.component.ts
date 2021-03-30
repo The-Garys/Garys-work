@@ -21,7 +21,7 @@ export class ModalReviewComponent implements OnInit {
   currentRate: number = 0;
   halim: any;
   myReview = {
-    serviceProviderEmail: localStorage.getItem('svMail'),
+    serviceProviderEmail: localStorage.getItem('halimMail'),
     userName: localStorage.getItem('userName'),
     userId: localStorage.getItem('id'),
     rate: this.currentRate,

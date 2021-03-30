@@ -23,25 +23,63 @@ export class ReviewsComponent implements OnInit {
   spEmail: string = localStorage.getItem('halimMail');
   isUser: string = localStorage.getItem('visitor');
   currentRate: number;
-
+  allRates: any = [];
+  ratesObj: any = {};
+  oneStarPercent: string = '0%';
+  twoStarPercent: string = '0%';
+  threeStarPercent: string = '0%';
+  fourStarPercent: string = '0%';
+  fiveStarPercent: string = '0%';
+  totalPerc: number = 0;
   ngOnInit(): void {
     this.GaryService.getReviews(this.spEmail).subscribe((data) => {
       console.log('those are my reviews ==> ', data);
       this.spReviews = data;
       var totalReview = 0;
       for (var i = 0; i < this.spReviews.length; i++) {
+        this.allRates.push(this.spReviews[i].rate);
         this.spReviews[i].updatedAt = moment(
           this.spReviews[i].updatedAt
         ).format('LLL');
         totalReview += this.spReviews[i].rate;
+      }
+      for (var y = 0; y < this.allRates.length; y++) {
+        if (!this.ratesObj[this.allRates[y]]) {
+          this.ratesObj[this.allRates[y]] = 1;
+        } else {
+          this.ratesObj[this.allRates[y]]++;
+        }
       }
       this.currentRate = totalReview / this.spReviews.length;
       console.log(totalReview);
       console.log(this.spReviews.length);
 
       console.log(this.currentRate);
-
-      console.log('3adeha lel varrrrrrrrrrr ==> ', this.spReviews);
+      if (this.allRates.includes(1)) {
+        this.totalPerc = (this.ratesObj[1] / this.allRates.length) * 100;
+        this.oneStarPercent = this.totalPerc.toString() + '%';
+      }
+      if (this.allRates.includes(2)) {
+        this.totalPerc = (this.ratesObj[2] / this.allRates.length) * 100;
+        this.twoStarPercent = this.totalPerc.toString() + '%';
+      }
+      if (this.allRates.includes(3)) {
+        this.totalPerc = (this.ratesObj[3] / this.allRates.length) * 100;
+        this.threeStarPercent = this.totalPerc.toString() + '%';
+      }
+      if (this.allRates.includes(4)) {
+        this.totalPerc = (this.ratesObj[4] / this.allRates.length) * 100;
+        this.fourStarPercent = this.totalPerc.toString() + '%';
+      }
+      if (this.allRates.includes(5)) {
+        this.totalPerc = (this.ratesObj[5] / this.allRates.length) * 100;
+        this.fiveStarPercent = this.totalPerc.toString() + '%';
+      }
+      document.getElementById('bar1').style.width = this.oneStarPercent;
+      document.getElementById('bar2').style.width = this.twoStarPercent;
+      document.getElementById('bar3').style.width = this.threeStarPercent;
+      document.getElementById('bar4').style.width = this.fourStarPercent;
+      document.getElementById('bar5').style.width = this.fiveStarPercent;
     });
   }
 
