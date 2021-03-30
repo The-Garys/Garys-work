@@ -14,9 +14,11 @@ import {UserProfileService} from '../services/user-profile.service';
 })
 export class NavbarComponent implements OnInit {
 
+
+
   profileImg :  any;
   constructor(
-    private local : LocalService,
+    public local : LocalService,
     private localStorageService: LocalStorageService,
     private router: Router, private service: ProfileService, private services: UserProfileService
     ) {
