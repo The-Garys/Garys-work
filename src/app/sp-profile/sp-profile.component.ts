@@ -8,8 +8,6 @@ import { io } from 'socket.io-client';
 
 const SOCKET_ENDPOINT = 'localhost:3000';
 import { LiveMessages } from '../live-chat/live-chat.service';
-// import { Router } from '@angular/router';
-// import {ActivatedRoute} from '@angular/router';
 
 import Swal from 'sweetalert2';
 
@@ -65,7 +63,6 @@ export class SpProfileComponent implements OnInit {
       this.visitor = false;
       this.visitor1 = true;
     }
-    // this.spEmail = localStorage.getItem('spEmail');
     this.svMail = localStorage.getItem('svMail');
 
     this.profileServices
@@ -140,55 +137,13 @@ export class SpProfileComponent implements OnInit {
     });
   }
 
-  submit(date, time) {
-    var c = {
-      date: date,
-      time: time,
-      userName: this.name,
-      email: this.spData.email,
-      serviceProviderName: this.spData._id,
-    };
-
-    if (!date || !time) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'please fill all the fields!',
-        footer: '<a href>Why do I have this issue?</a>',
-      });
-    } else {
-      this.profileServices.submitAppointment(c).subscribe((data) => {
-        if (data['data']) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Not available!',
-            footer: '<a href>Why do I have this issue?</a>',
-          });
-        } else {
-          Swal.fire({
-            icon: 'success',
-            title: 'Appointment added successfully',
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
-    }
-  }
-
   check: boolean = false;
   posts: boolean = true;
   reviews: boolean = false;
   settings: boolean = false;
   appointments: boolean = false;
   Security: boolean = false;
-  changable: boolean = false;
-  changable1: boolean = false;
-  changable2: boolean = false;
-  changable3: boolean = false;
-  changable4: boolean = false;
-  changable5: boolean = false;
+
   post() {
     this.posts = true;
     this.reviews = false;
@@ -226,24 +181,6 @@ export class SpProfileComponent implements OnInit {
     this.Security = true;
   }
 
-  displayInput() {
-    this.changable = true;
-  }
-  displayInput1() {
-    this.changable1 = true;
-  }
-  displayInput2() {
-    this.changable2 = true;
-  }
-  displayInput3() {
-    this.changable3 = true;
-  }
-  displayInput4() {
-    this.changable4 = true;
-  }
-  displayInput5() {
-    this.changable5 = true;
-  }
   getAppointments() {
     console.log('spdat===>', this.spData._id);
     this.profileServices
