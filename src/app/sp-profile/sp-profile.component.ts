@@ -194,18 +194,29 @@ export class SpProfileComponent implements OnInit {
     this.reviews = false;
     this.settings = false;
     this.appointments = false;
+    this.Security = false;
   }
   review() {
     this.posts = false;
     this.reviews = true;
     this.settings = false;
     this.appointments = false;
+    this.Security = false;
   }
+  appointment() {
+    this.posts = false;
+    this.reviews = false;
+    this.settings = false;
+    this.appointments = true
+    this.Security = false;
+  }
+
   setting() {
     this.posts = false;
     this.reviews = false;
     this.settings = true;
     this.appointments = false;
+    this.Security = false;
   }
   security() {
     this.posts = false;
@@ -249,6 +260,7 @@ export class SpProfileComponent implements OnInit {
     this.reviews = false;
     this.appointments = true;
     this.settings = false;
+    this.Security = false;
   }
 
   displayForm() {

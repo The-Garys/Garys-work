@@ -28,15 +28,14 @@ module.exports={
               console.log(error);
             }
           },
-      updateImg: async (req, res) => {
-        console.log(req.params);
-        console.log(req.body);
+      updateImgandService: async (req, res) => {
         try {
-          const { image } = req.body;
+          const { image,profession } = req.body;
           let service = await Services.findByIdAndUpdate(
             { _id: req.params.id },
             {
-              image
+              image,
+              profession,
             },
             { new: true }
           );
@@ -47,24 +46,24 @@ module.exports={
           console.log(error);
         }
       },
-      updateService: async (req, res) => {
-        console.log(req.params);
-        console.log(req.body);
-        try {
-          const { profession } = req.body;
-          let service = await Services.findByIdAndUpdate(
-            { _id: req.params.id },
-            {
-              profession
-            },
-            { new: true }
-          );
-          console.log('aaaaa====>', service)
+      // updateService: async (req, res) => {
+      //   console.log(req.params);
+      //   console.log(req.body);
+      //   try {
+      //     const { profession } = req.body;
+      //     let service = await Services.findByIdAndUpdate(
+      //       { _id: req.params.id },
+      //       {
+      //         profession
+      //       },
+      //       { new: true }
+      //     );
+      //     console.log('aaaaa====>', service)
         
-          res.send({ success: "successfully updated", data: service });
-        } catch (error) {
-          console.log(error);
-        }
-      },
+      //     res.send({ success: "successfully updated", data: service });
+      //   } catch (error) {
+      //     console.log(error);
+      //   }
+      // },
    
    }

@@ -80,10 +80,10 @@
             </div>
             <p class="state">{{ spData?.adress }}</p>
           </div>
-          <div *ngIf="!visitor" class="profile-option">
-            <div class="notification">
+          <div *ngIf="!visitor" (click)="goToAppointments()" class="profile-option">
+            <div class="notification" >
               <i class="fa fa-bell" ></i>
-              <span class="alert-message" (click)="goToAppointments()">{{ notifications }}</span>
+              <span class="alert-message" >{{ notifications }}</span>
             </div>
           </div>
         </div>
@@ -247,7 +247,7 @@
                   *ngIf="visitor1"
                   class="user-setting"
                   [class.active]="appointments"
-                  (click)="goToAppointments()"
+                  (click)="appointment()"
                 >
                   My appointments
                 </li>
