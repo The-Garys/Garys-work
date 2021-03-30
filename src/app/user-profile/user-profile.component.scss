@@ -600,7 +600,6 @@ input[type="submit"]:hover {
   border: none;
   color: white;
 padding: 1.5% 3%;
-  // text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
@@ -613,7 +612,6 @@ padding: 1.5% 3%;
 }
 .inline-label{
   white-space: nowrap;
-    // max-width: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
     float:left; 
@@ -622,7 +620,6 @@ padding: 1.5% 3%;
 
 .inline-labell{
   white-space: nowrap;
-    // max-width: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
     float:left; 

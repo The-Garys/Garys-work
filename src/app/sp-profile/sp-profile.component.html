@@ -307,6 +307,14 @@
               >
                 Settings
               </li>
+              <li
+              *ngIf="!visitor"
+                class="user-post active"
+                [class.active]="Security"
+                (click)="security()"
+              >
+                Security
+              </li>
             </ul>
           </div>
           <div class="profile-body">
@@ -418,248 +426,52 @@
             >
               <h1>Your settings</h1>
               <!-- settings for the profile -->
-              <div class="inputs">
-                <!-- first name -->
-                <div class="fn-chng">
-                  <div class="firstName-lbl">
-                    <h3 class="lll">First name:</h3>
-                    <br />
-
-                    <label class="firstName-dt">{{ spData?.firstName }}</label>
-                    <div
-                      class="fn-edit"
-                      type="button"
-                      (click)="displayInput()"
-                      *ngIf="!changable"
-                    >
-                      <div class="ed">
-                        <span class="edit-span">Edit</span>
-                        <i class="fas fa-edit"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="chngbl-inp">
-                    <input
-                      [(ngModel)]="firstName"
-                      class="fn-inp"
-                      type="text"
-                      placeholder="firstname"
-                      *ngIf="changable"
-                    />
-                    <button
-                      class="fn-save"
-                      type="button"
-                      (click)="updateFirstName(firstName)"
-                      *ngIf="changable"
-                    >
-                      Save
-                    </button>
-                  </div>
-                </div>
-                <!-- last name -->
-                <div class="fn-chng">
-                  <div class="firstName-lbl">
-                    <h3 class="lll">Last name:</h3>
-                    <br />
-                    <label class="firstName-dt">{{ spData?.lastName }}</label>
-                    <div
-                      class="fn-edit"
-                      type="button"
-                      (click)="displayInput1()"
-                      *ngIf="!changable1"
-                    >
-                      <div class="ed">
-                        <span class="edit-span">Edit</span>
-                        <i class="fas fa-edit"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="chngbl-inp">
-                    <input
-                      [(ngModel)]="lastName"
-                      class="fn-inp"
-                      type="text"
-                      placeholder="lastName"
-                      *ngIf="changable1"
-                    />
-                    <button
-                      class="fn-save"
-                      type="button"
-                      (click)="updateLastName(lastName)"
-                      *ngIf="changable1"
-                    >
-                      Save
-                    </button>
-                  </div>
-                </div>
-                <!-- full name -->
+              <form class="text-center border border-light p-5">
                 <div>
-                  <div class="firstName-lbl">
-                    <h3 class="lll">FullName:</h3>
-                    <br />
-                    <label class="firstName-dt">{{ spData?.fullName }}</label>
-                    <div
-                      class="fn-edit"
-                      type="button"
-                      (click)="displayInput2()"
-                      *ngIf="!changable2"
-                    >
-                      <div class="ed">
-                        <span class="edit-span">Edit</span>
-                        <i class="fas fa-edit"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="chngbl-inp">
-                    <input
-                      [(ngModel)]="fullName"
-                      class="fn-inp"
-                      type="text"
-                      placeholder="fullName"
-                      *ngIf="changable2"
-                    />
-                    <button
-                      class="fn-save"
-                      type="button"
-                      (click)="updateFullName(fullName)"
-                      *ngIf="changable2"
-                    >
-                      Save
-                    </button>
-                  </div>
-                </div>
-                <!-- email -->
-                <div>
-                  <div class="firstName-lbl">
-                    <h3 class="lll">Email:</h3>
-                    <br />
-                    <label class="firstName-dt" id="mail-lbl">{{
-                      spData?.email
-                    }}</label>
-                    <div
-                      class="fn-edit"
-                      type="button"
-                      (click)="displayInput3()"
-                      *ngIf="!changable3"
-                    >
-                      <div class="ed">
-                        <span class="edit-span">Edit</span>
-                        <i class="fas fa-edit"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="chngbl-inp">
-                    <input
-                      [(ngModel)]="email"
-                      class="fn-inp"
-                      type="text"
-                      placeholder="Email"
-                      *ngIf="changable3"
-                    />
-                    <button
-                      class="fn-save"
-                      type="button"
-                      (click)="updateEmail(email)"
-                      *ngIf="changable3"
-                    >
-                      Save
-                    </button>
-                  </div>
-                </div>
-                <!-- adress -->
-                <div>
-                  <div class="firstName-lbl">
-                    <h3 class="lll">Address:</h3>
-                    <br />
-                    <label class="firstName-dt">{{ spData?.adress }}</label>
-                    <div
-                      class="fn-edit"
-                      type="button"
-                      (click)="displayInput4()"
-                      *ngIf="!changable4"
-                    >
-                      <div class="ed">
-                        <span class="edit-span">Edit</span>
-                        <i class="fas fa-edit"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="chngbl-inp">
-                    <input
-                      [(ngModel)]="adress"
-                      class="fn-inp"
-                      type="text"
-                      placeholder="adress"
-                      *ngIf="changable4"
-                    />
-                    <button
-                      class="fn-save"
-                      type="button"
-                      (click)="updateAdress(adress)"
-                      *ngIf="changable4"
-                    >
-                      Save
-                    </button>
-                  </div>
-                </div>
-                <!-- password -->
-                <div>
-                  <div class="firstName-lbl">
-                    <h3 class="lll">Change Password:</h3>
-                    <br />
-                    <div
-                      class="fn-edit"
-                      type="button"
-                      (click)="displayInput5()"
-                      *ngIf="!changable5"
-                    >
-                      <div class="ed">
-                        <span class="edit-span">Edit</span>
-                        <i class="fas fa-edit"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="chngbl-inp">
-                    <input
-                      [(ngModel)]="previousPassword"
-                      class="fn-inp"
-                      type="password"
-                      placeholder="enter your previous password"
-                      *ngIf="changable5"
-                    />
-                    <input
-                      [(ngModel)]="currentPassword"
-                      class="fn-inp"
-                      type="password"
-                      placeholder="enter your new password"
-                      *ngIf="changable5"
-                    />
-                    <input
-                      [(ngModel)]="confirmPassword"
-                      class="fn-inp"
-                      type="password"
-                      placeholder="confirm your password"
-                      *ngIf="changable5"
-                    />
-                    <button
-                      class="fn-save"
-                      type="button"
-                      (click)="
-                        updatePassword(
-                          previousPassword,
-                          currentPassword,
-                          confirmPassword
-                        )
-                      "
-                      *ngIf="changable5"
-                    >
-                      Save
-                    </button>
-                  </div>
-                </div>
+                <label class="inline-label">First Name</label>
+                <input #firstName class="form-control mb-4 p-4" value="{{spData.firstName}}"/>
               </div>
+              <div>
+                <label class="inline-label">Last Name</label>
+                <input #lastName class="form-control mb-4 p-4" value="{{spData.lastName}}"/>
+              </div>
+              <div>
+                <label class="inline-label"> FullName</label>
+                <input #fullName class="form-control mb-4 p-4" value="{{spData.fullName}}"/>
+              </div>
+              <div>
+                <label class="inline-label">Phone Number</label>
+                <input #phoneNumber class="form-control mb-4 p-4" value="{{spData.phoneNumber}}"/>
+              </div>
+                <button class="btn-update" (click)="updateServiceProviderDetails(firstName.value, lastName.value, fullName.value, phoneNumber.value)">Save</button>
+              </form>
               <!-- settings for the profile -->
             </div>
+            <div
+            class="profile-posts tab active"
+            id="profile-settings"
+            *ngIf="Security"
+          >
+            <h1>Your settings</h1>
+            <!-- settings for the profile -->
+            <form class="text-center border border-light p-5">
+              <div>
+              <label class="inline-labell">Current password</label>
+              <input #currentPassword type="password" class="form-control mb-4 p-4" placeholder="current password"/>
+              </div>
+              <div>
+              <label class="inline-labell">New password</label>
+              <input #newPassword type="password" class="form-control mb-4 p-4" placeholder="new password"/>
+              </div>
+              <div>
+              <label class="inline-labell">Confirm Password</label>
+              <input #confirmPassword type="password" class="form-control mb-4 p-4" placeholder="Confirm new Password"/>
+              </div>
+              <button class="btn-update" (click)="updateServiceProviderPassword(currentPassword.value, newPassword.value, confirmPassword.value)">Save</button>
+              </form>
+            <!-- settings for the profile -->
+          </div>
+
             <div
               class="profile-reviews tab"
               id="profile-reviews"
