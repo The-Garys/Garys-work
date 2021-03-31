@@ -1,5 +1,6 @@
 const ServiceProvider = require("../models/ServiceProvider.js");
 const Users = require("../models/User");
+const Reviews = require("../models/review");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
@@ -162,7 +163,11 @@ const serviceProviderCtrl = {
   getSPByEmail: async (req, res) => {
     try {
       var data = await ServiceProvider.findOne({ email: req.params.email });
-      res.send(data);
+      const reviews = await Reviews.find({ serviceProviderEmail: req.params.email })
+      console.log("Got the reviews: ", reviews)
+      data["reviews"] = reviews;
+      console.log("review", data)
+      res.send({data: data, reviews: reviews});
     } catch (err) {
       console.log("err", err);
     }
