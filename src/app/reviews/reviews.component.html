@@ -70,6 +70,13 @@
           </p>
           <br />
           <a class="report" href="">Report</a>
+          <button
+            (click)="deleteReview(review._id)"
+            class="btn btn-danger"
+            *ngIf="review.userId === userId"
+          >
+            Delete Review
+          </button>
           <br />
           <hr />
         </div>
