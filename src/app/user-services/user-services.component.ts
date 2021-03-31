@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { LocalService } from '../local.service';
 import { Router } from '@angular/router';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
-import {ServicesService} from '../services/services.service';
+import { ServicesService } from '../services/services.service';
 
 @Component({
   selector: 'app-user-services',
@@ -20,13 +20,13 @@ export class UserServicesComponent implements OnInit {
   backup: any = [];
   location: any = NAME;
   reviews: any = [];
-n : any = ""
-l : any =""
-p : any =""
+  n: any = ""
+  l: any = ""
+  p: any = ""
   constructor(
     private http: HttpClient,
     private local: LocalService,
-    private serviceList : ServicesService,
+    private serviceList: ServicesService,
     private router: Router,
     config: NgbRatingConfig,
   ) {
@@ -44,15 +44,15 @@ p : any =""
     this.getRating();
   }
   getServices() {
-   
-      this.serviceList.getServiceProviders().subscribe((data) => {
-        console.log('are those sps ?? ===>', data);
-        this.services = data;
-        this.services = this.services.filter((el) => {
-          return el.isBanned === false;
-        });
-        this.backup = data;
+
+    this.serviceList.getServiceProviders().subscribe((data) => {
+      console.log('are those sps ?? ===>', data);
+      this.services = data;
+      this.services = this.services.filter((el) => {
+        return el.isBanned === false;
       });
+      this.backup = data;
+    });
   }
   getProfessions() {
     this.serviceList.getProfessions()
@@ -85,7 +85,7 @@ p : any =""
   }
   getVal(val) {
     console.log(val);
-    this.n = val.toUpperCase(); 
+    this.n = val.toUpperCase();
     this.services = this.backup;
     var newArray = [];
     this.services.map((e) => {
@@ -93,52 +93,52 @@ p : any =""
       var name = e.fullName.toUpperCase();
       var profession = e.profession.toUpperCase();
       var location = e.location.toUpperCase();
-      if (name.includes(val) && profession.includes(this.p) &&  location.includes(this.l)) {
+      if (name.includes(val) && profession.includes(this.p) && location.includes(this.l)) {
         newArray.push(e);
-      } 
+      }
     });
     this.services = newArray;
-    console.log("dazdzad" , val , this.services)
+    console.log("dazdzad", val, this.services)
   }
 
   dropVal(val) {
     console.log(val)
     // console.log(val)
-    if(val === "all"){
+    if (val === "all") {
       this.services = this.backup;
       var newArr = [];
       this.services.map((e) => {
         var name = e.fullName.toUpperCase();
-      var location = e.location.toUpperCase();
-        if (name.includes(this.n) &&  location.includes(this.l)) {
+        var location = e.location.toUpperCase();
+        if (name.includes(this.n) && location.includes(this.l)) {
           newArr.push(e);
         }
       });
       this.services = newArr;
     } else {
-      this.p = val.toUpperCase(); 
+      this.p = val.toUpperCase();
       this.services = this.backup;
-    
-        var newArr = [];
-        this.services.map((e) => {
-          val = val.toUpperCase();
-          var name = e.fullName.toUpperCase();
+
+      var newArr = [];
+      this.services.map((e) => {
+        val = val.toUpperCase();
+        var name = e.fullName.toUpperCase();
         var profession = e.profession.toUpperCase();
         var location = e.location.toUpperCase();
-          if (name.includes(this.n) && profession.includes(val) &&  location.includes(this.l)) {
-            newArr.push(e);
-          }
-        });
-        this.services = newArr;
-      
-      console.log( val , this.services)
+        if (name.includes(this.n) && profession.includes(val) && location.includes(this.l)) {
+          newArr.push(e);
+        }
+      });
+      this.services = newArr;
+
+      console.log(val, this.services)
     }
-   
+
   }
 
   dropLoc(val) {
     console.log(val);
-    this.l = val.toUpperCase(); 
+    this.l = val.toUpperCase();
     this.services = this.backup;
     var newArray = [];
     this.services.map((e) => {
@@ -146,12 +146,12 @@ p : any =""
       var name = e.fullName.toUpperCase();
       var profession = e.profession.toUpperCase();
       var location = e.location.toUpperCase();
-      if (name.includes(this.n) && profession.includes(this.p) &&  location.includes(val)) {
+      if (name.includes(this.n) && profession.includes(this.p) && location.includes(val)) {
         newArray.push(e);
       }
     });
     this.services = newArray;
-    console.log( val , this.services)
+    console.log(val, this.services)
   }
- 
+
 }
