@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { SERVICES, NAME } from '../services-list/mock-service';
+import { NAME } from '../services-list/mock-service';
 import { HttpClient } from '@angular/common/http';
 import { LocalService } from '../local.service';
 import { Router } from '@angular/router';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ServicesService } from '../services/services.service';
+import { MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-user-services',

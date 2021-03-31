@@ -21,6 +21,8 @@ const serviceProviderCtrl = {
         imageUrl,
         CIN,
         description,
+        lat,
+        lng,
       } = req.body;
       const serviceProvider = await ServiceProvider.findOne({ email });
       if (serviceProvider) {
@@ -44,6 +46,8 @@ const serviceProviderCtrl = {
         imageUrl,
         CIN,
         description,
+        lat,
+        lng,
       });
       console.log("make sure", newServiceProvider);
 

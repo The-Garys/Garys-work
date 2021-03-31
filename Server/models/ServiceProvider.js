@@ -17,10 +17,10 @@ const serviceProviderSchema = new mongoose.Schema(
     isBanned: { type: Boolean, default: false },
     isVerified: { type: Boolean, default: false },
     isDeclined: { type: Boolean, default: false },
-
     CIN: { type: Number },
     description: { type: String },
-    adress: { type: String },
+    lat: { type: Number },
+    lng: { type: Number },
   },
   { timestamps: true }
 );

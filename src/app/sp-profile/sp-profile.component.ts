@@ -64,6 +64,8 @@ export class SpProfileComponent implements OnInit {
       this.visitor1 = true;
     }
     this.svMail = localStorage.getItem('svMail');
+     
+     
 
     this.profileServices
       .getServiceProviderData(this.svMail)

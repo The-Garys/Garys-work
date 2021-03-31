@@ -50,7 +50,9 @@ export class SignUpComponent implements OnInit {
     imageUrl,
     CIN,
     description,
-    loc
+    loc,
+    lat,
+    lng
   ) {
     console.log("hhhh",typeof(loc), description)
     if(!imageUrl && gender === "Male" ){
@@ -105,12 +107,13 @@ export class SignUpComponent implements OnInit {
             imageUrl: imageUrl,
             CIN:CIN,
             description:description,
-            location: loc
+            location: loc,
+            lat : lat,
+            lng : lng
           },
           { responseType: 'json' }
         )
         .subscribe((data) => {
-          console.log(data)
           if (data["err"]) {
             Swal.fire({
               icon: 'error',

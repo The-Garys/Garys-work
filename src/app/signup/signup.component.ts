@@ -48,7 +48,9 @@ export class SignupComponent implements OnInit {
     repeatedPassword,
     phoneNumber,
     imageUrl,
-    loc
+    loc,
+    lat,
+    lng
   ) {
     if(!imageUrl){
       imageUrl ="https://mpng.subpng.com/20180523/tha/kisspng-businessperson-computer-icons-avatar-clip-art-lattice-5b0508dc6a3a10.0013931115270566044351.jpg"
@@ -82,7 +84,9 @@ export class SignupComponent implements OnInit {
       password: password,
       phoneNumber: phoneNumber,
       imageUrl: imageUrl,
-      location:loc
+      location:loc,
+      lat : lat,
+      lng : lng
     },{ responseType: 'json' }).subscribe((data) => {
       console.log(data)
       if(data["err"]){
