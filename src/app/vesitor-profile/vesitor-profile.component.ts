@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./vesitor-profile.component.scss']
 })
 export class VesitorProfileComponent implements OnInit {
+  serviceProviderReviews: any;
   constructor(
     private GaryService: GaryService,
     private http: HttpClient,
@@ -77,7 +78,8 @@ export class VesitorProfileComponent implements OnInit {
     this.profileServices.getServiceProviderData(this.svMail)
     .subscribe((data) => {
       console.log('ali====>', data);
-      this.spData = data;
+      this.serviceProviderReviews= data['reviews']
+      this.spData = data['data'];
       this.getAppointments();
       this.profileServices.getServiceProviderPosts(this.spData._id).subscribe((data)=>{
         console.log("daaaaaaaataaa==>",data)
