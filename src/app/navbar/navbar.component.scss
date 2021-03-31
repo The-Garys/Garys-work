@@ -6,7 +6,9 @@
   font-weight: 700;
   box-sizing: border-box;
 }
-
+#logo h3:hover {
+  cursor: pointer;
+}
 #header {
   padding: 20px;
   width: 100%;
