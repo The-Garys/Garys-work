@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { GaryService } from '../gary.service';
-import { LocalService } from '../local.service';
-// import { ProfileService } from '../services/profile.service'
 import * as moment from 'moment';
 import {UserProfileService} from '../services/user-profile.service';
 
@@ -15,27 +12,19 @@ import Swal from 'sweetalert2';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor(private GaryService: GaryService,
+  constructor(
     private http: HttpClient,
-    private local: LocalService,
     private userServices : UserProfileService
     ) { }
 
-    name: any = localStorage.getItem("apUserName")
-  spData: any;
+  userData: any;
   appointmentsList: any;
-  token: string = localStorage.getItem('token');
-  spEmail: string;
-  visitor: boolean = false;
-  visitor1: boolean = false;
-  svMail: string;
-  spPosts:any;
+  userId: string;
   notifications : number =0
   editable:boolean = false
   firstName: string;
   lastName: string;
   userName: string;
-  email: string;
   loc: string;
   phoneNumber: string;
   currentPassword: string;
@@ -43,12 +32,12 @@ export class UserProfileComponent implements OnInit {
   confirmPassword: string;
   imageUrl : string
   ngOnInit(): void {
-    this.svMail = localStorage.getItem('id');
+    this.userId = localStorage.getItem('id');
     
-    this.userServices.getUserData(this.svMail)
+    this.userServices.getUserData(this.userId)
     .subscribe((data) => {
       console.log('user data====>', data);
-      this.spData = data;
+      this.userData = data;
       this.getAppointments();
     });
   }
@@ -86,10 +75,9 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateUserDetails(firstName, lastName, userName, phoneNumber, loc){
-    // console.log(firstName, lastName, userName, email, phoneNumber)
-    this.userServices.updateUserData(this.spData._id,firstName, lastName, userName, phoneNumber, loc).subscribe((data)=>{
+    this.userServices.updateUserData(this.userData._id,firstName, lastName, userName, phoneNumber, loc).subscribe((data)=>{
       console.log('newData', data)
-      this.spData= data['data']
+      this.userData= data['data']
       Swal.fire(
                  '',
                  data['success'],
@@ -98,8 +86,8 @@ export class UserProfileComponent implements OnInit {
     })
   }
   getAppointments() {
-    console.log("spdat===>", this.spData._id);
-    this.userServices.getUserAppointments(this.spData._id).
+    console.log("spdat===>", this.userData._id);
+    this.userServices.getUserAppointments(this.userData._id).
       subscribe((data) => {
         console.log('dzdazdazda', data);
         this.appointmentsList = data;
@@ -113,13 +101,9 @@ export class UserProfileComponent implements OnInit {
     this.Security = false;
   }
 
-  // displayForm() {
-  //   this.editable = true
-  // }
-
 
   updatePassword(currentPassword, newPassword, confirmPassword) {
-    console.log("sv details====>", this.spData)
+    console.log("sv details====>", this.userData)
     if (!currentPassword || !newPassword || !confirmPassword) {
       Swal.fire({
         icon: 'error',
@@ -142,7 +126,7 @@ export class UserProfileComponent implements OnInit {
       });
     }
     else {
-      this.userServices.updatePassword( this.spData._id,currentPassword, newPassword, confirmPassword).subscribe((data) => {
+      this.userServices.updatePassword( this.userData._id,currentPassword, newPassword, confirmPassword).subscribe((data) => {
         console.log("password data", data)
         if (data['err']) {
           Swal.fire({
@@ -166,12 +150,12 @@ export class UserProfileComponent implements OnInit {
 
   updateImage(imageUrl) {
 
-    console.log("sv details====>", this.spData)
+    console.log("sv details====>", this.userData)
     console.log(imageUrl)
     
-      this.userServices.updateUserImage(imageUrl, this.spData._id).subscribe((data) => {
+      this.userServices.updateUserImage(imageUrl, this.userData._id).subscribe((data) => {
         console.log("new data", data)
-        this.spData.imageUrl = data['data']
+        this.userData.imageUrl = data['data']
         Swal.fire(
           '',
           data['success'],
