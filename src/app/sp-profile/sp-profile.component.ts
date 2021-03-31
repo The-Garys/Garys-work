@@ -322,9 +322,9 @@ export class SpProfileComponent implements OnInit {
   updateImage(imageUrl) {
     console.log('sv details====>', this.spData);
     console.log(imageUrl);
-    // if(!imageUrl) {
-    //    imageUrl=this.spData.imageUrl;
-    // }
+    if(!imageUrl) {
+      return;
+    }
 
     this.profileServices
       .updateImage(imageUrl, this.spData._id)
