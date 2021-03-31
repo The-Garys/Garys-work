@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { LocalService } from "../local.service";
 import { LocalStorageService } from "../services/local-storage.service";
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
 import {ProfileService} from '../services/profile.service';
 import {UserProfileService} from '../services/user-profile.service';
+
 
 
 @Component({
@@ -14,16 +15,23 @@ import {UserProfileService} from '../services/user-profile.service';
 })
 export class NavbarComponent implements OnInit {
 
+  data : any;
+  spProfileImg: any;
+  userProfileImg: string;
 
 
-  profileImg :  any;
   constructor(
     public local : LocalService,
     private localStorageService: LocalStorageService,
-    private router: Router, private service: ProfileService, private services: UserProfileService
+    private router: Router, private service: ProfileService, private services: UserProfileService, private cdRef: ChangeDetectorRef
     ) {
+      
+      
+
+
       router.events.subscribe(() => {
         this.refreshState()
+        this.ngOnInit();
       })
     }
 
@@ -46,7 +54,7 @@ export class NavbarComponent implements OnInit {
 
   logout() :void {
     // Logging out from user
-    
+    this.cdRef.detectChanges();
     if (this.userId) {
       this.localStorageService.removeItem("id")
       this.localStorageService.removeItem("userName")
@@ -71,31 +79,50 @@ export class NavbarComponent implements OnInit {
     );
     this.router.navigate(['/'])
   }
+
+  getServiceProviderImg(): void {
+    this.service.getServiceProviderData(this.serviceProviderEmail).subscribe((res) => {
+        console.log('griiiiib' ,res);
+        this.spProfileImg = res['imageUrl'];
+        this.cdRef.detectChanges()
+        
+      })
+  }
+
+  getUserImg(): void {
+    this.services.getUserData(this.userId).subscribe((res) => {
+      console.log('ahaya user data' ,res);
+
+      this.userProfileImg = res['imageUrl'];
+
+      
+      this.cdRef.detectChanges()
+        
+      
+    })
+  }
   
   ngOnInit(): void {
+
     this.refreshState();
-    // console.log('slm', this.svEmail);
+    
     if(this.serviceProviderEmail){
-      this.service.getServiceProviderData(this.serviceProviderEmail).subscribe((res) => {
-        console.log('griiiiib' ,res);
-        this.profileImg = res['imageUrl']
-        console.log('bye',this.profileImg);
-        
-        
-      })
+      this.getServiceProviderImg();
     }
-    else if(this.userId){
-      this.services.getUserData(this.userId).subscribe((res) => {
-        console.log('ahaya user data' ,res);
-        this.profileImg = res['imageUrl']
-        console.log('bye',this.profileImg);
-        
-        
-      })
-    }
-  
+
+    if(this.userId){
+      this.getUserImg();
+    }  
+    
+    setTimeout(() => {
+      console.log(this.userProfileImg);
+      
+    }, 4000);
+    
     
   }
+
+
 
   scroll(id) {
     let el = document.getElementById(id);
