@@ -113,6 +113,7 @@ const serviceProviderCtrl = {
         email: userProvider.email,
         isBanned: userProvider.isBanned,
         isVerified: userProvider.isVerified,
+        isDeclined: userProvider.isDeclined,
       });
     } catch (error) {
       console.log(error);
