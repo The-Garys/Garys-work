@@ -418,6 +418,7 @@ button.chatbtn i {
 textarea {
   margin-right: 40px;
 }
+
 .post-formm {
   align-items: center !important;
   text-align: start;
@@ -645,7 +646,7 @@ input[type="submit"]:hover {
 
 
 .ap{
-  color: red;
+  color:#fa8211;
 }
 p{
   font-size: 18px;
@@ -662,4 +663,19 @@ p{
 }
 #with{
   font-size: small;
+}
+
+.input-image{
+  // margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  margin-left: 3rem;
+}
+
+.modal-header{
+  margin-top: 15px;
+}
+.modal-content{
+  margin-left: 30px;
+  margin-top: 1rem;
 }
