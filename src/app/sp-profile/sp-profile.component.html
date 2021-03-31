@@ -93,7 +93,7 @@
                       >
                         <span aria-hidden="true">×</span>
                       </button>
-                      <input
+                      <input class="input-image"
                         type="file"
                         (change)="imgUpload($event)"
                         #image
@@ -104,7 +104,7 @@
                       <button
                         type="button"
                         mdbBtn
-                        color="secondary"
+                        color="danger"
                         class="waves-light"
                         aria-label="Close"
                         (click)="basicModal.hide()"
