@@ -72,7 +72,6 @@ const serviceProviderCtrl = {
     }
   },
   login: async (req, res) => {
-    console.log("req.boy=====>", req.body);
     try {
       const { email, password } = req.body;
       // check if the user already exist or not

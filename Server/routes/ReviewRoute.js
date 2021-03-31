@@ -6,5 +6,6 @@ router.post("/addReview", review.addReview);
 router.get("/getReviews/:spMail", review.allReviews);
 router.get("/oneReview", review.oneReview);
 router.delete("/deleteReview/:id", review.deleteReview);
+router.put("/reportUser/:id", review.reportReview);
 
 module.exports = router;

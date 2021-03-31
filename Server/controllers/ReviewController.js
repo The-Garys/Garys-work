@@ -1,4 +1,5 @@
 const Reviews = require("../models/review");
+const Users = require("../models/User");
 
 const review = {
   addReview: async (req, res) => {
@@ -56,6 +57,20 @@ const review = {
       res.send(deleteRev);
     } catch (err) {
       console.log("deleting review error ==>", err);
+    }
+  },
+
+  reportReview: async (req, res) => {
+    try {
+      let reported = await Users.findByIdAndUpdate(
+        {
+          _id: req.params.id,
+        },
+        { $inc: { reports: 1 } }
+      ).exec();
+      res.send({ ok: reported });
+    } catch (err) {
+      console.log("review err=======>", err);
     }
   },
 };

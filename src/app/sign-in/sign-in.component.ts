@@ -65,7 +65,6 @@ export class SignInComponent implements OnInit {
 
           
           else if(data['isDeclined'] === true) {
-            
             Swal.fire({
               icon:'error',
               title: 'Your Account has been rejected',

@@ -31,6 +31,10 @@ export class ModalReviewComponent implements OnInit {
     reviewTitle: '',
     reviewBody: '',
   };
+   
+  
+
+
   ngOnInit(): void {}
   changeRate(r) {
     this.halim = this.currentRate;

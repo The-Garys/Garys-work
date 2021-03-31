@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { GaryService } from '../gary.service';
 import * as moment from 'moment';
+import {ReportService} from '../services/report.service';
 @Component({
   selector: 'app-reviews',
   templateUrl: './reviews.component.html',
@@ -12,6 +13,7 @@ import * as moment from 'moment';
 })
 export class ReviewsComponent implements OnInit {
   constructor(
+    private reportService : ReportService,
     private http: HttpClient,
     config: NgbRatingConfig,
     private GaryService: GaryService
@@ -33,6 +35,14 @@ export class ReviewsComponent implements OnInit {
   fiveStarPercent: string = '0%';
   totalPerc: number = 0;
   
+
+  reportReview(id) {
+    this.reportService.sendReport(id).subscribe((res) => {
+      console.log('reported');
+      
+    })
+  }
+
    getReviews() {
     this.GaryService.getReviews(this.spEmail).subscribe((data) => {
       console.log('those are my reviews ==> ', data);
@@ -87,22 +97,12 @@ export class ReviewsComponent implements OnInit {
   
   ngOnInit(): void {
    this.getReviews();
-
-   
   }
    
+  
+
   newReview() {
-    console.log('revvvvvvv');
-
-  this.getReviews();
-
-    setTimeout(()=> {
-      console.log(this.spReviews);
-      
-    }, 5000)
-    
-
-    
+    this.getReviews();
   }
 
   addReview(serviceProviderName, userName, review) {

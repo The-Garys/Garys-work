@@ -69,7 +69,7 @@
             {{ review.reviewBody }}
           </p>
           <br />
-          <a class="report" href="">Report</a>
+          <a class="report" (click)='reportReview(review.userId)'>Report</a>
           <button
             (click)="deleteReview(review._id)"
             class="btn btn-danger"
