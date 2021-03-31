@@ -21,6 +21,7 @@ export class ReviewsComponent implements OnInit {
   }
   spReviews: any;
   spEmail: string = localStorage.getItem('halimMail');
+  userId: string = localStorage.getItem('id');
   isUser: string = localStorage.getItem('visitor');
   currentRate: number;
   allRates: any = [];
@@ -106,5 +107,27 @@ export class ReviewsComponent implements OnInit {
           Swal.fire('Good job!', data['success'], 'success');
         });
     }
+  }
+  deleteReview(id) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will permanently delete this message!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.http
+          .delete('http://localhost:3000/api/review/deleteReview/' + id)
+          .subscribe((data): any => {
+            this.spReviews.filter((review) => review._id !== id);
+            console.log('clicked', data);
+            Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+            this.ngOnInit();
+          });
+      }
+    });
   }
 }

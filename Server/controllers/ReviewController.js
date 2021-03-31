@@ -47,6 +47,17 @@ const review = {
       console.log(error);
     }
   },
+  deleteReview: async (req, res) => {
+    try {
+      console.log("id from front end ====>", req.params.id);
+      const deleteRev = await Reviews.findOneAndDelete({
+        _id: req.params.id,
+      });
+      res.send(deleteRev);
+    } catch (err) {
+      console.log("deleting review error ==>", err);
+    }
+  },
 };
 
 module.exports = review;
