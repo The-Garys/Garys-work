@@ -51,7 +51,7 @@ export class SignupComponent implements OnInit {
     loc
   ) {
     if(!imageUrl){
-      imageUrl ="https://t3.ftcdn.net/jpg/01/18/01/98/360_F_118019822_6CKXP6rXmVhDOzbXZlLqEM2ya4HhYzSV.jpg"
+      imageUrl ="https://mpng.subpng.com/20180523/tha/kisspng-businessperson-computer-icons-avatar-clip-art-lattice-5b0508dc6a3a10.0013931115270566044351.jpg"
     }
 
     if (!firstName || !lastName || !userName || !email || !password || !repeatedPassword || !phoneNumber) {
@@ -81,6 +81,7 @@ export class SignupComponent implements OnInit {
       email: email,
       password: password,
       phoneNumber: phoneNumber,
+      imageUrl: imageUrl,
       location:loc
     },{ responseType: 'json' }).subscribe((data) => {
       console.log(data)
