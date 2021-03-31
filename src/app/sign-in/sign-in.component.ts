@@ -47,7 +47,7 @@ export class SignInComponent implements OnInit {
           { responseType: 'json' }
         )
         .subscribe((data) => {
-          console.log(data);
+          console.log(data, 'grid');
           if (data['err']) {
             Swal.fire({
               icon: 'error',
@@ -63,27 +63,28 @@ export class SignInComponent implements OnInit {
             });
           }
 
-
-
-          else if(data['isVerified'] == false) {
-            Swal.fire({
-              icon:'info',
-              title: 'Account is still being verified',
-              text:'Your Account is still being validated, Please contact us for more information'
-            })
-          }
-          else if(data['isVerified']==='rejected') {
+          
+          else if(data['isDeclined'] === true) {
+            
             Swal.fire({
               icon:'error',
               title: 'Your Account has been rejected',
               text:'Contact us for further information'
             })
           }
+
+          else if(data['isVerified'] === false && data['isDeclined'] === false) {
+            Swal.fire({
+              icon:'info',
+              title: 'Account is still being verified',
+              text:'Your Account is still being validated, Please contact us for more information'
+            })
+          }
           
           else {
-          console.log('thiiiiiiiiiis=>',data);
+          // console.log('thiiiiiiiiiis=>',data);
 
-            console.log(data['token']);
+            // console.log(data['token']);
             localStorage.setItem('token', data['token']);
             localStorage.setItem('svMail', data['email']);
             this.router.navigateByUrl('/spProfile', { state: { data } });
@@ -123,7 +124,8 @@ export class SignInComponent implements OnInit {
               text: 'Account Is Banned',
             });
           }
-          else if (data['isDeclined']) {
+
+          else if (data['isDeclined'] === true) {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
