@@ -221,7 +221,6 @@ export class SpProfileComponent implements OnInit {
     }
     this.editable = false;
   }
-
   deletePost(id) {
     console.log(id);
     Swal.fire({
@@ -241,6 +240,26 @@ export class SpProfileComponent implements OnInit {
       }
     });
   }
+
+  // deleteAppointment(id) {
+  //   console.log("appointmentid",id);
+    // Swal.fire({
+    //   title: 'Are you sure?',
+    //   text: 'You will permanently delete this appointment!',
+    //   icon: 'warning',
+    //   showCancelButton: true,
+    //   confirmButtonColor: '#3085d6',
+    //   cancelButtonColor: '#d33',
+    //   confirmButtonText: 'Yes, delete it!',
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     this.profileServices.deleteAppointment(id).subscribe((data) => {
+    //       Swal.fire('Deleted!', 'Your appointment has been deleted.', 'success');
+    //       this.ngOnInit();
+    //     });
+    //   }
+    // });
+  // }
 
   updateServiceProviderDetails(firstName,lastName, fullName, phoneNumber, location) {
     console.log('sv details====>', this.spData);
@@ -303,6 +322,9 @@ export class SpProfileComponent implements OnInit {
   updateImage(imageUrl) {
     console.log('sv details====>', this.spData);
     console.log(imageUrl);
+    // if(!imageUrl) {
+    //    imageUrl=this.spData.imageUrl;
+    // }
 
     this.profileServices
       .updateImage(imageUrl, this.spData._id)

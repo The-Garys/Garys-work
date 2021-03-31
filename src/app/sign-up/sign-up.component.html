@@ -87,14 +87,16 @@
     type="text"
     id="defaultRegisterPhonePassword"
     class="form-control"
-    placeholder="CIN"
+    placeholder="ID"
     aria-describedby="defaultRegisterFormPhoneHelpBlock"
     />
+    <!-- <mdb-icon fas icon="pencil-alt" class="prefix grey-text"></mdb-icon> -->
+    <textarea #description type="text" id="form8" class="md-textarea form-control" rows="1" mdbInput mdbValidate></textarea>
 
-    <textarea #description id="story" name="story"
+    <!-- <textarea #description id="story" name="story"
           rows="5" cols="33">
 
-</textarea>
+</textarea> -->
     <input type="file"    (change)="imgUpload($event)"
     #image  alt="Submit" width="48" height="48">
     <div class="form-row mb-4">

@@ -6,7 +6,7 @@
         <div class="profile-header">
           <div class="profile-image">
             <div class="imgg-cont">
-              <img src="{{ spData?.imageUrl }}" alt="" width="200" />
+              <img src="{{ userData?.imageUrl }}" alt="" width="200" />
               <div  class="cam-icon">
                 <i (click)="basicModal.show()" class="fas fa-camera"></i>
                 <!-- modal -->
@@ -32,7 +32,7 @@
                           <span aria-hidden="true">×</span>
                         </button>
                         <!-- <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4> -->
-                        <input
+                        <input class="input-image" style="margin-top:35px"
                           type="file"
                           (change)="imgUpload($event)"
                           #image
@@ -45,9 +45,8 @@
                       <div class="modal-footer">
                         <button
                           type="button"
-                          
                           mdbBtn
-                          color="secondary"
+                          color="danger"
                           class="waves-light"
                           aria-label="Close"
                           (click)="basicModal.hide()"
@@ -75,8 +74,8 @@
             </div>
           </div>
           <div class="profile-nav-info">
-            <h3 class="user-name">{{spData?.userName}}</h3>
-            <p class="state">{{spData?.location}}</p>
+            <h3 class="user-name">{{userData?.userName}}</h3>
+            <p class="state">{{userData?.location}}</p>
           </div>
           <div class="profile-option">
             <div class="notification">
@@ -90,11 +89,11 @@
             <div class="profile-side">
               <p class="phone-number">
                 <i class="fa fa-phone"></i>
-                {{spData?.phoneNumber}}
+                {{userData?.phoneNumber}}
               </p>
               <p class="email">
                 <i class="fa fa-envelope"></i>
-                {{spData?.email}}
+                {{userData?.email}}
               </p>
               <div class="profile-btn">
                 <button class="chatbtn"><i class="fa fa-comment"></i>Chat</button>
@@ -139,19 +138,19 @@
 <form class="text-center border border-light p-5">
   <div>
   <label class="inline-label">First Name</label>
-  <input #firstName class="form-control mb-4 p-4" value="{{spData.firstName}}"/>
+  <input #firstName class="form-control mb-4 p-4" value="{{userData.firstName}}"/>
 </div>
 <div>
   <label class="inline-label">Last Name</label>
-  <input #lastName class="form-control mb-4 p-4" value="{{spData.lastName}}"/>
+  <input #lastName class="form-control mb-4 p-4" value="{{userData.lastName}}"/>
 </div>
 <div>
   <label class="inline-label">User Name</label>
-  <input #userName class="form-control mb-4 p-4" value="{{spData.userName}}"/>
+  <input #userName class="form-control mb-4 p-4" value="{{userData.userName}}"/>
 </div>
 <div>
   <label class="inline-label">Phone Number</label>
-  <input #phoneNumber class="form-control mb-4 p-4" value="{{spData.phoneNumber}}"/>
+  <input #phoneNumber class="form-control mb-4 p-4" value="{{userData.phoneNumber}}"/>
 </div>
 <div id="map">
   <app-location #location></app-location>
@@ -191,13 +190,12 @@
                 id="profile-settings"
                 *ngIf="appointments"
               >
-                <div>
-                  <div class="card" *ngFor="let appointment of appointmentsList">
-                    <p>you have an appointment on:  {{appointment.date}}</p>
-                    <p>at {{appointment.time}}</p>
-                    <h1>With: {{appointment.sPName}}</h1>
-                  </div>
-                </div>
+              <div class="appointmentCard" *ngFor="let appointment of appointmentsList">
+                <p id="app">
+                  <i class="far fa-calendar-alt"></i> you have an appointment on: <span class="ap"> {{ appointment.date }}</span> </p>
+                <p><i class="far fa-clock"></i> at : <span class="ap">{{ appointment.time }}</span> </p>
+                <h1 id='with'>With: <span id="user">{{ appointment.userName }}</span> </h1>
+              </div>
               </div>
             </div>
           </div>

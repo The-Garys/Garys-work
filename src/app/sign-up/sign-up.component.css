@@ -49,3 +49,6 @@ agm-map {
   color: rgb(110, 110, 110);
   font-size: 3.2rem;
 }
+textarea{
+  margin-top: 1rem;
+}
