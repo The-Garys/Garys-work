@@ -162,7 +162,7 @@ export class SpProfileComponent implements OnInit {
     this.posts = false;
     this.reviews = false;
     this.settings = false;
-    this.appointments = true
+    this.appointments = true;
     this.Security = false;
   }
 
@@ -186,8 +186,8 @@ export class SpProfileComponent implements OnInit {
     this.profileServices
       .getSericeProviderAppointments(this.spData._id)
       .subscribe((data) => {
-        console.log('dzdazdazda', data);
         this.appointmentsList = data;
+        console.log('dzdazdazda', this.appointmentsList);
         this.notifications = this.appointmentsList.length;
       });
   }
@@ -243,39 +243,52 @@ export class SpProfileComponent implements OnInit {
 
   // deleteAppointment(id) {
   //   console.log("appointmentid",id);
-    // Swal.fire({
-    //   title: 'Are you sure?',
-    //   text: 'You will permanently delete this appointment!',
-    //   icon: 'warning',
-    //   showCancelButton: true,
-    //   confirmButtonColor: '#3085d6',
-    //   cancelButtonColor: '#d33',
-    //   confirmButtonText: 'Yes, delete it!',
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     this.profileServices.deleteAppointment(id).subscribe((data) => {
-    //       Swal.fire('Deleted!', 'Your appointment has been deleted.', 'success');
-    //       this.ngOnInit();
-    //     });
-    //   }
-    // });
+  // Swal.fire({
+  //   title: 'Are you sure?',
+  //   text: 'You will permanently delete this appointment!',
+  //   icon: 'warning',
+  //   showCancelButton: true,
+  //   confirmButtonColor: '#3085d6',
+  //   cancelButtonColor: '#d33',
+  //   confirmButtonText: 'Yes, delete it!',
+  // }).then((result) => {
+  //   if (result.isConfirmed) {
+  //     this.profileServices.deleteAppointment(id).subscribe((data) => {
+  //       Swal.fire('Deleted!', 'Your appointment has been deleted.', 'success');
+  //       this.ngOnInit();
+  //     });
+  //   }
+  // });
   // }
 
-  updateServiceProviderDetails(firstName,lastName, fullName, phoneNumber, location) {
+  updateServiceProviderDetails(
+    firstName,
+    lastName,
+    fullName,
+    phoneNumber,
+    location
+  ) {
     console.log('sv details====>', this.spData);
     // console.log(firstName);
-   
-      this.profileServices
-        .updateServiceProviderData(firstName,lastName, fullName,phoneNumber, location, this.spData._id)
-        .subscribe((data) => {
-          console.log(location);
-          
-          console.log('new data', data);
-          this.spData = data['data'];
-          Swal.fire('', data['success'], 'success');
-        });
+
+    this.profileServices
+      .updateServiceProviderData(
+        firstName,
+        lastName,
+        fullName,
+        phoneNumber,
+        location,
+        this.spData._id
+      )
+      .subscribe((data) => {
+        console.log(location);
+
+        console.log('new data', data);
+        this.spData = data['data'];
+        Swal.fire('', data['success'], 'success');
+      });
   }
-  
+
   updateServiceProviderPassword(currentPassword, newPassword, confirmPassword) {
     console.log('sv details====>', this.spData);
     if (!currentPassword || !newPassword || !confirmPassword) {
@@ -318,11 +331,32 @@ export class SpProfileComponent implements OnInit {
         });
     }
   }
-
+  approveAppointment(body) {
+    this.http
+      .put('http://localhost:3000/api/appointment/approve', body)
+      .subscribe((data) => {
+        this.appointmentsList = data;
+        console.log(
+          'did our appointement approved ? ==>',
+          this.appointmentsList
+        );
+      });
+  }
+  declineAppointment(body) {
+    this.http
+      .put('http://localhost:3000/api/appointment/decline', body)
+      .subscribe((data) => {
+        this.appointmentsList = data;
+        console.log(
+          'did our appointement declined ? ==>',
+          this.appointmentsList
+        );
+      });
+  }
   updateImage(imageUrl) {
     console.log('sv details====>', this.spData);
     console.log(imageUrl);
-    if(!imageUrl) {
+    if (!imageUrl) {
       return;
     }
 
