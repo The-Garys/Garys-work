@@ -23,9 +23,9 @@ export class ProfileService {
   submitAppointment(payload : object) {
   return this.http.post('http://localhost:3000/api/appointment', payload)
   }
-  deleteAppointment(id) {
-    return this.http.delete(`http://localhost:3000/api/appointment/${id}`)
-  }
+  // deleteAppointment(id) {
+  //   return this.http.delete(`http://localhost:3000/api/appointment/${id}`)
+  // }
   
   ImageUpload(formData : object) {
     return this.http.post('http://localhost:3000/upload', formData)

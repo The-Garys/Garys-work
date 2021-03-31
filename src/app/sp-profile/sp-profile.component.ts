@@ -233,7 +233,7 @@ export class SpProfileComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.profileServices.deleteAppointment(id).subscribe((data) => {
+        this.profileServices.deletePost(id).subscribe((data) => {
           Swal.fire('Deleted!', 'Your post has been deleted.', 'success');
           this.ngOnInit();
         });
@@ -241,8 +241,8 @@ export class SpProfileComponent implements OnInit {
     });
   }
 
-  deleteAppointment(id) {
-    console.log("appointmentid",id);
+  // deleteAppointment(id) {
+  //   console.log("appointmentid",id);
     // Swal.fire({
     //   title: 'Are you sure?',
     //   text: 'You will permanently delete this appointment!',
@@ -259,7 +259,7 @@ export class SpProfileComponent implements OnInit {
     //     });
     //   }
     // });
-  }
+  // }
 
   updateServiceProviderDetails(firstName,lastName, fullName, phoneNumber, location) {
     console.log('sv details====>', this.spData);

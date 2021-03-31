@@ -411,11 +411,6 @@
             >
               <div *ngIf="visitor1">
                 <div class="appointmentCard" *ngFor="let appointment of appointmentsList">
-                  <span
-                  *ngIf="!visitor"
-                  (click)="deleteAppointment(appointment._id)"
-                  class="far fa-times-circle"
-                ></span>
                   <p id="app">
                     <i class="far fa-calendar-alt"></i> you have an appointment on: <span class="ap"> {{ appointment.date }}</span> </p>
                   <p><i class="far fa-clock"></i> at : <span class="ap">{{ appointment.time }}</span> </p>
