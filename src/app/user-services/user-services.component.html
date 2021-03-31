@@ -24,19 +24,18 @@
   </select>
   <div class="md-form md-outline form-sm">
     <input
-      id="form-sm"
+      id="loc"
       (keyup)="dropLoc($event.target.value)"
       class="form-control form-control-sm"
       type="text"
       mdbInput
     />
-    <label for="form-sm">Location</label>
+    <label id="label" for="form-sm">Location</label>
   </div>
   
 </div>
 
 <div class="cont-cards">
-  <div class="container">
     <div class="card-cont"*ngFor="let e of services">
       <div class="card mb-3"  (click)='goSvProfile(e.email)' id="whole-card">
         <div class="img__cont">
@@ -59,5 +58,4 @@
         </div>
       </div>
     </div>
-  </div>
 </div>

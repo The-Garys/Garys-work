@@ -15,4 +15,5 @@ admin : boolean = false;
     
   }
   sv : boolean = false
+  pick : any = ""
 }
