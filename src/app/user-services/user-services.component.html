@@ -1,4 +1,7 @@
 <!-- <app-user-nav></app-user-nav -->
+  <body id="body">
+    
+  
 <div class="filter">
   <div class="md-form md-outline form-sm">
     <input
@@ -43,19 +46,21 @@
         </div>
         <div class="card-body">
           <div class="sp__name-rate">
-            <h3 class="sp__name">{{ e.fullName }}</h3>
+           
+            <h3  class="sp__name"> <span class="fas fa-user"></span>{{ e.fullName }}</h3>
             <h3 class="sp__name" id="rate">
               <ngb-rating class="rating-readonly" [rate]="e.rate"></ngb-rating>
             </h3>
           </div>
-          <h4 class="card-title">{{ e.profession }}</h4>
-          <h5 class="card-title">{{ e.location }}</h5>
+          <h4 class="card-title"><i class="fas fa-tools"></i>{{ e.profession }}</h4>
+          <h5 class="card-title"><i class="fas fa-map-marker-alt"></i>{{ e.location }}</h5>
 
           <p class="card-text">
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This content is a little bit longer.
+            <i class="fas fa-pencil-alt"></i>
+           {{e.description}}
           </p>
         </div>
       </div>
     </div>
 </div>
+</body>

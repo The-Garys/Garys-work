@@ -78,15 +78,10 @@
                 <i class="fas fa-tools"></i>
                 {{ spData?.profession }}
               </p>
-              <p class="state" *ngIf="!visitor">
-                description:{{ spData?.description }}
-              </p>
               <div class="user-bio">
                 <h3>Bio:</h3>
                 <p class="bio">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Inventore vero eaque corrupti debitis, ut nobis! Lorem ipsum
-                  dolor sit amet.
+                  {{ spData?.description }}
                 </p>
               </div>
               <div class="profile-btn">

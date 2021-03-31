@@ -6,15 +6,15 @@
   <div class="servicesRO">
     <div id="test" class="services">
       <img src="../../../assets/clim.svg" alt="A/C" (click)="takeMeTo('Installs')" />
-      <h4>Air Conditioner Repair Services</h4>
+      <h4>Air Conditioner Repair</h4>
     </div>
     <div class="services"(click)="takeMeTo('Plumber')">
       <img src="../../../assets//plumber.svg" alt="Plumbing" />
-      <h4>Plumbing Services</h4>
+      <h4>Plumbing</h4>
     </div>
     <div class="services" (click)="takeMeTo('Painter')">
       <img src="../../../assets/dahen.svg" alt="Painting" />
-      <h4>Painting Services</h4>
+      <h4>Painting</h4>
     </div>
   </div>
 
@@ -25,11 +25,11 @@
     </div>
     <div class="services" (click)="takeMeTo('Carpenter')">
       <img src="../../../assets/carp.svg" alt="repair" />
-      <h4>Carpenting Services</h4>
+      <h4>Carpenting</h4>
     </div>
-    <div class="services" >
+    <div class="services" routerLink='userServices' >
       <img src="../../../assets/customer.svg" alt="" />
-      <h4><a routerLink='/userServices'>More Services</a></h4>
+      <h4><a routerLink='userServices' >More Services</a></h4>
     </div>
   </div>
 </div>
