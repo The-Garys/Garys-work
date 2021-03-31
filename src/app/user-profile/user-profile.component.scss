@@ -631,3 +631,35 @@ input[type="submit"]:hover {
   float: left;
   margin-left: -3%;
 }
+.appointmentCard{
+  margin-top: 2rem;
+  margin-left: 3rem;
+  background-color:white;
+  width: 75%;
+  padding: 0.5rem;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
+}
+#app{
+  margin-top:2rem;
+}
+
+
+.ap{
+  color: red;
+}
+p{
+  font-size: 18px;
+  font-family:'Times New Roman', Times, serif;
+
+}
+.far{
+  color: blue;
+  font-size: 18px;
+}
+#user{
+  font-family:'Times New Roman', Times, serif;
+  font-size: medium;
+}
+#with{
+  font-size: small;
+}
