@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { GaryService } from '../gary.service';
@@ -10,6 +10,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./modal-review.component.scss'],
 })
 export class ModalReviewComponent implements OnInit {
+
+  @Output()
+  newReview = new EventEmitter<any>();
   constructor(
     config: NgbRatingConfig,
     private http: HttpClient,
@@ -40,6 +43,9 @@ export class ModalReviewComponent implements OnInit {
     this.GaryService.addReview(this.myReview).subscribe((data: any[]) => {
       console.log('is it working my friendoooo ====>', data);
       Swal.fire('Sent!', 'Your review has been sent seccessfully!', 'success');
+      this.newReview.emit();
     });
+
+    
   }
 }
