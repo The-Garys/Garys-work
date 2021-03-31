@@ -23,6 +23,9 @@ export class ProfileService {
   submitAppointment(payload : object) {
   return this.http.post('http://localhost:3000/api/appointment', payload)
   }
+  deleteAppointment(id) {
+    return this.http.delete(`http://localhost:3000/api/appointment/${id}`)
+  }
   
   ImageUpload(formData : object) {
     return this.http.post('http://localhost:3000/upload', formData)
@@ -35,6 +38,7 @@ export class ProfileService {
   deletePost(id) {
     return this.http.delete(`http://localhost:3000/api/posts/${id}`)
   }
+ 
  
   updateServiceProviderData(firstName,lastName, fullName, phoneNumber,location, id ) {
     return this.http.put(`http://localhost:3000/api/serviceProvider/updateServiceProviderData/${id}`, { firstName, lastName, fullName, phoneNumber, location}, { responseType: 'json' })

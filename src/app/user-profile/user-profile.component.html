@@ -191,13 +191,12 @@
                 id="profile-settings"
                 *ngIf="appointments"
               >
-                <div>
-                  <div class="card" *ngFor="let appointment of appointmentsList">
-                    <p>you have an appointment on:  {{appointment.date}}</p>
-                    <p>at {{appointment.time}}</p>
-                    <h1>With: {{appointment.sPName}}</h1>
-                  </div>
-                </div>
+              <div class="appointmentCard" *ngFor="let appointment of appointmentsList">
+                <p id="app">
+                  <i class="far fa-calendar-alt"></i> you have an appointment on: <span class="ap"> {{ appointment.date }}</span> </p>
+                <p><i class="far fa-clock"></i> at : <span class="ap">{{ appointment.time }}</span> </p>
+                <h1 id='with'>With: <span id="user">{{ appointment.userName }}</span> </h1>
+              </div>
               </div>
             </div>
           </div>
