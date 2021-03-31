@@ -3,6 +3,7 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { GaryService } from '../gary.service';
 import Swal from 'sweetalert2';
+import { LocalStorageService } from "../services/local-storage.service"
 
 @Component({
   selector: 'app-modal-review',
@@ -16,22 +17,29 @@ export class ModalReviewComponent implements OnInit {
   constructor(
     config: NgbRatingConfig,
     private http: HttpClient,
-    private GaryService: GaryService
+    private GaryService: GaryService,
+    private localStorageService: LocalStorageService
   ) {
     config.max = 5;
     config.readonly = false;
   }
+  userId: String;
+  serviceProviderEmail: String;
+
   currentRate: number = 0;
   halim: any;
   myReview = {
-    serviceProviderEmail: localStorage.getItem('halimMail'),
-    userName: localStorage.getItem('userName'),
-    userId: localStorage.getItem('id'),
+    serviceProviderEmail: this.localStorageService.getItem('halimMail'),
+    userName: this.localStorageService.getItem('userName'),
+    userId: this.localStorageService.getItem('id'),
     rate: this.currentRate,
     reviewTitle: '',
     reviewBody: '',
   };
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userId = this.localStorageService.getItem('id');
+    this.serviceProviderEmail = this.localStorageService.getItem('svMail');
+  }
   changeRate(r) {
     this.halim = this.currentRate;
     this.myReview.rate = this.currentRate;

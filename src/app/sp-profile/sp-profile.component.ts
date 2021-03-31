@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { LocalService } from '../local.service';
 import * as moment from 'moment';
@@ -17,6 +17,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./sp-profile.component.scss'],
 })
 export class SpProfileComponent implements OnInit {
+  serviceProviderReviews: any;
   socket;
   message = {
     messageBody: '',
@@ -55,6 +56,7 @@ export class SpProfileComponent implements OnInit {
   confirmPassword: string;
   imageUrl: string;
   currentConversation: any = [];
+
   ngOnInit(): void {
     if (localStorage.getItem('visitor') === 'yes') {
       this.visitor = true;
@@ -69,7 +71,9 @@ export class SpProfileComponent implements OnInit {
       .getServiceProviderData(this.svMail)
       .subscribe((data) => {
         console.log('ali====>', data);
-        this.spData = data;
+        this.serviceProviderReviews= data['reviews']
+        console.log('all reviews===>',this.serviceProviderReviews)
+        this.spData = data['data'];
         this.getAppointments();
         this.profileServices
           .getServiceProviderPosts(this.spData._id)
