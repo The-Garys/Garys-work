@@ -5,29 +5,29 @@
 
   <div class="servicesRO">
     <div id="test" class="services">
-      <img src="../../../assets/clim.svg" alt="gardening" />
-      <h4>Gardening Services</h4>
+      <img src="../../../assets/clim.svg" alt="A/C" (click)="takeMeTo('Installs')" />
+      <h4>Air Conditioner Repair Services</h4>
     </div>
-    <div class="services">
-      <img src="../../../assets//plumber.svg" alt="Electricity" />
-      <h4>Electric Services</h4>
+    <div class="services"(click)="takeMeTo('Plumbing')">
+      <img src="../../../assets//plumber.svg" alt="Plumbing" />
+      <h4>Plumbing Services</h4>
     </div>
-    <div class="services">
-      <img src="../../../assets/dahen.svg" alt="construction" />
-      <h4>Construction Services</h4>
+    <div class="services" (click)="takeMeTo('Painter')">
+      <img src="../../../assets/dahen.svg" alt="Painting" />
+      <h4>Painting Services</h4>
     </div>
   </div>
 
   <div class="servicesRT">
-    <div class="services">
-      <img id="why" src="../../../assets/elec.svg" alt="cleaning" />
-      <h4>Cleaning Services</h4>
+    <div class="services" (click)="takeMeTo('House cleaning')">
+      <img id="why" src="../../../assets/elec.svg" alt="Electric" />
+      <h4>Electric Services</h4>
     </div>
-    <div class="services">
+    <div class="services" (click)="takeMeTo('Carpenter')">
       <img src="../../../assets/carp.svg" alt="repair" />
-      <h4>Repair Services</h4>
+      <h4>Carpenting Services</h4>
     </div>
-    <div class="services">
+    <div class="services" >
       <img src="../../../assets/customer.svg" alt="" />
       <h4><a routerLink='/userServices'>More Services</a></h4>
     </div>
