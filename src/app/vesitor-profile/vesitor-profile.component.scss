@@ -321,9 +321,25 @@ button.chatbtn i {
   margin-left: 2rem;
 }
 .date {
-  margin-top: 1rem;
-  margin-left: 1rem;
-  margin-right: 0.5rem;
+  // margin-top: 3rem;
+  // margin-left: 1rem;
+  //  margin-right: 0.9rem;
+   margin-bottom: 3rem;
+  font-size: 1.5rem;
+}
+.time{
+  // margin-top: 3rem;
+  // margin-left: 1rem;
+  margin-bottom: 3rem;
+  font-size: 1.5rem;
+
+}
+.date-input{
+  margin-top: 20%;
+  margin-left: 9%;
+}
+.time-input{
+  margin-top: 20%;
 }
 
 .flip-card {
@@ -565,12 +581,12 @@ input[type="submit"]:hover {
   display: table;
   clear: both;
 }
-.date {
-  margin-left: 5.5rem;
-}
-#date {
-  margin-left: 2rem;
-}
+// .date {
+//   margin-left: 5.5rem;
+// }
+// #date {
+//   margin-left: 2rem;
+// }
 
 .circle {
   position: absolute;
@@ -631,4 +647,9 @@ padding: 1.5% 3%;
     text-overflow: ellipsis;
     float:left; 
     margin-left: -3%; 
+}
+.appointment{
+  // padding: 20%;
+  display: flex;
+
 }
