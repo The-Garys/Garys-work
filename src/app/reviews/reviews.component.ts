@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { GaryService } from '../gary.service';
+import { ProfileService } from '../services/profile.service';
 import * as moment from 'moment';
 @Component({
   selector: 'app-reviews',
@@ -11,19 +12,22 @@ import * as moment from 'moment';
   providers: [NgbRatingConfig],
 })
 export class ReviewsComponent implements OnInit {
+  @Input() spReviews: any
   constructor(
     private http: HttpClient,
     config: NgbRatingConfig,
-    private GaryService: GaryService
+    private GaryService: GaryService,
+    private profileServices: ProfileService
   ) {
     config.max = 5;
     config.readonly = true;
   }
-  spReviews: any;
-  spEmail: string = localStorage.getItem('halimMail');
+  // spReviews: any;
+  spEmail: string = localStorage.getItem('svMail');
   userId: string = localStorage.getItem('id');
   isUser: string = localStorage.getItem('visitor');
   currentRate: number;
+  guest: string = localStorage.getItem('id')
   allRates: any = [];
   ratesObj: any = {};
   oneStarPercent: string = '0%';
@@ -34,9 +38,7 @@ export class ReviewsComponent implements OnInit {
   totalPerc: number = 0;
   
    getReviews() {
-    this.GaryService.getReviews(this.spEmail).subscribe((data) => {
-      console.log('those are my reviews ==> ', data);
-      this.spReviews = data;
+      console.log(this.spReviews)
       var totalReview = 0;
       for (var i = 0; i < this.spReviews.length; i++) {
         this.allRates.push(this.spReviews[i].rate);
@@ -82,11 +84,11 @@ export class ReviewsComponent implements OnInit {
       document.getElementById('bar3').style.width = this.threeStarPercent;
       document.getElementById('bar4').style.width = this.fourStarPercent;
       document.getElementById('bar5').style.width = this.fiveStarPercent;
-    });
    }
   
   ngOnInit(): void {
    this.getReviews();
+  console.log(this.spReviews)
 
    
   }
@@ -94,7 +96,7 @@ export class ReviewsComponent implements OnInit {
   newReview() {
     console.log('revvvvvvv');
 
-  this.getReviews();
+  // this.getReviews();
 
     setTimeout(()=> {
       console.log(this.spReviews);

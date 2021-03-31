@@ -83,7 +83,7 @@ export class NavbarComponent implements OnInit {
   getServiceProviderImg(): void {
     this.service.getServiceProviderData(this.serviceProviderEmail).subscribe((res) => {
         console.log('griiiiib' ,res);
-        this.spProfileImg = res['imageUrl'];
+        this.spProfileImg = res['data']['imageUrl'];
         this.cdRef.detectChanges()
         
       })

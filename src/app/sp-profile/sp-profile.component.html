@@ -456,7 +456,7 @@
               id="profile-reviews"
               *ngIf="reviews"
             >
-              <app-reviews></app-reviews>
+              <app-reviews [spReviews]= "serviceProviderReviews"></app-reviews>
             </div>
             <div
               class="profile-settings tab"

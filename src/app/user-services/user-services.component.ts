@@ -22,7 +22,7 @@ export class UserServicesComponent implements OnInit {
   reviews: any = [];
   n: any = ""
   l: any = ""
-  p: any = ""
+  p: any = this.local.pick
   constructor(
     private http: HttpClient,
     private local: LocalService,
@@ -35,13 +35,15 @@ export class UserServicesComponent implements OnInit {
   }
   role: string = this.local.role;
   ngOnInit(): void {
-    console.log('dddddzadad', this.local.role);
+    
+    console.log('dddddzsssadad', this.local.pick);
     this.list = NAME;
     this.services = [];
     this.list = [];
     this.getServices();
     this.getProfessions();
     this.getRating();
+    
   }
   getServices() {
 
@@ -52,6 +54,7 @@ export class UserServicesComponent implements OnInit {
         return el.isBanned === false;
       });
       this.backup = data;
+      this.dropVal(this.local.pick)
     });
   }
   getProfessions() {
@@ -78,7 +81,7 @@ export class UserServicesComponent implements OnInit {
           this.services[i].rate = totalRate / this.reviews.length;
         });
     }
-  }
+  } 
   goSvProfile(svMail) {
     localStorage.setItem('halimMail', svMail);
     this.router.navigateByUrl('/fisitor');
