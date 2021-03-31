@@ -32,7 +32,8 @@ export class ReviewsComponent implements OnInit {
   fourStarPercent: string = '0%';
   fiveStarPercent: string = '0%';
   totalPerc: number = 0;
-  ngOnInit(): void {
+  
+   getReviews() {
     this.GaryService.getReviews(this.spEmail).subscribe((data) => {
       console.log('those are my reviews ==> ', data);
       this.spReviews = data;
@@ -82,6 +83,26 @@ export class ReviewsComponent implements OnInit {
       document.getElementById('bar4').style.width = this.fourStarPercent;
       document.getElementById('bar5').style.width = this.fiveStarPercent;
     });
+   }
+  
+  ngOnInit(): void {
+   this.getReviews();
+
+   
+  }
+   
+  newReview() {
+    console.log('revvvvvvv');
+
+  this.getReviews();
+
+    setTimeout(()=> {
+      console.log(this.spReviews);
+      
+    }, 5000)
+    
+
+    
   }
 
   addReview(serviceProviderName, userName, review) {
