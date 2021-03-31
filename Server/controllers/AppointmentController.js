@@ -52,6 +52,16 @@ module.exports={
         } catch (error) {
           console.log(error);
         }
+      },
+
+      deleteAppointment:async(req,res)=>{
+        try {
+          const deleteAppointment=await Appointment.findOneAndDelete({_id:req.params.id});
+          res.send(deleteAppointment)
+        }
+        catch (error) {
+        console.log(error);
+      }
       }
 
 
