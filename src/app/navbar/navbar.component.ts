@@ -7,6 +7,7 @@ import {ProfileService} from '../services/profile.service';
 import {UserProfileService} from '../services/user-profile.service';
 
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -14,16 +15,23 @@ import {UserProfileService} from '../services/user-profile.service';
 })
 export class NavbarComponent implements OnInit {
 
- data : any;
+  data : any;
   spProfileImg: any;
-  UserprofileImg :  any;
+  userProfileImg: string;
+
+
   constructor(
     public local : LocalService,
     private localStorageService: LocalStorageService,
     private router: Router, private service: ProfileService, private services: UserProfileService, private cdRef: ChangeDetectorRef
     ) {
+      
+      
+
+
       router.events.subscribe(() => {
         this.refreshState()
+        this.ngOnInit();
       })
     }
 
@@ -71,37 +79,45 @@ export class NavbarComponent implements OnInit {
     );
     this.router.navigate(['/'])
   }
+
+  getServiceProviderImg(): void {
+    this.service.getServiceProviderData(this.serviceProviderEmail).subscribe((res) => {
+        console.log('griiiiib' ,res);
+        this.spProfileImg = res['imageUrl'];
+        this.cdRef.detectChanges()
+        
+      })
+  }
+
+  getUserImg(): void {
+    this.services.getUserData(this.userId).subscribe((res) => {
+      console.log('ahaya user data' ,res);
+
+      this.userProfileImg = res['imageUrl'];
+
+      
+      this.cdRef.detectChanges()
+        
+      
+    })
+  }
   
   ngOnInit(): void {
+
     this.refreshState();
-    // console.log('slm', this.svEmail);
+    
     if(this.serviceProviderEmail){
-      this.service.getServiceProviderData(this.serviceProviderEmail).subscribe((res) => {
-        console.log('griiiiib' ,res);
-        this.data = res;
-        this.spProfileImg = res['imageUrl'];
-        // this.cdRef.detectChanges();
-        
-        
-      })
+      this.getServiceProviderImg();
     }
 
-  
-
-   if(this.userId){
-      this.services.getUserData(this.userId).subscribe((res) => {
-        console.log('ahaya user data' ,res);
-        this.UserprofileImg = res['imageUrl'];
-        // this.cdRef.detectChanges()
-           this.data = res;
-        
-      })
-    }
+    if(this.userId){
+      this.getUserImg();
+    }  
     
-    
-    console.log(this.spProfileImg);
-    console.log(this.UserprofileImg);
-    
+    setTimeout(() => {
+      console.log(this.userProfileImg);
+      
+    }, 4000);
     
     
   }
