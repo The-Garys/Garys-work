@@ -3,19 +3,21 @@ const Services = require("../models/Services");
 module.exports={
     addProfession: async (req, res) => {
         console.log("professiin", req.body)
-       const profession = new Services({
-        profession:req.body.profession,
-        image:req.body.image,
-          });
+      
           try{
+            const {profession, image}= req.body
               const saved= await Services.findOne({profession: req.body.profession})
               if(saved){
                  return res.send('already exist')
               }
-          await profession.save();
-          res.send(profession);
+              const newProfession = new Services({
+                profession,
+                image
+                  });
+          await newProfession.save();
+          res.send(newProfession);
          } catch(err) {
-          res.json({message: err})
+          console.log(err)
          }
         },
 

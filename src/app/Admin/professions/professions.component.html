@@ -33,7 +33,7 @@
               <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
                 (click)="basicModal.hide()" mdbWavesEffect>Close</button>
               <button type="button" mdbBtn color="primary" class="relative waves-light"
-                (click)="openUpdateModal(srvice.value)" mdbWavesEffect>Save changes</button>
+                (click)="updateImageandService(srvice.value)" mdbWavesEffect>Save changes</button>
             </div>
           </div>
         </div>
@@ -43,7 +43,7 @@
 </div>
 
 <div class="form">
-  <input mdbInput type="text" #profession class="form-control profession" placeholder="profession">
+  <input mdbInput type="text" [(ngModel)]='profession' class="form-control profession" placeholder="profession">
   <input type="file" (change)="imgUpload($event)" #image alt="Submit" width="48" height="48" />
-  <button (click)="addServices(profession.value)" type="button" mdbBtn color="success" mdbWavesEffect>Add</button>
+  <button (click)="addServices(profession)" type="button" mdbBtn color="success" mdbWavesEffect>Add</button>
 </div>

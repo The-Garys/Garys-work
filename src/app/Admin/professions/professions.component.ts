@@ -11,9 +11,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./professions.component.scss']        
 })
 export class ProfessionsComponent implements OnInit {
-image:string;
+image:any;
 services:Array<Object> = [];
-profession:String;
+profession:any;
 id : any 
 img : any 
 pro : any 
@@ -48,8 +48,10 @@ pro : any
         'added!',
         'success'
       )
-       this.ngOnInit()
-       this.profession=""
+    this.image=""
+     this.profession=""
+      this.ngOnInit()
+       
     })
    
   }
@@ -62,7 +64,7 @@ pro : any
       this.img = resp['msg'].url
     });
   }
-  openUpdateModal(s) {
+  updateImageandService(s) {
     console.log('liiist',this.image , s , this.id);
     if(s !== this.pro){
       this.pro = s 
