@@ -29,14 +29,13 @@ export class UserServicesComponent implements OnInit {
     private local: LocalService,
     private serviceList: ServicesService,
     private router: Router,
-    config: NgbRatingConfig,
+    config: NgbRatingConfig
   ) {
     config.max = 5;
     config.readonly = true;
   }
   role: string = this.local.role;
   ngOnInit(): void {
-    
     console.log('dddddzsssadad', this.local.pick);
     this.list = NAME;
     this.services = [];
@@ -44,10 +43,8 @@ export class UserServicesComponent implements OnInit {
     this.getServices();
     this.getProfessions();
     this.getRating();
-    
   }
   getServices() {
-
     this.serviceList.getServiceProviders().subscribe((data) => {
       console.log('are those sps ?? ===>', data);
       this.services = data;
@@ -55,14 +52,13 @@ export class UserServicesComponent implements OnInit {
         return el.isBanned === false && el.email!==this.svMail;
       });
       this.backup = data;
-      this.dropVal(this.local.pick)
+      this.dropVal(this.local.pick);
     });
   }
   getProfessions() {
-    this.serviceList.getProfessions()
-      .subscribe((data) => {
-        this.list = data;
-      });
+    this.serviceList.getProfessions().subscribe((data) => {
+      this.list = data;
+    });
   }
   getRating() {
     console.log(this.services);
@@ -72,17 +68,16 @@ export class UserServicesComponent implements OnInit {
         'hedhy kol post wahadhaaaaa ===+====+==+===>',
         this.services[i]
       );
-      this.serviceList.getRating(this.services[i].email)
-        .subscribe((data) => {
-          this.reviews = data;
-          var totalRate = 0;
-          for (var j = 0; j < this.reviews.length; j++) {
-            totalRate += this.reviews[j].rate;
-          }
-          this.services[i].rate = totalRate / this.reviews.length;
-        });
+      this.serviceList.getRating(this.services[i].email).subscribe((data) => {
+        this.reviews = data;
+        var totalRate = 0;
+        for (var j = 0; j < this.reviews.length; j++) {
+          totalRate += this.reviews[j].rate;
+        }
+        this.services[i].rate = totalRate / this.reviews.length;
+      });
     }
-  } 
+  }
   goSvProfile(svMail) {
     localStorage.setItem('halimMail', svMail);
     this.router.navigateByUrl('/fisitor');
@@ -97,18 +92,22 @@ export class UserServicesComponent implements OnInit {
       var name = e.fullName.toUpperCase();
       var profession = e.profession.toUpperCase();
       var location = e.location.toUpperCase();
-      if (name.includes(val) && profession.includes(this.p) && location.includes(this.l)) {
+      if (
+        name.includes(val) &&
+        profession.includes(this.p) &&
+        location.includes(this.l)
+      ) {
         newArray.push(e);
       }
     });
     this.services = newArray;
-    console.log("dazdzad", val, this.services)
+    console.log('dazdzad', val, this.services);
   }
 
   dropVal(val) {
-    console.log(val)
+    console.log(val);
     // console.log(val)
-    if (val === "all") {
+    if (val === 'all') {
       this.services = this.backup;
       var newArr = [];
       this.services.map((e) => {
@@ -129,15 +128,18 @@ export class UserServicesComponent implements OnInit {
         var name = e.fullName.toUpperCase();
         var profession = e.profession.toUpperCase();
         var location = e.location.toUpperCase();
-        if (name.includes(this.n) && profession.includes(val) && location.includes(this.l)) {
+        if (
+          name.includes(this.n) &&
+          profession.includes(val) &&
+          location.includes(this.l)
+        ) {
           newArr.push(e);
         }
       });
       this.services = newArr;
 
-      console.log(val, this.services)
+      console.log(val, this.services);
     }
-
   }
 
   dropLoc(val) {
@@ -150,12 +152,15 @@ export class UserServicesComponent implements OnInit {
       var name = e.fullName.toUpperCase();
       var profession = e.profession.toUpperCase();
       var location = e.location.toUpperCase();
-      if (name.includes(this.n) && profession.includes(this.p) && location.includes(val)) {
+      if (
+        name.includes(this.n) &&
+        profession.includes(this.p) &&
+        location.includes(val)
+      ) {
         newArray.push(e);
       }
     });
     this.services = newArray;
-    console.log(val, this.services)
+    console.log(val, this.services);
   }
-
 }

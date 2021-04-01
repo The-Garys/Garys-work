@@ -18,7 +18,39 @@
 .container {
   max-width: 100%;
 }
+.cancel {
+  margin-left: 0.2rem;
+}
+.approved-app {
+  background-color: #fff;
 
+  color: #4bca81;
+  padding: 0.5rem;
+}
+.declined-app {
+  background-color: #fff;
+
+  color: #d83c3c;
+  padding: 0.5rem;
+}
+.deleteNotf {
+  font-size: 1.6rem;
+  color: #4bca81;
+  transition: 0.3s ease-in-out;
+}
+.deleteNotfDec {
+  font-size: 1.6rem;
+  color: #d83c3c;
+  transition: 0.3s ease-in-out;
+}
+.deleteNotfDec:hover {
+  color: #a53131;
+  cursor: pointer;
+}
+.deleteNotf:hover {
+  color: #389761;
+  cursor: pointer;
+}
 #map {
   display: flex;
   justify-content: center;
@@ -446,8 +478,7 @@ textarea {
 .fn-chng {
   width: 100%;
 }
-.chngbl-inp {
-}
+
 .fn-inp {
   display: inline-block;
   width: 50% !important;
@@ -632,40 +663,52 @@ input[type="submit"]:hover {
   float: left;
   margin-left: -3%;
 }
-.appointmentCard{
+.appointmentCard {
   margin-top: 2rem;
   margin-left: 3rem;
-  background-color:white;
+  background-color: white;
   width: 75%;
   padding: 0.5rem;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
 }
-#app{
-  margin-top:2rem;
+#app {
+  margin-top: 2rem;
 }
 
-
-.ap{
-  color:#fa8211;
+.ap {
+  color: #fa8211;
 }
-p{
+p {
   font-size: 18px;
-  font-family:'Times New Roman', Times, serif;
-
+  font-family: "Times New Roman", Times, serif;
 }
-.far{
+.far {
   color: blue;
   font-size: 18px;
 }
-#user{
-  font-family:'Times New Roman', Times, serif;
+#user {
+  font-family: "Times New Roman", Times, serif;
   font-size: medium;
 }
-#with{
+#with {
   font-size: small;
 }
-
-.input-image{
+.btn-cancel {
+  margin: 14px;
+  height: 40px;
+  width: 80px;
+  border: none;
+  border-radius: 40px;
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  transition: 0.3s ease-in-out;
+  background-color: red;
+}
+.btn-cancel:hover {
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  background-color: rgb(223, 6, 6);
+}
+.input-image {
   // margin-top: 1rem;
   margin-bottom: 1rem;
   font-size: 1.2rem;
@@ -675,7 +718,7 @@ p{
 .modal-header{
   margin-top: 250px;
 }
-.modal-content{
+.modal-content {
   margin-left: 30px;
   margin-top: 1rem;
 }
