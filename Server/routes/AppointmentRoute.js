@@ -6,7 +6,7 @@ router.post("/", appointmentController.makeAppointment);
 router.get("/:name", appointmentController.getAll);
 router.get("/getUserApts/:id", appointmentController.getUserApts);
 router.delete("/:id", appointmentController.deleteAppointment);
-router.put("/approve", appointmentController.approveApp);
-router.put("/decline", appointmentController.declineApp);
+router.put("/approve/:id", appointmentController.approveApp);
+router.put("/decline/:id", appointmentController.declineApp);
 
 module.exports = router;

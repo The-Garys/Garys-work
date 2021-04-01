@@ -36,7 +36,13 @@ module.exports = {
       res.json({ message: err });
     }
   },
-
+  approveApp: async (req, res) => {
+    console.log(req.body);
+  },
+  declineApp: async (req, res) => {
+    console.log("req.bodyyy", req.body);
+    res.send(req.body);
+  },
   getAll: async (req, res) => {
     try {
       const appointment = await Appointment.find({

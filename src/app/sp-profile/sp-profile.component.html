@@ -456,7 +456,7 @@
               id="profile-reviews"
               *ngIf="reviews"
             >
-              <app-reviews [spReviews]= "serviceProviderReviews"></app-reviews>
+              <app-reviews [spReviews]="serviceProviderReviews"></app-reviews>
             </div>
             <div
               class="profile-settings tab"
@@ -493,7 +493,12 @@
                     >
                       Approve
                     </button>
-                    <button class="decline-appointment apdc">Decline</button>
+                    <button
+                      class="decline-appointment apdc"
+                      (click)="declineAppointment(appointment._id)"
+                    >
+                      Decline
+                    </button>
                   </div>
                 </div>
               </div>

@@ -71,8 +71,8 @@ export class SpProfileComponent implements OnInit {
       .getServiceProviderData(this.svMail)
       .subscribe((data) => {
         console.log('ali====>', data);
-        this.serviceProviderReviews= data['reviews']
-        console.log('all reviews===>',this.serviceProviderReviews)
+        this.serviceProviderReviews = data['reviews'];
+        console.log('all reviews===>', this.serviceProviderReviews);
         this.spData = data['data'];
         this.getAppointments();
         this.profileServices
@@ -335,9 +335,11 @@ export class SpProfileComponent implements OnInit {
         });
     }
   }
-  approveAppointment(body) {
+  approveAppointment(id) {
     this.http
-      .put('http://localhost:3000/api/appointment/approve', body)
+      .put('http://localhost:3000/api/appointment/approve/' + id, {
+        isApproved: true,
+      })
       .subscribe((data) => {
         this.appointmentsList = data;
         console.log(
@@ -346,9 +348,11 @@ export class SpProfileComponent implements OnInit {
         );
       });
   }
-  declineAppointment(body) {
+  declineAppointment(id) {
     this.http
-      .put('http://localhost:3000/api/appointment/decline', body)
+      .put('http://localhost:3000/api/appointment/decline/' + id, {
+        isDeclined: true,
+      })
       .subscribe((data) => {
         this.appointmentsList = data;
         console.log(
