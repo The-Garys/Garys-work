@@ -1,25 +1,48 @@
-<div>
-<mdb-card  class="m-5 card" *ngFor='let request of requests' id="req">
+<!-- <div class="request">
+<mdb-card  class="m-5 card" *ngFor='let request of requests'>
     <mdb-card-body>
       <div id="info">
-        <p>{{request.description}}</p>
-      </div>
+        </div>
       <mdb-card-title>
           <img src={{request.imageUrl}} alt="">
-        <h5>{{request.fullName}}</h5>
-        <h6 class="text-muted mb-2">{{request.profession}}</h6>
+        <h1>{{request.fullName}}</h1>
+        <h1 class="text-muted mb-2">{{request.profession}}</h1>
       </mdb-card-title>
       <mdb-card-text>
-        <ul>
-            <li>{{request.CIN}}</li>
-            <li>{{request.phoneNumber}}</li>
-        </ul>
+        <h2>{{request.CIN}}</h2>
+        <h2>{{request.phoneNumber}}</h2>
+        <p>{{request.description}}</p>
       </mdb-card-text>
       <button mdbBtn type="button" color="success" (click) ='verifyAcc(request._id)' mdbWavesEffect>Verify Account</button>
       <button mdbBtn type="button" color="warning" (click)='reject(request._id)' mdbWavesEffect>Decline</button>
-      <div class="position-absolute top-0 start-100 translate-middle pff"></div>
+      <<div class="position-absolute top-0 start-100 translate-middle pff"></div> -->
 
 
-    </mdb-card-body>
-  </mdb-card>
-</div>
+    <!-- </mdb-card-body> -->
+  <!-- </mdb-card>
+</div> --> 
+
+
+<mdb-card class="card" *ngFor='let request of requests'>
+  <!--Card image-->
+  <!-- <mdb-card-img src={{request.imageUrl}} alt="Card image cap"> -->
+    <img src={{request.imageUrl}} class="card-img"/>
+  <!-- </mdb-card-img> -->
+  <!--Card content-->
+  <mdb-card-body>
+
+    <!--Title-->
+    <mdb-card-title>
+      <h4 id="name">{{request.fullName}}</h4>
+   </mdb-card-title>
+   <!--Text-->
+    <mdb-card-text>
+      <h4>{{request.profession}}</h4>
+      <h2>{{request.CIN}}</h2>
+      <h2>{{request.phoneNumber}}</h2>
+       {{request.description}}
+    </mdb-card-text>
+    <button mdbBtn type="button" class="verify-btn"(click) ='verifyAcc(request._id)' mdbWavesEffect>Verify Account</button>
+    <button mdbBtn type="button" class="decline-btn" (click)='reject(request._id)' mdbWavesEffect>Decline</button>
+  </mdb-card-body>
+</mdb-card>

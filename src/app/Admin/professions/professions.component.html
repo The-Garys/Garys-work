@@ -9,7 +9,7 @@
         <img src="{{ service.image }}">
         <h4><b>{{service?.profession}}</b></h4>
   
-        <button type="button" mdbBtn color="primary" class="relative waves-light"
+        <button type="button" mdbBtn class="relative waves-light btn"
           (click)="takeID(service._id , service.image , service.profession)" (click)="basicModal.show()"
           mdbWavesEffect>Edit</button>
       </div>

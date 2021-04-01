@@ -1,38 +1,32 @@
+<div class="w3-content w3-container w3-padding-64" id="contact">
+  <h3 class="w3-center">WHERE I WORK</h3>
+  <p class="w3-center"><em>I'd love your feedback!</em></p>
 
-
-
- <div class="appointment">
-  <input type="date" #date>
-  <input type="time" #time id="appt" name="appt" 
-       min="09:00" max="18:00" required>
-  <div class="md-form">
-  <input mdbInput type="text" #name id="form1" class="form-control">
-  <label for="form1" class="">userName</label>
-</div>
-<div class="md-form">
-  <input mdbInput type="text" #mail id="form1" class="form-control">
-  <label for="form1" class="">e-mail</label>
-</div>
-<div class="md-form">
-  <input mdbInput type="text" #svname id="form1" class="form-control">
-  <label for="form1" class="">ServiceProviderName</label>
-</div>
-<button (click)="submit(name.value , mail.value , date.value , svname.value , time.value)">Make Appointment</button>
- </div>
-
-
-
- <div class=card *ngFor='let e of data'>
-   
-   <h1>{{e.userName}}</h1>
-   <h1>{{e.email}}</h1>
-   <p>you have an appointment on: {{e.date}}</p>
-   <p>at {{e.time}}</p>
-   
-    
+  <div class="w3-row w3-padding-32 w3-section">
+    <div class="w3-col m4 w3-container">
+      <img src="/w3images/map.jpg" class="w3-image w3-round" style="width:100%">
+    </div>
+    <div class="w3-col m8 w3-panel">
+      <div class="w3-large w3-margin-bottom">
+        <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Chicago, US<br>
+        <i class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Phone: +00 151515<br>
+        <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: mail@mail.com<br>
+      </div>
+      <p>Swing by for a cup of <i class="fa fa-coffee"></i>, or leave me a note:</p>
+      <form action="/action_page.php" target="_blank">
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+          <div class="w3-half">
+            <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+          </div>
+          <div class="w3-half">
+            <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+          </div>
+        </div>
+        <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+        <button class="w3-button w3-black w3-right w3-section" type="submit">
+          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+        </button>
+      </form>
+    </div>
   </div>
-
-
-
-
- 
+</div>
