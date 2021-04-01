@@ -23,17 +23,34 @@
     
   </select>
   <div class="md-form md-outline form-sm">
-    <input
+    <!-- <input
       id="loc"
+      (keydown.enter)="$event.preventDefault()"
       (keyup)="dropLoc($event.target.value)"
       class="form-control form-control-sm"
       type="text"
       mdbInput
-    />
-    <label id="label" for="form-sm">Location</label>
+      placeholder="Choose your adress please"
+      autocorrect="off" autocapitalize="off"  spellcheck="off"
+      #search
+    /> -->
+      
+    <button (click)='viewMap()'>Search By Location</button>
+
+    <!-- <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Choose your adress please" autocorrect="off" autocapitalize="off"  spellcheck="off" type="text" #search > -->
+
   </div>
   
 </div>
+
+<div *ngIf='map' id="map">
+  <agm-map (mapClick)='onLocChange($event)' [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+    <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+      (dragEnd)="markerDragEnd($event)"></agm-marker>
+  </agm-map>
+
+</div>
+<h5 *ngIf='map'>Address: {{address}}</h5>
 
 <div class="cont-cards">
     <div class="card-cont"*ngFor="let e of services">
