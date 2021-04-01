@@ -14,6 +14,7 @@ const appointmentSchema = new mongoose.Schema(
     userPhoneNumber: { type: Number, required: true },
     isApproved: { type: Boolean, required: true, default: false },
     isDeclined: { type: Boolean, required: true, default: false },
+    isCanceled: { type: Boolean, required: true, default: false },
   },
   { timestamps: true }
 );

@@ -880,3 +880,15 @@ img {
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   background-color: rgb(223, 6, 6);
 }
+.approved-app {
+  background-color: #fff;
+
+  color: #4bca81;
+  padding: 0.5rem;
+}
+.declined-app {
+  background-color: #fff;
+
+  color: #d83c3c;
+  padding: 0.5rem;
+}

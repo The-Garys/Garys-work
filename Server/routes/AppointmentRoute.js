@@ -8,5 +8,5 @@ router.get("/getUserApts/:id", appointmentController.getUserApts);
 router.delete("/:id", appointmentController.deleteAppointment);
 router.put("/approve/:id", appointmentController.approveApp);
 router.put("/decline/:id", appointmentController.declineApp);
-
+router.delete("/cancel/:id", appointmentController.cancelApp);
 module.exports = router;

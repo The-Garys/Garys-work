@@ -140,7 +140,7 @@
           </div>
           <p class="state">{{ spData?.adress }}</p>
         </div>
-        <div *ngIf="!visitor" class="profile-option">
+        <div *ngIf="!visitor && notifications > 0" class="profile-option">
           <div class="notification" (click)="goToAppointments()">
             <i class="fa fa-bell"></i>
             <span class="alert-message">{{ notifications }}</span>
@@ -468,37 +468,67 @@
                   class="appointmentCard"
                   *ngFor="let appointment of appointmentsList"
                 >
-                  <p id="app">
-                    <i class="far fa-calendar-alt"></i> you have an appointment
-                    on: <span class="ap"> {{ appointment.date }}</span>
-                  </p>
-                  <p>
-                    <i class="far fa-clock"></i> at :
-                    <span class="ap">{{ appointment.time }}</span>
-                  </p>
-                  <h1 id="with">
-                    By: <span id="user">{{ appointment.userName }}</span>
-                  </h1>
-                  <h4>
-                    User's Email: <span>{{ appointment.userEmail }}</span>
-                  </h4>
-                  <h4>
-                    User's Phone Number:
-                    <span>{{ appointment.userPhoneNumber }}</span>
-                  </h4>
-                  <div class="aprv-dcln">
-                    <button
-                      class="approve-appointment apdc"
-                      (click)="approveAppointment(appointment._id)"
-                    >
-                      Approve
-                    </button>
-                    <button
-                      class="decline-appointment apdc"
-                      (click)="declineAppointment(appointment._id)"
-                    >
-                      Decline
-                    </button>
+                  <div
+                    class="appo-cont"
+                    *ngIf="!appointment.isDeclined && !appointment.isApproved"
+                  >
+                    <p id="app">
+                      <i class="far fa-calendar-alt"></i> you have an
+                      appointment on:
+                      <span class="ap"> {{ appointment.date }}</span>
+                    </p>
+                    <p>
+                      <i class="far fa-clock"></i> at :
+                      <span class="ap">{{ appointment.time }}</span>
+                    </p>
+                    <h1 id="with">
+                      By: <span id="user">{{ appointment.userName }}</span>
+                    </h1>
+                    <h4>
+                      User's Email: <span>{{ appointment.userEmail }}</span>
+                    </h4>
+                    <h4>
+                      User's Phone Number:
+                      <span>{{ appointment.userPhoneNumber }}</span>
+                    </h4>
+                    <div class="aprv-dcln">
+                      <button
+                        class="approve-appointment apdc"
+                        (click)="approveAppointment(appointment._id)"
+                      >
+                        Approve
+                      </button>
+                      <button
+                        class="decline-appointment apdc"
+                        (click)="declineAppointment(appointment._id)"
+                      >
+                        Decline
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    class="appr"
+                    *ngIf="appointment.isApproved && !appointment.isDeclined"
+                  >
+                    <div class="approved-app">
+                      Your have approved and appointement with
+                      {{ appointment.userName }} on {{ appointment.date }} at
+                      {{ appointment.time }} !
+                    </div>
+                  </div>
+                  <div
+                    class="decc"
+                    *ngIf="!appointment.isApproved && appointment.isDeclined"
+                  >
+                    <div class="declined-app">
+                      Your have declined and appointement with
+                      {{ appointment.userName }} on {{ appointment.date }} at
+                      {{ appointment.time }}.
+                    </div>
+                    <i
+                      class="fas fa-times-circle deleteNotfDec"
+                      (click)="deleteNotification(appointment._id)"
+                    ></i>
                   </div>
                 </div>
               </div>

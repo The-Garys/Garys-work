@@ -78,7 +78,7 @@
           <h3 class="user-name">{{ userData?.userName }}</h3>
           <p class="state">{{ userData?.location }}</p>
         </div>
-        <div class="profile-option">
+        <div class="profile-option" *ngIf="notifications > 0">
           <div class="notification">
             <i class="fa fa-bell"></i>
             <span class="alert-message" (click)="goToAppointments()">{{
@@ -251,17 +251,56 @@
                 class="appointmentCard"
                 *ngFor="let appointment of appointmentsList"
               >
-                <p id="app">
-                  <i class="far fa-calendar-alt"></i> you have an appointment
-                  on: <span class="ap"> {{ appointment.date }}</span>
-                </p>
-                <p>
-                  <i class="far fa-clock"></i> at :
-                  <span class="ap">{{ appointment.time }}</span>
-                </p>
-                <h1 id="with">
-                  With: <span id="user">{{ appointment.sPName }}</span>
-                </h1>
+                <div
+                  class="app-contt"
+                  *ngIf="!appointment.isDeclined && !appointment.isApproved"
+                >
+                  <p id="app">
+                    <i class="far fa-calendar-alt"></i> you have an appointment
+                    on: <span class="ap"> {{ appointment.date }}</span>
+                  </p>
+                  <p>
+                    <i class="far fa-clock"></i> at :
+                    <span class="ap">{{ appointment.time }}</span>
+                  </p>
+                  <h1 id="with">
+                    With: <span id="user">{{ appointment.sPName }}</span>
+                  </h1>
+                  <button
+                    class="btn-cancel"
+                    (click)="cancelAppointment(appointment._id)"
+                  >
+                    Cancel <i class="fas fa-times-circle cancel"></i>
+                  </button>
+                </div>
+                <div
+                  class="appr"
+                  *ngIf="appointment.isApproved && !appointment.isDeclined"
+                >
+                  <div class="approved-app">
+                    Your Appointment with {{ appointment.sPName }} on
+                    {{ appointment.date }} at {{ appointment.time }} have been
+                    approved!
+                  </div>
+                  <i
+                    class="fas fa-times-circle deleteNotf"
+                    (click)="deleteNotification(appointment._id)"
+                  ></i>
+                </div>
+                <div
+                  class="decc"
+                  *ngIf="!appointment.isApproved && appointment.isDeclined"
+                >
+                  <div class="declined-app">
+                    Your Appointment with {{ appointment.sPName }} on
+                    {{ appointment.date }} at {{ appointment.time }} have been
+                    Declined.
+                  </div>
+                  <i
+                    class="fas fa-times-circle deleteNotfDec"
+                    (click)="deleteNotification(appointment._id)"
+                  ></i>
+                </div>
               </div>
             </div>
           </div>

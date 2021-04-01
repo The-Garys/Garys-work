@@ -336,30 +336,63 @@ export class SpProfileComponent implements OnInit {
     }
   }
   approveAppointment(id) {
-    this.http
-      .put('http://localhost:3000/api/appointment/approve/' + id, {
-        isApproved: true,
-      })
-      .subscribe((data) => {
-        this.appointmentsList = data;
-        console.log(
-          'did our appointement approved ? ==>',
-          this.appointmentsList
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will approve this appointement!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, approve it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Approved!',
+          'Your appointment has been approved.',
+          'success'
         );
-      });
+        this.http
+          .put('http://localhost:3000/api/appointment/approve/' + id, {
+            isApproved: true,
+          })
+          .subscribe((data) => {
+            this.getAppointments();
+
+            console.log(
+              'did our appointement approved ? ==>',
+              this.appointmentsList
+            );
+          });
+      }
+    });
   }
   declineAppointment(id) {
-    this.http
-      .put('http://localhost:3000/api/appointment/decline/' + id, {
-        isDeclined: true,
-      })
-      .subscribe((data) => {
-        this.appointmentsList = data;
-        console.log(
-          'did our appointement declined ? ==>',
-          this.appointmentsList
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will permanently decline this appointment!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, decline it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Declined!',
+          'Your appointment has been declined.',
+          'success'
         );
-      });
+        this.http
+          .put('http://localhost:3000/api/appointment/decline/' + id, {
+            isDeclined: true,
+          })
+          .subscribe((data) => {
+            this.getAppointments();
+
+            console.log('did our appointement declined ? ==>', data);
+          });
+      }
+    });
   }
   updateImage(imageUrl) {
     console.log('sv details====>', this.spData);

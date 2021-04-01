@@ -37,11 +37,48 @@ module.exports = {
     }
   },
   approveApp: async (req, res) => {
-    console.log(req.body);
+    try {
+      const { isApproved } = req.body;
+      let appointment = await Appointment.findByIdAndUpdate(
+        { _id: req.params.id },
+        {
+          isApproved,
+        },
+        { new: true }
+      );
+      console.log("is approve work ??? ==>", appointment);
+      res.send(appointment);
+    } catch (err) {
+      console.log(err);
+    }
   },
   declineApp: async (req, res) => {
-    console.log("req.bodyyy", req.body);
-    res.send(req.body);
+    try {
+      const { isDeclined } = req.body;
+      let appointment = await Appointment.findByIdAndUpdate(
+        { _id: req.params.id },
+        {
+          isDeclined,
+        },
+        { new: true }
+      );
+      console.log("is decline work ??? ==>", appointment);
+      res.send(appointment);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  cancelApp: async (req, res) => {
+    try {
+      const { isCanceled } = req.body;
+      let appointment = await Appointment.findByIdAndDelete({
+        _id: req.params.id,
+      });
+      console.log("is cancel work ??? ==>", appointment);
+      res.send(appointment);
+    } catch (err) {
+      console.log(err);
+    }
   },
   getAll: async (req, res) => {
     try {
