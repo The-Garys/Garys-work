@@ -23,6 +23,7 @@ export class UserServicesComponent implements OnInit {
   n: any = ""
   l: any = ""
   p: any = ""
+  svMail: string = localStorage.getItem('svMail')
   constructor(
     private http: HttpClient,
     private local: LocalService,
@@ -49,7 +50,7 @@ export class UserServicesComponent implements OnInit {
       console.log('are those sps ?? ===>', data);
       this.services = data;
       this.services = this.services.filter((el) => {
-        return el.isBanned === false;
+        return el.isBanned === false && el.email!==this.svMail;
       });
       this.backup = data;
     });
