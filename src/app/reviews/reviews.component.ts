@@ -22,8 +22,9 @@ export class ReviewsComponent implements OnInit {
     config.max = 5;
     config.readonly = true;
   }
-  // spReviews: any;
+
   spEmail: string = localStorage.getItem('svMail');
+  visitorEmail : string = localStorage.getItem('halimMail')
   userId: string = localStorage.getItem('id');
   isUser: string = localStorage.getItem('visitor');
   currentRate: number;
@@ -88,21 +89,19 @@ export class ReviewsComponent implements OnInit {
   
   ngOnInit(): void {
    this.getReviews();
-  console.log(this.spReviews)
-
+  console.log("first review try",this.spReviews)
+   this.newReview()
    
   }
    
   newReview() {
-    console.log('revvvvvvv');
+   
 
-  // this.getReviews();
-
-    setTimeout(()=> {
-      console.log(this.spReviews);
-      
-    }, 5000)
-    
+  this.profileServices.getServiceProviderData(this.visitorEmail).subscribe((data)=>{
+    console.log("data", data['reviews'])
+    this.spReviews = data['reviews']
+  })
+  
 
     
   }
@@ -127,9 +126,14 @@ export class ReviewsComponent implements OnInit {
         )
         .subscribe((data) => {
           console.log('review===>', data);
+          this.spReviews+=data
+          console.log("new reviews", this.spReviews)
+
           Swal.fire('Good job!', data['success'], 'success');
         });
+
     }
+
   }
   deleteReview(id) {
     Swal.fire({
