@@ -1,29 +1,36 @@
-.card-cont {
-  width: 100% !important;
-  align-items: center;
-  margin-top: 7rem;
-}
+// .card-cont {
+//   width: 100% !important;
+//   align-items: center;
+//   margin-top: 7rem;
+// }
 .card-img-top {
-  margin-left: 38%;
-  width: 10rem;
-  height: 10rem;
+  margin-left: 33%;
+  width: 7.5rem;
+  height: 7.5rem;
   border-radius: 50%;
   margin-top: 1.5%;
   border: 3px solid #fff;
 }
 #whole-card {
   margin-top: 3rem;
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   transition: 0.3s ease-in-out;
   border-radius: 6px;
+  display: flex;
+  float:left;
+  margin-left: 6%;
+
+  
 }
 #whole-card:hover {
-  transform: translateX(-40px);
+  transform: translateY(-30px);
+
 }
 .mb-3 {
-  width: 60%;
+  width: 25%;
   margin: auto;
   align-items: center;
+  margin-left:1rem;
 }
 .card-body {
   width: 100%;
@@ -62,7 +69,7 @@ filter div {
 }
 
 .dropbtn {
-  background-color: rgb(84, 134, 134);
+  background-color:blue;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -72,7 +79,7 @@ filter div {
   height: 20%;
   margin-left: 1rem;
   padding: 0.5%;
-  margin-top: 1%;
+  margin-top:1%;
 }
 
 .dropdown-content {
@@ -81,4 +88,16 @@ filter div {
   text-decoration: none;
   display: block;
   background-color: white;
+}
+// .cont-cards {
+//   display: flex;
+//   width: 30%;
+//   flex-direction: row;
+
+// }
+#loc{
+  margin-left:2rem;
+}
+#label{
+  margin-left:2.2rem;
 }
