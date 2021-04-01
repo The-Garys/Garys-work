@@ -74,6 +74,7 @@ export class SpProfileComponent implements OnInit {
         this.serviceProviderReviews= data['reviews']
         console.log('all reviews===>',this.serviceProviderReviews)
         this.spData = data['data'];
+        this.imageUrl= data['data']['imageUrl']
         this.getAppointments();
         this.profileServices
           .getServiceProviderPosts(this.spData._id)
@@ -99,6 +100,8 @@ export class SpProfileComponent implements OnInit {
       this.currentConversation = data;
     });
   }
+
+  
   getAllMessages() {
     this.LiveMessages.getAllMessages().subscribe((data: any[]) => {
       this.allMsg = data;
@@ -335,7 +338,9 @@ export class SpProfileComponent implements OnInit {
       .subscribe((data) => {
         console.log('new data', data);
         this.spData.imageUrl = data['data'];
-        Swal.fire('', data['success'], 'success');
+        Swal.fire('', data['success'], 'success').then(()=>{
+          window.location.reload();
+        });
       });
   }
 }

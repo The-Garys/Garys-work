@@ -30,7 +30,7 @@ export class UserProfileComponent implements OnInit {
   currentPassword: string;
   newPassword: string;
   confirmPassword: string;
-  imageUrl : string
+  imageUrl : string ;
   ngOnInit(): void {
     this.userId = localStorage.getItem('id');
     
@@ -38,6 +38,7 @@ export class UserProfileComponent implements OnInit {
     .subscribe((data) => {
       console.log('user data====>', data);
       this.userData = data;
+      this.imageUrl = data["imageUrl"]
       this.getAppointments();
     });
   }
@@ -48,9 +49,10 @@ export class UserProfileComponent implements OnInit {
     formData.append('img', img.target.files[0]);
     this.userServices.ImageUpload(formData).subscribe((resp) => {
       this.imageUrl = resp['msg'].url;
+     
     });
   }
- 
+
 
   check: boolean = false;
   Security: boolean = false;
@@ -160,7 +162,10 @@ export class UserProfileComponent implements OnInit {
           '',
           data['success'],
           'success'
-        );
+        ).then(()=>{
+          window.location.reload();
+        });
+        
       })
   }
 
