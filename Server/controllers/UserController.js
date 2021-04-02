@@ -18,6 +18,8 @@ const userCtrl = {
         phoneNumber,
         imageUrl,
         location,
+        lat,
+        lng,
       } = req.body;
       // check if the email is exist or not
       const user = await Users.findOne({ email });
@@ -39,6 +41,8 @@ const userCtrl = {
         password: hashPassword,
         imageUrl,
         location,
+        lat,
+        lng,
       });
       // generate a token for the user
       const token = jwt.sign({ id: newUser._id }, config.toString(), {
@@ -103,6 +107,8 @@ const userCtrl = {
         name: user.userName,
         greet: "Welcome",
         isBanned: user.isBanned,
+        lat: user.lat,
+        lng: user.lng,
       });
     } catch (error) {
       console.log(error);

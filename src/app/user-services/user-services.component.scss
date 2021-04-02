@@ -106,6 +106,10 @@ filter div {
   align-items: center;
 }
 
+.marker {
+  background-color: blue !important;
+}
+
 agm-map {
   width: 600px;
   height: 350px;

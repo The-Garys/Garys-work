@@ -20,7 +20,9 @@ const serviceProviderSchema = new mongoose.Schema(
 
     CIN: { type: Number },
     description: { type: String },
-    adress: { type: String },
+    lat: { type: Number },
+    lat: { type: Number },
+    lng: { type: Number },
   },
   { timestamps: true }
 );

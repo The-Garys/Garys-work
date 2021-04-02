@@ -33,6 +33,7 @@ export class UserServicesComponent implements OnInit {
   n: any = ""
   l: any = ""
   p: any = this.local.pick
+  labelOptions = {color : '#CC0000'}
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -44,36 +45,19 @@ export class UserServicesComponent implements OnInit {
     private router: Router,
     config: NgbRatingConfig,
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
   ) {
     config.max = 5;
     config.readonly = true;
   }
   role: string = this.local.role;
   ngOnInit(): void {
-
+  console.log(this.longitude, this.latitude);
+  
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
 
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          //get the place result
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
-          //verify result
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-
-          //set latitude, longitude and zoom
-          this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
-          this.getAddress(this.latitude, this.longitude);
-          this.zoom = 12;
-        });
-      });
+     
     })
     
     console.log('dddddzsssadad', this.local.pick);
@@ -88,6 +72,7 @@ export class UserServicesComponent implements OnInit {
 
   // Get Current Location Coordinates
   public setCurrentLocation() {
+    
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
@@ -96,6 +81,11 @@ export class UserServicesComponent implements OnInit {
         this.getAddress(this.latitude, this.longitude);
       });
     }
+    else {
+      console.log('huummmm');
+      
+    }
+   
   }
 
 
@@ -119,18 +109,25 @@ export class UserServicesComponent implements OnInit {
   }
 
   getAddress(latitude, longitude) {
+    
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
-      console.log(results);
+      console.log("resssss",results);
       console.log(status);
-      if (status === 'OK') {
+      if (status === 'OK' && results.length) {
         if (results[0]) {
           this.zoom = 12;
           this.address = results[0].formatted_address;
-        } else {
-          window.alert('No results found');
+        } 
+      } 
+      else {
+        if('geolocation' in navigator) {
+          console.log("pssssssssss");
+          
         }
-      } else {
-        window.alert('Geocoder failed due to: ' + status);
+        console.log("sssssss");
+        
+        this.latitude = parseFloat(localStorage.getItem('lat'));
+        this.longitude = parseFloat(localStorage.getItem('lng'));
       }
 
     });
@@ -184,6 +181,8 @@ export class UserServicesComponent implements OnInit {
     }
   } 
   goSvProfile(svMail) {
+    console.log('clicccc');
+    
     localStorage.setItem('halimMail', svMail);
     this.router.navigateByUrl('/fisitor');
   }
