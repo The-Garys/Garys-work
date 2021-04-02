@@ -41,22 +41,10 @@
           <img src="{{ e.imageUrl }}" class="card-img-top" alt="..." />
         </div>
         <div class="card-body">
-          <div class="sp__name-rate">
-            <h3 class="sp__name">{{ e.fullName }}</h3>
-            <h3 class="sp__name" id="rate">
-              <ngb-rating class="rating-readonly" [rate]="e.rate"></ngb-rating>
-            </h3>
-          </div>
           <div class="card-body">
             <div class="sp__name-rate">
               <h3 class="sp__name">
                 <span class="fas fa-user"></span>{{ e.fullName }}
-              </h3>
-              <h3 class="sp__name" id="rate">
-                <ngb-rating
-                  class="rating-readonly"
-                  [rate]="e.rate"
-                ></ngb-rating>
               </h3>
             </div>
             <h4 class="card-title">
@@ -65,11 +53,6 @@
             <h4 class="card-title">
               <i class="fas fa-map-marker-alt"></i>{{ e.location }}
             </h4>
-
-            <p class="card-text">
-              <i class="fas fa-pencil-alt"></i>
-              {{ e.description }}
-            </p>
           </div>
         </div>
       </div>

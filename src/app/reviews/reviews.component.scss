@@ -102,14 +102,18 @@
 .single-review-title {
   font-weight: bold;
   float: left !important;
-  margin-top: 17px;
+  margin-top: 20px;
   color: rgb(63, 63, 63);
   margin-left: -55px;
+  display: block;
 }
 .review-body {
-  margin-top: 2rem;
+  margin-top: 3rem;
   color: rgb(117, 117, 117);
-  margin-left: 0;
+  display: block;
+}
+.rev-bod {
+  margin-left: none;
 }
 .helpful {
   color: rgb(77, 76, 76);
@@ -127,7 +131,6 @@
 }
 
 .report {
-  margin-left: 0.4rem;
 }
 hr {
   width: 80%;
