@@ -23,10 +23,10 @@ export class UserServicesComponent implements OnInit, OnDestroy {
   private geoCoder;
   services: any = [];
   username: string;
-  list: any = NAME;
+  list: any
   data: any;
   backup: any = [];
-  location: any = NAME;
+  location: any 
   reviews: any = [];
   n: any = '';
   l: any = '';

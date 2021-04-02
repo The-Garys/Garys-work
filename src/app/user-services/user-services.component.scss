@@ -121,9 +121,17 @@ h5 {
 }
 
 #mapBtn {
-  margin: auto;
-
   background-color: blue;
+  color: white;
+  // padding: 13px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: 15%;
+  height: 10%;
+  margin-left: 1rem;
+  padding: 0.4%;
+  margin-top: 1%;
 }
 // h3{
 //   font-family:'Times New Roman', Times, serif;

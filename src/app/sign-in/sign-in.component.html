@@ -16,14 +16,16 @@
           </div>
           <!-- check -->
           <div class="checkBox">
-            <label for="serviceProvider"> Are you a service provider</label>
             <input
-              type="checkbox"
-              id="serviceProvider"
-              name="serviceProvider"
-              value="serviceProvider"
-              (click)="checkProvider()"
-            />
+            type="checkbox"
+            id="serviceProvider"
+            name="serviceProvider"
+            value="serviceProvider"
+            (click)="checkProvider()"
+          />
+          <span class="checkmark"></span>
+            <label for="serviceProvider" class="isServiceProvider-checkbox"> Are you a service provider?</label>
+          
           </div>
           <!-- check -->
           <button
