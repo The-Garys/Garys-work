@@ -14,6 +14,8 @@ const userSchema = new mongoose.Schema(
     isBanned: { type: Boolean, default: false },
     imageUrl: { type: String },
     location: { type: String },
+    lat: { type: Number },
+    lng: { type: Number },
   },
   { timestamps: true }
 );
