@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SERVICES, NAME } from '../services-list/mock-service';
 import { HttpClient } from '@angular/common/http';
 import { LocalService } from '../local.service';
@@ -12,7 +12,7 @@ import { ServicesService } from '../services/services.service';
   styleUrls: ['./user-services.component.scss'],
   providers: [NgbRatingConfig],
 })
-export class UserServicesComponent implements OnInit {
+export class UserServicesComponent implements OnInit, OnDestroy {
   services: any = [];
   username: string;
   list: any = NAME;
@@ -36,7 +36,7 @@ export class UserServicesComponent implements OnInit {
   }
   role: string = this.local.role;
   ngOnInit(): void {
-    console.log('dddddzsssadad', this.local.pick);
+    console.log('piiiiiiiiiiiiiiiiick', this.local.pick);
     this.list = NAME;
     this.services = [];
     this.list = [];
@@ -44,6 +44,10 @@ export class UserServicesComponent implements OnInit {
     this.getProfessions();
     this.getRating();
   }
+  ngOnDestroy(): void{
+    this.local.pick=""
+  }
+
   getServices() {
     this.serviceList.getServiceProviders().subscribe((data) => {
       console.log('are those sps ?? ===>', data);
@@ -51,8 +55,8 @@ export class UserServicesComponent implements OnInit {
       this.services = this.services.filter((el) => {
         return (el.isBanned === false) && (el.email!==this.svMail);
       });
-      this.backup = data;
-      this.dropVal(this.local.pick);
+      this.backup = this.services;
+      this.filterServiceByProfession(this.local.pick);
     });
   }
   getProfessions() {
@@ -82,7 +86,7 @@ export class UserServicesComponent implements OnInit {
     localStorage.setItem('halimMail', svMail);
     this.router.navigateByUrl('/fisitor');
   }
-  getVal(val) {
+  filterServiceByName(val) {
     console.log(val);
     this.n = val.toUpperCase();
     this.services = this.backup;
@@ -104,12 +108,12 @@ export class UserServicesComponent implements OnInit {
     console.log('dazdzad', val, this.services);
   }
 
-  dropVal(val) {
+  filterServiceByProfession(val) {
     console.log(val);
     // console.log(val)
+    var newArr = [];
     if (val === 'all') {
       this.services = this.backup;
-      var newArr = [];
       this.services.map((e) => {
         var name = e.fullName.toUpperCase();
         var location = e.location.toUpperCase();
@@ -121,8 +125,6 @@ export class UserServicesComponent implements OnInit {
     } else {
       this.p = val.toUpperCase();
       this.services = this.backup;
-
-      var newArr = [];
       this.services.map((e) => {
         val = val.toUpperCase();
         var name = e.fullName.toUpperCase();
