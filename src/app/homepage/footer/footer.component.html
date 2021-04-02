@@ -15,9 +15,11 @@
   
       <div class="formcontainer">
       <form  class="text-center contact-card cform" style="color: #757575;">
-  
-      
-        <div class="md-form mt-3">
+       <div class="text">
+        <p class="w3-center"><em>I'd love your feedback!</em></p>
+        <p>Swing by for a cup of <i class="fa fa-coffee"></i>, or leave me a note:</p>
+       </div> 
+       <div class="md-form mt-3">
           <input name="name" [(ngModel)]="name" type="text" id="materialContactFormName" class="form-control" mdbInput>
           
           <label for="materialContactFormName">Name</label>
@@ -41,8 +43,8 @@
   
       
         <div class="send">
-        <button (click)='send(name, phone, email, message)' mdbBtn color="blue" outline="true" rounded="true" block="true" class="z-depth-0 my-4 waves-effect " mdbWavesEffect
-          type="submit">Send</button>
+        <button (click)='send(name, phone, email, message)' mdbBtn color="blue" outline="true" rounded="true" block="true" class="z-depth-0 my-4 waves-effect send-btn " mdbWavesEffect
+          type="submit"> <i class="fa fa-paper-plane"></i> Send</button>
         </div>
       </form>
     </div>
