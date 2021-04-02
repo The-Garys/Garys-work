@@ -65,10 +65,12 @@
             {{ review.reviewTitle }}
           </h3>
           <br />
-          <p class="review-body">
-            {{ review.reviewBody }}
-          </p>
-          <br />
+          <div class="rev-bod">
+            <p class="review-body">
+              {{ review.reviewBody }}
+            </p>
+            <br />
+          </div>
           <a class="report" href="">Report</a>
           <button
             (click)="deleteReview(review._id)"
@@ -84,7 +86,6 @@
       <br />
       <div class="buttons">
         <button class="more-reviews">More Reviews</button>
-
         <app-modal-review [spReviews]="serviceProviderReviews"
         (newReview)='newReview($event)'
           class="mod-btn"
