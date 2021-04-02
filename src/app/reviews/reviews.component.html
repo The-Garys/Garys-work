@@ -85,7 +85,7 @@
       <div class="buttons">
         <button class="more-reviews">More Reviews</button>
 
-        <app-modal-review
+        <app-modal-review [spReviews]="serviceProviderReviews"
         (newReview)='newReview($event)'
           class="mod-btn"
           *ngIf="isUser === 'yes'"

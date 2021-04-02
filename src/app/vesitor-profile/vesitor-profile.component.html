@@ -156,7 +156,7 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button
+                      <!-- <button
                         (click)="submit(date.value, time.value)"
                         type="button"
                         mdbBtn
@@ -165,18 +165,9 @@
                         mdbWavesEffect
                       >
                         Send
-                      </button>
-                      <button
-                        type="button"
-                        mdbBtn
-                        color="danger"
-                        class="waves-light"
-                        aria-label="Close"
-                        (click)="basicModal.hide()"
-                        mdbWavesEffect
-                      >
-                        Close
-                      </button>
+                      </button> -->
+                      <button class="btnS"  (click)="submit(date.value, time.value)"><i class="fa fa-close" ></i> SEND</button>
+                      <button class="btn" (click)="basicModal.hide()"><i class="fa fa-close" ></i> Close</button>
                     </div>
                   </div>
                 </div>

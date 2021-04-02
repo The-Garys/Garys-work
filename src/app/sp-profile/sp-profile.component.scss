@@ -892,3 +892,37 @@ img {
   color: #d83c3c;
   padding: 0.5rem;
 }
+
+
+.btn {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  background-color: rgb(255, 45, 30);
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: rgb(225, 65, 65);
+}
+.btnS {
+  margin-right: 0.2rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Darker background on mouse-over */
+.btnS:hover {
+  background-color: RoyalBlue;
+}

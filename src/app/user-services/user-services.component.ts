@@ -49,7 +49,7 @@ export class UserServicesComponent implements OnInit {
       console.log('are those sps ?? ===>', data);
       this.services = data;
       this.services = this.services.filter((el) => {
-        return el.isBanned === false && el.email!==this.svMail;
+        return (el.isBanned === false) && (el.email!==this.svMail);
       });
       this.backup = data;
       this.dropVal(this.local.pick);
