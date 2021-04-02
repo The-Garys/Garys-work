@@ -22,6 +22,8 @@ const serviceProviderCtrl = {
         imageUrl,
         CIN,
         description,
+        lat,
+        lng,
       } = req.body;
       const serviceProvider = await ServiceProvider.findOne({ email });
       if (serviceProvider) {
@@ -45,6 +47,8 @@ const serviceProviderCtrl = {
         imageUrl,
         CIN,
         description,
+        lat,
+        lng,
       });
       console.log("make sure", newServiceProvider);
 
@@ -66,6 +70,8 @@ const serviceProviderCtrl = {
         success: "successfully registred",
         name: newServiceProvider.firstName,
         greet: "Welcome",
+        lat: newServiceProvider.lat,
+        lng: newServiceProvider.lng,
       });
     } catch (err) {
       console.log(err);
@@ -163,11 +169,13 @@ const serviceProviderCtrl = {
   getSPByEmail: async (req, res) => {
     try {
       var data = await ServiceProvider.findOne({ email: req.params.email });
-      const reviews = await Reviews.find({ serviceProviderEmail: req.params.email })
-      console.log("Got the reviews: ", reviews)
+      const reviews = await Reviews.find({
+        serviceProviderEmail: req.params.email,
+      });
+      console.log("Got the reviews: ", reviews);
       data["reviews"] = reviews;
-      console.log("review", data)
-      res.send({data: data, reviews: reviews});
+      console.log("review", data);
+      res.send({ data: data, reviews: reviews });
     } catch (err) {
       console.log("err", err);
     }
