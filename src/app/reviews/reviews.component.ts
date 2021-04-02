@@ -91,7 +91,10 @@ export class ReviewsComponent implements OnInit {
   ngOnInit(): void {
     this.getReviews();
     console.log('first review try', this.spReviews);
-    this.newReview();
+    if(this.userId){
+      this.newReview();
+
+    }
   }
 
   newReview() {
