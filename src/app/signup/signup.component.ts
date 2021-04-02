@@ -17,12 +17,14 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
   }
   imageUrl : string
+  checked: boolean = false
   imgUpload(img) {
     console.log('IMG FROM VER==> ', img.target.files[0]);
     var formData = new FormData();
     formData.append('img', img.target.files[0]);
     this.http.post("http://localhost:3000/upload" , formData).subscribe((resp) => {
       this.imageUrl = resp['msg'].url;
+      this.checked= true
     });
 
   

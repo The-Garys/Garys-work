@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class SignUpComponent implements OnInit {
     services : any
+    checked: boolean = false
   constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
@@ -34,6 +35,7 @@ export class SignUpComponent implements OnInit {
     formData.append('img', img.target.files[0]);
     this.http.post("http://localhost:3000/upload" , formData).subscribe((resp) => {
       this.imageUrl = resp['msg'].url;
+      this.checked= true
     });
 
   
