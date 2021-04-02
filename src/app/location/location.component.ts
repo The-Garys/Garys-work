@@ -8,7 +8,6 @@ import { MapsAPILoader } from '@agm/core';
   styleUrls: ['./location.component.scss']
 })
 export class LocationComponent implements OnInit {
-  title: string = 'AGM project';
   latitude: number;
   longitude: number;
   zoom: number;
