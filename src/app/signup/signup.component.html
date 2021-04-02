@@ -10,7 +10,7 @@
   </mdb-card-header>
 
   <!--Card content-->
-  <mdb-card-body class="px-lg-5 pt-0">
+  <mdb-card-body class="px-lg-5 pt-0" style="margin-left: -35px; width:105%;">
 
     <!-- Form -->
     <div class="text-center" style="color: #757575;">
@@ -67,13 +67,16 @@
       </div>
       <div class="md-form">
         <input type="file"    (change)="imgUpload($event)"
-        #image  alt="Submit" width="48" height="48" id="materialRegisterFormPhone" class="form-control"
-          aria-describedby="materialRegisterFormPhoneHelpBlock" mdbInput>
-
+        #image  alt="Submit"  style="margin-top:1rem; margin-bottom:1rem;" />
+        <br>
+        <img src="{{ imageUrl }}" style="width: 200px; height:200px; margin-top:1rem;" *ngIf="checked"/>
+        
       </div>
 
-
-      <app-location #loc></app-location>
+      <div id="umap">
+        <app-location #loc></app-location>
+        
+      </div>
 
 
 
@@ -98,7 +101,7 @@
         <mdb-icon fab icon="heart"></mdb-icon>
       </a> -->
 
-      <hr>
+      
 
       <!-- Terms of service -->
       <!-- <p>By clicking
