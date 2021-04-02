@@ -6,7 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 70%;
 }
 
 form {
@@ -15,4 +15,15 @@ form {
 
 h5 {
   font-size: 50px;
+}
+.fa{
+  margin-right:0.5rem;
+}
+.send-btn{
+  width:30%;
+
+}
+
+.text{
+  margin-top:2rem;
 }

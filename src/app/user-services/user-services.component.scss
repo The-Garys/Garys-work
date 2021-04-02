@@ -3,6 +3,9 @@
 //   align-items: center;
 //   margin-top: 7rem;
 // }
+// #body{
+//   background-color: pink;
+// }
 .card-img-top {
   margin-left: 33%;
   width: 7.5rem;
@@ -52,6 +55,7 @@
   height: 30%;
   margin-right: 1rem;
   margin-top: 1rem;
+  
 }
 .filter {
   margin: 3%;
@@ -89,15 +93,23 @@ filter div {
   display: block;
   background-color: white;
 }
-// .cont-cards {
-//   display: flex;
-//   width: 30%;
-//   flex-direction: row;
 
-// }
 #loc{
   margin-left:2rem;
 }
 #label{
   margin-left:2.2rem;
 }
+.fas{
+  color:rgb(66, 66, 66);
+  margin-right:0.5rem;
+}
+.card-text{
+  font-size:11px;
+}
+// h3{
+//   font-family:'Times New Roman', Times, serif;
+// }
+
+
+
