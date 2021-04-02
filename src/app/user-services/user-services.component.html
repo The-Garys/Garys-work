@@ -1,4 +1,3 @@
-
 <body id="body">
   <div class="filter">
     <div class="md-form md-outline form-sm">
@@ -22,17 +21,23 @@
         {{ sevice?.profession }}
       </option>
     </select>
-    <div class="md-form md-outline form-sm">
-      <input
-        id="loc"
-        (keyup)="dropLoc($event.target.value)"
-        class="form-control form-control-sm"
-        type="text"
-        mdbInput
-      />
-      <label id="label" for="form-sm">Location</label>
-    </div>
+    <button id="mapBtn" (click)="viewMap()">Search By Location</button>
+
   </div>
+
+  
+  <div *ngIf='map' id="map">
+    <agm-map (mapClick)='onLocChange($event)' [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+      <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+        (dragEnd)="markerDragEnd($event)"></agm-marker>
+  <agm-marker [label] ="{color: labelColor, text: e.profession, backgroundColor: labelBackground, fontSize: '20px',fontWeight: 'bold'}" [iconUrl]= "{url:'../assets/icon.svg', scaledSize: {
+    width: 60,
+    height: 80
+}}"  (markerClick)='goSvProfile(e.email)' class="marker"   *ngFor='let e of services' [latitude]="e.lat" [longitude] ="e.lng" ></agm-marker>
+    </agm-map>
+  
+  </div>
+  <h5 *ngIf='map'>Address: {{address}}</h5>
 
   <div class="cont-cards">
     <div class="card-cont" *ngFor="let e of services">

@@ -105,6 +105,26 @@ filter div {
 .card-text {
   font-size: 15px;
 }
+
+#map {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+agm-map {
+  width: 600px;
+  height: 350px;
+}
+
+h5 {
+  text-align: center;
+}
+
+#mapBtn {
+  margin: auto;
+
+  background-color: blue;
+}
 // h3{
 //   font-family:'Times New Roman', Times, serif;
 // }

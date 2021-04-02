@@ -87,6 +87,8 @@ export class SignInComponent implements OnInit {
             // console.log(data['token']);
             localStorage.setItem('token', data['token']);
             localStorage.setItem('svMail', data['email']);
+           
+            
             this.router.navigateByUrl('/spProfile', { state: { data } });
             Swal.fire(
               data['greet'] + ' ' + data['name'],
@@ -134,6 +136,9 @@ export class SignInComponent implements OnInit {
           }
          
            else {
+              localStorage.setItem('lat', data['lat'])
+            localStorage.setItem('lng', data['lng'])
+            // console.log('THIIIIIIIS', data["lat"], data["lng"]);
             localStorage.setItem("apUserName" , data["name"])
             this.local.changeRole('user');
             localStorage.setItem('token', data['token']);
