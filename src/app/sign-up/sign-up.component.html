@@ -93,7 +93,9 @@
     <textarea placeholder=" Tell Us about yourself..."#description type="text" id="form8" class="md-textarea form-control" rows="1" mdbInput mdbValidate></textarea>
    
     <input type="file"    (change)="imgUpload($event)"
-    #image  alt="Submit" width="48" height="48">
+    #image  alt="Submit" style="margin-top:1rem; margin-bottom:1rem;" />
+    <br>
+    <img src="{{ imageUrl }}" style="width: 200px; height:200px; margin-top:1rem; margin-bottom:1rem;" *ngIf="checked"/>
     <div class="form-row mb-4">
       <div class="col">
         <!-- Gender -->
