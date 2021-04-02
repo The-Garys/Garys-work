@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
 import { UserProfileService } from '../services/user-profile.service';
+import { io } from 'socket.io-client';
 
+const SOCKET_ENDPOINT = 'localhost:3000';
+import { LiveMessages } from '../live-chat/live-chat.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -29,14 +32,14 @@ export class UserProfileComponent implements OnInit {
   currentPassword: string;
   newPassword: string;
   confirmPassword: string;
-  imageUrl : string ;
+  imageUrl: string;
   ngOnInit(): void {
     this.userId = localStorage.getItem('id');
 
     this.userServices.getUserData(this.userId).subscribe((data) => {
       console.log('user data====>', data);
       this.userData = data;
-      this.imageUrl = data["imageUrl"]
+      this.imageUrl = data['imageUrl'];
       this.getAppointments();
     });
   }
@@ -47,7 +50,6 @@ export class UserProfileComponent implements OnInit {
     formData.append('img', img.target.files[0]);
     this.userServices.ImageUpload(formData).subscribe((resp) => {
       this.imageUrl = resp['msg'].url;
-     
     });
   }
 
@@ -194,20 +196,17 @@ export class UserProfileComponent implements OnInit {
     console.log('sv details====>', this.userData);
     console.log(imageUrl);
 
-    console.log("sv details====>", this.userData)
-    console.log(imageUrl)
-    
-      this.userServices.updateUserImage(imageUrl, this.userData._id).subscribe((data) => {
-        console.log("new data", data)
-        this.userData.imageUrl = data['data']
-        Swal.fire(
-          '',
-          data['success'],
-          'success'
-        ).then(()=>{
+    console.log('sv details====>', this.userData);
+    console.log(imageUrl);
+
+    this.userServices
+      .updateUserImage(imageUrl, this.userData._id)
+      .subscribe((data) => {
+        console.log('new data', data);
+        this.userData.imageUrl = data['data'];
+        Swal.fire('', data['success'], 'success').then(() => {
           window.location.reload();
         });
-        
-      })
+      });
   }
 }

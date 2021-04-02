@@ -1,4 +1,4 @@
-<div *ngIf='!local.admin' id="curve">
+<div *ngIf="!local.admin" id="curve">
   <div id="header">
     <div id="logo">
       <h3><span>Gary</span>Work</h3>
@@ -7,10 +7,32 @@
       <a routerLink="">Home</a>
       <!-- <a href="" (click)='scroll()'>Contact Us</a> -->
       <a [routerLink]="['/userServices']">Services</a>
-      <a *ngIf="!userId && !serviceProviderEmail" id="connection" [routerLink]="['/signin']">Get Started</a>
-      <img *ngIf="serviceProviderEmail && spProfileImg"  (click)='redirectSp()' class="user-avatar" [src]='spProfileImg' alt="">
-      <img *ngIf="userId && userProfileImg"  [routerLink]="['/user-profile']" [src]='userProfileImg' alt="" class="user-avatar">  
-      <a *ngIf="userId || serviceProviderEmail" (click)="logout()"  id="connection">Logout</a>
+      <a
+        *ngIf="!userId && !serviceProviderEmail"
+        id="connection"
+        [routerLink]="['/signin']"
+        >Get Started</a
+      >
+      <img
+        *ngIf="serviceProviderEmail && spProfileImg"
+        (click)="redirectSp()"
+        class="user-avatar"
+        [src]="spProfileImg"
+        alt=""
+      />
+      <img
+        *ngIf="userId && userProfileImg"
+        [routerLink]="['/user-profile']"
+        [src]="userProfileImg"
+        alt=""
+        class="user-avatar"
+      />
+      <a
+        *ngIf="userId || serviceProviderEmail"
+        (click)="logout()"
+        id="connection"
+        >Logout</a
+      >
     </nav>
   </div>
 </div>
