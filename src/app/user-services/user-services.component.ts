@@ -39,10 +39,6 @@ export class UserServicesComponent implements OnInit , OnDestroy {
     fontWeight: 'bold';
   labelBackground = "#fff";
   svMail : string = localStorage.getItem('svMail')
-
-  
- 
-
   constructor(
     private http: HttpClient,
     private local: LocalService,
@@ -53,6 +49,14 @@ export class UserServicesComponent implements OnInit , OnDestroy {
   ) {
     config.max = 5;
     config.readonly = true;
+    this.router.events.subscribe((res) => {
+      if (res['url'] !== res['urlAfterRedirects']) {
+        console.log('naaaaaaaav', res);
+
+        this.local.pick = '';
+        this.ngOnInit();
+      }
+    });
   }
   role: string = this.local.role;
   ngOnInit(): void {
@@ -156,12 +160,13 @@ export class UserServicesComponent implements OnInit , OnDestroy {
       console.log('are those sps ?? ===>', data);
       this.services = data;
       this.services = this.services.filter((el) => {
-        return (el.isBanned === false) && (el.email!==this.svMail);
+        return el.isBanned === false && el.email !== this.svMail;
       });
       this.backup = this.services;
       this.filterServiceByProfession(this.local.pick);
     });
   }
+
   getProfessions() {
     this.serviceList.getProfessions().subscribe((data) => {
       this.list = data;

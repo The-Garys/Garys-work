@@ -1,57 +1,58 @@
 <!-- <app-sv-nav></app-sv-nav> -->
 <div class="body">
-    <div class="cont">
-      <div class="container" >
-        <div class="profile-header">
-          <div class="profile-image">
-            <div class="imgg-cont">
-              <img src="{{ userData?.imageUrl }}" alt="" width="200" />
-              <div  class="cam-icon">
-                <i (click)="basicModal.show()" class="fas fa-camera"></i>
-                <!-- modal -->
-                <div class="modalImage"></div>
-                <div
-                  mdbModal
-                  #basicModal="mdbModal"
-                  class="modal fade"
-                  tabindex="-1"
-                  role="dialog"
-                  aria-labelledby="myBasicModalLabel"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button
-                          type="button"
-                          class="close pull-right"
-                          aria-label="Close"
-                          (click)="basicModal.hide()"
-                        >
-                        
-                        </button>
-                      
-                        <input class="input-image" style="margin-top:35px"
-                          type="file"
-                          (change)="imgUpload($event)"
-                          #image
-                          alt="Submit"
-                        />
-                        <img src="{{ imageUrl }}" style="width: 200px; height:200px;"/>
-                        
-                      </div>
-                      <!-- <div class="modal-body">
+  <div class="cont">
+    <div class="container">
+      <div class="profile-header">
+        <div class="profile-image">
+          <div class="imgg-cont">
+            <img src="{{ userData?.imageUrl }}" alt="" width="200" />
+            <div class="cam-icon">
+              <i (click)="basicModal.show()" class="fas fa-camera"></i>
+              <!-- modal -->
+              <div class="modalImage"></div>
+              <div
+                mdbModal
+                #basicModal="mdbModal"
+                class="modal fade"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="myBasicModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button
+                        type="button"
+                        class="close pull-right"
+                        aria-label="Close"
+                        (click)="basicModal.hide()"
+                      ></button>
+
+                      <input
+                        class="input-image"
+                        style="margin-top: 35px"
+                        type="file"
+                        (change)="imgUpload($event)"
+                        #image
+                        alt="Submit"
+                      />
+                      <img
+                        src="{{ imageUrl }}"
+                        style="width: 200px; height: 200px"
+                      />
+                    </div>
+                    <!-- <div class="modal-body">
                         ...
                       </div> -->
 
-                    
-
-
                     <div class="modal-footer">
-                      
-                    
-                      <button class="btn" (click)="basicModal.hide()"><i class="fa fa-close" ></i> Close</button>
-                      <button class="btnS"  (click)="updateImage(this.imageUrl)"><i class="fa fa-close" ></i> Save Changes</button>
+                      <button class="btn" (click)="basicModal.hide()">
+                        <i class="fa fa-close"></i> Close
+                      </button>
+                      <button class="btnS" (click)="updateImage(this.imageUrl)">
+                        <i class="fa fa-close"></i> Save Changes
+                      </button>
                     </div>
                   </div>
                 </div>
