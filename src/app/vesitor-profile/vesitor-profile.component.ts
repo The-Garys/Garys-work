@@ -75,7 +75,10 @@ export class VesitorProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkLog();
-    this.getUserData(localStorage.getItem('id'));
+    if(localStorage.getItem('id')){
+      this.getUserData(localStorage.getItem('id'));
+
+    }
     this.visitor = true;
     this.visitor1 = false;
 
