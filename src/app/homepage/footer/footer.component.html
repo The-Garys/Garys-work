@@ -15,9 +15,11 @@
   
       <div class="formcontainer">
       <form  class="text-center contact-card cform" style="color: #757575;">
-  
-      
-        <div class="md-form mt-3">
+       <div class="text">
+        <p class="w3-center"><em>I'd love your feedback!</em></p>
+        <p>Swing by for a cup of <i class="fa fa-coffee"></i>, or leave me a note:</p>
+       </div> 
+       <div class="md-form mt-3">
           <input name="name" [(ngModel)]="name" type="text" id="materialContactFormName" class="form-control" mdbInput>
           
           <label for="materialContactFormName">Name</label>
@@ -41,8 +43,8 @@
   
       
         <div class="send">
-        <button (click)='send(name, phone, email, message)' mdbBtn color="blue" outline="true" rounded="true" block="true" class="z-depth-0 my-4 waves-effect " mdbWavesEffect
-          type="submit">Send</button>
+        <button (click)='send(name, phone, email, message)' mdbBtn color="blue" outline="true" rounded="true" block="true" class="z-depth-0 my-4 waves-effect send-btn " mdbWavesEffect
+          type="submit"> <i class="fa fa-paper-plane"></i> Send</button>
         </div>
       </form>
     </div>
@@ -83,3 +85,65 @@
   </footer>
 
 </div>
+
+
+
+<!-- <mdb-card>
+
+  <mdb-card-header class="blue-gradient white-text text-center py-4">
+    <h5>
+      <strong>Contact us</strong>
+    </h5>
+  </mdb-card-header>
+
+
+  <mdb-card-body class="px-lg-5 pt-0">
+   
+
+    <div class="formcontainer">
+    <form  class="text-center contact-card cform" style="color: #757575;">
+       <div>
+        <p class="w3-center"><em>I'd love your feedback!</em></p>
+        <p>Swing by for a cup of <i class="fa fa-coffee"></i>, or leave me a note:</p>
+      <div class="md-form mt-3">
+      
+        <input name="name" [(ngModel)]="name" type="text" id="materialContactFormName" class="form-control" mdbInput>
+        
+        <label for="materialContactFormName">Name</label>
+      </div>
+      <div class="md-form mt-3">
+        <input required name="phone" [(ngModel)]="phone" type="text" id="materialContactFormPhone" class="form-control" mdbInput>
+        <label for="materialContactFormPhone">Phone Number</label>
+       
+      </div>
+
+    
+      <div class="md-form">
+        <input required name="email" [(ngModel)]="email" type="email" id="materialContactFormEmail" class="form-control" mdbInput>
+        <label for="materialContactFormEmail">E-mail</label>
+      </div>
+
+      
+      <div class="md-form">
+        <textarea required name="message" [(ngModel)]="message" type="text" id="materialContactFormMessage" class="form-control md-textarea" mdbInput></textarea>
+        <label for="materialContactFormMessage">Message</label>
+      </div>
+
+    
+      <div class="send">
+      <button id="message" (click)='send(name, phone, email, message)' mdbBtn color="blue" outline="true" rounded="true" block="true" class="z-depth-0 my-4 waves-effect " mdbWavesEffect
+        type="submit">  <i class="fa fa-paper-plane"></i> Send Message</button>
+      </div>
+       </div>
+       <div class="contact">
+       <i class="fas fa-map-marker-alt fa-fw w3-hover-text-blue "></i> Chicago, US<br>
+        <i class="fa fa-phone fa-fw w3-hover-text-blue "></i> Phone: +00 151515<br>
+        <i class="fa fa-envelope fa-fw w3-hover-text-blue"></i> Email: mail@mail.com<br>
+      </div>
+    </form>
+    
+  </div>
+
+  </mdb-card-body>
+
+</mdb-card> -->
