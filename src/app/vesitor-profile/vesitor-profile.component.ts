@@ -5,7 +5,10 @@ import { LocalService } from '../local.service';
 import * as moment from 'moment';
 import { ProfileService } from '../services/profile.service';
 import Swal from 'sweetalert2';
+import { io } from 'socket.io-client';
 
+const SOCKET_ENDPOINT = 'localhost:3000';
+import { LiveMessages } from '../live-chat/live-chat.service';
 // import { Router } from '@angular/router';
 @Component({
   selector: 'app-vesitor-profile',
@@ -14,7 +17,19 @@ import Swal from 'sweetalert2';
 })
 export class VesitorProfileComponent implements OnInit {
   serviceProviderReviews: any;
+  socket;
+  message = {
+    messageBody: '',
+    userId: localStorage.getItem('id'),
+    spId: localStorage.getItem('halimMail'),
+    isSp: false,
+  };
+  isChatClicked: boolean = false;
+  allMsg: any = [];
+  sendedMessages: any = [];
+  recievedMessages: any = [];
   constructor(
+    private LiveMessages: LiveMessages,
     private GaryService: GaryService,
     private http: HttpClient,
     private local: LocalService,
@@ -43,6 +58,8 @@ export class VesitorProfileComponent implements OnInit {
   userIsLoggedIn: boolean;
   spIsLoggedIn: boolean;
   userData: any;
+  currentConversation: any = [];
+
   checkLog() {
     this.userIsLoggedIn = !!localStorage.getItem('id');
     this.spIsLoggedIn = !!localStorage.getItem('svMail');
@@ -57,7 +74,6 @@ export class VesitorProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
     this.checkLog();
     this.getUserData(localStorage.getItem('id'));
     this.visitor = true;
@@ -85,6 +101,50 @@ export class VesitorProfileComponent implements OnInit {
             }
           });
       });
+    this.setupSocketConnection();
+    this.getAllMessages();
+  }
+  getConversation() {
+    this.LiveMessages.getConversation(
+      this.message.spId,
+      this.message.userId
+    ).subscribe((data: any[]) => {
+      this.currentConversation = data;
+    });
+  }
+
+  getAllMessages() {
+    this.LiveMessages.getAllMessages().subscribe((data: any[]) => {
+      this.allMsg = data;
+      console.log(' did our data came ? ==>', this.allMsg);
+      console.log('this is our data ==>', data);
+      for (var i = 0; i < this.allMsg.length; i++) {
+        this.allMsg[i].createdAt = moment()
+          .add(this.allMsg[i].createdAt)
+          .calendar();
+      }
+    });
+  }
+  changeChatClick() {
+    this.isChatClicked = !this.isChatClicked;
+  }
+  setupSocketConnection() {
+    this.socket = io(SOCKET_ENDPOINT);
+    this.socket.on('message-broadcast', (data: string = this.allMsg) => {
+      if (data) {
+        this.getAllMessages();
+        console.log('is it working this way ?? ==>', data);
+      }
+    });
+  }
+  SendMessage() {
+    this.socket.emit('message', this.message.messageBody);
+
+    this.LiveMessages.sendAMessage(this.message).subscribe((response) => {
+      console.log('is my message sent ? ===>', response);
+      this.getAllMessages();
+    });
+    this.message.messageBody = '';
   }
 
   imgUpload(img) {

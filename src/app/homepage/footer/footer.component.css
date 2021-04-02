@@ -4,26 +4,56 @@
 
 .formcontainer {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
-}
 
-form {
-  width: 65%;
+  align-items: center;
+  width: 100%;
 }
 
 h5 {
   font-size: 50px;
 }
-.fa{
-  margin-right:0.5rem;
+.fa {
+  margin-right: 0.5rem;
 }
-.send-btn{
-  width:30%;
-
+.send-btn {
+  width: 30%;
+  margin: auto !important;
+  background-color: rgb(60, 115, 199) !important;
+  color: #fff !important;
 }
+.send-btn:hover .fa-paper-plane {
+  color: rgb(60, 115, 199);
+}
+.text {
+  margin-top: 2rem;
+}
+.cform {
+  width: 45%;
+  margin-left: 10%;
+  align-items: center;
+}
+.fa-paper-plane {
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+}
+.loc-cntct-us {
+  text-align: left;
+  justify-content: left;
+  align-items: center;
 
-.text{
-  margin-top:2rem;
+  margin-left: 10%;
+  width: 60%;
+  height: 4rem;
+}
+.loc-cntct-us h1 {
+  color: #000;
+}
+.cntctus-mail {
+  color: rgb(87, 87, 87);
+}
+.cntctus-mail i {
+  color: rgb(107, 107, 107);
+}
+.email-span {
+  margin-left: 20px;
 }
