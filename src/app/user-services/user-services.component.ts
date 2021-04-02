@@ -36,12 +36,15 @@ export class UserServicesComponent implements OnInit , OnDestroy {
   labelColor = '#14248A';
   labelText = "Hello";
   fontSize: '50px';
-    fontWeight: 'bold';
+  fontWeight: 'bold';
   labelBackground = "#fff";
   svMail : string = localStorage.getItem('svMail')
 
-  
+  plumber : string = '../assets/icon.svg'
  
+  icons :string;
+
+  
 
   constructor(
     private http: HttpClient,
