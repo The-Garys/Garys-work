@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 //
+
 const serviceProviderSchema = new mongoose.Schema(
   {
     firstName: { type: String, required: true },
@@ -17,10 +18,8 @@ const serviceProviderSchema = new mongoose.Schema(
     isBanned: { type: Boolean, default: false },
     isVerified: { type: Boolean, default: false },
     isDeclined: { type: Boolean, default: false },
-
     CIN: { type: Number },
     description: { type: String },
-    lat: { type: Number },
     lat: { type: Number },
     lng: { type: Number },
   },

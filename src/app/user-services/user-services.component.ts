@@ -34,6 +34,10 @@ export class UserServicesComponent implements OnInit {
   l: any = ""
   p: any = this.local.pick
   labelOptions = {color : '#CC0000'}
+  labelColor = '#fff';
+  labelText = "Hello";
+  labelBackground = "#fff";
+  // [label]="{color: labelColor, text: labelText, backgroundColor: labelBackground}"
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
