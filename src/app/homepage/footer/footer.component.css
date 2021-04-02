@@ -28,8 +28,8 @@ h5 {
   margin-top: 2rem;
 }
 .cform {
-  width: 45%;
-  margin-left: 10%;
+  width: 55%;
+  margin-left: 15%;
   align-items: center;
 }
 .fa-paper-plane {
@@ -53,7 +53,8 @@ h5 {
 }
 .cntctus-mail i {
   color: rgb(107, 107, 107);
+  margin-right: 5px;
 }
 .email-span {
-  margin-left: 20px;
+  margin-left: 10px;
 }

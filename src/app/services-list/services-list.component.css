@@ -16,9 +16,10 @@
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   transition: 0.3s ease-in-out;
   border-radius: 6px;
+  background-color: rgb(218, 214, 214);
 }
 #whole-card:hover {
-  transform: translateX(-40px);
+  transform: translateX(-15px);
 }
 .mb-3 {
   width: 60%;
