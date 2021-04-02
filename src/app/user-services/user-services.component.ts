@@ -37,7 +37,6 @@ export class UserServicesComponent implements OnInit, OnDestroy {
   fontWeight: 'bold';
   labelBackground = '#fff';
   svMail: string = localStorage.getItem('svMail');
-
   constructor(
     private http: HttpClient,
     private local: LocalService,
