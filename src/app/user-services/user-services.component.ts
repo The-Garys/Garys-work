@@ -7,17 +7,15 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ServicesService } from '../services/services.service';
 import { MapsAPILoader } from '@agm/core';
 
-
 @Component({
   selector: 'app-user-services',
   templateUrl: './user-services.component.html',
   styleUrls: ['./user-services.component.scss'],
   providers: [NgbRatingConfig],
 })
-export class UserServicesComponent implements OnInit , OnDestroy {
-  
-  map:boolean = false;
-  inp : string;
+export class UserServicesComponent implements OnInit, OnDestroy {
+  map: boolean = false;
+  inp: string;
   latitude: number;
   longitude: number;
   zoom: number;
@@ -30,44 +28,43 @@ export class UserServicesComponent implements OnInit , OnDestroy {
   backup: any = [];
   location: any = NAME;
   reviews: any = [];
-  n: any = ""
-  l: any = ""
-  p: any = this.local.pick
+  n: any = '';
+  l: any = '';
+  p: any = this.local.pick;
   labelColor = '#14248A';
-  labelText = "Hello";
+  labelText = 'Hello';
   fontSize: '50px';
   fontWeight: 'bold';
-  labelBackground = "#fff";
-  svMail : string = localStorage.getItem('svMail')
-
-  plumber : string = '../assets/icon.svg'
- 
-  icons :string;
-
-  
-
+  labelBackground = '#fff';
+  svMail: string = localStorage.getItem('svMail');
   constructor(
     private http: HttpClient,
     private local: LocalService,
     private serviceList: ServicesService,
     private router: Router,
     config: NgbRatingConfig,
-    private mapsAPILoader: MapsAPILoader,
+    private mapsAPILoader: MapsAPILoader
   ) {
     config.max = 5;
     config.readonly = true;
+    this.router.events.subscribe((res) => {
+      if (res['url'] !== res['urlAfterRedirects']) {
+        console.log('naaaaaaaav', res);
+
+        this.local.pick = '';
+        this.ngOnInit();
+      }
+    });
   }
   role: string = this.local.role;
   ngOnInit(): void {
-  console.log(this.longitude, this.latitude);
-  
+    console.log(this.longitude, this.latitude);
+
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
-      this.geoCoder = new google.maps.Geocoder;
+      this.geoCoder = new google.maps.Geocoder();
+    });
 
-     
-    })
-    
     console.log('dddddzsssadad', this.local.pick);
     this.list = NAME;
     this.services = [];
@@ -79,7 +76,6 @@ export class UserServicesComponent implements OnInit , OnDestroy {
 
   // Get Current Location Coordinates
   public setCurrentLocation() {
-    
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
@@ -87,14 +83,10 @@ export class UserServicesComponent implements OnInit , OnDestroy {
         this.zoom = 8;
         this.getAddress(this.latitude, this.longitude);
       });
-    }
-    else {
+    } else {
       console.log('huummmm');
-      
     }
-   
   }
-
 
   markerDragEnd($event) {
     console.log($event);
@@ -105,9 +97,7 @@ export class UserServicesComponent implements OnInit , OnDestroy {
 
   onInputChange() {
     console.log(this.inp);
-    
   }
-
 
   onChooseloc(event) {
     this.latitude = event.coords.lat;
@@ -116,42 +106,37 @@ export class UserServicesComponent implements OnInit , OnDestroy {
   }
 
   getAddress(latitude, longitude) {
-    
-    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
-      console.log("resssss",results);
-      console.log(status);
-      if (status === 'OK' && results.length) {
-        if (results[0]) {
-          this.zoom = 12;
-          this.address = results[0].formatted_address;
-        } 
-      } 
-      else {
-        if('geolocation' in navigator) {
-          console.log("pssssssssss");
-          
-        }
-        console.log("sssssss");
-        
-        this.latitude = parseFloat(localStorage.getItem('lat'));
-        this.longitude = parseFloat(localStorage.getItem('lng'));
-      }
+    this.geoCoder.geocode(
+      { location: { lat: latitude, lng: longitude } },
+      (results, status) => {
+        console.log('resssss', results);
+        console.log(status);
+        if (status === 'OK' && results.length) {
+          if (results[0]) {
+            this.zoom = 12;
+            this.address = results[0].formatted_address;
+          }
+        } else {
+          if ('geolocation' in navigator) {
+            console.log('pssssssssss');
+          }
+          console.log('sssssss');
 
-    });
+          this.latitude = parseFloat(localStorage.getItem('lat'));
+          this.longitude = parseFloat(localStorage.getItem('lng'));
+        }
+      }
+    );
   }
 
+  onLocChange(event) {
+    this.latitude = event.coords.lat;
+    this.longitude = event.coords.lng;
+    this.getAddress(this.latitude, this.longitude);
+  }
 
-   onLocChange(event) {
-     this.latitude = event.coords.lat;
-     this.longitude = event.coords.lng;
-     this.getAddress(this.latitude, this.longitude);
-   }
-
-
-
-
-  ngOnDestroy(): void{
-    this.local.pick=""
+  ngOnDestroy(): void {
+    this.local.pick = '';
   }
 
   getServices() {
@@ -159,12 +144,13 @@ export class UserServicesComponent implements OnInit , OnDestroy {
       console.log('are those sps ?? ===>', data);
       this.services = data;
       this.services = this.services.filter((el) => {
-        return (el.isBanned === false) && (el.email!==this.svMail);
+        return el.isBanned === false && el.email !== this.svMail;
       });
       this.backup = this.services;
       this.filterServiceByProfession(this.local.pick);
     });
   }
+
   getProfessions() {
     this.serviceList.getProfessions().subscribe((data) => {
       this.list = data;
@@ -190,7 +176,7 @@ export class UserServicesComponent implements OnInit , OnDestroy {
   }
   goSvProfile(svMail) {
     console.log('clicccc');
-    
+
     localStorage.setItem('halimMail', svMail);
     this.router.navigateByUrl('/fisitor');
   }
@@ -251,22 +237,20 @@ export class UserServicesComponent implements OnInit , OnDestroy {
       console.log(val, this.services);
     }
   }
-   
 
   viewMap() {
-this.map = true;
+    this.map = true;
   }
 
   dropLoc(val) {
-    
     console.log(val);
     this.l = val.toUpperCase();
     this.services = this.backup;
     var newArray = [];
-    
+
     this.services.map((e) => {
       val = val.toUpperCase();
-      let reg = new RegExp(val, "s")
+      let reg = new RegExp(val, 's');
       var name = e.fullName.toUpperCase();
       var profession = e.profession.toUpperCase();
       var location = e.location.toUpperCase();

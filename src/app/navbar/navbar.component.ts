@@ -1,128 +1,110 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { LocalService } from "../local.service";
-import { LocalStorageService } from "../services/local-storage.service";
-import { Router } from "@angular/router";
-import Swal from "sweetalert2";
-import {ProfileService} from '../services/profile.service';
-import {UserProfileService} from '../services/user-profile.service';
-
-
+import { LocalService } from '../local.service';
+import { LocalStorageService } from '../services/local-storage.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { ProfileService } from '../services/profile.service';
+import { UserProfileService } from '../services/user-profile.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-
-  data : any;
+  data: any;
   spProfileImg: any;
   userProfileImg: string;
 
-
   constructor(
-    public local : LocalService,
+    public local: LocalService,
     private localStorageService: LocalStorageService,
-    private router: Router, private service: ProfileService, private services: UserProfileService, private cdRef: ChangeDetectorRef
-    ) {
-      
-      
+    private router: Router,
+    private service: ProfileService,
+    private services: UserProfileService,
+    private cdRef: ChangeDetectorRef
+  ) {
+    router.events.subscribe(() => {
+      this.refreshState();
+      this.ngOnInit();
+    });
+  }
 
-
-      router.events.subscribe(() => {
-        this.refreshState()
-        this.ngOnInit();
-      })
-    }
-
-  userId: String = "";
-  serviceProviderEmail: String = "";
+  userId: String = '';
+  serviceProviderEmail: String = '';
 
   refreshState() {
     this.serviceProviderEmail = this.getServiceProviderEmail();
     this.userId = this.getUserId();
-    
   }
 
-  getUserId() :String {
-    return this.localStorageService.getItem("id")
+  getUserId(): String {
+    return this.localStorageService.getItem('id');
   }
 
-  getServiceProviderEmail() :String {
-    return this.localStorageService.getItem("svMail")
+  getServiceProviderEmail(): String {
+    return this.localStorageService.getItem('svMail');
   }
 
-  logout() :void {
+  logout(): void {
     // Logging out from user
     this.cdRef.detectChanges();
     if (this.userId) {
-      this.localStorageService.removeItem("id")
-      this.localStorageService.removeItem("userName")
-      this.localStorageService.removeItem("apUserName")
-      this.localStorageService.removeItem("token")
-      this.localStorageService.removeItem("halimMail")
-      this.userId = "";
+      this.localStorageService.removeItem('id');
+      this.localStorageService.removeItem('userName');
+      this.localStorageService.removeItem('apUserName');
+      this.localStorageService.removeItem('token');
+      this.localStorageService.removeItem('halimMail');
+      this.userId = '';
     }
 
     // Logging out from Service Provider
     if (this.serviceProviderEmail) {
-      this.localStorageService.removeItem("svMail")
-      this.localStorageService.removeItem("spEmail")
-      this.localStorageService.removeItem("token")
-      this.localStorageService.removeItem("halimMail")
-      this.serviceProviderEmail = "";
+      this.localStorageService.removeItem('svMail');
+      this.localStorageService.removeItem('spEmail');
+      this.localStorageService.removeItem('token');
+      this.localStorageService.removeItem('halimMail');
+      this.serviceProviderEmail = '';
     }
-    Swal.fire(
-      "",
-      "You Are Logged Out!",
-      'success'
-    );
-    this.router.navigate(['/'])
+    Swal.fire('', 'You Are Logged Out!', 'success');
+    this.router.navigate(['/']);
   }
 
   getServiceProviderImg(): void {
-    this.service.getServiceProviderData(this.serviceProviderEmail).subscribe((res) => {
-        console.log('griiiiib' ,res);
+    this.service
+      .getServiceProviderData(this.serviceProviderEmail)
+      .subscribe((res) => {
+        console.log('griiiiib', res);
         this.spProfileImg = res['data']['imageUrl'];
-        this.cdRef.detectChanges()
-        
-      })
+        this.cdRef.detectChanges();
+      });
   }
 
   getUserImg(): void {
     this.services.getUserData(this.userId).subscribe((res) => {
-      console.log('ahaya user data' ,res);
+      console.log('ahaya user data', res);
 
       this.userProfileImg = res['imageUrl'];
 
-      
-      this.cdRef.detectChanges()
-        
-      
-    })
+      this.cdRef.detectChanges();
+    });
   }
-  
-  ngOnInit(): void {
 
+  ngOnInit(): void {
     this.refreshState();
-    
-    if(this.serviceProviderEmail){
+
+    if (this.serviceProviderEmail) {
       this.getServiceProviderImg();
     }
 
-    if(this.userId){
+    if (this.userId) {
       this.getUserImg();
-    }  
-    
+    }
+
     setTimeout(() => {
       console.log(this.userProfileImg);
-      
     }, 4000);
-    
-    
   }
-
-
 
   scroll(id) {
     let el = document.getElementById(id);
@@ -132,5 +114,4 @@ export class NavbarComponent implements OnInit {
   redirectSp() {
     this.router.navigateByUrl('spProfile');
   }
-
 }
