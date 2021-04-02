@@ -3,14 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { GaryService } from '../gary.service';
 import { LocalService } from '../local.service';
 import * as moment from 'moment';
-import { ProfileService } from '../services/profile.service'
+import { ProfileService } from '../services/profile.service';
 import Swal from 'sweetalert2';
 
 // import { Router } from '@angular/router';
 @Component({
   selector: 'app-vesitor-profile',
   templateUrl: './vesitor-profile.component.html',
-  styleUrls: ['./vesitor-profile.component.scss']
+  styleUrls: ['./vesitor-profile.component.scss'],
 })
 export class VesitorProfileComponent implements OnInit {
   serviceProviderReviews: any;
@@ -18,9 +18,9 @@ export class VesitorProfileComponent implements OnInit {
     private GaryService: GaryService,
     private http: HttpClient,
     private local: LocalService,
-    private profileServices : ProfileService
-  ) { }
-  name: any = localStorage.getItem("apUserName")
+    private profileServices: ProfileService
+  ) {}
+  name: any = localStorage.getItem('apUserName');
   spData: any;
   appointmentsList: any;
   token: string = localStorage.getItem('token');
@@ -28,9 +28,9 @@ export class VesitorProfileComponent implements OnInit {
   visitor: boolean = false;
   visitor1: boolean = false;
   svMail: string;
-  spPosts:any;
-  notifications : number =0
-  editable:boolean = false
+  spPosts: any;
+  notifications: number = 0;
+  editable: boolean = false;
   firstName: string;
   lastName: string;
   fullName: string;
@@ -39,14 +39,13 @@ export class VesitorProfileComponent implements OnInit {
   previousPassword: string;
   currentPassword: string;
   confirmPassword: string;
-  imageUrl : string;
-  userIsLoggedIn : boolean;
-  spIsLoggedIn : boolean;
-  
-
+  imageUrl: string;
+  userIsLoggedIn: boolean;
+  spIsLoggedIn: boolean;
+  userData: any;
   checkLog() {
-    this.userIsLoggedIn =  !!localStorage.getItem('id');
-    this.spIsLoggedIn = !!localStorage.getItem('svMail')
+    this.userIsLoggedIn = !!localStorage.getItem('id');
+    this.spIsLoggedIn = !!localStorage.getItem('svMail');
   }
 
   alertSignup() {
@@ -57,46 +56,42 @@ export class VesitorProfileComponent implements OnInit {
     });
   }
 
-
-  
-
- 
-  
-  
-
- 
-
-  
   ngOnInit(): void {
-    this.checkLog();
     
+    this.checkLog();
+    if(localStorage.getItem('id')){
+      this.getUserData(localStorage.getItem('id'));
+
+    }
     this.visitor = true;
     this.visitor1 = false;
-  
-    this.svMail = localStorage.getItem('halimMail');
-    
-    this.profileServices.getServiceProviderData(this.svMail)
-    .subscribe((data) => {
-      console.log('ali====>', data);
-      this.serviceProviderReviews= data['reviews']
-      this.spData = data['data'];
-      this.getAppointments();
-      this.profileServices.getServiceProviderPosts(this.spData._id).subscribe((data)=>{
-        console.log("daaaaaaaataaa==>",data)
-        this.spPosts=data
-        this.spPosts = this.spPosts.reverse()
-        for ( var i = 0; i < this.spPosts.length; i++ ) {
-          this.spPosts[i].updatedAt = moment(
-            this.spPosts[i].updatedAt
-            ).format('LLL'); 
-          }
-        })
-      });
-    }
-       
 
-    imgUpload(img) {
-      console.log('IMG FROM VER==> ', img.target.files[0]);
+    this.svMail = localStorage.getItem('halimMail');
+
+    this.profileServices
+      .getServiceProviderData(this.svMail)
+      .subscribe((data) => {
+        console.log('ali====>', data);
+        this.serviceProviderReviews = data['reviews'];
+        this.spData = data['data'];
+        this.getAppointments();
+        this.profileServices
+          .getServiceProviderPosts(this.spData._id)
+          .subscribe((data) => {
+            console.log('daaaaaaaataaa==>', data);
+            this.spPosts = data;
+            this.spPosts = this.spPosts.reverse();
+            for (var i = 0; i < this.spPosts.length; i++) {
+              this.spPosts[i].updatedAt = moment(
+                this.spPosts[i].updatedAt
+              ).format('LLL');
+            }
+          });
+      });
+  }
+
+  imgUpload(img) {
+    console.log('IMG FROM VER==> ', img.target.files[0]);
     var formData = new FormData();
     formData.append('img', img.target.files[0]);
     this.profileServices.ImageUpload(formData).subscribe((resp) => {
@@ -109,15 +104,15 @@ export class VesitorProfileComponent implements OnInit {
       date: date,
       time: time,
       userName: this.name,
-      email: this.spData.email, 
+      email: this.spData.email,
       serviceProviderName: this.spData._id,
-      sPName:this.spData.fullName,
-      userId: localStorage.getItem('id')
-    }
-    
-    
+      sPName: this.spData.fullName,
+      userId: localStorage.getItem('id'),
+      userEmail: this.userData.email,
+      userPhoneNumber: this.userData.phoneNumber,
+    };
 
-    if (!date ||  !time) {
+    if (!date || !time) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -125,30 +120,35 @@ export class VesitorProfileComponent implements OnInit {
         footer: '<a href>Why do I have this issue?</a>',
       });
     } else {
-        this.profileServices.submitAppointment(c).subscribe((data) => {
-          if (data['data']) {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Not available!',
-              footer: '<a href>Why do I have this issue?</a>',
-            });
-          } else {
-
-            Swal.fire({
-              icon: 'success',
-              title: 'Appointment added successfully',
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          }
-        });
+      this.profileServices.submitAppointment(c).subscribe((data) => {
+        if (data['data']) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Not available!',
+            footer: '<a href>Why do I have this issue?</a>',
+          });
+        } else {
+          Swal.fire({
+            icon: 'success',
+            title: 'Appointment added successfully',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
     }
   }
+  getUserData(id) {
+    console.log('here is the id ==+>', id);
 
-
-  
-
+    this.http
+      .get('http://localhost:3000/api/user/' + id)
+      .subscribe((data): any => {
+        console.log('is my used here ? ==>', data);
+        this.userData = data;
+      });
+  }
 
   check: boolean = false;
   posts: boolean = true;
@@ -170,13 +170,12 @@ export class VesitorProfileComponent implements OnInit {
     this.settings = false;
     this.appointments = false;
     this.Security = false;
-
   }
   appointment() {
     this.posts = false;
     this.reviews = false;
     this.settings = false;
-    this.appointments = true
+    this.appointments = true;
     this.Security = false;
   }
 
@@ -184,7 +183,7 @@ export class VesitorProfileComponent implements OnInit {
     this.posts = false;
     this.reviews = false;
     this.settings = true;
-    this.appointments = false
+    this.appointments = false;
     this.Security = false;
   }
   security() {
@@ -196,9 +195,10 @@ export class VesitorProfileComponent implements OnInit {
   }
 
   getAppointments() {
-    console.log("spdat===>", this.spData._id);
-    this.profileServices.getSericeProviderAppointments(this.spData._id).
-      subscribe((data) => {
+    console.log('spdat===>', this.spData._id);
+    this.profileServices
+      .getSericeProviderAppointments(this.spData._id)
+      .subscribe((data) => {
         console.log('dzdazdazda', data);
         this.appointmentsList = data;
         this.notifications = this.appointmentsList.length;
@@ -213,9 +213,6 @@ export class VesitorProfileComponent implements OnInit {
   }
 
   displayForm() {
-    this.editable = true
+    this.editable = true;
   }
-
-  
-
 }

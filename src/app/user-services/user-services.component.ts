@@ -33,14 +33,15 @@ export class UserServicesComponent implements OnInit {
   n: any = ""
   l: any = ""
   p: any = this.local.pick
-  labelOptions = {color : '#CC0000'}
-  labelColor = '#fff';
+  labelColor = '#7A7978';
   labelText = "Hello";
+  fontSize: '50px';
+    fontWeight: 'bold';
   labelBackground = "#fff";
-  // [label]="{color: labelColor, text: labelText, backgroundColor: labelBackground}"
+  svMail : string = localStorage.getItem('svMail')
 
-  @ViewChild('search')
-  public searchElementRef: ElementRef;
+  
+ 
 
   constructor(
     private http: HttpClient,
@@ -71,7 +72,6 @@ export class UserServicesComponent implements OnInit {
     this.getServices();
     this.getProfessions();
     this.getRating();
-    
   }
 
   // Get Current Location Coordinates
@@ -148,22 +148,20 @@ export class UserServicesComponent implements OnInit {
 
 
   getServices() {
-
     this.serviceList.getServiceProviders().subscribe((data) => {
       console.log('are those sps ?? ===>', data);
       this.services = data;
       this.services = this.services.filter((el) => {
-        return el.isBanned === false;
+        return (el.isBanned === false) && (el.email!==this.svMail);
       });
       this.backup = data;
-      this.dropVal(this.local.pick)
+      this.dropVal(this.local.pick);
     });
   }
   getProfessions() {
-    this.serviceList.getProfessions()
-      .subscribe((data) => {
-        this.list = data;
-      });
+    this.serviceList.getProfessions().subscribe((data) => {
+      this.list = data;
+    });
   }
   getRating() {
     console.log(this.services);
@@ -173,17 +171,16 @@ export class UserServicesComponent implements OnInit {
         'hedhy kol post wahadhaaaaa ===+====+==+===>',
         this.services[i]
       );
-      this.serviceList.getRating(this.services[i].email)
-        .subscribe((data) => {
-          this.reviews = data;
-          var totalRate = 0;
-          for (var j = 0; j < this.reviews.length; j++) {
-            totalRate += this.reviews[j].rate;
-          }
-          this.services[i].rate = totalRate / this.reviews.length;
-        });
+      this.serviceList.getRating(this.services[i].email).subscribe((data) => {
+        this.reviews = data;
+        var totalRate = 0;
+        for (var j = 0; j < this.reviews.length; j++) {
+          totalRate += this.reviews[j].rate;
+        }
+        this.services[i].rate = totalRate / this.reviews.length;
+      });
     }
-  } 
+  }
   goSvProfile(svMail) {
     console.log('clicccc');
     
@@ -200,18 +197,22 @@ export class UserServicesComponent implements OnInit {
       var name = e.fullName.toUpperCase();
       var profession = e.profession.toUpperCase();
       var location = e.location.toUpperCase();
-      if (name.includes(val) && profession.includes(this.p) && location.includes(this.l)) {
+      if (
+        name.includes(val) &&
+        profession.includes(this.p) &&
+        location.includes(this.l)
+      ) {
         newArray.push(e);
       }
     });
     this.services = newArray;
-    console.log("dazdzad", val, this.services)
+    console.log('dazdzad', val, this.services);
   }
 
   dropVal(val) {
-    console.log(val)
+    console.log(val);
     // console.log(val)
-    if (val === "all") {
+    if (val === 'all') {
       this.services = this.backup;
       var newArr = [];
       this.services.map((e) => {
@@ -232,15 +233,18 @@ export class UserServicesComponent implements OnInit {
         var name = e.fullName.toUpperCase();
         var profession = e.profession.toUpperCase();
         var location = e.location.toUpperCase();
-        if (name.includes(this.n) && profession.includes(val) && location.includes(this.l)) {
+        if (
+          name.includes(this.n) &&
+          profession.includes(val) &&
+          location.includes(this.l)
+        ) {
           newArr.push(e);
         }
       });
       this.services = newArr;
 
-      console.log(val, this.services)
+      console.log(val, this.services);
     }
-
   }
    
 
@@ -261,15 +265,15 @@ this.map = true;
       var name = e.fullName.toUpperCase();
       var profession = e.profession.toUpperCase();
       var location = e.location.toUpperCase();
-      
-
-
-      if (name.includes(this.n) && profession.includes(this.p) && reg.test(location)) {
+      if (
+        name.includes(this.n) &&
+        profession.includes(this.p) &&
+        location.includes(val)
+      ) {
         newArray.push(e);
       }
     });
     this.services = newArray;
-    console.log(val, this.services)
+    console.log(val, this.services);
   }
-
 }

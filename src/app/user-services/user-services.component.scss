@@ -3,6 +3,9 @@
 //   align-items: center;
 //   margin-top: 7rem;
 // }
+// #body{
+//   background-color: pink;
+// }
 .card-img-top {
   margin-left: 33%;
   width: 7.5rem;
@@ -13,13 +16,14 @@
 }
 #whole-card {
   margin-top: 3rem;
-  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
-    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  height: 22rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   transition: 0.3s ease-in-out;
   border-radius: 6px;
   display: flex;
   float: left;
   margin-left: 6%;
+  background-color: rgb(250, 248, 248);
 }
 #whole-card:hover {
   transform: translateY(-30px);
@@ -87,17 +91,19 @@ filter div {
   display: block;
   background-color: white;
 }
-// .cont-cards {
-//   display: flex;
-//   width: 30%;
-//   flex-direction: row;
 
-// }
 #loc {
   margin-left: 2rem;
 }
 #label {
   margin-left: 2.2rem;
+}
+.fas {
+  color: rgb(66, 66, 66);
+  margin-right: 0.5rem;
+}
+.card-text {
+  font-size: 15px;
 }
 
 #map {
@@ -105,11 +111,6 @@ filter div {
   justify-content: center;
   align-items: center;
 }
-
-.marker {
-  background-color: blue !important;
-}
-
 agm-map {
   width: 600px;
   height: 350px;
@@ -118,3 +119,12 @@ agm-map {
 h5 {
   text-align: center;
 }
+
+#mapBtn {
+  margin: auto;
+
+  background-color: blue;
+}
+// h3{
+//   font-family:'Times New Roman', Times, serif;
+// }
