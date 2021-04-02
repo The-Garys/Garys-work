@@ -161,19 +161,18 @@ form {
 }
 
 .sp-sign-up-container:hover {
-  border: 1px solid #22817e;
-  color: #22817e;
+  border: 1px solid #274bc2;
+  color: #274bc2;
   cursor: pointer;
 }
 .user-sign-up-container:hover {
-  border: 1px solid #22817e;
-  color: #22817e;
+  border: 1px solid #274bc2;
+  color: #274bc2;
   cursor: pointer;
 }
 
-.checkBox{
+.checkBox {
   display: inline-block;
-  
 }
 #serviceProvider {
   border-radius: 50%;

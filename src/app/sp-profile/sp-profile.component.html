@@ -90,9 +90,7 @@
                         class="close pull-right"
                         aria-label="Close"
                         (click)="basicModal.hide()"
-                      >
-                       
-                      </button>
+                      ></button>
                       <input
                         class="input-image"
                         type="file"
@@ -100,12 +98,18 @@
                         #image
                         alt="Submit"
                       />
-                      <img src="{{ imageUrl }}" style="width: 200px; height:200px;"/>
+                      <img
+                        src="{{ imageUrl }}"
+                        style="width: 200px; height: 200px"
+                      />
                     </div>
                     <div class="modal-footer">
-                      
-                      <button class="btn" (click)="basicModal.hide()"><i class="fa fa-close" ></i> Close</button>
-                      <button class="btnS"  (click)="updateImage(this.imageUrl)"><i class="fa fa-close" ></i> Save Changes</button>
+                      <button class="btn" (click)="basicModal.hide()">
+                        <i class="fa fa-close"></i> Close
+                      </button>
+                      <button class="btnS" (click)="updateImage(this.imageUrl)">
+                        <i class="fa fa-close"></i> Save Changes
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -145,7 +149,7 @@
               <i class="fas fa-tools"></i>
               {{ spData?.profession }}
             </p>
-            <div class="user-bio"*ngIf="!visitor">
+            <div class="user-bio" *ngIf="!visitor">
               <h3>Bio:</h3>
               <p class="bio">
                 {{ spData?.description }}

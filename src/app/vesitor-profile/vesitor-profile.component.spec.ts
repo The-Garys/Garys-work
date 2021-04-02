@@ -8,9 +8,8 @@ describe('VesitorProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VesitorProfileComponent ]
-    })
-    .compileComponents();
+      declarations: [VesitorProfileComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
