@@ -6,12 +6,29 @@
   <div class="container">
     <div class="image">
       <div>
-        <img src="{{ service.image }}">
+      <img src="{{ service.image }}">
+       
         <h4><b>{{service?.profession}}</b></h4>
-  
-        <button type="button" mdbBtn class="relative waves-light btn"
-          (click)="takeID(service._id , service.image , service.profession)" (click)="basicModal.show()"
-          mdbWavesEffect>Edit</button>
+        <button
+        (click)="deleteService(service._id)"
+        mdbBtn
+        type="button"
+        color="danger"
+        outline="true"
+        mdbWavesEffect
+      >
+        Delete
+      </button>
+      <button
+      (click)="takeID(service._id , service.image , service.profession)" (click)="basicModal.show()"
+      mdbBtn
+      type="button"
+      color="black"
+      outline="true"
+      mdbWavesEffect
+    >
+     Edit
+    </button>
       </div>
      
 
