@@ -52,7 +52,7 @@ module.exports = {
       res.send(deleteService)
     }
     catch (error) {
-    console.log(error);
+    console.log(error); 
   }
   }
 };
