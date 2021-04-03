@@ -10,7 +10,7 @@
       <h4>Plumbing</h4>
     </div>
     <div id="test" class="services">
-      <img src="../../../assets/clim.svg" alt="A/C" (click)="takeMeTo('Installs')" />
+      <img src="../../../assets/clim.svg" alt="A/C" (click)="takeMeTo('Air conditioner repair')" />
       <h4>Air Conditioning & Cooling</h4>
     </div>
     <div class="services" (click)="takeMeTo('Painter')">
@@ -28,7 +28,7 @@
       <img src="../../../assets/carp.svg" alt="repair" />
       <h4>Carpentry</h4>
     </div>
-    <div class="services" routerLink='userServices' >
+    <div class="services" (click)="more()" >
       <img src="../../../assets/customer.svg" alt="" />
       <h4><a id="more" routerLink='userServices' >More Services</a></h4>
     </div>

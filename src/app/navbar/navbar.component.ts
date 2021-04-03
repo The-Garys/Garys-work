@@ -107,4 +107,7 @@ export class NavbarComponent implements OnInit {
   redirectSp() {
     this.router.navigateByUrl('spProfile');
   }
+  servicessss(){
+    localStorage.setItem('pick' , '')
+  }
 }

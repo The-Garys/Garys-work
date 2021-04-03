@@ -13,7 +13,7 @@ import { MapsAPILoader } from '@agm/core';
   styleUrls: ['./user-services.component.scss'],
   providers: [NgbRatingConfig],
 })
-export class UserServicesComponent implements OnInit, OnDestroy {
+export class UserServicesComponent implements OnInit {
   map: boolean = false;
   inp: string;
   latitude: number;
@@ -87,6 +87,7 @@ export class UserServicesComponent implements OnInit, OnDestroy {
     this.getAddress(this.latitude, this.longitude);
   }
 
+
   onChooseloc(event) {
     this.latitude = event.coords.lat;
     this.longitude = event.coords.lng;
@@ -116,9 +117,7 @@ export class UserServicesComponent implements OnInit, OnDestroy {
     this.getAddress(this.latitude, this.longitude);
   }
 
-  ngOnDestroy(): void {
-    this.local.pick = '';
-  }
+
 
   getServices() {
     this.serviceList.getServiceProviders().subscribe((data) => {
@@ -131,7 +130,7 @@ export class UserServicesComponent implements OnInit, OnDestroy {
         );
       });
       this.backup = this.services;
-      this.filterServiceByProfession(this.local.pick);
+      this.filterServiceByProfession(localStorage.getItem("pick"));
     });
   }
 

@@ -72,4 +72,26 @@ export class ProfessionsComponent implements OnInit {
         this.ngOnInit();
       });
   }
+
+ 
+    deleteService(id) {
+      console.log(id);
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You will permanently delete this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.adminServices.deleteService(id).subscribe((data) => {
+            Swal.fire('Deleted!', 'deleted', 'success');
+            this.ngOnInit();
+          });
+        }
+      });
+    }
+
 }

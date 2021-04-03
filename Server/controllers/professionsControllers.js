@@ -43,4 +43,13 @@ module.exports = {
       console.log(error);
     }
   },
+  deleteService:async(req,res)=>{
+    try {
+      const deleteService=await Services.findOneAndDelete({_id:req.params.id});
+      res.send(deleteService)
+    }
+    catch (error) {
+    console.log(error); 
+  }
+  }
 };

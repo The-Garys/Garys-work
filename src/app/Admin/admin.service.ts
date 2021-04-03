@@ -58,6 +58,9 @@ return this.httpClient.post("http://localhost:3000/api/professions/addProfession
 public updateImageandService(id,image,profession){
   return this.httpClient.put(`http://localhost:3000/api/professions/updateImageandServices/${id}`,{image,profession},{ responseType: 'json' })
 }
+public deleteService(id){
+  return this.httpClient.delete(`http://localhost:3000/api/professions/${id}`)
+}
 }
 
 
