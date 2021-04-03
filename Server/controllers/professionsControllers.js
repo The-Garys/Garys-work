@@ -43,7 +43,6 @@ module.exports = {
       console.log(error);
     }
   },
-<<<<<<< HEAD
   deleteService:async(req,res)=>{
     try {
       const deleteService=await Services.findOneAndDelete({_id:req.params.id});
@@ -53,6 +52,4 @@ module.exports = {
     console.log(error); 
   }
   }
-=======
->>>>>>> b9b82d81b9834ddbe259a4520b050a2c02176ba4
 };
