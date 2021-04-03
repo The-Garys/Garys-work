@@ -93,7 +93,7 @@ pro : any
       }).then((result) => {
         if (result.isConfirmed) {
           this.adminServices.deleteService(id).subscribe((data) => {
-            Swal.fire('Deleted!', 'Your post has been deleted.', 'success');
+            Swal.fire('Deleted!', 'deleted', 'success');
             this.ngOnInit();
           });
         }

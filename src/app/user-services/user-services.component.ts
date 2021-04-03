@@ -13,7 +13,7 @@ import { MapsAPILoader } from '@agm/core';
   styleUrls: ['./user-services.component.scss'],
   providers: [NgbRatingConfig],
 })
-export class UserServicesComponent implements OnInit, OnDestroy {
+export class UserServicesComponent implements OnInit {
   map: boolean = false;
   inp: string;
   latitude: number;
@@ -58,14 +58,14 @@ export class UserServicesComponent implements OnInit, OnDestroy {
   }
   role: string = this.local.role;
   ngOnInit(): void {
-    console.log(this.longitude, this.latitude);
+    console.log('hello' , this.local.pick)
+    
 
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder();
     });
 
-    console.log('dddddzsssadad', this.local.pick);
     this.list = NAME;
     this.services = [];
     this.list = [];
@@ -95,9 +95,6 @@ export class UserServicesComponent implements OnInit, OnDestroy {
     this.getAddress(this.latitude, this.longitude);
   }
 
-  onInputChange() {
-    console.log(this.inp);
-  }
 
   onChooseloc(event) {
     this.latitude = event.coords.lat;
@@ -120,7 +117,6 @@ export class UserServicesComponent implements OnInit, OnDestroy {
           if ('geolocation' in navigator) {
             console.log('pssssssssss');
           }
-          console.log('sssssss');
 
           this.latitude = parseFloat(localStorage.getItem('lat'));
           this.longitude = parseFloat(localStorage.getItem('lng'));
@@ -135,9 +131,7 @@ export class UserServicesComponent implements OnInit, OnDestroy {
     this.getAddress(this.latitude, this.longitude);
   }
 
-  ngOnDestroy(): void {
-    this.local.pick = '';
-  }
+
 
   getServices() {
     this.serviceList.getServiceProviders().subscribe((data) => {
@@ -147,7 +141,7 @@ export class UserServicesComponent implements OnInit, OnDestroy {
         return el.isBanned === false && el.email !== this.svMail;
       });
       this.backup = this.services;
-      this.filterServiceByProfession(this.local.pick);
+      this.filterServiceByProfession(localStorage.getItem("pick"));
     });
   }
 

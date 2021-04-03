@@ -6,7 +6,7 @@
     <nav>
       <a routerLink="">Home</a>
       <!-- <a href="" (click)='scroll()'>Contact Us</a> -->
-      <a [routerLink]="['/userServices']">Services</a>
+      <a (click)="servicessss()" [routerLink]="['/userServices']" >Services</a>
       <a
         *ngIf="!userId && !serviceProviderEmail"
         id="connection"
