@@ -1,11 +1,16 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  NgZone,
+} from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
-
 
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
-  styleUrls: ['./location.component.scss']
+  styleUrls: ['./location.component.scss'],
 })
 export class LocationComponent implements OnInit {
   latitude: number;
@@ -14,26 +19,23 @@ export class LocationComponent implements OnInit {
   address: string;
   private geoCoder;
 
-inp :String;
+  inp: String;
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
-
-  constructor(
-    private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
-  ) { }
-
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {}
 
   ngOnInit() {
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
-      this.geoCoder = new google.maps.Geocoder;
+      this.geoCoder = new google.maps.Geocoder();
 
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
-      autocomplete.addListener("place_changed", () => {
+      let autocomplete = new google.maps.places.Autocomplete(
+        this.searchElementRef.nativeElement
+      );
+      autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
           //get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
@@ -65,19 +67,11 @@ inp :String;
     }
   }
 
-
   markerDragEnd($event) {
-    console.log($event);
     this.latitude = $event.coords.lat;
     this.longitude = $event.coords.lng;
     this.getAddress(this.latitude, this.longitude);
   }
-
-  onInputChange() {
-    console.log(this.inp);
-    
-  }
-
 
   onChooseloc(event) {
     this.latitude = event.coords.lat;
@@ -86,29 +80,26 @@ inp :String;
   }
 
   getAddress(latitude, longitude) {
-    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
-      console.log(results);
-      console.log(status);
-      if (status === 'OK') {
-        if (results[0]) {
-          this.zoom = 12;
-          this.address = results[0].formatted_address;
+    this.geoCoder.geocode(
+      { location: { lat: latitude, lng: longitude } },
+      (results, status) => {
+        if (status === 'OK') {
+          if (results[0]) {
+            this.zoom = 12;
+            this.address = results[0].formatted_address;
+          } else {
+            window.alert('No results found');
+          }
         } else {
-          window.alert('No results found');
+          window.alert('Geocoder failed due to: ' + status);
         }
-      } else {
-        window.alert('Geocoder failed due to: ' + status);
       }
-
-    });
+    );
   }
 
-
-   onLocChange(event) {
-     this.latitude = event.coords.lat;
-     this.longitude = event.coords.lng;
-     this.getAddress(this.latitude, this.longitude);
-   }
-
-
+  onLocChange(event) {
+    this.latitude = event.coords.lat;
+    this.longitude = event.coords.lng;
+    this.getAddress(this.latitude, this.longitude);
+  }
 }

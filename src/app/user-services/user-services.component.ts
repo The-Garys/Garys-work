@@ -23,10 +23,10 @@ export class UserServicesComponent implements OnInit, OnDestroy {
   private geoCoder;
   services: any = [];
   username: string;
-  list: any
+  list: any;
   data: any;
   backup: any = [];
-  location: any 
+  location: any;
   reviews: any = [];
   n: any = '';
   l: any = '';
@@ -49,8 +49,6 @@ export class UserServicesComponent implements OnInit, OnDestroy {
     config.readonly = true;
     this.router.events.subscribe((res) => {
       if (res['url'] !== res['urlAfterRedirects']) {
-        console.log('naaaaaaaav', res);
-
         this.local.pick = '';
         this.ngOnInit();
       }
@@ -58,14 +56,11 @@ export class UserServicesComponent implements OnInit, OnDestroy {
   }
   role: string = this.local.role;
   ngOnInit(): void {
-    console.log(this.longitude, this.latitude);
-
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder();
     });
 
-    console.log('dddddzsssadad', this.local.pick);
     this.list = NAME;
     this.services = [];
     this.list = [];
@@ -83,20 +78,13 @@ export class UserServicesComponent implements OnInit, OnDestroy {
         this.zoom = 12;
         this.getAddress(this.latitude, this.longitude);
       });
-    } else {
-      console.log('huummmm');
     }
   }
 
   markerDragEnd($event) {
-    console.log($event);
     this.latitude = $event.coords.lat;
     this.longitude = $event.coords.lng;
     this.getAddress(this.latitude, this.longitude);
-  }
-
-  onInputChange() {
-    console.log(this.inp);
   }
 
   onChooseloc(event) {
@@ -109,19 +97,12 @@ export class UserServicesComponent implements OnInit, OnDestroy {
     this.geoCoder.geocode(
       { location: { lat: latitude, lng: longitude } },
       (results, status) => {
-        console.log('resssss', results);
-        console.log(status);
         if (status === 'OK' && results.length) {
           if (results[0]) {
             this.zoom = 12;
             this.address = results[0].formatted_address;
           }
         } else {
-          if ('geolocation' in navigator) {
-            console.log('pssssssssss');
-          }
-          console.log('sssssss');
-
           this.latitude = parseFloat(localStorage.getItem('lat'));
           this.longitude = parseFloat(localStorage.getItem('lng'));
         }
@@ -141,10 +122,13 @@ export class UserServicesComponent implements OnInit, OnDestroy {
 
   getServices() {
     this.serviceList.getServiceProviders().subscribe((data) => {
-      console.log('are those sps ?? ===>', data);
       this.services = data;
       this.services = this.services.filter((el) => {
-        return el.isBanned === false && el.email !== this.svMail && el.isDeclined === false;
+        return (
+          el.isBanned === false &&
+          el.email !== this.svMail &&
+          el.isDeclined === false
+        );
       });
       this.backup = this.services;
       this.filterServiceByProfession(this.local.pick);
@@ -157,13 +141,7 @@ export class UserServicesComponent implements OnInit, OnDestroy {
     });
   }
   getRating() {
-    console.log(this.services);
-
     for (var i = 0; i < this.services.length; i++) {
-      console.log(
-        'hedhy kol post wahadhaaaaa ===+====+==+===>',
-        this.services[i]
-      );
       this.serviceList.getRating(this.services[i].email).subscribe((data) => {
         this.reviews = data;
         var totalRate = 0;
@@ -175,13 +153,10 @@ export class UserServicesComponent implements OnInit, OnDestroy {
     }
   }
   goSvProfile(svMail) {
-    console.log('clicccc');
-
     localStorage.setItem('halimMail', svMail);
     this.router.navigateByUrl('/fisitor');
   }
   filterServiceByName(val) {
-    console.log(val);
     this.n = val.toUpperCase();
     this.services = this.backup;
     var newArray = [];
@@ -199,12 +174,9 @@ export class UserServicesComponent implements OnInit, OnDestroy {
       }
     });
     this.services = newArray;
-    console.log('dazdzad', val, this.services);
   }
 
   filterServiceByProfession(val) {
-    console.log(val);
-    // console.log(val)
     var newArr = [];
     if (val === 'all') {
       this.services = this.backup;
@@ -233,8 +205,6 @@ export class UserServicesComponent implements OnInit, OnDestroy {
         }
       });
       this.services = newArr;
-
-      console.log(val, this.services);
     }
   }
 
@@ -243,7 +213,6 @@ export class UserServicesComponent implements OnInit, OnDestroy {
   }
 
   dropLoc(val) {
-    console.log(val);
     this.l = val.toUpperCase();
     this.services = this.backup;
     var newArray = [];
@@ -263,6 +232,5 @@ export class UserServicesComponent implements OnInit, OnDestroy {
       }
     });
     this.services = newArray;
-    console.log(val, this.services);
   }
 }

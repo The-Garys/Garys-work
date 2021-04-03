@@ -8,37 +8,35 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
-    services : any
-    checked: boolean = false
-  constructor(private http: HttpClient, private router: Router) { }
+  services: any;
+  checked: boolean = false;
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.services = [];
-    this.http.get("http://localhost:3000/api/professions/getProfessions").subscribe((data)=>{
-      console.log("profesiiooons", data)
-
-      this.services=data
-      var a = []
-      this.services.map((e)=>{
-         if(e.profession !== "all"){
-           a.push(e)
-         }
-
-      })
-      this.services=a 
-    })
+    this.http
+      .get('http://localhost:3000/api/professions/getProfessions')
+      .subscribe((data) => {
+        this.services = data;
+        var a = [];
+        this.services.map((e) => {
+          if (e.profession !== 'all') {
+            a.push(e);
+          }
+        });
+        this.services = a;
+      });
   }
-  imageUrl : string
+  imageUrl: string;
   imgUpload(img) {
-    console.log('IMG FROM VER==> ', img.target.files[0]);
     var formData = new FormData();
     formData.append('img', img.target.files[0]);
-    this.http.post("http://localhost:3000/upload" , formData).subscribe((resp) => {
-      this.imageUrl = resp['msg'].url;
-      this.checked= true
-    });
-
-  
+    this.http
+      .post('http://localhost:3000/upload', formData)
+      .subscribe((resp) => {
+        this.imageUrl = resp['msg'].url;
+        this.checked = true;
+      });
   }
   getData(
     firstName,
@@ -56,24 +54,24 @@ export class SignUpComponent implements OnInit {
     lat,
     lng
   ) {
-    console.log("hhhh",typeof(loc), description)
-    if(!imageUrl && gender === "Male" ){
-      imageUrl = "https://mpng.subpng.com/20180523/tha/kisspng-businessperson-computer-icons-avatar-clip-art-lattice-5b0508dc6a3a10.0013931115270566044351.jpg"
-    } 
-    if(!imageUrl && gender === "Female" ){
-      imageUrl = "https://mpng.subpng.com/20180326/wzw/kisspng-computer-icons-user-profile-avatar-female-profile-5ab915f791e2c1.8067312315220792235976.jpg"
+    if (!imageUrl && gender === 'Male') {
+      imageUrl =
+        'https://mpng.subpng.com/20180523/tha/kisspng-businessperson-computer-icons-avatar-clip-art-lattice-5b0508dc6a3a10.0013931115270566044351.jpg';
+    }
+    if (!imageUrl && gender === 'Female') {
+      imageUrl =
+        'https://mpng.subpng.com/20180326/wzw/kisspng-computer-icons-user-profile-avatar-female-profile-5ab915f791e2c1.8067312315220792235976.jpg';
     }
 
-    
     if (
       firstName === '' ||
       lastName === '' ||
       email === '' ||
       password === '' ||
       retypePassword === '' ||
-      phoneNumber === ''||
-      CIN===''||
-      description===''
+      phoneNumber === '' ||
+      CIN === '' ||
+      description === ''
     ) {
       Swal.fire({
         icon: 'error',
@@ -93,7 +91,6 @@ export class SignUpComponent implements OnInit {
         text: 'your password must be at least 8 characters',
       });
     } else {
-
       this.http
         .post(
           'http://localhost:3000/api/serviceProvider/signup',
@@ -107,34 +104,29 @@ export class SignUpComponent implements OnInit {
             gender: gender,
             profession: profession,
             imageUrl: imageUrl,
-            CIN:CIN,
-            description:description,
+            CIN: CIN,
+            description: description,
             location: loc,
             lat: lat,
-            lng: lng
+            lng: lng,
           },
           { responseType: 'json' }
         )
         .subscribe((data) => {
-          console.log(data)
-          if (data["err"]) {
+          if (data['err']) {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
-              text: data["err"]
-            })
-            
-          } 
-          
-          else {
-            localStorage.setItem("token", data["token"])
+              text: data['err'],
+            });
+          } else {
+            localStorage.setItem('token', data['token']);
             this.router.navigateByUrl('/signin');
             Swal.fire(
-             'Singup Complete!',
+              'Singup Complete!',
               'You will recieve a text message once your account has been verified, Welcome to the community!',
               'success'
-            )
-            
+            );
           }
         });
     }

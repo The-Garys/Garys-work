@@ -39,7 +39,6 @@ export class ReviewsComponent implements OnInit {
   totalPerc: number = 0;
 
   getReviews() {
-    console.log('my reviews are heeere ==>', this.spReviews);
     var totalReview = 0;
     for (var i = 0; i < this.spReviews.length; i++) {
       this.allRates.push(this.spReviews[i].rate);
@@ -56,10 +55,7 @@ export class ReviewsComponent implements OnInit {
       }
     }
     this.currentRate = totalReview / this.spReviews.length;
-    console.log(totalReview);
-    console.log(this.spReviews.length);
 
-    console.log(this.currentRate);
     if (this.allRates.includes(1)) {
       this.totalPerc = (this.ratesObj[1] / this.allRates.length) * 100;
       this.oneStarPercent = this.totalPerc.toString() + '%';
@@ -90,10 +86,8 @@ export class ReviewsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getReviews();
-    console.log('first review try', this.spReviews);
-    if(this.userId){
+    if (this.userId) {
       this.newReview();
-
     }
   }
 
@@ -101,7 +95,6 @@ export class ReviewsComponent implements OnInit {
     this.profileServices
       .getServiceProviderData(this.visitorEmail)
       .subscribe((data) => {
-        console.log('data', data['reviews']);
         this.spReviews = data['reviews'];
       });
   }
@@ -125,9 +118,7 @@ export class ReviewsComponent implements OnInit {
           { responseType: 'json' }
         )
         .subscribe((data) => {
-          console.log('review===>', data);
           this.spReviews += data;
-          console.log('new reviews', this.spReviews);
 
           Swal.fire('Good job!', data['success'], 'success');
         });
@@ -148,7 +139,6 @@ export class ReviewsComponent implements OnInit {
           .delete('http://localhost:3000/api/review/deleteReview/' + id)
           .subscribe((data): any => {
             this.spReviews.filter((review) => review._id !== id);
-            console.log('clicked', data);
             Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
             this.ngOnInit();
           });

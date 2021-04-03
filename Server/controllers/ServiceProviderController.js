@@ -7,7 +7,6 @@ const config = require("../config");
 
 const serviceProviderCtrl = {
   signUp: async (req, res) => {
-    console.log(req.body);
     try {
       const {
         firstName,
@@ -50,7 +49,6 @@ const serviceProviderCtrl = {
         lat,
         lng,
       });
-      console.log("make sure", newServiceProvider);
 
       const token = jwt.sign(
         { id: newServiceProvider._id },
@@ -61,8 +59,6 @@ const serviceProviderCtrl = {
       );
       newServiceProvider.token = token;
       await newServiceProvider.save();
-      console.log("test CIN", newServiceProvider);
-      console.log("service provider  test====>", newServiceProvider._id);
       res.send({
         id: newServiceProvider._id,
         auth: true,
@@ -79,12 +75,10 @@ const serviceProviderCtrl = {
     }
   },
   login: async (req, res) => {
-    console.log("req.boy=====>", req.body);
     try {
       const { email, password } = req.body;
       // check if the user already exist or not
       let userProvider = await ServiceProvider.findOne({ email });
-      console.log("user login====>", userProvider);
       if (!userProvider) {
         return res.send({ err: "User Not exist" });
       }
@@ -93,7 +87,6 @@ const serviceProviderCtrl = {
         password.toString(),
         userProvider.password
       );
-      console.log("compare====>", isMatch);
       if (!isMatch) {
         return res.send({ err: "Incorrect password" });
       }
@@ -108,7 +101,6 @@ const serviceProviderCtrl = {
       );
       userProvider.token = token;
       await userProvider.save();
-      console.log("user====>", userProvider._id);
 
       res.status(200).send({
         auth: true,
@@ -134,7 +126,6 @@ const serviceProviderCtrl = {
     jwt.verify(token, config.secret.toString(), function (error, decoded) {
       if (error)
         return res.send({ auth: false, err: "Failed to authenticate token." });
-      console.log("decoded====>", decoded);
       ServiceProvider.findById(
         decoded.id,
         { password: 0 }, // projection to not get back the password
@@ -147,7 +138,6 @@ const serviceProviderCtrl = {
           }
 
           res.status(200).send(user);
-          console.log("user====>", user);
         }
       );
     });
@@ -172,18 +162,13 @@ const serviceProviderCtrl = {
       const reviews = await Reviews.find({
         serviceProviderEmail: req.params.email,
       });
-      console.log("Got the reviews: ", reviews);
       data["reviews"] = reviews;
-      console.log("review", data);
       res.send({ data: data, reviews: reviews });
     } catch (err) {
       console.log("err", err);
     }
   },
   updateServiceProviderData: async (req, res) => {
-    console.log("id of the svProfile", req.params.id);
-
-    console.log("account details", req.body);
     try {
       const { firstName, lastName, fullName, phoneNumber, location } = req.body;
       let sv = await ServiceProvider.findByIdAndUpdate(
@@ -198,14 +183,11 @@ const serviceProviderCtrl = {
         { new: true }
       );
       res.send({ success: "updated successfully", data: sv });
-      console.log("here i am", sv);
     } catch (error) {
       console.log(error);
     }
   },
   updatePassword: async (req, res) => {
-    console.log("password id of the SV", req.params);
-    console.log("the body", req.body);
     try {
       const { currentPassword, newPassword, confirmPassword } = req.body;
       if (currentPassword === newPassword) {
@@ -214,23 +196,19 @@ const serviceProviderCtrl = {
         });
       }
       const svPassword = await ServiceProvider.findOne({ _id: req.params.id });
-      console.log("service password", svPassword.password);
 
       const isMatch = await bcrypt.compare(
         currentPassword.toString(),
         svPassword.password
       );
-      console.log("isMatch", isMatch);
       if (!isMatch) {
         res.send({ err: "incorrect password" });
       }
       const hashNewPassword = await bcrypt.hash(newPassword.toString(), 10);
-      console.log("hashed currentpassword", hashNewPassword);
       const isSame = await bcrypt.compare(
         confirmPassword.toString(),
         hashNewPassword
       );
-      console.log("isSame", isSame);
       if (!isSame) {
         res.send({ err: "make sure to enter your confirm password correctly" });
       }
@@ -248,8 +226,6 @@ const serviceProviderCtrl = {
     }
   },
   updateImage: async (req, res) => {
-    console.log(req.params);
-    console.log(req.body);
     try {
       const { imageUrl } = req.body;
       let sv = await ServiceProvider.findByIdAndUpdate(
@@ -259,7 +235,6 @@ const serviceProviderCtrl = {
         },
         { new: true }
       );
-      console.log("sv imageUrl", sv.imageUrl);
       res.send({ success: "updated image successfully", data: sv.imageUrl });
     } catch (error) {
       console.log(error);
