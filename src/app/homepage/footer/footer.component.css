@@ -9,6 +9,13 @@
   width: 100%;
 }
 
+#loct {
+  width: 250px;
+  height: 150px;
+  margin-top:2rem;
+  margin-left: 3rem;
+}
+
 h5 {
   font-size: 50px;
 }
@@ -44,6 +51,7 @@ h5 {
   margin-left: 10%;
   width: 60%;
   height: 4rem;
+  margin-bottom: 15rem;
 }
 .loc-cntct-us h1 {
   color: #000;
