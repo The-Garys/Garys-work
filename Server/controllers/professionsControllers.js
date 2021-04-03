@@ -2,7 +2,6 @@ const Services = require("../models/Services");
 
 module.exports = {
   addProfession: async (req, res) => {
-    console.log("professiin", req.body);
     const profession = new Services({
       profession: req.body.profession,
       image: req.body.image,
@@ -22,7 +21,6 @@ module.exports = {
   getProfessions: async (req, res) => {
     try {
       const professions = await Services.find();
-      console.log(professions);
       res.send(professions);
     } catch (error) {
       console.log(error);
@@ -39,13 +37,13 @@ module.exports = {
         },
         { new: true }
       );
-      console.log("aaaaa====>", service);
 
       res.send({ success: "successfully updated", data: service });
     } catch (error) {
       console.log(error);
     }
   },
+<<<<<<< HEAD
   deleteService:async(req,res)=>{
     try {
       const deleteService=await Services.findOneAndDelete({_id:req.params.id});
@@ -55,4 +53,6 @@ module.exports = {
     console.log(error); 
   }
   }
+=======
+>>>>>>> b9b82d81b9834ddbe259a4520b050a2c02176ba4
 };

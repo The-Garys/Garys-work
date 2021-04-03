@@ -74,7 +74,6 @@ export class NavbarComponent implements OnInit {
     this.service
       .getServiceProviderData(this.serviceProviderEmail)
       .subscribe((res) => {
-        console.log('griiiiib', res);
         this.spProfileImg = res['data']['imageUrl'];
         this.cdRef.detectChanges();
       });
@@ -82,8 +81,6 @@ export class NavbarComponent implements OnInit {
 
   getUserImg(): void {
     this.services.getUserData(this.userId).subscribe((res) => {
-      console.log('ahaya user data', res);
-
       this.userProfileImg = res['imageUrl'];
 
       this.cdRef.detectChanges();
@@ -100,10 +97,6 @@ export class NavbarComponent implements OnInit {
     if (this.userId) {
       this.getUserImg();
     }
-
-    setTimeout(() => {
-      console.log(this.userProfileImg);
-    }, 4000);
   }
 
   scroll(id) {

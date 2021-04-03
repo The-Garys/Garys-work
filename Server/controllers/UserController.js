@@ -8,7 +8,6 @@ const userCtrl = {
   // add a user account
   register: async (req, res) => {
     try {
-      console.log("test request", req.body);
       const {
         firstName,
         lastName,
@@ -49,9 +48,7 @@ const userCtrl = {
         expiresIn: 86400, // expires in 24 hours
       });
       await newUser.save();
-      console.log("make sure", newUser);
 
-      console.log("user test====>", newUser._id);
       res.send({
         auth: true,
         token: token,
@@ -69,7 +66,6 @@ const userCtrl = {
   getAll: async (req, res) => {
     try {
       const users = await Users.find({});
-      console.log(users);
       res.send(users);
     } catch (error) {
       console.log(error);
@@ -77,18 +73,15 @@ const userCtrl = {
   },
   // login with an existing account
   login: async (req, res) => {
-    console.log("req.boy=====>", req.body);
     try {
       const { email, password } = req.body;
       // check if the user already exist or not
       let user = await Users.findOne({ email });
-      console.log("user login====>", user);
       if (!user) {
         return res.send({ err: "User Not exist" });
       }
       // compare the typed password with password saved for the user
       const isMatch = await bcrypt.compare(password.toString(), user.password);
-      console.log("compare====>", isMatch);
       if (!isMatch) {
         return res.send({ err: "Incorrect password" });
       }
@@ -97,7 +90,6 @@ const userCtrl = {
         expiresIn: 86400, // expires in 24 hours
       });
       await user.save();
-      console.log("user====>", user._id);
 
       res.status(200).send({
         auth: true,
@@ -123,7 +115,6 @@ const userCtrl = {
     jwt.verify(token, config.secret.toString(), function (error, decoded) {
       if (error)
         return res.send({ auth: false, err: "Failed to authenticate token." });
-      console.log("decoded====>", decoded);
       Users.findById(
         decoded.id,
         { password: 0 }, // projection to not get back the password
@@ -136,7 +127,6 @@ const userCtrl = {
           }
 
           res.status(200).send(user);
-          console.log("user====>", user);
         }
       );
     });
@@ -147,7 +137,6 @@ const userCtrl = {
       .send({ auth: false, token: null, success: "you are logged out" });
   },
   getUserDataById: async (req, res) => {
-    console.log("hhhh", req.params);
     try {
       var data = await Users.findOne({ _id: req.params.id });
       res.send(data);
@@ -156,9 +145,6 @@ const userCtrl = {
     }
   },
   update: async (req, res) => {
-    console.log("id of the userProfile", req.params.id);
-
-    console.log("user account details", req.body);
     try {
       const { firstName, lastName, userName, phoneNumber, location } = req.body;
 
@@ -174,14 +160,11 @@ const userCtrl = {
         { new: true }
       );
       res.send({ success: "updated successfully", data: sv });
-      console.log("here i am", sv);
     } catch (error) {
       console.log(error);
     }
   },
   updatePassword: async (req, res) => {
-    console.log("password id of the user", req.params);
-    console.log("the body", req.body);
     try {
       const { currentPassword, newPassword, confirmPassword } = req.body;
       if (currentPassword === newPassword) {
@@ -190,25 +173,21 @@ const userCtrl = {
         });
       }
       const userPassword = await Users.findOne({ _id: req.params.id });
-      console.log("service password", userPassword.password);
 
       const isMatch = await bcrypt.compare(
         currentPassword.toString(),
         userPassword.password
       );
-      console.log("isMatch", isMatch);
       if (!isMatch) {
         res.send({ err: "incorrect password" });
       }
       const hashNewPassword = await bcrypt.hash(newPassword.toString(), 10);
-      console.log("hashed currentpassword", hashNewPassword);
       // const hashConfirmPassword = await bcrypt.hash(confirmPassword.toString(), 10);
       // console.log('hashed confirmpassword', hashConfirmPassword)
       const isSame = await bcrypt.compare(
         confirmPassword.toString(),
         hashNewPassword
       );
-      console.log("isSame", isSame);
       if (!isSame) {
         res.send({ err: "make sure to enter your confirm password correctly" });
       }
@@ -226,8 +205,6 @@ const userCtrl = {
     }
   },
   updateUserImage: async (req, res) => {
-    console.log(req.params);
-    console.log(req.body);
     try {
       const { imageUrl } = req.body;
       let user = await Users.findByIdAndUpdate(
@@ -237,7 +214,6 @@ const userCtrl = {
         },
         { new: true }
       );
-      console.log("user imageUrl", user.imageUrl);
       res.send({ success: "updated image successfully", data: user.imageUrl });
     } catch (error) {
       console.log(error);

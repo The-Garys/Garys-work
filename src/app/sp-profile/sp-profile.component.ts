@@ -70,16 +70,13 @@ export class SpProfileComponent implements OnInit {
     this.profileServices
       .getServiceProviderData(this.svMail)
       .subscribe((data) => {
-        console.log('ali====>', data);
         this.serviceProviderReviews = data['reviews'];
-        console.log('all reviews===>', this.serviceProviderReviews);
         this.spData = data['data'];
-        this.imageUrl= data['data']['imageUrl']
+        this.imageUrl = data['data']['imageUrl'];
         this.getAppointments();
         this.profileServices
           .getServiceProviderPosts(this.spData._id)
           .subscribe((data) => {
-            console.log('daaaaaaaataaa==>', data);
             this.spPosts = data;
             this.spPosts = this.spPosts.reverse();
             for (var i = 0; i < this.spPosts.length; i++) {
@@ -101,12 +98,9 @@ export class SpProfileComponent implements OnInit {
     });
   }
 
-  
   getAllMessages() {
     this.LiveMessages.getAllMessages().subscribe((data: any[]) => {
       this.allMsg = data;
-      console.log(' did our data came ? ==>', this.allMsg);
-      console.log('this is our data ==>', data);
       for (var i = 0; i < this.allMsg.length; i++) {
         this.allMsg[i].createdAt = moment()
           .add(this.allMsg[i].createdAt)
@@ -122,7 +116,6 @@ export class SpProfileComponent implements OnInit {
     this.socket.on('message-broadcast', (data: string = this.allMsg) => {
       if (data) {
         this.getAllMessages();
-        console.log('is it working this way ?? ==>', data);
       }
     });
   }
@@ -130,13 +123,11 @@ export class SpProfileComponent implements OnInit {
     this.socket.emit('message', this.message.messageBody);
 
     this.LiveMessages.sendAMessage(this.message).subscribe((response) => {
-      console.log('is my message sent ? ===>', response);
       this.getAllMessages();
     });
     this.message.messageBody = '';
   }
   imgUpload(img) {
-    console.log('IMG FROM VER==> ', img.target.files[0]);
     var formData = new FormData();
     formData.append('img', img.target.files[0]);
     this.profileServices.ImageUpload(formData).subscribe((resp) => {
@@ -189,12 +180,10 @@ export class SpProfileComponent implements OnInit {
   }
 
   getAppointments() {
-    console.log('spdat===>', this.spData._id);
     this.profileServices
       .getSericeProviderAppointments(this.spData._id)
       .subscribe((data) => {
         this.appointmentsList = data;
-        console.log('dzdazdazda', this.appointmentsList);
         this.notifications = this.appointmentsList.length;
       });
   }
@@ -229,7 +218,6 @@ export class SpProfileComponent implements OnInit {
     this.editable = false;
   }
   deletePost(id) {
-    console.log(id);
     Swal.fire({
       title: 'Are you sure?',
       text: 'You will permanently delete this post!',
@@ -248,26 +236,6 @@ export class SpProfileComponent implements OnInit {
     });
   }
 
-  // deleteAppointment(id) {
-  //   console.log("appointmentid",id);
-  // Swal.fire({
-  //   title: 'Are you sure?',
-  //   text: 'You will permanently delete this appointment!',
-  //   icon: 'warning',
-  //   showCancelButton: true,
-  //   confirmButtonColor: '#3085d6',
-  //   cancelButtonColor: '#d33',
-  //   confirmButtonText: 'Yes, delete it!',
-  // }).then((result) => {
-  //   if (result.isConfirmed) {
-  //     this.profileServices.deleteAppointment(id).subscribe((data) => {
-  //       Swal.fire('Deleted!', 'Your appointment has been deleted.', 'success');
-  //       this.ngOnInit();
-  //     });
-  //   }
-  // });
-  // }
-
   updateServiceProviderDetails(
     firstName,
     lastName,
@@ -275,9 +243,6 @@ export class SpProfileComponent implements OnInit {
     phoneNumber,
     location
   ) {
-    console.log('sv details====>', this.spData);
-    // console.log(firstName);
-
     this.profileServices
       .updateServiceProviderData(
         firstName,
@@ -288,16 +253,12 @@ export class SpProfileComponent implements OnInit {
         this.spData._id
       )
       .subscribe((data) => {
-        console.log(location);
-
-        console.log('new data', data);
         this.spData = data['data'];
         Swal.fire('', data['success'], 'success');
       });
   }
 
   updateServiceProviderPassword(currentPassword, newPassword, confirmPassword) {
-    console.log('sv details====>', this.spData);
     if (!currentPassword || !newPassword || !confirmPassword) {
       Swal.fire({
         icon: 'error',
@@ -325,7 +286,6 @@ export class SpProfileComponent implements OnInit {
           this.spData._id
         )
         .subscribe((data) => {
-          console.log('password data', data);
           if (data['err']) {
             Swal.fire({
               icon: 'error',
@@ -360,11 +320,6 @@ export class SpProfileComponent implements OnInit {
           })
           .subscribe((data) => {
             this.getAppointments();
-
-            console.log(
-              'did our appointement approved ? ==>',
-              this.appointmentsList
-            );
           });
       }
     });
@@ -391,15 +346,11 @@ export class SpProfileComponent implements OnInit {
           })
           .subscribe((data) => {
             this.getAppointments();
-
-            console.log('did our appointement declined ? ==>', data);
           });
       }
     });
   }
   updateImage(imageUrl) {
-    console.log('sv details====>', this.spData);
-    console.log(imageUrl);
     if (!imageUrl) {
       return;
     }
@@ -407,9 +358,8 @@ export class SpProfileComponent implements OnInit {
     this.profileServices
       .updateImage(imageUrl, this.spData._id)
       .subscribe((data) => {
-        console.log('new data', data);
         this.spData.imageUrl = data['data'];
-        Swal.fire('', data['success'], 'success').then(()=>{
+        Swal.fire('', data['success'], 'success').then(() => {
           window.location.reload();
         });
       });
