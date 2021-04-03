@@ -37,7 +37,6 @@ export class UserProfileComponent implements OnInit {
     this.userId = localStorage.getItem('id');
 
     this.userServices.getUserData(this.userId).subscribe((data) => {
-      console.log('user data====>', data);
       this.userData = data;
       this.imageUrl = data['imageUrl'];
       this.getAppointments();
@@ -45,7 +44,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   imgUpload(img) {
-    console.log('IMG FROM VER==> ', img.target.files[0]);
     var formData = new FormData();
     formData.append('img', img.target.files[0]);
     this.userServices.ImageUpload(formData).subscribe((resp) => {
@@ -85,17 +83,14 @@ export class UserProfileComponent implements OnInit {
         loc
       )
       .subscribe((data) => {
-        console.log('newData', data);
         this.userData = data['data'];
         Swal.fire('', data['success'], 'success');
       });
   }
   getAppointments() {
-    console.log('spdat===>', this.userData._id);
     this.userServices
       .getUserAppointments(this.userData._id)
       .subscribe((data) => {
-        console.log('dzdazdazda', data);
         this.appointmentsList = data;
         this.notifications = this.appointmentsList.length;
       });
@@ -119,12 +114,7 @@ export class UserProfileComponent implements OnInit {
         this.http
           .delete('http://localhost:3000/api/appointment/cancel/' + id)
           .subscribe((data) => {
-            console.log('is it deleted ??? =+>', data);
             this.ngOnInit();
-            console.log(
-              'did our appointement canceled ? ==>',
-              this.appointmentsList
-            );
             this.getAppointments();
           });
       }
@@ -134,12 +124,7 @@ export class UserProfileComponent implements OnInit {
     this.http
       .delete('http://localhost:3000/api/appointment/cancel/' + id)
       .subscribe((data) => {
-        console.log('is it deleted ??? =+>', data);
         this.ngOnInit();
-        console.log(
-          'did our appointement canceled ? ==>',
-          this.appointmentsList
-        );
         this.getAppointments();
       });
   }
@@ -150,7 +135,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   updatePassword(currentPassword, newPassword, confirmPassword) {
-    console.log('sv details====>', this.userData);
     if (!currentPassword || !newPassword || !confirmPassword) {
       Swal.fire({
         icon: 'error',
@@ -178,7 +162,6 @@ export class UserProfileComponent implements OnInit {
           confirmPassword
         )
         .subscribe((data) => {
-          console.log('password data', data);
           if (data['err']) {
             Swal.fire({
               icon: 'error',
@@ -193,16 +176,9 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateImage(imageUrl) {
-    console.log('sv details====>', this.userData);
-    console.log(imageUrl);
-
-    console.log('sv details====>', this.userData);
-    console.log(imageUrl);
-
     this.userServices
       .updateUserImage(imageUrl, this.userData._id)
       .subscribe((data) => {
-        console.log('new data', data);
         this.userData.imageUrl = data['data'];
         Swal.fire('', data['success'], 'success').then(() => {
           window.location.reload();

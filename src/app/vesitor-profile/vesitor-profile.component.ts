@@ -75,9 +75,8 @@ export class VesitorProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkLog();
-    if(localStorage.getItem('id')){
+    if (localStorage.getItem('id')) {
       this.getUserData(localStorage.getItem('id'));
-
     }
     this.visitor = true;
     this.visitor1 = false;
@@ -87,14 +86,12 @@ export class VesitorProfileComponent implements OnInit {
     this.profileServices
       .getServiceProviderData(this.svMail)
       .subscribe((data) => {
-        console.log('ali====>', data);
         this.serviceProviderReviews = data['reviews'];
         this.spData = data['data'];
         this.getAppointments();
         this.profileServices
           .getServiceProviderPosts(this.spData._id)
           .subscribe((data) => {
-            console.log('daaaaaaaataaa==>', data);
             this.spPosts = data;
             this.spPosts = this.spPosts.reverse();
             for (var i = 0; i < this.spPosts.length; i++) {
@@ -119,8 +116,6 @@ export class VesitorProfileComponent implements OnInit {
   getAllMessages() {
     this.LiveMessages.getAllMessages().subscribe((data: any[]) => {
       this.allMsg = data;
-      console.log(' did our data came ? ==>', this.allMsg);
-      console.log('this is our data ==>', data);
       for (var i = 0; i < this.allMsg.length; i++) {
         this.allMsg[i].createdAt = moment()
           .add(this.allMsg[i].createdAt)
@@ -136,7 +131,6 @@ export class VesitorProfileComponent implements OnInit {
     this.socket.on('message-broadcast', (data: string = this.allMsg) => {
       if (data) {
         this.getAllMessages();
-        console.log('is it working this way ?? ==>', data);
       }
     });
   }
@@ -144,14 +138,12 @@ export class VesitorProfileComponent implements OnInit {
     this.socket.emit('message', this.message.messageBody);
 
     this.LiveMessages.sendAMessage(this.message).subscribe((response) => {
-      console.log('is my message sent ? ===>', response);
       this.getAllMessages();
     });
     this.message.messageBody = '';
   }
 
   imgUpload(img) {
-    console.log('IMG FROM VER==> ', img.target.files[0]);
     var formData = new FormData();
     formData.append('img', img.target.files[0]);
     this.profileServices.ImageUpload(formData).subscribe((resp) => {
@@ -200,12 +192,9 @@ export class VesitorProfileComponent implements OnInit {
     }
   }
   getUserData(id) {
-    console.log('here is the id ==+>', id);
-
     this.http
       .get('http://localhost:3000/api/user/' + id)
       .subscribe((data): any => {
-        console.log('is my used here ? ==>', data);
         this.userData = data;
       });
   }
@@ -255,11 +244,9 @@ export class VesitorProfileComponent implements OnInit {
   }
 
   getAppointments() {
-    console.log('spdat===>', this.spData._id);
     this.profileServices
       .getSericeProviderAppointments(this.spData._id)
       .subscribe((data) => {
-        console.log('dzdazdazda', data);
         this.appointmentsList = data;
         this.notifications = this.appointmentsList.length;
       });

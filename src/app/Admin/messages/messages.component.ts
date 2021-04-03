@@ -17,7 +17,6 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit() {
     this.contactMessages.getMessages().subscribe((data: any[]) => {
-      console.log(data);
       this.messages = data;
     });
   }

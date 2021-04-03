@@ -3,7 +3,6 @@ const Reviews = require("../models/review");
 const review = {
   addReview: async (req, res) => {
     try {
-      console.log("review====>", req.body);
       const {
         serviceProviderEmail,
         userName,
@@ -23,7 +22,7 @@ const review = {
       await newReview.save();
       res.send(newReview);
     } catch (error) {
-      console.log("weird error tho ==> ", error);
+      console.log(error);
     }
   },
   allReviews: async (req, res) => {
@@ -31,8 +30,6 @@ const review = {
       const reviews = await Reviews.find({
         serviceProviderEmail: req.params.spMail,
       });
-      console.log("ti ahawa l email", req.params.spMail);
-      console.log("brabiiii give me my reviews ==========>", reviews);
       res.send(reviews);
     } catch (error) {
       console.log(error);
@@ -41,7 +38,6 @@ const review = {
   oneReview: async (req, res) => {
     try {
       const reviews = await Reviews.find({ serviceProviderName: "halim" });
-      console.log(reviews);
       res.send(reviews);
     } catch (error) {
       console.log(error);
@@ -49,7 +45,6 @@ const review = {
   },
   deleteReview: async (req, res) => {
     try {
-      console.log("id from front end ====>", req.params.id);
       const deleteRev = await Reviews.findOneAndDelete({
         _id: req.params.id,
       });

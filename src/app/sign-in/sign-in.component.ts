@@ -15,9 +15,7 @@ export class SignInComponent implements OnInit {
     private local: LocalService
   ) {}
 
-  ngOnInit(): void {
-    console.log(this.local.role);
-  }
+  ngOnInit(): void {}
   data: {
     email: any;
     password: any;
@@ -26,7 +24,6 @@ export class SignInComponent implements OnInit {
 
   checkProvider() {
     this.serviceProviderIsChecked = !this.serviceProviderIsChecked;
-    console.log(this.serviceProviderIsChecked);
   }
 
   login(email, password) {
@@ -47,48 +44,38 @@ export class SignInComponent implements OnInit {
           { responseType: 'json' }
         )
         .subscribe((data) => {
-          console.log(data, 'grid');
           if (data['err']) {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
               text: data['err'],
             });
-          }
-          else if (data['isBanned']) {
+          } else if (data['isBanned']) {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
               text: 'Account Is Banned',
             });
-          }
-
-          
-          else if(data['isDeclined'] === true) {
-            
+          } else if (data['isDeclined'] === true) {
             Swal.fire({
-              icon:'error',
+              icon: 'error',
               title: 'Your Account has been rejected',
-              text:'Contact us for further information'
-            })
-          }
-
-          else if(data['isVerified'] === false && data['isDeclined'] === false) {
+              text: 'Contact us for further information',
+            });
+          } else if (
+            data['isVerified'] === false &&
+            data['isDeclined'] === false
+          ) {
             Swal.fire({
-              icon:'info',
+              icon: 'info',
               title: 'Account is still being verified',
-              text:'Your Account is still being validated, Please contact us for more information'
-            })
-          }
-          
-          else {
-          // console.log('thiiiiiiiiiis=>',data);
-
-            // console.log(data['token']);
+              text:
+                'Your Account is still being validated, Please contact us for more information',
+            });
+          } else {
             localStorage.setItem('token', data['token']);
             localStorage.setItem('svMail', data['email']);
-           
-            
+
             this.router.navigateByUrl('/spProfile', { state: { data } });
             Swal.fire(
               data['greet'] + ' ' + data['name'],
@@ -109,37 +96,29 @@ export class SignInComponent implements OnInit {
           { responseType: 'json' }
         )
         .subscribe((data) => {
-          console.log('why not ?', data);
           if (data['err']) {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
               text: data['err'],
             });
-            
-          } 
-          
-          else if (data['isBanned']) {
+          } else if (data['isBanned']) {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
               text: 'Account Is Banned',
             });
-          }
-
-          else if (data['isDeclined'] === true) {
+          } else if (data['isDeclined'] === true) {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
-              text: 'Your Account Validation Is Declined, Contact Us for more information',
+              text:
+                'Your Account Validation Is Declined, Contact Us for more information',
             });
-          }
-         
-           else {
-              localStorage.setItem('lat', data['lat'])
-            localStorage.setItem('lng', data['lng'])
-            // console.log('THIIIIIIIS', data["lat"], data["lng"]);
-            localStorage.setItem("apUserName" , data["name"])
+          } else {
+            localStorage.setItem('lat', data['lat']);
+            localStorage.setItem('lng', data['lng']);
+            localStorage.setItem('apUserName', data['name']);
             this.local.changeRole('user');
             localStorage.setItem('token', data['token']);
             localStorage.setItem('id', data['id']);

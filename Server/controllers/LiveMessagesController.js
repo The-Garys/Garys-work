@@ -4,7 +4,6 @@ const liveMessages = {
   getAllMessages: async (req, res) => {
     try {
       let messages = await messagesModel.find({});
-      console.log(messages);
       res.send(messages);
     } catch (err) {
       console.log(err);
@@ -13,7 +12,6 @@ const liveMessages = {
   },
   sendMessage: async (req, res) => {
     try {
-      console.log("req.body ==> ", req.body);
       const newMessageSent = new messagesModel(req.body);
       await newMessageSent.save();
       res.send({ message: "Message sent!" });
@@ -28,7 +26,6 @@ const liveMessages = {
         userId: req.params.userId,
         spId: req.params.spId,
       });
-      console.log("those are our messages for this conversation", data);
       res.send(data);
     } catch (err) {
       console.log("this error is because of live message", err);

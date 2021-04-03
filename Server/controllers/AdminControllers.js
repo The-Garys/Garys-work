@@ -19,7 +19,6 @@ const admin = {
         password: hashedPass,
       });
       await newAdmin.save();
-      console.log(newAdmin);
       res.send({ success: "ok" });
     } catch (err) {
       console.log(err);
@@ -27,7 +26,6 @@ const admin = {
   },
 
   verifyLogin: async (req, res) => {
-    console.log(req.body);
     try {
       let { email, password } = req.body;
 
@@ -41,7 +39,7 @@ const admin = {
         password.toString(),
         admin.password
       );
-      console.log(isMatched);
+
       console.log(admin);
       if (!isMatched) {
         res.send({ err: "incorrect password" });
