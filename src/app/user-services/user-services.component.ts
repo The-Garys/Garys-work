@@ -31,7 +31,7 @@ export class UserServicesComponent implements OnInit, OnDestroy {
   n: any = '';
   l: any = '';
   p: any = this.local.pick;
-  labelColor = '#14248A';
+  labelColor = '#192bc2';
   labelText = 'Hello';
   fontSize: '50px';
   fontWeight: 'bold';
@@ -80,7 +80,7 @@ export class UserServicesComponent implements OnInit, OnDestroy {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        this.zoom = 8;
+        this.zoom = 12;
         this.getAddress(this.latitude, this.longitude);
       });
     } else {
@@ -144,7 +144,7 @@ export class UserServicesComponent implements OnInit, OnDestroy {
       console.log('are those sps ?? ===>', data);
       this.services = data;
       this.services = this.services.filter((el) => {
-        return el.isBanned === false && el.email !== this.svMail;
+        return el.isBanned === false && el.email !== this.svMail && el.isDeclined === false;
       });
       this.backup = this.services;
       this.filterServiceByProfession(this.local.pick);

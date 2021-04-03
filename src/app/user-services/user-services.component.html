@@ -30,10 +30,8 @@
     <agm-map (mapClick)='onLocChange($event)' [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
       <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
         (dragEnd)="markerDragEnd($event)"></agm-marker>
-  <agm-marker [label] ="{color: labelColor, text: e.profession, backgroundColor: labelBackground, fontSize: '20px',fontWeight: 'bold'}" [iconUrl]= "{url:'../assets/icon.svg', scaledSize: {
-    width: 60,
-    height: 80
-}}"  (markerClick)='goSvProfile(e.email)' class="marker"   *ngFor='let e of services' [latitude]="e.lat" [longitude] ="e.lng" ></agm-marker>
+  <agm-marker  [label] ="{color: labelColor, text: e.profession , backgroundColor: labelBackground, fontSize: '15px',fontWeight: 'bold'}" [iconUrl]= "{url:'../assets/icon.svg', scaledSize: { width: 60, height: 80}}"  (markerClick)='goSvProfile(e.email)' class="marker" *ngFor='let e of services' [latitude]="e.lat" [longitude] ="e.lng" >
+</agm-marker>
     </agm-map>
   
   </div>
