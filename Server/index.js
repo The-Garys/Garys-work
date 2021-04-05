@@ -1,8 +1,16 @@
 const express = require("express");
 const app = express();
+const swaggerJSDoc = require("swagger-jsdoc");
+const path = require("path");
+
+const swaggerUi = require("swagger-ui-express");
+// const YAML = require("yamljs");
+// const swaggerDocument = YAML.load("./swagger.yaml");
+
 var cors = require("cors");
 require("dotenv").config();
 var bodyParser = require("body-parser");
+
 const mongoose = require("mongoose");
 const userRouter = require("./routes/UserRoute");
 const serviceProviderRouter = require("./routes/ServiceProviderRouter");
@@ -70,6 +78,7 @@ app.post("/upload", upload.any(0), (req, res) => {
     res.send({ status: false, msg: err });
   }
 });
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 io.on("connection", (socket) => {
   socket.on("message", (msg) => {
@@ -78,6 +87,38 @@ io.on("connection", (socket) => {
   });
   console.log("a user connected");
 });
+
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "GaryWork API",
+      version: "1.0.0",
+      description: "API for thesis project",
+    },
+    servers: [
+      {
+        url: "http://localhost:3000/",
+      },
+    ],
+  },
+  apis: [path.join(__dirname, "/routes/**/*.js")],
+};
+
+const specs = swaggerJSDoc(options);
+app.use(
+  "/docs",
+  swaggerUi.serve,
+  swaggerUi.setup(specs, {
+    explorer: true,
+  })
+);
+// app.get(
+//   "/docs",
+//   swaggerUi.setup(specs, {
+//     explorer: true,
+//   })
+// );
 
 const port = 3000;
 http.listen(port, () => {
