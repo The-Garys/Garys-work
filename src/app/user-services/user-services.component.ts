@@ -208,7 +208,7 @@ export class UserServicesComponent implements OnInit {
   }
 
   viewMap() {
-    this.map = true;
+    this.map = !this.map;
   }
 
   dropLoc(val) {
