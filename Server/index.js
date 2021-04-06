@@ -80,13 +80,13 @@ app.post("/upload", upload.any(0), (req, res) => {
 });
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-io.on("connection", (socket) => {
-  socket.on("message", (msg) => {
-    console.log(msg);
-    socket.broadcast.emit("message-broadcast", msg);
-  });
-  console.log("a user connected");
-});
+// io.on("connection", (socket) => {
+//   socket.on("message", (msg) => {
+//     console.log(msg);
+//     socket.broadcast.emit("message-broadcast", msg);
+//   });
+//   console.log("a user connected");
+// });
 
 const options = {
   definition: {
