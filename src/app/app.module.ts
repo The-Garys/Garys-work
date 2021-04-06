@@ -42,6 +42,7 @@ import { LiveChatComponent } from './live-chat/live-chat.component';
 import { VesitorProfileComponent } from './vesitor-profile/vesitor-profile.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ProfessionsComponent } from './Admin/professions/professions.component';
+import { NewsignupComponent } from './newsignup/newsignup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +74,7 @@ import { ProfessionsComponent } from './Admin/professions/professions.component'
     VesitorProfileComponent,
     UserProfileComponent,
     ProfessionsComponent,
+    NewsignupComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,15 +17,9 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {}
 send(name,phone, email, message) {
-  if(!phone || !email || !message){
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'please fill all the fields',
-    })
-  }
+  
 
-  else if(typeof (phone) !== 'number') {
+   if(typeof (phone) !== 'number') {
     Swal.fire({
       icon: 'error',
       title: 'Oops...',

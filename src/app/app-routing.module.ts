@@ -18,6 +18,7 @@ import{ProfessionsComponent} from './Admin/professions/professions.component'
 import { VesitorProfileComponent } from './vesitor-profile/vesitor-profile.component';
 import { AuthGuard } from './auth/auth.guard';
 import {UserProfileComponent} from './user-profile/user-profile.component';
+import { NewsignupComponent } from './newsignup/newsignup.component';
 
 
 
@@ -25,6 +26,7 @@ import {UserProfileComponent} from './user-profile/user-profile.component';
 const routes: Routes = [
   { path: '', component: HomepageComponent, pathMatch: 'full' },
   {path:'admin', component:AdminComponent},
+  {path:'halim', component:NewsignupComponent},
   { path: 'alogin', component: AdminLoginComponent },
   { path: 'signin', component: SignInComponent },
   { path: 'services', component: ServicesListComponent },
