@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { LocalService } from '../../local.service';
+import {AdminCredentials} from '../../models/AdminCredentials'
 
 @Component({
   selector: 'app-admin-login',

@@ -12,8 +12,10 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ServicesListComponent } from './services-list/services-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
+
+// Modules
+import { AdminModule } from './modules/admin/admin.module'
 
 import { DataTablesModule } from 'angular-datatables';
 import { PanelModule } from 'primeng/panel';
@@ -25,23 +27,21 @@ import { SpProfileComponent } from './sp-profile/sp-profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ReviewsComponent } from './reviews/reviews.component';
-import { AdminNavComponent } from './admin/admin-nav/admin-nav.component';
-import { MessagesComponent } from './admin/messages/messages.component';
-import { AppointmentComponent } from './appointment/appointment.component';
+// import { AdminNavComponent } from './admin/admin-nav/admin-nav.component';
+// import { MessagesComponent } from './admin/messages/messages.component';
 import { UserServicesComponent } from './user-services/user-services.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
-import { AdminComponent } from './Admin/admin/admin.component';
+// import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
+// import { AdminComponent } from './Admin/admin/admin.component';
 import { ModalReviewComponent } from './modal-review/modal-review.component';
-import { ProvidersComponent } from './Admin/providers/providers.component';
-import { UsersComponent } from './Admin/users/users.component';
-import { RequestsComponent } from './Admin/requests/requests.component';
-import { ServiceProviderCardComponent } from './services-list/service-provider-card/service-provider-card.component';
+// import { ProvidersComponent } from './Admin/providers/providers.component';
+// import { UsersComponent } from './Admin/users/users.component';
+// import { RequestsComponent } from './Admin/requests/requests.component';
 import { LocationComponent } from './location/location.component';
 import { LiveChatComponent } from './live-chat/live-chat.component';
 import { VesitorProfileComponent } from './vesitor-profile/vesitor-profile.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { ProfessionsComponent } from './Admin/professions/professions.component';
+// import { ProfessionsComponent } from './Admin/professions/professions.component';
 import { NewsignupComponent } from './newsignup/newsignup.component';
 @NgModule({
   declarations: [
@@ -54,26 +54,23 @@ import { NewsignupComponent } from './newsignup/newsignup.component';
     SignInComponent,
     SignUpComponent,
     SignupComponent,
-    ServicesListComponent,
     NavbarComponent,
     SpProfileComponent,
     ReviewsComponent,
-    AdminNavComponent,
-    MessagesComponent,
-    AppointmentComponent,
+    // AdminNavComponent,
+    // MessagesComponent,
     UserServicesComponent,
-    AdminLoginComponent,
-    AdminComponent,
+    // AdminLoginComponent,
+    // AdminComponent,
     ModalReviewComponent,
-    ProvidersComponent,
-    UsersComponent,
-    RequestsComponent,
-    ServiceProviderCardComponent,
+    // ProvidersComponent,
+    // UsersComponent,
+    // RequestsComponent,
     LocationComponent,
     LiveChatComponent,
     VesitorProfileComponent,
     UserProfileComponent,
-    ProfessionsComponent,
+    // ProfessionsComponent,
     NewsignupComponent,
   ],
   imports: [
@@ -90,6 +87,7 @@ import { NewsignupComponent } from './newsignup/newsignup.component';
       apiKey: 'AIzaSyDapTrWdHVdzoF7ttygRmfv0XqIDkonBqg',
       libraries: ['places'],
     }),
+    AdminModule
   ],
 
   providers: [],

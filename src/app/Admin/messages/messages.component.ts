@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminServices } from '../admin.service';
+import { AdminServices } from '../../services/admin.service';
 import * as moment from 'moment';
 import Swal from 'sweetalert2';
 

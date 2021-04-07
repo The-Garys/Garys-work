@@ -124,38 +124,54 @@
               <!-- settings for the profile -->
               <form class="text-center border border-light p-5">
                 <div>
-                  <label class="inline-label">First Name</label>
+                  <div class="col-25">
+                  <label>First Name</label>
+                </div>
+                <div class="col-75">
                   <input
                     #firstName
                     class="form-control mb-4 p-4"
                     value="{{ userData.firstName }}"
                   />
                 </div>
+                </div>
                 <div>
-                  <label class="inline-label">Last Name</label>
+                  <div class="col-25">
+                  <label>Last Name</label>
+                </div>
+                <div class="col-75">
                   <input
                     #lastName
                     class="form-control mb-4 p-4"
                     value="{{ userData.lastName }}"
                   />
                 </div>
+                </div>
                 <div>
-                  <label class="inline-label">User Name</label>
+                  <div class="col-25">
+                  <label>User Name</label>
+                </div>
+                <div class="col-75">
                   <input
                     #userName
                     class="form-control mb-4 p-4"
                     value="{{ userData.userName }}"
                   />
                 </div>
+                </div>
                 <div>
-                  <label class="inline-label">Phone Number</label>
+                  <div class="col-25">
+                  <label>Phone Number</label>
+                </div>
+                <div class="col-75">
                   <input
                     #phoneNumber
                     class="form-control mb-4 p-4"
                     value="{{ userData.phoneNumber }}"
                   />
+                  </div>
                 </div>
-                <div id="map">
+                <div  id="map">
                   <app-location #location></app-location>
                 </div>
                 <button
@@ -173,6 +189,64 @@
                   Save
                 </button>
               </form>
+              <!-- trying form -->
+
+              <!-- <div class="container">
+                <form action="action_page.php">
+                  <div class="row">
+                    <div class="col-25">
+                      <label for="fname">First Name</label>
+                    </div>
+                    <div class="col-75">
+                      <input #firstName type="text" id="fname" name="firstname" value="{{ userData.firstName }}"/>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-25">
+                      <label for="lname">Last Name</label>
+                    </div>
+                    <div class="col-75">
+                      <input #lastName type="text" id="lname" name="lastname" value="{{ userData.lastName }}">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-25">
+                      <label for="lname">User Name</label>
+                    </div>
+                    <div class="col-75">
+                      <input #userName type="text" id="lname" name="lastname" value="{{ userData.userName }}">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-25">
+                      <label for="lname">Phone Number</label>
+                    </div>
+                    <div class="col-75">
+                      <input #phoneNumber type="text" id="lname" name="lastname" value="{{ userData.phoneNumber }}">
+                    </div>
+                  </div>
+                  <div id="map">
+                    <app-location #location></app-location>
+                  </div>
+                  <div class="row">
+                    <button
+                      type="submit"
+                    (click)="
+                      updateUserDetails(
+                        firstName.value,
+                        lastName.value,
+                        userName.value,
+                        phoneNumber.value,
+                        location.address
+                      )
+                    "
+                  >
+                    Save
+                  </button>
+                  </div>
+                </form>
+              </div> -->
+              <!-- trying form -->
               <!-- settings for the profile -->
             </div>
             <!-- security -->
@@ -185,7 +259,10 @@
               <!-- settings for the profile -->
               <form class="text-center border border-light p-5">
                 <div>
-                  <label class="inline-labell">Current password</label>
+                  <div class="col-25">
+                  <label >Current password</label>
+                </div>
+                <div class="col-75">
                   <input
                     #currentPassword
                     type="password"
@@ -193,8 +270,12 @@
                     placeholder="current password"
                   />
                 </div>
+                </div>
                 <div>
-                  <label class="inline-labell">New password</label>
+                  <div class="col-25">
+                  <label >New password</label>
+                </div>
+                <div class="col-75">
                   <input
                     #newPassword
                     type="password"
@@ -202,14 +283,19 @@
                     placeholder="new password"
                   />
                 </div>
+                </div>
                 <div>
-                  <label class="inline-labell">Confirm Password</label>
+                  <div class="col-25">
+                  <label >Confirm Password</label>
+                </div>
+                <div class="col-75">
                   <input
                     #confirmPassword
                     type="password"
                     class="form-control mb-4 p-4"
                     placeholder="Confirm new Password"
                   />
+                </div>
                 </div>
                 <button
                   class="btn-update"
