@@ -21,6 +21,7 @@ export class AdminLoginComponent implements OnInit {
   password: string;
 
   ngOnInit(): void {
+    this.local.adminSignedIn = false;
     this.local.admin = true;
   }
   login(email, password) {
@@ -39,7 +40,8 @@ export class AdminLoginComponent implements OnInit {
           });
         } else {
           Swal.fire('', 'Successfully Connected!', 'success');
-          this.router.navigateByUrl('/admin');
+          this.router.navigate(['/admin/users']);
+          this.local.adminSignedIn = true;
         }
       });
   }

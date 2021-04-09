@@ -24,7 +24,7 @@ import { NewsignupComponent } from './newsignup/newsignup.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent, pathMatch: 'full' },
-  {path:'admin', component:AdminComponent},
+  // {path:'admin', component:AdminComponent},
   {path:'halim', component:NewsignupComponent},
   { path: 'alogin', component: AdminLoginComponent },
   { path: 'signin', component: SignInComponent },

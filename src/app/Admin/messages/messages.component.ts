@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminServices } from '../../services/admin.service';
 import * as moment from 'moment';
 import Swal from 'sweetalert2';
+import { LocalService } from '../../local.service';
 
 @Component({
   selector: 'app-messages',
@@ -9,13 +10,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./messages.component.scss'],
 })
 export class MessagesComponent implements OnInit {
-  constructor(private contactMessages: AdminServices) {}
+  constructor(private contactMessages: AdminServices, private local : LocalService) {}
 
   messages = [];
 
   moment: any = moment;
 
   ngOnInit() {
+    this.local.admin = true;
+
     this.contactMessages.getMessages().subscribe((data: any[]) => {
       this.messages = data;
     });

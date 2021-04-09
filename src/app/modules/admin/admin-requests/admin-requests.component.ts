@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminServices } from '../../../services/admin.service';
+import { LocalService } from '../../../local.service';
+
 
 import Swal from 'sweetalert2';
 @Component({
-  selector: 'app-requests',
-  templateUrl: './requests.component.html',
-  styleUrls: ['./requests.component.scss'],
+  selector: 'app-admin-requests',
+  templateUrl: './admin-requests.component.html',
+  styleUrls: ['./admin-requests.component.scss'],
 })
 export class AdminRequestsComponent implements OnInit {
   requests: any = [];
-  constructor(private admin: AdminServices) {}
+  constructor(private admin: AdminServices, private local : LocalService) {}
 
   ngOnInit(): void {
+    this.local.admin = true;
     this.admin.getSpList().subscribe((data) => {
       this.requests = data;
       this.requests = this.requests.filter((el) => {

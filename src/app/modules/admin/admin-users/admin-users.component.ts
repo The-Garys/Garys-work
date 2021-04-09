@@ -3,11 +3,13 @@ import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { AdminServices } from '../../../services/admin.service';
 import Swal from 'sweetalert2';
+import { LocalService } from '../../../local.service';
+
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss'],
+  selector: 'app-admin-users',
+  templateUrl: './admin-users.component.html',
+  styleUrls: ['./admin-users.component.scss'],
 })
 export class AdminUsersComponent implements OnInit {
   @ViewChild(DataTableDirective, { static: false })
@@ -21,9 +23,10 @@ export class AdminUsersComponent implements OnInit {
 
   dtTrigger: Subject<any> = new Subject<any>();
 
-  constructor(private usersList: AdminServices) {}
+  constructor(private usersList: AdminServices, private local : LocalService) {}
 
   ngOnInit(): void {
+    this.local.admin = true;
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 4,

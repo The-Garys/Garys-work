@@ -4,11 +4,13 @@ import { AdminServices } from '../../../services/admin.service';
 import { ProfileService } from '../../../services/profile.service';
 import { ServicesService } from '../../../services/services.service';
 import Swal from 'sweetalert2';
+import { LocalService } from '../../../local.service';
+
 
 @Component({
-  selector: 'app-professions',
-  templateUrl: './professions.component.html',
-  styleUrls: ['./professions.component.scss'],
+  selector: 'app-admin-professions',
+  templateUrl: './admin-professions.component.html',
+  styleUrls: ['./admin-professions.component.scss'],
 })
 export class AdminProfessionsComponent implements OnInit {
   image: any;
@@ -17,13 +19,14 @@ export class AdminProfessionsComponent implements OnInit {
   id: any;
   img: any;
   pro: any;
-  constructor(
+  constructor( private local : LocalService,
     private adminServices: AdminServices,
     private profileServices: ProfileService,
     private servicesService: ServicesService
   ) {}
 
   ngOnInit(): void {
+    this.local.admin = true;
     this.getProfessions();
     //  this.addServices()
   }
