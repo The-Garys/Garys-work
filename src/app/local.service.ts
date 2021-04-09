@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class LocalService {
 
   constructor() { }
+  adminSignedIn : boolean;
 admin : boolean = false;
   role : string = "guest"
   email : string 

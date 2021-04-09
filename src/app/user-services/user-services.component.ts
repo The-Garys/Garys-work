@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { SERVICES, NAME } from '../services-list/mock-service';
 import { HttpClient } from '@angular/common/http';
 import { LocalService } from '../local.service';
 import { Router } from '@angular/router';
@@ -62,7 +61,7 @@ export class UserServicesComponent implements OnInit {
       this.geoCoder = new google.maps.Geocoder();
     });
 
-    this.list = NAME;
+    this.list = [];
     this.services = [];
     this.list = [];
     this.getServices();

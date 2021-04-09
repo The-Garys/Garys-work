@@ -6,7 +6,7 @@
 
 <!-- <app-testimonials></app-testimonials> -->
 <!-- <app-sp-profile></app-sp-profile> -->
-<app-navbar></app-navbar>
+<app-navbar *ngIf="role != 'admin'"></app-navbar>
 
 <router-outlet></router-outlet>
 <!-- <app-location></app-location> -->

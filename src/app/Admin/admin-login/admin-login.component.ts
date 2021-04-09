@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { LocalService } from '../../local.service';
+import {AdminCredentials} from '../../models/AdminCredentials'
 
 @Component({
   selector: 'app-admin-login',
@@ -19,6 +20,7 @@ export class AdminLoginComponent implements OnInit {
   password: string;
 
   ngOnInit(): void {
+    this.local.adminSignedIn = false;
     this.local.admin = true;
   }
 
@@ -29,16 +31,17 @@ export class AdminLoginComponent implements OnInit {
         { email: email, password: password },
         { responseType: 'json' }
       )
-      .subscribe((d) => {
-        if (d['err']) {
+      .subscribe((reponse) => {
+        if (reponse['err']) {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: d['err'],
+            text: reponse['err'],
           });
         } else {
           Swal.fire('', 'Successfully Connected!', 'success');
-          this.router.navigateByUrl('/admin');
+          this.router.navigate(['/admin/users']);
+          this.local.adminSignedIn = true;
         }
       });
   }
