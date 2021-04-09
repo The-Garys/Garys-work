@@ -19,6 +19,9 @@ export class ServicesService {
   getRating(i) {
   return this.http.get( `http://localhost:3000/api/review/getReviews/${i}`)
   }
+  getImage(profession){
+    return this.http.get( `http://localhost:3000/api/professions/${profession}`)
+  }
    }
 
 
