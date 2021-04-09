@@ -23,6 +23,7 @@ export class UserServicesComponent implements OnInit {
   services: any = [];
   username: string;
   list: any;
+  ha : any ; 
   data: any;
   backup: any = [];
   location: any;
@@ -30,11 +31,11 @@ export class UserServicesComponent implements OnInit {
   n: any = '';
   l: any = '';
   p: any = this.local.pick;
-  labelColor = '#192bc2';
+  labelColor = 'black';
   labelText = 'Hello';
   fontSize: '50px';
   fontWeight: 'bold';
-  labelBackground = '#fff';
+  labelBackground = 'yellow';
   svMail: string = localStorage.getItem('svMail');
   constructor(
     private http: HttpClient,
@@ -128,14 +129,20 @@ export class UserServicesComponent implements OnInit {
           el.isDeclined === false
         );
       });
-      this.backup = this.services;
+     this.ha =  this.services 
+      this.ha.map((e)=>{
+        this.serviceList.getImage(e.profession).subscribe((data)=>{
+          e.img = data["image"]
+        })
+      })
+      this.backup = this.ha;
       this.filterServiceByProfession(localStorage.getItem("pick"));
     });
   }
 
   getProfessions() {
     this.serviceList.getProfessions().subscribe((data) => {
-      this.list = data;
+      this.list  = data 
     });
   }
   getRating() {

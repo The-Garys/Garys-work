@@ -37,7 +37,7 @@
   </div>
   <h5 *ngIf='map'>Address: {{address}}</h5>
 
-  <div class="cont-cards">
+  <!-- <div class="cont-cards">
     <div class="card-cont" *ngFor="let e of services">
       <div class="card mb-3" (click)="goSvProfile(e.email)" id="whole-card">
         <div class="img__cont">
@@ -60,45 +60,25 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 <!-- </body> -->
 
 
 
-
-<!-- 
-<div class="card-container" *ngFor="let e of services">
-  <div class="card-item" (click)="goSvProfile(e.email)">
-      <div class="card-header">
-          <div class="card-header__bg"></div>
-          <img src="{{ e.imageUrl }}" class="card-header__img">
-          <div class="card-header__text">
-              <span class="card-header__name">
-                <span class="fas fa-user"></span>
-                {{ e.fullName }}
-              </span>
-          </div>
-      </div>
-      <ul class="card-detail">
-          <li class="card-detail__li">
-              <p class="card-detail__txt">
-                  <span class="card-detail__icon post">
-                    <i class="fas fa-tools"></i>
-                  </span>
-                  {{ e.profession }}
-              </p>
-          </li>
-          <li class="card-detail__li">
-              <p class="card-detail__txt">
-                  <span class="card-detail__icon follow">
-                    <i class="fas fa-map-marker-alt"></i>
-                  </span>
-                  {{ e.location }}
-              </p>
-          </li>
-        
-      </ul>
+<div  *ngFor="let e of services">
+  
+    <figure id="card" (click)="goSvProfile(e.email)" class="snip1336 hover"   >
       
+        <img id="avatar"  src="{{e?.img}}" alt="sample74" />
+        <figcaption>
+          <img id="image"  src="{{ e.imageUrl }}" alt="profile-sample2" class="profile" />
+          <h2> <span class="fas fa-user"></span>{{ e.fullName }}</h2>
+          <h2> <span class="fas fa-tools"></span>{{ e.profession }}</h2>
+          <h6>  <span class="fas fa-map-marker-alt"></span>{{ e.location }}</h6>
+          <a href="#" (click)="goSvProfile(e.email)" class="info">More Info</a>
+        </figcaption>
+     
+   
+    </figure>
+   
   </div>
- 
-</div> -->

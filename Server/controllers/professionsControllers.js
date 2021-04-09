@@ -1,6 +1,10 @@
 const Services = require("../models/Services");
 
 module.exports = {
+  getImage : async(req , res) =>{
+    const one = await Services.findOne({ profession: req.params.profession });
+    res.send(one)
+  } ,
   addProfession: async (req, res) => {
     const profession = new Services({
       profession: req.body.profession,
