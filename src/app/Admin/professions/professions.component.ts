@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { HttpClient } from '@angular/common/http';
-import { AdminServices } from '../admin.service';
+import { AdminServices } from '../../services/admin.service';
 import { ProfileService } from '../../services/profile.service';
 import { ServicesService } from '../../services/services.service';
 import Swal from 'sweetalert2';

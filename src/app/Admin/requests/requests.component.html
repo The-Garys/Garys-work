@@ -54,7 +54,7 @@
 
 
 
-<div class="card"  *ngFor='let request of requests'>
+<!-- <div class="card"  *ngFor='let request of requests'>
   <img class="card-img" src={{request.imageUrl}}>
       <div class="info">
         <h5 ><i class="fas fa-tools"></i>{{request.profession}}</h5>
@@ -66,7 +66,7 @@
 
       <button mdbBtn  class="verify-btn"(click) ='verifyAcc(request._id)' mdbWavesEffect>Verify</button>
       <button mdbBtn  class="decline-btn" (click)='reject(request._id)' mdbWavesEffect>Decline</button>
-      <!-- <button
+      <button
       (click)='reject(request._id)'
       mdbBtn
       type="button"
@@ -77,5 +77,5 @@
     >
      decline
     </button> -->
-    </div>
-</div>
+    <!--</div>
+</div> -->

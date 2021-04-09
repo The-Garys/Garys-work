@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
-import { AdminServices } from '../admin.service';
+import { AdminServices } from '../../services/admin.service';
 import Swal from 'sweetalert2';
 
 @Component({

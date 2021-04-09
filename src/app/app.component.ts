@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { LocalService } from './local.service';
+// import { LocalService } from './local.service';
+import {LocalStorageService} from './services/local-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,11 @@ import { LocalService } from './local.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(private local: LocalService) {}
+  constructor(private localStorage: LocalStorageService) {}
 
-  role: string = this.local.role;
-  ngOnInit() {}
+  role: string ;
+  ngOnInit() {
+    this.role = this.localStorage.getItem('role')
+  }
   title = 'gary-work';
 }
